@@ -4,24 +4,10 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.speakers.SpeakerListFragment">
-
-	<ImageView
-		android:id="@+id/imgPonente"
-		android:layout_width="251dp"
-		android:layout_height="251dp"
-		android:layout_marginStart="80dp"
-		android:layout_marginTop="80dp"
-		android:layout_marginEnd="80dp"
-		android:contentDescription="@string/imgponente"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.0"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		tools:src="@tools:sample/avatars" />
+	tools:context=".ui.lectures.LectureListFragment">
 
 	<TextView
-		android:id="@+id/nombrePonente"
+		android:id="@+id/nombrePonente2"
 		android:layout_width="251dp"
 		android:layout_height="50dp"
 		android:layout_marginStart="80dp"
@@ -34,15 +20,42 @@
 		app:layout_constraintTop_toTopOf="parent" />
 
 	<TextView
-		android:id="@+id/descPonente"
+		android:id="@+id/nombrePonencia"
 		android:layout_width="251dp"
-		android:layout_height="261dp"
+		android:layout_height="50dp"
 		android:layout_marginStart="80dp"
+		android:layout_marginTop="80dp"
 		android:layout_marginEnd="80dp"
-		android:layout_marginBottom="80dp"
-		android:text="@string/descPonente"
-		app:layout_constraintBottom_toBottomOf="parent"
+		android:text="@string/nombrePonencia"
+		app:layout_constraintBottom_toTopOf="@+id/descPonencia"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:id="@+id/descPonencia"
+		android:layout_width="251dp"
+		android:layout_height="200dp"
+		android:layout_marginStart="80dp"
+		android:layout_marginTop="130dp"
+		android:layout_marginEnd="80dp"
+		android:text="@string/descPonencia"
+		app:layout_constraintBottom_toTopOf="@+id/nombrePonente2"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:id="@+id/FechaDetallePonencia"
+		android:layout_width="251dp"
+		android:layout_height="50dp"
+		android:layout_marginStart="80dp"
+		android:layout_marginEnd="80dp"
+		android:layout_marginBottom="213dp"
+		android:text="@string/datePonencia"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
