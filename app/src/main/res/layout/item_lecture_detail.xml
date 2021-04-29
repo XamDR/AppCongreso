@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	tools:context=".ui.lectures.LectureListFragment">
+
+	<ImageView
+		android:id="@+id/imgPonente"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginEnd="10dp"
+		android:layout_marginBottom="10dp"
+		android:contentDescription="@string/imgponente"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/nombrePonente"
+		app:layout_constraintTop_toBottomOf="@+id/fechaPonencia"
+		tools:src="@tools:sample/avatars" />
+
+	<TextView
+		android:id="@+id/nombrePonente"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="23dp"
+		android:layout_marginEnd="10dp"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+		android:textStyle="bold"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/fechaPonencia"
+		tools:text="Linsday Maldonado" />
+
+	<TextView
+		android:id="@+id/descPonencia"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:ellipsize="end"
+		android:maxLines="3"
+		android:singleLine="false"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+		app:layout_constraintTop_toBottomOf="@+id/nombrePonencia"
+		tools:layout_editor_absoluteX="52dp"
+		tools:text="Descripcion ponencia" />
+
+	<TextView
+		android:id="@+id/fechaPonencia"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:ellipsize="end"
+		android:maxLines="3"
+		android:singleLine="false"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+		app:layout_constraintTop_toBottomOf="@+id/descPonencia"
+		tools:layout_editor_absoluteX="51dp"
+		tools:text="21/09/2021 9:00 a.m." />
+
+	<TextView
+		android:id="@+id/nombrePonencia"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="10dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginEnd="10dp"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+		android:textStyle="bold"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		tools:text="La informática en el desarrollo minero" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
