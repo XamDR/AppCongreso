@@ -66,6 +66,7 @@
 		android:layout_margin="10dp"
 		android:maxLines="1"
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+		android:textStyle="italic"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toEndOf="@id/speaker_photo"
 		app:layout_constraintBottom_toBottomOf="parent"
