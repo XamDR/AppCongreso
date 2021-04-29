@@ -22,16 +22,20 @@ class SpeakerListFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
+		initRecyclerView()
+	}
+
+	override fun onDestroyView() {
+		super.onDestroyView()
+		binding = null
+	}
+
+	private fun initRecyclerView() {
 		val speakerAdapter = SpeakerAdapter(speakerViewModel)
 		speakerAdapter.submitList(speakerViewModel.speakers)
 		binding?.rvSpeakers?.apply {
 			adapter = speakerAdapter
 			addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
 		}
-	}
-
-	override fun onDestroyView() {
-		super.onDestroyView()
-		binding = null
 	}
 }

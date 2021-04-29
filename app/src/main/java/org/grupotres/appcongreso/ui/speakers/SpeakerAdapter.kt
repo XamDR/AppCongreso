@@ -18,11 +18,11 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel) :
 
 		@SuppressLint("SetTextI18n")
 		fun bind(speaker: Speaker) {
-			binding.nombrePonente.text = "${speaker.name} ${speaker.surname}"
-			binding.descPonente.text = speaker.country
+			binding.speakerName.text = "${speaker.name} ${speaker.surname}"
+			binding.speakerDesc.text = speaker.country
 
 			if (speaker.uriPhoto != null) {
-				binding.imgPonente.setImageURI(Uri.parse(speaker.uriPhoto))
+				binding.speakerPhoto.setImageURI(Uri.parse(speaker.uriPhoto))
 			}
 		}
 	}
