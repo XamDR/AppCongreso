@@ -10,5 +10,10 @@
 	<string name="menu_login">Login</string>
 	<string name="menu_lecture_list">Lectures</string>
 	<string name="menu_speaker_list">Speakers</string>
-	<string name="imgponente">Profile pic of speaker</string>
+	<string name="imgponente">imgPonente</string>
+	<string name="nombrePonente">TextView</string>
+	<string name="descPonente">descPonente</string>
+	<string name="descPonencia">descPonencia</string>
+	<string name="nombrePonencia">nombrePonencia</string>
+	<string name="datePonencia">datePonencia</string>
 </resources>
