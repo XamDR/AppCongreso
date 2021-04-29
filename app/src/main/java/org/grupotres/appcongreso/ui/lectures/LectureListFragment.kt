@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import org.grupotres.appcongreso.databinding.FragmentLectureListBinding
+import org.grupotres.appcongreso.ui.helpers.INavigator
 
 class LectureListFragment : Fragment() {
 
@@ -30,7 +31,7 @@ class LectureListFragment : Fragment() {
 	}
 
 	private fun initRecyclerView() {
-		val lectureAdapter = LectureAdapter(viewModel)
+		val lectureAdapter = LectureAdapter(viewModel, requireActivity() as INavigator)
 		lectureAdapter.submitList(viewModel.lectures)
 		binding?.rvLectures?.apply {
 			adapter = lectureAdapter

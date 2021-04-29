@@ -10,8 +10,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
+import org.grupotres.appcongreso.ui.helpers.INavigator
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), INavigator {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
@@ -42,5 +43,9 @@ class MainActivity : AppCompatActivity() {
 			binding.drawerLayout)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		binding.navView.setupWithNavController(navController)
+	}
+
+	override fun navigate(resId: Int, bundle: Bundle?) {
+		TODO("Falta implementar")
 	}
 }
