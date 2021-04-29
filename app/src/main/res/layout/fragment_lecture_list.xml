@@ -21,7 +21,7 @@
 		app:layout_constraintTop_toTopOf="parent" />
 
 	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/rvLectures"
+		android:id="@+id/rvSpeakers"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:layout_constraintBottom_toBottomOf="parent"
