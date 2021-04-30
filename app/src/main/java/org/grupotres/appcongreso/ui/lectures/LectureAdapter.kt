@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.ItemLectureDetailBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
@@ -30,7 +31,9 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 	}
 
 	private fun goToLectureDetail(position: Int) {
-		TODO("Falta implementar")
+		val lecture = getItem(position + 1)
+		val bundle = bundleOf("id" to lecture.id, "title" to lecture.title)
+		navigator.navigate(R.id.action_nav_lecture_list_to_lectureDetailFragment, bundle)
 	}
 
 	override fun onBindViewHolder(holder: LectureViewHolder, position: Int) {

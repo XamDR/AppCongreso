@@ -46,6 +46,8 @@ class MainActivity : AppCompatActivity(), INavigator {
 	}
 
 	override fun navigate(resId: Int, bundle: Bundle?) {
-		TODO("Falta implementar")
+		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+		val navController = navHostFragment.navController
+		navController.navigate(resId)
 	}
 }
