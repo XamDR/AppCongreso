@@ -26,7 +26,7 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 		val binding = ItemLectureDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 		val holder = LectureViewHolder(binding)
 		holder.setOnClickListener { position, _ -> goToLectureDetail(position) }
-		return LectureViewHolder(binding)
+		return holder
 	}
 
 	private fun goToLectureDetail(position: Int) {

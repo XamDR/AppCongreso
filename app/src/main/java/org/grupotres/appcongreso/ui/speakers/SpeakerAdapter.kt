@@ -34,7 +34,7 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel) :
 		val binding = ItemSpeakerDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 		val holder = SpeakerViewHolder(binding)
 		holder.setOnClickListener { position, _ -> goToSpeakerDetail(position) }
-		return SpeakerViewHolder(binding)
+		return holder
 	}
 
 	private fun goToSpeakerDetail(position: Int) {
