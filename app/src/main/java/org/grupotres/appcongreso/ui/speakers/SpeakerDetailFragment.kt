@@ -18,7 +18,7 @@ class SpeakerDetailFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		val title = arguments?.getString("title")
+		val title = arguments?.getString("name")
 
 		if (title != null) {
 			binding?.speakerTitle?.text = title

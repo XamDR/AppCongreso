@@ -9,11 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.grupotres.appcongreso.databinding.FragmentSpeakerListBinding
+import org.grupotres.appcongreso.ui.helpers.INavigator
 
 class SpeakerListFragment : Fragment() {
 
 	private var binding: FragmentSpeakerListBinding? = null
-	private val speakerViewModel by viewModels<SpeakerViewModel>()
+	private val viewModel by viewModels<SpeakerViewModel>()
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		binding = FragmentSpeakerListBinding.inflate(inflater, container, false)
@@ -31,8 +32,8 @@ class SpeakerListFragment : Fragment() {
 	}
 
 	private fun initRecyclerView() {
-		val speakerAdapter = SpeakerAdapter(speakerViewModel)
-		speakerAdapter.submitList(speakerViewModel.speakers)
+		val speakerAdapter = SpeakerAdapter(viewModel, requireActivity() as INavigator)
+		speakerAdapter.submitList(viewModel.speakers)
 		binding?.rvSpeakers?.apply {
 			adapter = speakerAdapter
 			addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))

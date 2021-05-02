@@ -8,12 +8,13 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Speaker
-import org.grupotres.appcongreso.databinding.ItemLectureDetailBinding
 import org.grupotres.appcongreso.databinding.ItemSpeakerDetailBinding
+import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setOnClickListener
 
-class SpeakerAdapter(private val viewModel: SpeakerViewModel) :
+class SpeakerAdapter(private val viewModel: SpeakerViewModel, private val navigator: INavigator) :
 	ListAdapter<Speaker, SpeakerAdapter.SpeakerViewHolder>(SpeakerCallback()) {
 
 	inner class SpeakerViewHolder(private val binding: ItemSpeakerDetailBinding) :
@@ -38,7 +39,9 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel) :
 	}
 
 	private fun goToSpeakerDetail(position: Int) {
-		TODO("Falta implementar")
+		val speaker = getItem(position + 1)
+		val bundle = bundleOf("id" to speaker.id, "name" to speaker.name)
+		navigator.navigate(R.id.action_nav_speaker_list_to_speakerDetailFragment, bundle)
 	}
 
 
