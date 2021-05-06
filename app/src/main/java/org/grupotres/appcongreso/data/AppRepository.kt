@@ -9,7 +9,7 @@ class AppRepository(context: Context) {
 
 	suspend fun getSpeakers() = speakerDao.getSpeakers()
 
-	private val dbName = "eznotes-database"
+	private val dbName = "app-database"
 
 	private val database = Room
 		.databaseBuilder(context.applicationContext, AppDatabase::class.java, dbName)

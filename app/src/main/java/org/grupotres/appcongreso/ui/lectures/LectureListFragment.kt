@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
+import org.grupotres.appcongreso.data.AppRepository
 import org.grupotres.appcongreso.databinding.FragmentLectureListBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 
 class LectureListFragment : Fragment() {
 
 	private var binding: FragmentLectureListBinding? = null
-	private val viewModel by viewModels<LectureViewModel>()
+	private val viewModel by viewModels<LectureViewModel> { LectureViewModelFactory(AppRepository.Instance) }
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		binding = FragmentLectureListBinding.inflate(inflater, container, false)

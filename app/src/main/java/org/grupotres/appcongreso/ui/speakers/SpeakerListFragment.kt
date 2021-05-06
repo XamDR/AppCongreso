@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import org.grupotres.appcongreso.data.AppRepository
 import org.grupotres.appcongreso.databinding.FragmentSpeakerListBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 
 class SpeakerListFragment : Fragment() {
 
 	private var binding: FragmentSpeakerListBinding? = null
-	private val viewModel by viewModels<SpeakerViewModel>()
+	private val viewModel by viewModels<SpeakerViewModel> { SpeakerViewModelFactory(AppRepository.Instance) }
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		binding = FragmentSpeakerListBinding.inflate(inflater, container, false)

@@ -1,12 +1,17 @@
 package org.grupotres.appcongreso.core
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Speaker(
-	val id: String,
+	@PrimaryKey val id: String,
 	val surname: String,
-	val maternalSurname: String? = null,
+	@ColumnInfo(name = "maternal_surname") val maternalSurname: String? = null,
 	val name: String,
-//	val birthday: String,
-//	val gender: String,
+	val birthday: String,
+	val gender: String,
 	val country: String,
-	val uriPhoto: String? = null
+	@ColumnInfo(name = "uri_photo") val uriPhoto: String? = null
 )
