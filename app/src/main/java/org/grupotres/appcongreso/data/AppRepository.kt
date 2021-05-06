@@ -2,7 +2,6 @@ package org.grupotres.appcongreso.data
 
 import android.content.Context
 import androidx.room.Room
-import org.grupotres.appcongreso.core.Speaker
 
 class AppRepository(context: Context) {
 
