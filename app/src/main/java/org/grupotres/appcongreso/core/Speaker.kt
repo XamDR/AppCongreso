@@ -11,7 +11,6 @@ data class Speaker(
 	@ColumnInfo(name = "maternal_surname") val maternalSurname: String? = null,
 	val name: String,
 	val birthday: String,
-	val gender: String,
 	val country: String,
 	@ColumnInfo(name = "uri_photo") val uriPhoto: String? = null
 )

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "67250aadcc8a9c1dc8d5051d83f5cfb8",
+    "identityHash": "06a88eca18edc89afaa981bb591a825e",
     "entities": [
       {
         "tableName": "Lecture",
@@ -50,7 +50,7 @@
       },
       {
         "tableName": "Speaker",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `surname` TEXT NOT NULL, `maternal_surname` TEXT, `name` TEXT NOT NULL, `birthday` TEXT NOT NULL, `gender` TEXT NOT NULL, `country` TEXT NOT NULL, `uri_photo` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `surname` TEXT NOT NULL, `maternal_surname` TEXT, `name` TEXT NOT NULL, `birthday` TEXT NOT NULL, `country` TEXT NOT NULL, `uri_photo` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -83,12 +83,6 @@
             "notNull": true
           },
           {
-            "fieldPath": "gender",
-            "columnName": "gender",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "country",
             "columnName": "country",
             "affinity": "TEXT",
@@ -114,7 +108,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '67250aadcc8a9c1dc8d5051d83f5cfb8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '06a88eca18edc89afaa981bb591a825e')"
     ]
   }
 }

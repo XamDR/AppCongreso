@@ -33,7 +33,7 @@ class SpeakerListFragment : Fragment() {
 
 	private fun initRecyclerView() {
 		val speakerAdapter = SpeakerAdapter(viewModel, requireActivity() as INavigator)
-		speakerAdapter.submitList(viewModel.speakers)
+		viewModel.speakers.observe(viewLifecycleOwner, { speakerAdapter.submitList(it) })
 		binding?.rvSpeakers?.apply {
 			adapter = speakerAdapter
 			addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))

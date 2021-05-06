@@ -46,8 +46,8 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel, private val naviga
 
 
 	override fun onBindViewHolder(holder: SpeakerViewHolder, position: Int) {
-		val speaker = viewModel.speakers[position]
-		holder.bind(speaker)
+		val speaker = viewModel.speakers.value?.get(position)
+		speaker?.let { holder.bind(it) }
 	}
 
 	class SpeakerCallback : DiffUtil.ItemCallback<Speaker>() {
