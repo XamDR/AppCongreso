@@ -17,7 +17,7 @@
 		android:label="@string/menu_lecture_list"
 		tools:layout="@layout/fragment_lecture_list" >
 		<action
-			android:id="@+id/action_nav_lecture_list_to_lectureDetailFragment"
+			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
 			app:destination="@id/lectureDetailFragment" />
 	</fragment>
 
