@@ -26,9 +26,18 @@
 		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerListFragment"
 		android:label="@string/menu_speaker_list"
 		tools:layout="@layout/fragment_speaker_list" >
+		<argument
+			android:name="name"
+			app:argType="string"
+			android:defaultValue="" />
 		<action
 			android:id="@+id/action_nav_speaker_list_to_speaker_detail"
-			app:destination="@id/speakerDetailFragment" />
+			app:destination="@id/speakerDetailFragment">
+			<argument
+				android:name="name"
+				app:argType="string"
+				android:defaultValue="" />
+		</action>
 	</fragment>
 
 	<fragment

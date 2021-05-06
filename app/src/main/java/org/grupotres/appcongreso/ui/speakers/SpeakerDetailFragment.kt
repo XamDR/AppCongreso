@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import org.grupotres.appcongreso.databinding.FragmentSpeakerDetailBinding
 
 class SpeakerDetailFragment : Fragment() {
 
 	private var binding: FragmentSpeakerDetailBinding? = null
+	private val args: SpeakerListFragmentArgs by navArgs()
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		binding = FragmentSpeakerDetailBinding.inflate(inflater, container, false)
@@ -18,11 +20,8 @@ class SpeakerDetailFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		val title = arguments?.getString("name")
-
-		if (title != null) {
-			binding?.speakerTitle?.text = title
-		}
+		val title = args.name
+		binding?.speakerTitle?.text = title
 	}
 
 	override fun onDestroyView() {

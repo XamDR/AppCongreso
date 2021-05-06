@@ -4,11 +4,9 @@ import android.annotation.SuppressLint
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Speaker
 import org.grupotres.appcongreso.databinding.ItemSpeakerDetailBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
@@ -40,8 +38,8 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel, private val naviga
 
 	private fun goToSpeakerDetail(position: Int) {
 		val speaker = getItem(position)
-		val bundle = bundleOf("id" to speaker.id, "name" to speaker.name)
-		navigator.navigate(R.id.action_nav_speaker_list_to_speaker_detail, bundle)
+		val navDirections = SpeakerListFragmentDirections.actionNavSpeakerListToSpeakerDetail(speaker.name)
+		navigator.navigate(navDirections)
 	}
 
 

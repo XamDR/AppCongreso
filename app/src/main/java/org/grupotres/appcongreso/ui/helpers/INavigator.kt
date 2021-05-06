@@ -1,7 +1,7 @@
 package org.grupotres.appcongreso.ui.helpers
 
-import android.os.Bundle
+import androidx.navigation.NavDirections
 
 interface INavigator {
-	fun navigate(resId: Int, bundle: Bundle? = null)
+	fun navigate(navDirections: NavDirections)
 }
