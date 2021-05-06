@@ -33,7 +33,7 @@ class LectureListFragment : Fragment() {
 
 	private fun initRecyclerView() {
 		val lectureAdapter = LectureAdapter(viewModel, requireActivity() as INavigator)
-		lectureAdapter.submitList(viewModel.lectures)
+		viewModel.lectures.observe(viewLifecycleOwner, { lectureAdapter.submitList(it) })
 		binding?.rvLectures?.apply {
 			adapter = lectureAdapter
 			addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))

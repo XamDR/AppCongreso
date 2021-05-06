@@ -39,7 +39,7 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel, private val naviga
 	}
 
 	private fun goToSpeakerDetail(position: Int) {
-		val speaker = getItem(position + 1)
+		val speaker = getItem(position)
 		val bundle = bundleOf("id" to speaker.id, "name" to speaker.name)
 		navigator.navigate(R.id.action_nav_speaker_list_to_speakerDetailFragment, bundle)
 	}
