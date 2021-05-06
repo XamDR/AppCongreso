@@ -10,7 +10,7 @@ data class Speaker(
 	val surname: String,
 	@ColumnInfo(name = "maternal_surname") val maternalSurname: String? = null,
 	val name: String,
-	val birthday: String,
 	val country: String,
+	val info: String,
 	@ColumnInfo(name = "uri_photo") val uriPhoto: String? = null
 )

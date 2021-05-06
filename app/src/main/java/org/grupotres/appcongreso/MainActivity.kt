@@ -3,16 +3,12 @@ package org.grupotres.appcongreso
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import kotlinx.coroutines.launch
-import org.grupotres.appcongreso.data.AppRepository
-import org.grupotres.appcongreso.data.SpeakerData
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 
@@ -27,9 +23,6 @@ class MainActivity : AppCompatActivity(), INavigator {
 		setContentView(binding.root)
 		setSupportActionBar(binding.contentMain.toolbar)
 		setupNavigation()
-		lifecycleScope.launch {
-			SpeakerData.populateData(AppRepository.Instance)
-		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {

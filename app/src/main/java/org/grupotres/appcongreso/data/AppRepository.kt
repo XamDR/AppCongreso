@@ -10,12 +10,11 @@ class AppRepository(context: Context) {
 
 	suspend fun getSpeakers() = speakerDao.getSpeakers()
 
-	suspend fun insertAllSpeakers(speakers: List<Speaker>) = speakerDao.insertAllSpeakers(speakers)
-
 	private val dbName = "app-database"
 
 	private val database = Room
 		.databaseBuilder(context.applicationContext, AppDatabase::class.java, dbName)
+		.createFromAsset("appcongreso.db")
 		.build()
 
 	private val lectureDao = database.lectureDao()
