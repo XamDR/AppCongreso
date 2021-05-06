@@ -38,7 +38,7 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel, private val naviga
 
 	private fun goToSpeakerDetail(position: Int) {
 		val speaker = getItem(position)
-		val navDirections = SpeakerListFragmentDirections.actionNavSpeakerListToSpeakerDetail(speaker.name)
+		val navDirections = SpeakerListFragmentDirections.actionNavSpeakerListToSpeakerDetail(speaker)
 		navigator.navigate(navDirections)
 	}
 

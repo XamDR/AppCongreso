@@ -20,8 +20,7 @@ class SpeakerDetailFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		val title = args.name
-		binding?.speakerTitle?.text = title
+		binding?.speakerTitle?.text = args.speaker.info
 	}
 
 	override fun onDestroyView() {
