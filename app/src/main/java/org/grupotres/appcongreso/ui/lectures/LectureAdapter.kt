@@ -40,9 +40,7 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 	}
 
 	private fun goToLectureDetail(position: Int) {
-		val lecture = getItem(position)
-		val bundle = bundleOf("id" to lecture.id, "title" to lecture.title)
-		navigator.navigate(R.id.action_nav_lecture_list_to_lecture_detail, bundle)
+		TODO()
 	}
 
 	override fun onBindViewHolder(holder: LectureViewHolder, position: Int) {

@@ -3,6 +3,7 @@ package org.grupotres.appcongreso
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -45,9 +46,9 @@ class MainActivity : AppCompatActivity(), INavigator {
 		binding.navView.setupWithNavController(navController)
 	}
 
-	override fun navigate(resId: Int, bundle: Bundle?) {
+	override fun navigate(navDirections: NavDirections) {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
-		navController.navigate(resId)
+		navController.navigate(navDirections)
 	}
 }
