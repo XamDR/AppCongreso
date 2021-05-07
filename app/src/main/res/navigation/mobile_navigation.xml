@@ -16,9 +16,16 @@
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureListFragment"
 		android:label="@string/menu_lecture_list"
 		tools:layout="@layout/fragment_lecture_list" >
+		<argument
+			android:name="lecture"
+			app:argType="org.grupotres.appcongreso.core.Lecture" />
 		<action
 			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
-			app:destination="@id/lectureDetailFragment" />
+			app:destination="@id/lectureDetailFragment">
+			<argument
+				android:name="lecture"
+				app:argType="org.grupotres.appcongreso.core.Lecture" />
+		</action>
 	</fragment>
 
 	<fragment

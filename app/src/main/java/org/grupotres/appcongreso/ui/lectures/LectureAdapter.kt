@@ -13,6 +13,7 @@ import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.core.Speaker
 import org.grupotres.appcongreso.databinding.ItemLectureDetailBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.ui.speakers.SpeakerListFragmentDirections
 import org.grupotres.appcongreso.util.setOnClickListener
 
 class LectureAdapter(private val viewModel: LectureViewModel, private val navigator: INavigator) :
@@ -40,7 +41,9 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 	}
 
 	private fun goToLectureDetail(position: Int) {
-		TODO()
+		val lecture = getItem(position)
+		val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lecture)
+		navigator.navigate(navDirections)
 	}
 
 	override fun onBindViewHolder(holder: LectureViewHolder, position: Int) {
