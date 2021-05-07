@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".ui.login.HomeActivity">
+
+	<TextView
+		android:id="@+id/datos"
+		android:layout_marginTop="50dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="BIENVENIDO"
+		android:textAlignment="center"
+		android:textSize="30sp"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:padding="50dp">
+
+		<ImageView
+			android:id="@+id/profile_image"
+			android:layout_width="match_parent"
+			android:layout_height="203dp">
+
+		</ImageView>
+
+		<TextView
+			android:id="@+id/tv_nombre"
+			android:layout_marginBottom="10dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="24sp"
+			android:textAlignment="center"
+			android:text="Nombre Apellido"/>
+
+		<TextView
+			android:id="@+id/tv_email"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:layout_marginBottom="10dp"
+			android:text="corre@ejemplo.com"
+			android:textAlignment="center"/>
+
+		<Button
+			android:id="@+id/btn_cerrar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textAllCaps="false"
+			android:layout_gravity="center"
+			android:text="Cerrar sesión"/>
+	</LinearLayout>
+
+</LinearLayout>
