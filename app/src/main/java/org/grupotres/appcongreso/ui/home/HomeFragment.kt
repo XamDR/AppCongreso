@@ -21,7 +21,7 @@ import org.grupotres.appcongreso.ui.login.HomeActivity
 class HomeFragment : Fragment() {
 
 	companion object {
-		private const val RC_SIGN_IN = 560
+		private const val RC_SIGN_IN = 120
 	}
 
 	private var binding: FragmentHomeBinding? = null
