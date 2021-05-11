@@ -12,8 +12,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import org.grupotres.appcongreso.MainActivity
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentHomeBinding
 import org.grupotres.appcongreso.ui.login.HomeActivity
@@ -24,6 +26,8 @@ class HomeFragment : Fragment() {
 		private const val RC_SIGN_IN = 120
 	}
 
+	var itemShow:Int = 0
+	private var isUserLogIn = false
 	private var binding: FragmentHomeBinding? = null
 	private lateinit var googleSignInClient: GoogleSignInClient
 	private lateinit var appBarConfiguration: AppBarConfiguration
@@ -45,10 +49,8 @@ class HomeFragment : Fragment() {
 		mAuth = FirebaseAuth.getInstance()
 	}
 
-
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		binding = FragmentHomeBinding.inflate(inflater, container, false)
-
 
 		return binding?.root
 	}
@@ -61,6 +63,7 @@ class HomeFragment : Fragment() {
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		// TODO Add your menu entries here
 		super.onCreateOptionsMenu(menu, inflater)
+
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -78,11 +81,12 @@ class HomeFragment : Fragment() {
 				val user = mAuth.currentUser
 
 				btnRedireccion.setOnClickListener() {
-					if (user != null){
-						val dashboardIntent = Intent(requireActivity(), HomeActivity::class.java)
+					if (user != null) {
+						val dashboardIntent = Intent(requireActivity(), MainActivity::class.java)
 						startActivity(dashboardIntent)
 						requireActivity().finish()
-					}else{
+					}
+					else {
 						dialogUserRedirect.dismiss()
 						signIn()
 					}
@@ -127,15 +131,31 @@ class HomeFragment : Fragment() {
 		mAuth.signInWithCredential(credential)
 			.addOnCompleteListener(requireActivity()) { task ->
 				if (task.isSuccessful) {
+					isUserLogIn = task.isSuccessful
 					// Sign in success, update UI with the signed-in user's information
 					Log.d("MainActivity", "signInWithCredential:success")
-					val intent = Intent(requireActivity(), HomeActivity::class.java)
+					val intent = Intent(requireActivity(), MainActivity::class.java)
+					Log.d("ITEM", "bueno$itemShow")
 					startActivity(intent)
+					addItemNav()
 					requireActivity().finish()
 				} else {
 					// If sign in fails, display a message to the user.
 					Log.d("MainActivity", "signInWithCredential:failure")
 				}
 			}
+	}
+
+	fun addItemNav(){
+		val navigationView: NavigationView = (requireActivity() as MainActivity).binding.navView
+		val navMenu: Menu = navigationView.menu
+		val prueba = navMenu.findItem(R.id.nav_resources).isVisible
+		if(prueba == false){
+			navMenu.findItem(R.id.nav_resources).isVisible = true
+			val prueba2 = navMenu.findItem(R.id.nav_resources).isVisible
+			Log.d("PRUEBA", "debe funca" + prueba2)
+		}else{
+			Log.d("PRUEBA", "no funca" + prueba)
+		}
 	}
 }
