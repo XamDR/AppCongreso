@@ -3,11 +3,19 @@ package org.grupotres.appcongreso.core
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity
+@Entity(
+	foreignKeys = [ForeignKey(
+		entity = Lecture::class,
+		parentColumns = arrayOf("id"),
+		childColumns = arrayOf("lecture_id"),
+		onDelete = ForeignKey.NO_ACTION
+	)]
+)
 data class Speaker(
 	@PrimaryKey val id: String,
 	val surname: String,

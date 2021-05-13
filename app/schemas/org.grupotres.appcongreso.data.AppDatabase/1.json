@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7a50959cf7a1b1101e7d8d9c9b74df8a",
+    "identityHash": "0a37b4e00ac0db4dd750c69ac0bc1854",
     "entities": [
       {
         "tableName": "Lecture",
@@ -50,7 +50,7 @@
       },
       {
         "tableName": "Speaker",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `surname` TEXT NOT NULL, `maternal_surname` TEXT, `name` TEXT NOT NULL, `country` TEXT NOT NULL, `info` TEXT NOT NULL, `uri_photo` TEXT, `lectureId` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `surname` TEXT NOT NULL, `maternal_surname` TEXT, `name` TEXT NOT NULL, `country` TEXT NOT NULL, `info` TEXT NOT NULL, `uri_photo` TEXT, `lecture_id` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`lecture_id`) REFERENCES `Lecture`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -96,7 +96,7 @@
           },
           {
             "fieldPath": "lectureId",
-            "columnName": "lectureId",
+            "columnName": "lecture_id",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -108,13 +108,25 @@
           "autoGenerate": false
         },
         "indices": [],
-        "foreignKeys": []
+        "foreignKeys": [
+          {
+            "table": "Lecture",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "lecture_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7a50959cf7a1b1101e7d8d9c9b74df8a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0a37b4e00ac0db4dd750c69ac0bc1854')"
     ]
   }
 }

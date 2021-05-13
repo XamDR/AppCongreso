@@ -7,7 +7,6 @@ data class LectureSpeakers(
 	@Embedded val lecture: Lecture,
 	@Relation(
 		parentColumn = "id",
-		entityColumn = "lectureId"
-	)
-	val speakers: List<Speaker>
+		entityColumn = "lecture_id"
+	) val speakers: List<Speaker>
 )
