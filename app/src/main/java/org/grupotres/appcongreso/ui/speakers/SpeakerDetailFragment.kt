@@ -1,12 +1,11 @@
 package org.grupotres.appcongreso.ui.speakers
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
 import org.grupotres.appcongreso.R
@@ -40,13 +39,11 @@ class SpeakerDetailFragment : Fragment() {
 		binding = null
 	}
 
-	@SuppressLint("SetTextI18n")
 	private fun initSpeakerDetails() {
-		binding?.speakerName?.text = "${args.speaker.name} " +
-				"${flags[args.speaker.surname]} ${flags[args.speaker.maternalSurname]}"
+		binding?.speakerName?.text = args.speaker.toString()
 		binding?.speakerInfo?.text = args.speaker.info
 		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
 		val flag = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
-		binding?.speakerPhoto?.setImageDrawable(flag)
+		binding?.speakerCountry?.setImageDrawable(flag)
 	}
 }
