@@ -20,22 +20,28 @@
 		android:id="@+id/nav_lecture_list"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureListFragment"
 		android:label="@string/menu_lecture_list"
-		tools:layout="@layout/fragment_lecture_list" >
+		tools:layout="@layout/fragment_lecture_list">
 
-		<argument
-			android:name="lecture"
-			app:argType="org.grupotres.appcongreso.core.Lecture" />
-		<action
-			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
-			app:destination="@id/lectureDetailFragment">
-			<argument
-				android:name="lecture"
-				app:argType="org.grupotres.appcongreso.core.Lecture" />
-		</action>
-
+		<!--suppress AndroidElementNotAllowed -->
 		<action
 			android:id="@+id/action_home"
 			app:destination="@id/nav_lecture_list"/>
+
+		<!--suppress AndroidElementNotAllowed -->
+		<argument
+			android:name="lectureSpeaker"
+			app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
+
+		<!--suppress AndroidElementNotAllowed -->
+		<action
+			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
+			app:destination="@id/lectureDetailFragment">
+			<!--suppress AndroidElementNotAllowed -->
+			<argument
+				android:name="lectureSpeaker"
+				app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
+		</action>
+
 	</fragment>
 
 	<fragment
@@ -43,6 +49,10 @@
 		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerListFragment"
 		android:label="@string/menu_speaker_list"
 		tools:layout="@layout/fragment_speaker_list" >
+
+		<action
+			android:id="@+id/action_home"
+			app:destination="@id/nav_speaker_list"/>
     
 		<argument
 			android:name="speaker"
@@ -60,19 +70,14 @@
 	<fragment
 		android:id="@+id/lectureDetailFragment"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureDetailFragment"
-		android:label="fragment_lecture_detail"
+		android:label="@string/fragment_lecture_detail"
 		tools:layout="@layout/fragment_lecture_detail" />
 
 	<fragment
 		android:id="@+id/speakerDetailFragment"
 		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerDetailFragment"
-		android:label="fragment_speaker_detail"
-		tools:layout="@layout/fragment_speaker_detail">
-
-		<action
-			android:id="@+id/action_home"
-			app:destination="@id/nav_speaker_list"/>
-	</fragment>
+		android:label="@string/fragment_speaker_detail"
+		tools:layout="@layout/fragment_speaker_detail" />
 
 	<fragment
 		android:id="@+id/nav_resources"

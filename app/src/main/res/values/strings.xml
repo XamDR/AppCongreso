@@ -8,8 +8,10 @@
 	<string name="action_settings">Settings</string>
 
 	<string name="menu_login">Login</string>
-	<string name="menu_lecture_list">Lectures</string>
-	<string name="menu_speaker_list">Speakers</string>
+	<string name="menu_lecture_list">Ponencias</string>
+	<string name="menu_speaker_list">Ponentes</string>
+	<string name="fragment_lecture_detail">Detalle Ponencia</string>
+	<string name="fragment_speaker_detail">Detalle Ponente</string>
 
 	<string name="imgponente">imgPonente</string>
 	<string name="nombrePonente">TextView</string>
@@ -33,4 +35,7 @@
 	<string name="login_title">¡Te damos la bienvenida!</string>
 	<string name="cancel_button">Cancelar</string>
 	<string name="redirect_button">Iniciar sesión</string>
+	<string name="enroll">Inscribirse</string>
+	<string name="flag">Bandera</string>
+	<string name="promoter">Universidad Continental 2021</string>
 </resources>
