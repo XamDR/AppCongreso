@@ -32,6 +32,6 @@
 		android:id="@+id/nav_resources"
 		android:name="org.grupotres.appcongreso.ui.resources.ResourcesFragment"
 		android:label="Resources"
-		tools:layout="@layout/fragment_speaker_list" />
+		tools:layout="@layout/fragment_resources" />
 
 </navigation>

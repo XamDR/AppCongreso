@@ -16,11 +16,11 @@
 			android:id="@+id/nav_speaker_list"
 			android:icon="@drawable/ic_menu_slideshow"
 			android:title="@string/menu_speaker_list" />
+
 		<item
 			android:id="@+id/nav_resources"
 			android:icon="@drawable/ic_menu_slideshow"
 			android:title="@string/menu_resources"
-			android:visible="false"
-			/>
+			android:visible="false"	/>
 	</group>
 </menu>
