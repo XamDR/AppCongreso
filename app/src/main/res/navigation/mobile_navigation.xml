@@ -70,14 +70,14 @@
 	<fragment
 		android:id="@+id/lectureDetailFragment"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureDetailFragment"
-		android:label="fragment_lecture_detail"
+		android:label="@string/fragment_lecture_detail"
 		tools:layout="@layout/fragment_lecture_detail" />
 
 	<fragment
 		android:id="@+id/speakerDetailFragment"
 		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerDetailFragment"
-		android:label="fragment_speaker_detail"
-		tools:layout="@layout/fragment_speaker_detail"/>
+		android:label="@string/fragment_speaker_detail"
+		tools:layout="@layout/fragment_speaker_detail" />
 
 	<fragment
 		android:id="@+id/nav_resources"
