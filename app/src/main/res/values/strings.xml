@@ -25,7 +25,8 @@
   <string name="menu_resources">Recursos</string>
 
 	<string name="welcome">Welcome</string>
-	<string name="advertisements">Advertisements</string>
+	<string name="advertisements">III Congreso Internacional de Ingeniería</string>
+	<string name="txt_info">La tercera edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
 	<string name="logo_desc">Logo description</string>
 	<string name="action_login">Login</string>
 	<string name="menu_home">Main Page</string>
