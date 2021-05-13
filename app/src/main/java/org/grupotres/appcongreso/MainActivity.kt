@@ -46,12 +46,6 @@ class MainActivity : AppCompatActivity() {
 			binding.drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
-
-		//OCULTAR ITEM
-		//val navigationView: NavigationView = findViewById(R.id.nav_view) as NavigationView
-		//val nav_Menu: Menu = navigationView.getMenu()
-		//nav_Menu.findItem(R.id.nav_lecture_list).setVisible(false)
-
 		binding.navView.setupWithNavController(navController)
 	}
 }
