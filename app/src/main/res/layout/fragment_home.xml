@@ -12,73 +12,67 @@
 
 		<ImageView
 			android:id="@+id/logo"
-			android:layout_width="112dp"
-			android:layout_height="105dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
 			android:layout_margin="10dp"
 			android:contentDescription="@string/logo_desc"
 			android:scaleType="fitXY"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.498"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintVertical_bias="0.199"
+			app:layout_constraintBottom_toTopOf="@id/calendar"
+			app:layout_constraintEnd_toStartOf="@id/lecture"
+			app:layout_constraintStart_toEndOf="@id/speaker"
+			app:layout_constraintTop_toBottomOf="@id/resources"
 			app:srcCompat="@mipmap/logo_app" />
 
 		<ImageView
-			android:id="@+id/icon_calendar"
-			android:layout_width="78dp"
-			android:layout_height="75dp"
-			android:icon="@drawable/ic_list_lecture_main"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.498"
-			app:layout_constraintStart_toStartOf="parent"
+			android:id="@+id/resources"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginBottom="10dp"
+			android:src="@drawable/resources"
+			app:layout_constraintBottom_toTopOf="@id/logo"
+			app:layout_constraintEnd_toStartOf="@id/lecture"
+			app:layout_constraintStart_toEndOf="@id/speaker"
 			app:layout_constraintTop_toTopOf="parent"
 			android:background="@drawable/ic_border_item"
-			app:layout_constraintVertical_bias="0.413"
-			android:contentDescription="@string/calendar" />
-
-		<ImageView
-			android:id="@+id/icon_resources"
-			android:layout_width="78dp"
-			android:layout_height="75dp"
-			android:icon="@drawable/ic_menu_camera"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.498"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			android:background="@drawable/ic_border_item"
-			app:layout_constraintVertical_bias="0.024"
 			android:contentDescription="@string/resources" />
 
 		<ImageView
-			android:id="@+id/icon_speaker"
-			android:layout_width="78dp"
-			android:layout_height="75dp"
-			android:icon="@drawable/ic_list_lecture_main"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.081"
+			android:id="@+id/calendar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/agenda"
+			app:layout_constraintBottom_toTopOf="@id/divider2"
+			app:layout_constraintEnd_toStartOf="@id/lecture"
+			app:layout_constraintStart_toEndOf="@id/speaker"
+			app:layout_constraintTop_toBottomOf="@id/logo"
+			android:background="@drawable/ic_border_item"
+			android:contentDescription="@string/calendar" />
+
+		<ImageView
+			android:id="@+id/speaker"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/speaker"
+			app:layout_constraintBottom_toTopOf="@id/calendar"
+			app:layout_constraintEnd_toStartOf="@id/logo"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintVertical_bias="0.222"
+			app:layout_constraintTop_toBottomOf="@id/resources"
 			android:background="@drawable/ic_border_item"
 			android:contentDescription="@string/speaker" />
 
 		<ImageView
-			android:id="@+id/icon_lecture"
-			android:layout_width="78dp"
-			android:layout_height="75dp"
-			android:icon="@drawable/ic_list_lecture_main"
-			app:layout_constraintBottom_toBottomOf="parent"
+			android:id="@+id/lecture"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/lecture"
+			app:layout_constraintBottom_toTopOf="@id/calendar"
 			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.918"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintStart_toEndOf="@id/logo"
+			app:layout_constraintTop_toBottomOf="@id/resources"
 			android:background="@drawable/ic_border_item"
-			app:layout_constraintVertical_bias="0.222"
 			android:contentDescription="@string/lecture" />
 
 		<View
@@ -91,7 +85,7 @@
 			android:background="@drawable/list_divider"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/icon_calendar" />
+			app:layout_constraintTop_toBottomOf="@+id/calendar" />
 
 		<TextView
 			android:id="@+id/app"
@@ -107,7 +101,7 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/icon_calendar" />
+			app:layout_constraintTop_toBottomOf="@id/calendar" />
 
 		<View
 			android:id="@+id/divider3"
