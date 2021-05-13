@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -24,8 +26,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
+import org.grupotres.appcongreso.ui.helpers.INavigator
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), INavigator {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
@@ -149,6 +152,11 @@ class MainActivity : AppCompatActivity() {
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		binding.navView.setupWithNavController(navController)
 	}
+
+	override fun navigate(navDirections: NavDirections) {
+		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+		val navController = navHostFragment.navController
+		navController.navigate(navDirections)
 
 	private fun showAlertDialog() {
 		MaterialAlertDialogBuilder(this)
