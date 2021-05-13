@@ -6,9 +6,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	tools:context=".ui.lectures.LectureDetailFragment"
 	android:orientation="vertical"
-	android:gravity="center_horizontal"
-	>
-
+	android:gravity="center_horizontal">
 
 	<TextView
 		android:id="@+id/lecture_title"
@@ -34,7 +32,7 @@
 		android:layout_weight="1"/>
 
 	<TextView
-		android:id="@+id/lecure_detail"
+		android:id="@+id/lecture_detail"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="10dp"
@@ -64,35 +62,19 @@
 		tools:text="Linsday Maldonado"
 		android:layout_weight="1"/>
 
-	<TextView
-		android:id="@+id/speaker_info"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/speaker_name"
-		app:layout_constraintVertical_bias="0.173"
-		tools:text="InfoPonente"
-		android:layout_weight="1"/>
-
 	<Button
 		android:layout_width="200dp"
 		android:layout_height="10dp"
 		android:layout_weight="1"
-		android:text="Inscribirse"
+		android:text="@string/enroll"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.501"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/speaker_info"
-		app:layout_constraintVertical_bias="0.276"></Button>
-
-
+		app:layout_constraintVertical_bias="0.276"/>
 
 	<TextView
-		android:id="@+id/speake_info"
 		android:layout_width="wrap_content"
 		android:layout_height="10dp"
 		android:layout_marginTop="30dp"
@@ -105,8 +87,6 @@
 		app:layout_constraintVertical_bias="0.897"
 		tools:text="Universidad Continental - 2021"
 		android:textColor="@color/cardview_dark_background"
-		android:layout_weight="1"
-		/>
-
+		android:layout_weight="1"/>
 
 </LinearLayout>

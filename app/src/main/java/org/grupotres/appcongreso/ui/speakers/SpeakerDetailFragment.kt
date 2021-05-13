@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import coil.load
 import org.grupotres.appcongreso.databinding.FragmentSpeakerDetailBinding
 
 class SpeakerDetailFragment : Fragment() {
@@ -20,11 +21,18 @@ class SpeakerDetailFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-//		binding?.speakerTitle?.text = args.speaker.info
+		initSpeakerDetails()
 	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()
 		binding = null
+	}
+
+	private fun initSpeakerDetails() {
+		binding?.speakerName?.text = args.speaker.name
+		binding?.speakerCountry?.text = args.speaker.country
+		binding?.speakerInfo?.text = args.speaker.info
+		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
 	}
 }

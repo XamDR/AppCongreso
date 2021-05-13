@@ -21,11 +21,15 @@ class LectureDetailFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		binding?.lectureTitle?.text = args.lecture.title
+		initLectureDetails()
 	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()
 		binding = null
+	}
+
+	private fun initLectureDetails() {
+		binding?.lectureTitle?.text = args.lecture.title
 	}
 }

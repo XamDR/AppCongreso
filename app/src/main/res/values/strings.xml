@@ -33,4 +33,5 @@
 	<string name="login_title">¡Te damos la bienvenida!</string>
 	<string name="cancel_button">Cancelar</string>
 	<string name="redirect_button">Iniciar sesión</string>
+	<string name="enroll">Inscribirse</string>
 </resources>
