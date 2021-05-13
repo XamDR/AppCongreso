@@ -38,7 +38,7 @@ class SpeakerDetailFragment : Fragment() {
 		super.onDestroyView()
 		binding = null
 	}
-
+	
 	private fun initSpeakerDetails() {
 		binding?.speakerName?.text = args.speaker.toString()
 		binding?.speakerInfo?.text = args.speaker.info
