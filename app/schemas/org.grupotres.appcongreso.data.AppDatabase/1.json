@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0a37b4e00ac0db4dd750c69ac0bc1854",
+    "identityHash": "3b24e664d48582e33fb36c6e277a86cb",
     "entities": [
       {
         "tableName": "Lecture",
@@ -107,7 +107,16 @@
           ],
           "autoGenerate": false
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_Speaker_lecture_id",
+            "unique": false,
+            "columnNames": [
+              "lecture_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Speaker_lecture_id` ON `${TABLE_NAME}` (`lecture_id`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "Lecture",
@@ -126,7 +135,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0a37b4e00ac0db4dd750c69ac0bc1854')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3b24e664d48582e33fb36c6e277a86cb')"
     ]
   }
 }

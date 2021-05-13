@@ -67,7 +67,7 @@
 		android:id="@+id/speakerDetailFragment"
 		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerDetailFragment"
 		android:label="fragment_speaker_detail"
-		tools:layout="@layout/fragment_speaker_detail" />
+		tools:layout="@layout/fragment_speaker_detail">
 
 		<action
 			android:id="@+id/action_home"
@@ -79,5 +79,4 @@
 		android:name="org.grupotres.appcongreso.ui.resources.ResourcesFragment"
 		android:label="Resources"
 		tools:layout="@layout/fragment_resources" />
-
 </navigation>
