@@ -1,5 +1,6 @@
 package org.grupotres.appcongreso.ui.speakers
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,8 +30,9 @@ class SpeakerDetailFragment : Fragment() {
 		binding = null
 	}
 
+	@SuppressLint("SetTextI18n")
 	private fun initSpeakerDetails() {
-		binding?.speakerName?.text = args.speaker.name
+		binding?.speakerName?.text = args.speaker.name+' '+args.speaker.surname+' '+args.speaker.maternalSurname
 		binding?.speakerCountry?.text = args.speaker.country
 		binding?.speakerInfo?.text = args.speaker.info
 		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
