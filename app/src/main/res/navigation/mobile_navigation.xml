@@ -3,19 +3,25 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/mobile_navigation"
-	app:startDestination="@+id/nav_login">
+	app:startDestination="@+id/nav_home">
 
 	<fragment
-		android:id="@+id/nav_login"
-		android:name="org.grupotres.appcongreso.ui.login.LoginFragment"
-		android:label="@string/menu_login"
-		tools:layout="@layout/fragment_login" />
+		android:id="@+id/nav_home"
+		android:name="org.grupotres.appcongreso.ui.home.HomeFragment"
+		android:label="@string/menu_home"
+		tools:layout="@layout/fragment_home" >
+
+		<action
+			android:id="@+id/action_home"
+			app:destination="@id/nav_home"/>
+	</fragment>
 
 	<fragment
 		android:id="@+id/nav_lecture_list"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureListFragment"
 		android:label="@string/menu_lecture_list"
 		tools:layout="@layout/fragment_lecture_list" >
+
 		<argument
 			android:name="lecture"
 			app:argType="org.grupotres.appcongreso.core.Lecture" />
@@ -26,6 +32,10 @@
 				android:name="lecture"
 				app:argType="org.grupotres.appcongreso.core.Lecture" />
 		</action>
+
+		<action
+			android:id="@+id/action_home"
+			app:destination="@id/nav_lecture_list"/>
 	</fragment>
 
 	<fragment
@@ -33,9 +43,11 @@
 		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerListFragment"
 		android:label="@string/menu_speaker_list"
 		tools:layout="@layout/fragment_speaker_list" >
+    
 		<argument
 			android:name="speaker"
 			app:argType="org.grupotres.appcongreso.core.Speaker" />
+    
 		<action
 			android:id="@+id/action_nav_speaker_list_to_speaker_detail"
 			app:destination="@id/speakerDetailFragment">
@@ -56,4 +68,16 @@
 		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerDetailFragment"
 		android:label="fragment_speaker_detail"
 		tools:layout="@layout/fragment_speaker_detail" />
+
+		<action
+			android:id="@+id/action_home"
+			app:destination="@id/nav_speaker_list"/>
+	</fragment>
+
+	<fragment
+		android:id="@+id/nav_resources"
+		android:name="org.grupotres.appcongreso.ui.resources.ResourcesFragment"
+		android:label="Resources"
+		tools:layout="@layout/fragment_resources" />
+
 </navigation>

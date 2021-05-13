@@ -10,6 +10,7 @@
 	<string name="menu_login">Login</string>
 	<string name="menu_lecture_list">Lectures</string>
 	<string name="menu_speaker_list">Speakers</string>
+
 	<string name="imgponente">imgPonente</string>
 	<string name="nombrePonente">TextView</string>
 	<string name="descPonente">descPonente</string>
@@ -18,4 +19,19 @@
 	<string name="datePonencia">datePonencia</string>
 	<!-- TODO: Remove or change this placeholder text -->
 	<string name="hello_blank_fragment">Hello blank fragment</string>
+
+  <string name="menu_resources">Recursos</string>
+
+	<string name="welcome">Welcome</string>
+	<string name="advertisements">Advertisements</string>
+	<string name="logo_desc">Logo description</string>
+	<string name="action_login">Login</string>
+	<string name="menu_home">Main Page</string>
+	<string name="menu_main_page">Main Page</string>
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="login_message">Accede a tu cuenta para guardar eventos, reservar puestos y calificar sesiones. Las acciones se sincronizaran con tu app y el sitio desde tu cuenta.</string>
+	<string name="login_title">¡Te damos la bienvenida!</string>
+	<string name="cancel_button">Cancelar</string>
+	<string name="redirect_button">Iniciar sesión</string>
 </resources>
