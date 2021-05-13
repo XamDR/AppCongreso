@@ -38,5 +38,9 @@
 	<string name="redirect_button">Iniciar sesión</string>
 	<string name="enroll">Inscribirse</string>
 	<string name="promoter">Universidad Continental 2021</string>
+	<string name="resources">resources</string>
+	<string name="speaker">speaker</string>
+	<string name="lecture">lecture</string>
+	<string name="calendar">calendar</string>
 
 </resources>
