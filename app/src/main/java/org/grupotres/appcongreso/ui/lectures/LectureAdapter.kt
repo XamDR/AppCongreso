@@ -1,19 +1,14 @@
 package org.grupotres.appcongreso.ui.lectures
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
-import org.grupotres.appcongreso.core.Speaker
 import org.grupotres.appcongreso.databinding.ItemLectureDetailBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
-import org.grupotres.appcongreso.ui.speakers.SpeakerListFragmentDirections
 import org.grupotres.appcongreso.util.setOnClickListener
 
 class LectureAdapter(private val viewModel: LectureViewModel, private val navigator: INavigator) :
@@ -28,9 +23,6 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 			binding.lectureDate.text = "Fecha Inicio: ${lecture.startTime} Fecha Fin: ${lecture.endTime}"
 			binding.lectureDesc.text = "Enlace ${lecture.url}"
 		}
-
-
-
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LectureViewHolder {

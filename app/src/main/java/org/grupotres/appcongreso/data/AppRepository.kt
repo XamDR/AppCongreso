@@ -5,9 +5,11 @@ import androidx.room.Room
 
 class AppRepository(context: Context) {
 
-	suspend fun getLectures() = lectureDao.getLectures()
+	suspend fun getLectures() = appDao.getLectures()
 
-	suspend fun getSpeakers() = speakerDao.getSpeakers()
+	suspend fun getSpeakers() = appDao.getSpeakers()
+
+	suspend fun getLectureWithSpeakers() = appDao.getLecturesWithSpeakers()
 
 	private val dbName = "app-database"
 
@@ -16,9 +18,7 @@ class AppRepository(context: Context) {
 		.createFromAsset("appcongreso.db")
 		.build()
 
-	private val lectureDao = database.lectureDao()
-
-	private val speakerDao = database.speakerDao()
+	private val appDao = database.appDao()
 
 	companion object {
 		val Instance: AppRepository

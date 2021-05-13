@@ -8,7 +8,5 @@ import org.grupotres.appcongreso.core.Speaker
 @Database(entities = [Lecture::class, Speaker::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
-	abstract fun lectureDao(): LectureDao
-
-	abstract fun speakerDao(): SpeakerDao
+	abstract fun appDao(): AppDao
 }
