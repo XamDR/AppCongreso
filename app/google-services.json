@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "522037512092",
+    "project_id": "pruebamillenial-e7540",
+    "storage_bucket": "pruebamillenial-e7540.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522037512092:android:276d94a3dda6667725aa59",
+        "android_client_info": {
+          "package_name": "org.grupotres.appcongreso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522037512092-ni215q4jrcsb97krunivpq04irnbmua5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.grupotres.appcongreso",
+            "certificate_hash": "0647056ab9aa149589f28958d205e5fa13251004"
+          }
+        },
+        {
+          "client_id": "522037512092-2pl69skaqqarmk481l1p8t3ic5gmi4nt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnS5mfA-uiN279OnuXUxYMHO9dZ5pk95U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522037512092-2pl69skaqqarmk481l1p8t3ic5gmi4nt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
