@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	tools:context=".ui.lectures.LectureDetailFragment">
+	tools:context=".ui.lectures.LectureDetailFragment"
+	android:orientation="vertical"
+	android:gravity="center_horizontal"
+	>
 
 
 	<TextView
 		android:id="@+id/lecture_title"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
+		android:layout_width="351dp"
+		android:layout_height="52dp"
+		android:layout_marginTop="10dp"
+		android:gravity="center"
+		android:layout_weight="1"
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
 		android:textStyle="bold|italic"
-		app:layout_constraintBottom_toTopOf="@+id/speaker_photo"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.842"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.722"
 		tools:text="La informática en el desarrollo minero en el Perú" />
 
 	<ImageView
 		android:id="@+id/speaker_photo"
 		android:layout_width="257dp"
 		android:layout_height="147dp"
-		android:layout_marginTop="80dp"
+		android:layout_marginTop="10dp"
 		android:contentDescription="@string/imgponente"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		tools:src="@tools:sample/avatars" />
+		tools:src="@tools:sample/avatars"
+		android:layout_weight="1"/>
 
 	<TextView
 		android:id="@+id/lecure_detail"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="36dp"
+		android:layout_marginTop="10dp"
 		android:maxLines="1"
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
 		android:textStyle="bold"
@@ -45,14 +45,15 @@
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/speaker_photo"
-		app:layout_constraintVertical_bias="0.0"
-		tools:text="Detalle de la ponencia" />
+		app:layout_constraintVertical_bias="0.24"
+		tools:text="Detalle de la ponencia"
+		android:layout_weight="1"/>
 
 	<TextView
 		android:id="@+id/speaker_name"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="68dp"
+		android:layout_marginTop="10dp"
 		android:maxLines="1"
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
 		android:textStyle="bold"
@@ -60,7 +61,8 @@
 		app:layout_constraintHorizontal_bias="0.498"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/speaker_photo"
-		tools:text="Linsday Maldonado" />
+		tools:text="Linsday Maldonado"
+		android:layout_weight="1"/>
 
 	<TextView
 		android:id="@+id/speaker_info"
@@ -71,21 +73,40 @@
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/speaker_name"
-		app:layout_constraintVertical_bias="0.032"
-		tools:text="InfoPonente" />
+		app:layout_constraintVertical_bias="0.173"
+		tools:text="InfoPonente"
+		android:layout_weight="1"/>
 
 	<Button
-		android:layout_width="142dp"
-		android:layout_height="41dp"
+		android:layout_width="200dp"
+		android:layout_height="10dp"
+		android:layout_weight="1"
 		android:text="Inscribirse"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_bias="0.501"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@+id/speaker_info"
-		app:layout_constraintVertical_bias="0.057"
-
-		></Button>
+		app:layout_constraintVertical_bias="0.276"></Button>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+	<TextView
+		android:id="@+id/speake_info"
+		android:layout_width="wrap_content"
+		android:layout_height="10dp"
+		android:layout_marginTop="30dp"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.497"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/speaker_name"
+		app:layout_constraintVertical_bias="0.897"
+		tools:text="Universidad Continental - 2021"
+		android:textColor="@color/cardview_dark_background"
+		android:layout_weight="1"
+		/>
+
+
+</LinearLayout>
