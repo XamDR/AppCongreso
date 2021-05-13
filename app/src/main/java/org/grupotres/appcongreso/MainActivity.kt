@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -29,7 +28,7 @@ import org.grupotres.appcongreso.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
-	lateinit var binding: ActivityMainBinding
+	private lateinit var binding: ActivityMainBinding
 
 	// Google SignIn
 	private lateinit var googleSignInClient: GoogleSignInClient
