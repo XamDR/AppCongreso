@@ -84,4 +84,11 @@
 		android:name="org.grupotres.appcongreso.ui.resources.ResourcesFragment"
 		android:label="Resources"
 		tools:layout="@layout/fragment_resources" />
+
+	<fragment
+		android:id="@+id/nav_calendar"
+		android:name="org.grupotres.appcongreso.ui.calendar.CalendarFragment"
+		android:label="Agenda"
+		tools:layout="@layout/fragment_calendar" />
+
 </navigation>
