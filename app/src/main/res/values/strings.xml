@@ -36,6 +36,6 @@
 	<string name="cancel_button">Cancelar</string>
 	<string name="redirect_button">Iniciar sesión</string>
 	<string name="enroll">Inscribirse</string>
+	<string name="flag">Bandera</string>
 	<string name="promoter">Universidad Continental 2021</string>
-
 </resources>

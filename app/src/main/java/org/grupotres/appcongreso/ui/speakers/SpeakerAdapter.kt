@@ -1,12 +1,12 @@
 package org.grupotres.appcongreso.ui.speakers
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import org.grupotres.appcongreso.core.Speaker
 import org.grupotres.appcongreso.databinding.ItemSpeakerDetailBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
@@ -20,12 +20,9 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel, private val naviga
 
 		@SuppressLint("SetTextI18n")
 		fun bind(speaker: Speaker) {
-			binding.speakerName.text = "${speaker.name} ${speaker.surname} ${speaker.maternalSurname}"
+			binding.speakerName.text = speaker.toString()
 			binding.speakerDesc.text = speaker.info
-
-			if (speaker.uriPhoto != null) {
-				binding.speakerPhoto.setImageURI(Uri.parse(speaker.uriPhoto))
-			}
+			binding.speakerPhoto.load(speaker.uriPhoto)
 		}
 	}
 
