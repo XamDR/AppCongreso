@@ -9,23 +9,39 @@
 		android:id="@+id/nav_home"
 		android:name="org.grupotres.appcongreso.ui.home.HomeFragment"
 		android:label="@string/menu_home"
-		tools:layout="@layout/fragment_home" />
+		tools:layout="@layout/fragment_home" >
 
-	<fragment
-		android:id="@+id/nav_login"
-		android:name="org.grupotres.appcongreso.ui.login.LoginFragment"
-		android:label="@string/menu_login"
-		tools:layout="@layout/fragment_login" />
+		<action
+			android:id="@+id/action_home"
+			app:destination="@id/nav_home"/>
+	</fragment>
 
 	<fragment
 		android:id="@+id/nav_lecture_list"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureListFragment"
 		android:label="@string/menu_lecture_list"
-		tools:layout="@layout/fragment_lecture_list" />
+		tools:layout="@layout/fragment_lecture_list" >
+
+		<action
+			android:id="@+id/action_home"
+			app:destination="@id/nav_lecture_list"/>
+	</fragment>
 
 	<fragment
 		android:id="@+id/nav_speaker_list"
 		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerListFragment"
 		android:label="@string/menu_speaker_list"
-		tools:layout="@layout/fragment_speaker_list" />
+		tools:layout="@layout/fragment_speaker_list">
+
+		<action
+			android:id="@+id/action_home"
+			app:destination="@id/nav_speaker_list"/>
+	</fragment>
+
+	<fragment
+		android:id="@+id/nav_resources"
+		android:name="org.grupotres.appcongreso.ui.resources.ResourcesFragment"
+		android:label="Resources"
+		tools:layout="@layout/fragment_resources" />
+
 </navigation>

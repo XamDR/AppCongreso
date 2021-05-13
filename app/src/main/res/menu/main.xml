@@ -7,7 +7,7 @@
 		android:orderInCategory="1"
 		android:title="@string/action_login"
 		android:icon="@drawable/ic_login"
-		app:showAsAction="ifRoom" />
+		app:showAsAction="ifRoom"/>
 
 	<item
 		android:id="@+id/action_settings"
