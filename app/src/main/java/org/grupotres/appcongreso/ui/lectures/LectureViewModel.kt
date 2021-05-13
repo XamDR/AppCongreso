@@ -5,14 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.grupotres.appcongreso.core.Lecture
-import org.grupotres.appcongreso.core.Speaker
+import org.grupotres.appcongreso.core.LectureSpeakers
 import org.grupotres.appcongreso.data.AppRepository
 
 class LectureViewModel(private val repository: AppRepository) : ViewModel() {
 
-	private val _lectures = MutableLiveData(mutableListOf<Lecture>())
-	val lectures: LiveData<MutableList<Lecture>> = _lectures
+	private val _lectures = MutableLiveData(mutableListOf<LectureSpeakers>())
+	val lectures: LiveData<MutableList<LectureSpeakers>> = _lectures
 
 	init {
 		fetchLectures()
@@ -20,7 +19,7 @@ class LectureViewModel(private val repository: AppRepository) : ViewModel() {
 
 	private fun fetchLectures() {
 		viewModelScope.launch {
-			_lectures.value = repository.getLectures().toMutableList()
+			_lectures.value = repository.getLectureWithSpeakers().toMutableList()
 		}
 	}
 }

@@ -6,22 +6,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.grupotres.appcongreso.core.Lecture
+import org.grupotres.appcongreso.core.LectureSpeakers
 import org.grupotres.appcongreso.databinding.ItemLectureDetailBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setOnClickListener
 
 class LectureAdapter(private val viewModel: LectureViewModel, private val navigator: INavigator) :
-	ListAdapter<Lecture, LectureAdapter.LectureViewHolder>(LectureCallback()) {
+	ListAdapter<LectureSpeakers, LectureAdapter.LectureViewHolder>(LectureCallback()) {
 
 	inner class LectureViewHolder(private val binding: ItemLectureDetailBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 
 		@SuppressLint("SetTextI18n")
-		fun bind(lecture: Lecture) {
-			binding.lectureTitle.text = lecture.title
-			binding.lectureDate.text = "Fecha Inicio: ${lecture.startTime} Fecha Fin: ${lecture.endTime}"
-			binding.lectureDesc.text = "Enlace ${lecture.url}"
+		fun bind(lectureSpeaker: LectureSpeakers) {
+			binding.lectureTitle.text = lectureSpeaker.lecture.title
+			binding.lectureDate.text = "Fecha Inicio: ${lectureSpeaker.lecture.startTime} " +
+					"Fecha Fin: ${lectureSpeaker.lecture.endTime}"
+			binding.lectureDesc.text = "Enlace ${lectureSpeaker.lecture.url}"
 		}
 	}
 
@@ -33,8 +34,8 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 	}
 
 	private fun goToLectureDetail(position: Int) {
-		val lecture = getItem(position)
-		val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lecture)
+		val lectureSpeaker = getItem(position)
+		val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lectureSpeaker)
 		navigator.navigate(navDirections)
 	}
 
@@ -43,10 +44,12 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 		lecture?.let { holder.bind(it) }
 	}
 
-	class LectureCallback : DiffUtil.ItemCallback<Lecture>() {
+	class LectureCallback : DiffUtil.ItemCallback<LectureSpeakers>() {
 
-		override fun areItemsTheSame(oldLecture: Lecture, newLecture: Lecture) = oldLecture.id == newLecture.id
+		override fun areItemsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
+			= oldLecture.lecture.id == newLecture.lecture.id
 
-		override fun areContentsTheSame(oldLecture: Lecture, newLecture: Lecture) = oldLecture == newLecture
+		override fun areContentsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
+			= oldLecture == newLecture
 	}
 }

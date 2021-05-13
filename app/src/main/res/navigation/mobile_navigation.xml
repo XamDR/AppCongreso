@@ -20,22 +20,28 @@
 		android:id="@+id/nav_lecture_list"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureListFragment"
 		android:label="@string/menu_lecture_list"
-		tools:layout="@layout/fragment_lecture_list" >
+		tools:layout="@layout/fragment_lecture_list">
 
-		<argument
-			android:name="lecture"
-			app:argType="org.grupotres.appcongreso.core.Lecture" />
-		<action
-			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
-			app:destination="@id/lectureDetailFragment">
-			<argument
-				android:name="lecture"
-				app:argType="org.grupotres.appcongreso.core.Lecture" />
-		</action>
-
+		<!--suppress AndroidElementNotAllowed -->
 		<action
 			android:id="@+id/action_home"
 			app:destination="@id/nav_lecture_list"/>
+
+		<!--suppress AndroidElementNotAllowed -->
+		<argument
+			android:name="lectureSpeaker"
+			app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
+
+		<!--suppress AndroidElementNotAllowed -->
+		<action
+			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
+			app:destination="@id/lectureDetailFragment">
+			<!--suppress AndroidElementNotAllowed -->
+			<argument
+				android:name="lectureSpeaker"
+				app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
+		</action>
+
 	</fragment>
 
 	<fragment

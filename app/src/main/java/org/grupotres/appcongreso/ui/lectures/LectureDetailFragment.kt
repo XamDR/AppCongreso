@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import coil.load
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.speakers.SpeakerListFragmentArgs
 
@@ -30,6 +31,8 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun initLectureDetails() {
-		binding?.lectureTitle?.text = args.lecture.title
+		binding?.lectureTitle?.text = args.lectureSpeaker.lecture.title
+		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].name
+		binding?.speakerPhoto?.load(args.lectureSpeaker.speakers[0].uriPhoto)
 	}
 }
