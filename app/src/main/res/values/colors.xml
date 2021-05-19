@@ -6,4 +6,6 @@
 	<color name="accentColor">#008080</color>
 	<color name="black">#000000</color>
 	<color name="white">#FFFFFF</color>
+	<color name="dracula">#FF2B2B2B</color>
+	<color name="dracula_light">#FFF5F5F5</color>
 </resources>

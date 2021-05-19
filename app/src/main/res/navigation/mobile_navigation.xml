@@ -84,4 +84,10 @@
 		android:name="org.grupotres.appcongreso.ui.resources.ResourcesFragment"
 		android:label="Resources"
 		tools:layout="@layout/fragment_resources" />
+
+	<fragment
+		android:id="@+id/mapsFragment"
+		android:name="org.grupotres.appcongreso.ui.map.MapsFragment"
+		android:label="fragment_maps"
+		tools:layout="@layout/fragment_maps" />
 </navigation>

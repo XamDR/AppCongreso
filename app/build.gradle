@@ -84,5 +84,8 @@ dependencies {
 
     // Add coil to load images from Firebase
     implementation("io.coil-kt:coil:1.2.1")
-    implementation 'com.google.firebase:firebase-auth:20.0.4'
+    implementation 'com.google.firebase:firebase-auth:21.0.0'
+
+    // Google Maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
 }
