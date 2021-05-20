@@ -81,7 +81,7 @@
 
 	<fragment
 		android:id="@+id/nav_resources"
-		android:name="org.grupotres.appcongreso.ui.resources.ResourcesFragment"
+		android:name="org.grupotres.appcongreso.ui.resources.ResourceFragment"
 		android:label="Resources"
 		tools:layout="@layout/fragment_resources" />
 </navigation>

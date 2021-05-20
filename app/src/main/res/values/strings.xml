@@ -38,5 +38,6 @@
 	<string name="redirect_button">Iniciar sesión</string>
 	<string name="enroll">Inscribirse</string>
 	<string name="promoter">Universidad Continental 2021</string>
+	<string name="download_resources">Descargar Materiales</string>
 
 </resources>

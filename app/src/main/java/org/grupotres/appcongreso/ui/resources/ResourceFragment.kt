@@ -7,15 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
-import org.grupotres.appcongreso.data.AppRepository
-import org.grupotres.appcongreso.databinding.FragmentLectureListBinding
 import org.grupotres.appcongreso.databinding.FragmentResourcesBinding
-import org.grupotres.appcongreso.ui.helpers.INavigator
 
-
-class ResourcesFragment : Fragment() {
+class ResourceFragment : Fragment() {
 
 	private var binding: FragmentResourcesBinding? = null
+	private val viewModel by viewModels<ResourceViewModel>()
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		binding = FragmentResourcesBinding.inflate(inflater, container, false)
@@ -33,11 +30,11 @@ class ResourcesFragment : Fragment() {
 	}
 
 	private fun initRecyclerView() {
-		//val resourcesAdapter = ResourcesAdapter(viewModel, requireActivity() as INavigator)
-		//viewModel.lectures.observe(viewLifecycleOwner, { resourcesAdapter.submitList(it) })
-		//binding?.rvLectures?.apply {
-		//	adapter = resourcesAdapter
-		//		addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
-		//}
+		val resourcesAdapter = ResourcesAdapter(requireContext(), viewModel)
+		viewModel.resources.observe(viewLifecycleOwner, { resourcesAdapter.submitList(it) })
+		binding?.rvResources?.apply {
+			adapter = resourcesAdapter
+			addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+		}
 	}
 }
