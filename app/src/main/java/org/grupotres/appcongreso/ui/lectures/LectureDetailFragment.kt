@@ -1,7 +1,5 @@
 package org.grupotres.appcongreso.ui.lectures
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
-import org.grupotres.appcongreso.util.mainActivity
 
 class LectureDetailFragment : Fragment() {
 
@@ -47,10 +42,22 @@ class LectureDetailFragment : Fragment() {
 	private fun enrollToLecture() {
 
 		auth = FirebaseAuth.getInstance()
-		val user = auth.currentUser
 
-		user.sendEmailVerification()
-		Toast.makeText(requireContext(), "Se envio un mensaje de verificacion a su correo", Toast.LENGTH_SHORT).show()
+		val userEmail = auth.currentUser?.email
+
+		val mail: String = userEmail.toString()
+		val message: String = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
+		val subject: String = "App Congreso "
+
+
+		//Send Mail
+		val javaMailAPI = JavaMailAPI(context, mail, subject, message)
+
+		javaMailAPI.execute()
+		//Toast.makeText(requireContext(), "Se envio un mensaje de verificacion a su correo", Toast.LENGTH_SHORT).show()
+		//VERIFICAR CON FIREBASE
+		//val user = auth.currentUser
+		//user.sendEmailVerification()
 
 	}
 }

@@ -72,6 +72,9 @@ dependencies {
 
     // Room components
     implementation "androidx.room:room-ktx:$room_version"
+    implementation files('..\\libs\\activation.jar')
+    implementation files('..\\libs\\additionnal.jar')
+    implementation files('..\\libs\\mail.jar')
     kapt "androidx.room:room-compiler:$room_version"
 
     // Import the BoM for the Firebase platform
@@ -85,4 +88,6 @@ dependencies {
     // Add coil to load images from Firebase
     implementation("io.coil-kt:coil:1.2.1")
     implementation 'com.google.firebase:firebase-auth:20.0.4'
+
+
 }
