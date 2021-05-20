@@ -25,12 +25,12 @@
 	<string name="menu_resources">Recursos</string>
 
 	<string name="welcome">Welcome</string>
-	<string name="advertisements">Advertisements</string>
+	<string name="advertisements">IV Congreso Internacional de Ingeniería</string>
+	<string name="txt_info">La tercera edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
 	<string name="logo_desc">Logo description</string>
 	<string name="action_login">Login</string>
 	<string name="menu_home">Main Page</string>
 	<string name="menu_main_page">Main Page</string>
-	<!-- TODO: Remove or change this placeholder text -->
 	<string name="login_message">Accede a tu cuenta para guardar eventos, reservar puestos y calificar sesiones. Las acciones se sincronizaran con tu app y el sitio desde tu cuenta.</string>
 	<string name="login_title">¡Te damos la bienvenida!</string>
 	<string name="cancel_button">Cancelar</string>
@@ -38,4 +38,12 @@
 	<string name="enroll">Inscribirse</string>
 	<string name="flag">Bandera</string>
 	<string name="promoter">Universidad Continental 2021</string>
+	<string name="resources">resources</string>
+	<string name="speaker">speaker</string>
+	<string name="lecture">lecture</string>
+	<string name="calendar">calendar</string>
+	<string name="lecture_date_time">Fecha: %s - %s</string>
+	<string name="lecture_url">Enlace: %s</string>
+	<string name="speaker_name">%s\u0020\u0020</string>
+	<string name="map">Ver mapa</string>
 </resources>

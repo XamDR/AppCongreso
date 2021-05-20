@@ -1,5 +1,7 @@
 package org.grupotres.appcongreso.ui.speakers
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,12 +40,15 @@ class SpeakerDetailFragment : Fragment() {
 		super.onDestroyView()
 		binding = null
 	}
-	
+
 	private fun initSpeakerDetails() {
-		binding?.speakerName?.text = args.speaker.toString()
+		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.toString())
 		binding?.speakerInfo?.text = args.speaker.info
 		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
-		val flag = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
-		binding?.speakerCountry?.setImageDrawable(flag)
+		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
+		val lineHeight = binding?.speakerName?.lineHeight
+		val bitmap = (drawable as BitmapDrawable).bitmap
+		val flag = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, lineHeight!!, lineHeight, true))
+		binding?.speakerName?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, flag, null)
 	}
 }

@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
+import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.data.AppRepository
 import org.grupotres.appcongreso.databinding.FragmentSpeakerListBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
@@ -36,7 +38,9 @@ class SpeakerListFragment : Fragment() {
 		viewModel.speakers.observe(viewLifecycleOwner, { speakerAdapter.submitList(it) })
 		binding?.rvSpeakers?.apply {
 			adapter = speakerAdapter
-			addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+			addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
+				ContextCompat.getDrawable(requireContext(), R.drawable.item_divider)?.let { setDrawable(it) }
+			})
 		}
 	}
 }

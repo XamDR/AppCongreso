@@ -1,11 +1,12 @@
 package org.grupotres.appcongreso.ui.lectures
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.LectureSpeakers
 import org.grupotres.appcongreso.databinding.ItemLectureDetailBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
@@ -17,12 +18,12 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 	inner class LectureViewHolder(private val binding: ItemLectureDetailBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 
-		@SuppressLint("SetTextI18n")
 		fun bind(lectureSpeaker: LectureSpeakers) {
+			binding.speakerPhoto.load(lectureSpeaker.speakers[0].uriPhoto)
 			binding.lectureTitle.text = lectureSpeaker.lecture.title
-			binding.lectureDate.text = "Fecha Inicio: ${lectureSpeaker.lecture.startTime} " +
-					"Fecha Fin: ${lectureSpeaker.lecture.endTime}"
-			binding.lectureDesc.text = "Enlace ${lectureSpeaker.lecture.url}"
+			binding.lectureDateTime.text = itemView.context.getString(R.string.lecture_date_time,
+				lectureSpeaker.lecture.startTime, lectureSpeaker.lecture.endTime)
+			binding.lectureDesc.text = itemView.context.getString(R.string.lecture_url, lectureSpeaker.lecture.url)
 		}
 	}
 
