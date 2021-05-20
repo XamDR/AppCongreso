@@ -12,7 +12,6 @@
 		android:supportsRtl="true"
 		android:theme="@style/Theme.AppCongreso"
 		tools:ignore="AllowBackup">
-		<activity android:name=".ui.resources.ResourcesDetailFragment"></activity>
 		<activity
 			android:name=".MainActivity"
 			android:label="@string/app_name"

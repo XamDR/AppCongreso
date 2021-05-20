@@ -4,10 +4,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".ui.resources.ResourcesFragment">
+tools:context=".ui.resources.ResourceFragment">
 
 	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/rv_lectures"
+		android:id="@+id/rv_resources"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_margin="10dp"
@@ -17,7 +17,6 @@ tools:context=".ui.resources.ResourcesFragment">
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0.473"
-		tools:listitem="@layout/fragment_resources_detail" />
+		tools:listitem="@layout/item_resource" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

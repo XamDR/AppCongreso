@@ -1,45 +1,45 @@
 package org.grupotres.appcongreso.ui.resources
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.grupotres.appcongreso.core.LectureSpeakers
-import org.grupotres.appcongreso.core.Resource
-import org.grupotres.appcongreso.databinding.FragmentResourcesDetailBinding
-import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.core.LectureResources
+import org.grupotres.appcongreso.databinding.ItemResourceBinding
 
-class ResourcesAdapter() :
-	ListAdapter<Resource, ResourcesAdapter.ResourceViewHolder>(ResourceCallback()) {
+class ResourcesAdapter(private val context: Context, private val viewModel: ResourceViewModel) :
+	ListAdapter<LectureResources, ResourcesAdapter.ResourceViewHolder>(ResourceCallback()) {
 
-	inner class ResourceViewHolder(private val binding: FragmentResourcesDetailBinding) :
+	inner class ResourceViewHolder(private val binding: ItemResourceBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 
-		@SuppressLint("SetTextI18n")
-		fun bind(resource: Resource) {
-			binding.lectureTitle.text = resource.name
+		fun bind(resource: LectureResources) {
+			binding.lectureTitle.text = resource.lecture.title
 		}
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResourceViewHolder {
-		val binding = FragmentResourcesDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-		val holder = ResourceViewHolder(binding)
-		return holder
+		val binding = ItemResourceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+		binding.download.setOnClickListener {
+			Toast.makeText(context, "CLICK", Toast.LENGTH_SHORT).show()
+		}
+		return ResourceViewHolder(binding)
 	}
 
 	override fun onBindViewHolder(holder: ResourceViewHolder, position: Int) {
-		//val lecture = viewModel.lectures.value?.get(position)
-		//lecture?.let { holder.bind(it) }
+		val resource = viewModel.resources.value?.get(position)
+		resource?.let { holder.bind(resource) }
 	}
 
-	class ResourceCallback : DiffUtil.ItemCallback<Resource>() {
+	class ResourceCallback : DiffUtil.ItemCallback<LectureResources>() {
 
-		override fun areItemsTheSame(oldResource: Resource, newResource: Resource)
-				= oldResource.id == newResource.id
+		override fun areItemsTheSame(oldResource: LectureResources, newResource: LectureResources)
+			= oldResource.lecture.id == newResource.lecture.id
 
-		override fun areContentsTheSame(oldResource: Resource, newResource: Resource)
-				= oldResource == newResource
+		override fun areContentsTheSame(oldResource: LectureResources, newResource: LectureResources)
+			= oldResource == newResource
 	}
 }

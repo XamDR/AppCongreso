@@ -5,7 +5,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:background="@drawable/recyclerview_item_background"
-	tools:context=".ui.resources.ResourcesDetailFragment">
+	tools:context=".ui.resources.ResourceFragment">
+
 	<ImageView
 		android:id="@+id/speaker_photo"
 		android:layout_width="wrap_content"
@@ -36,7 +37,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="10dp"
-		android:text="Descargar Materiales"
+		android:text="@string/download_resources"
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
 		android:textStyle="italic"
 		app:layout_constraintEnd_toEndOf="parent"
