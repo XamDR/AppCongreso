@@ -13,7 +13,7 @@ import coil.load
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
@@ -85,9 +85,9 @@ class LectureDetailFragment : Fragment() {
 	@RequiresApi(Build.VERSION_CODES.O)
 	private fun toEpoch(datestring: String): Long {
 		val pattern = DateTimeFormatter.ofPattern("d/MM/yyyy K:mm a")
-		val date = LocalDate.parse(datestring, pattern)
+		val date = LocalDateTime.parse(datestring, pattern)
 		val zone = ZoneId.of("America/Lima")
-		return date.atStartOfDay(zone).toInstant().toEpochMilli()
+		return date.atZone(zone).toInstant().toEpochMilli()
 	}
 }
 
