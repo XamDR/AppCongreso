@@ -11,11 +11,14 @@ import coil.load
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
 	private val args: LectureListFragmentArgs by navArgs()
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -64,9 +67,23 @@ class LectureDetailFragment : Fragment() {
 			data = CalendarContract.Events.CONTENT_URI
 			putExtra(CalendarContract.Events.TITLE, lecture.title)
 			putExtra(CalendarContract.Events.DESCRIPTION, lecture.url)
+			putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, toEpoch(lecture.startTime))
+			putExtra(CalendarContract.EXTRA_EVENT_END_TIME, toEpoch(lecture.endTime))
 		}
 		if (intent.resolveActivity(requireContext().packageManager) != null) {
 			startActivity(intent)
 		}
+
+	}
+
+	private fun toEpoch(datestring: String): Long {
+		val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm aaa", Locale.ROOT)
+		val date = sdf.parse(datestring)
+		return date.time / 1000
 	}
 }
+
+
+
+
+
