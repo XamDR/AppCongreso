@@ -25,7 +25,7 @@
 	<string name="menu_resources">Recursos</string>
 
 	<string name="advertisements">IV Congreso Internacional de Ingeniería</string>
-	<string name="txt_info">La tercera edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
+	<string name="event_info">La cuarta edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
 	<string name="logo_desc">Descripción del logo</string>
 	<string name="action_login">Iniciar sesión</string>
 	<string name="menu_home">Página principal</string>
@@ -47,6 +47,7 @@
 	<string name="info_uc">Información sobre la Universidad Continental</string>
 	<string name="uc">Universidad Continental</string>
 	<string name="detail_info_uc">El campus Huancayo de la Universidad Continental se encuentra ubicada en la Avenida San Carlos 1980, Huancayo 12000.</string>
+	<string name="share_location_uc">Hola, la ubicación de la Universidad Continental es Av. San Carlos 1980, Huancayo.</string>
 	<string name="ok_button">Aceptar</string>
 	<string name="share_uc">Compartir ubicación</string>
 	<string name="fragment_map">Mapa</string>

@@ -28,7 +28,7 @@ class MapDialogFragment : BottomSheetDialogFragment() {
 	}
 
 	private fun shareUCLocation() {
-		val content = "Hola"
+		val content = getString(R.string.share_location_uc)
 		val sendIntent = Intent().apply {
 			action = Intent.ACTION_SEND
 			putExtra(Intent.EXTRA_TEXT, content)
