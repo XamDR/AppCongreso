@@ -46,4 +46,5 @@
 	<string name="lecture_url">Enlace: %s</string>
 	<string name="speaker_name">%s\u0020\u0020</string>
 	<string name="map">Ver mapa</string>
+	<string name="action_calendar">Calendario</string>
 </resources>
