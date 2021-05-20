@@ -9,29 +9,20 @@
 	app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 	<TextView
-		android:id="@+id/info_uc"
+		android:id="@+id/action_info_uc"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="10dp"
 		android:text="@string/info_uc"
-		android:clickable="true"
-		android:focusable="true"/>
+		style="@style/ButtonDialogButtonText"/>
 
-<!--	<TextView-->
-<!--		android:id="@+id/copy"-->
-<!--		android:layout_width="match_parent"-->
-<!--		android:layout_height="wrap_content"-->
-<!--		android:layout_margin="10dp"-->
-<!--		android:text="@string/copy_link"-->
-<!--		android:clickable="true"-->
-<!--		android:focusable="true"/>-->
+	<View style="@style/BottomDialogButtonsSeparator" />
 
-<!--	<TextView-->
-<!--		android:id="@+id/edit"-->
-<!--		android:layout_width="match_parent"-->
-<!--		android:layout_height="wrap_content"-->
-<!--		android:layout_margin="10dp"-->
-<!--		android:text="@string/edit_link"-->
-<!--		android:clickable="true"-->
-<!--		android:focusable="true"/>-->
+	<TextView
+		android:id="@+id/action_share_uc"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:text="@string/share_uc"
+		style="@style/ButtonDialogButtonText"/>
 </LinearLayout>

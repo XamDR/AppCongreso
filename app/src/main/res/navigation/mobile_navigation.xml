@@ -88,6 +88,6 @@
 	<fragment
 		android:id="@+id/mapsFragment"
 		android:name="org.grupotres.appcongreso.ui.map.MapFragment"
-		android:label="fragment_maps"
+		android:label="@string/fragment_map"
 		tools:layout="@layout/fragment_map" />
 </navigation>

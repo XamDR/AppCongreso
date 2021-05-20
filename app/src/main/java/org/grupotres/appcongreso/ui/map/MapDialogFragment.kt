@@ -1,5 +1,6 @@
 package org.grupotres.appcongreso.ui.map
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,21 @@ class MapDialogFragment : BottomSheetDialogFragment() {
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		binding?.infoUc?.setOnClickListener { showInfoUC() }
+		binding?.actionInfoUc?.setOnClickListener { showInfoUC() }
+		binding?.actionShareUc?.setOnClickListener { shareUCLocation() }
+	}
+
+	private fun shareUCLocation() {
+		val content = "Hola"
+		val sendIntent = Intent().apply {
+			action = Intent.ACTION_SEND
+			putExtra(Intent.EXTRA_TEXT, content)
+			type = "text/plain"
+		}
+		val shareIntent = Intent.createChooser(sendIntent, null)
+		if (shareIntent.resolveActivity(requireContext().packageManager) != null) {
+			startActivity(shareIntent)
+		}
 	}
 
 	override fun onDestroyView() {
@@ -37,16 +52,4 @@ class MapDialogFragment : BottomSheetDialogFragment() {
 			.setPositiveButton(R.string.ok_button) { dialog, _ -> dialog.dismiss() }
 			.also { it.show() }
 	}
-
-//	companion object {
-//		private const val ARG_ITEM_COUNT = "item_count"
-//
-//		fun newInstance(itemCount: Int): MapDialogFragment =
-//			MapDialogFragment().apply {
-//				arguments = Bundle().apply {
-//					putInt(ARG_ITEM_COUNT, itemCount)
-//				}
-//			}
-//
-//	}
 }
