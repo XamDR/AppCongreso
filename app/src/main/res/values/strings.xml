@@ -46,4 +46,8 @@
 	<string name="lecture_url">Enlace: %s</string>
 	<string name="speaker_name">%s\u0020\u0020</string>
 	<string name="map">Ver mapa</string>
+	<string name="info_uc">Información sobre la Universidad Continental</string>
+	<string name="uc">Universidad Continental</string>
+	<string name="detail_info_uc">El campus Huancayo de la Universidad Continental se encuentra ubicada en la Avenida San Carlos 1980, Huancayo 12000.</string>
+	<string name="ok_button">Aceptar</string>
 </resources>

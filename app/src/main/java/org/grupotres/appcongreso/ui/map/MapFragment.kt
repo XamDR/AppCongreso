@@ -20,6 +20,10 @@ class MapFragment : Fragment() {
 		initMapUIControls(googleMap)
 		googleMap.addMarker(MarkerOptions().position(uc).title("Marker en la Universidad Continental"))
 		googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(uc,16.0f))
+		googleMap.setOnMarkerClickListener {
+			showBottomSheetDialog()
+			true
+		}
 	}
 
 	override fun onCreateView(
@@ -38,6 +42,11 @@ class MapFragment : Fragment() {
 		googleMap.uiSettings.isMapToolbarEnabled = true
 		googleMap.uiSettings.isZoomControlsEnabled = true
 		googleMap.uiSettings.isMyLocationButtonEnabled = true
+	}
+
+	private fun showBottomSheetDialog() {
+		val dialog = MapDialogFragment()
+		dialog.show(parentFragmentManager, "MAP_FRAGMENT_MENU")
 	}
 
 	companion object {
