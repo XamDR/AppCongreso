@@ -5,5 +5,5 @@ public class Utils {
     public static final String EMAIL = "heartring13@gmail.com";
 
     //This is your from email password
-    public static final String PASSWORD = "kanekikun";
+    public static final String PASSWORD = "password";
 }
