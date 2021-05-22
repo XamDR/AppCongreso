@@ -71,6 +71,8 @@ dependencies {
 
     // Room components
     implementation "androidx.room:room-ktx:$room_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
     kapt "androidx.room:room-compiler:$room_version"
 
     // Import the BoM for the Firebase platform

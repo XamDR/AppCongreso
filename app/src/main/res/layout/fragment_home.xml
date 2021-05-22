@@ -32,12 +32,11 @@
 			android:layout_marginStart="10dp"
 			android:layout_marginEnd="10dp"
 			android:layout_marginBottom="10dp"
-			android:src="@drawable/resources"
+			android:src="@drawable/recursos"
 			app:layout_constraintBottom_toTopOf="@id/logo"
 			app:layout_constraintEnd_toStartOf="@id/lecture"
 			app:layout_constraintStart_toEndOf="@id/speaker"
 			app:layout_constraintTop_toTopOf="parent"
-			android:background="@drawable/ic_border_item"
 			android:contentDescription="@string/resources" />
 
 		<ImageView
@@ -49,31 +48,28 @@
 			app:layout_constraintEnd_toStartOf="@id/lecture"
 			app:layout_constraintStart_toEndOf="@id/speaker"
 			app:layout_constraintTop_toBottomOf="@id/logo"
-			android:background="@drawable/ic_border_item"
 			android:contentDescription="@string/calendar" />
 
 		<ImageView
 			android:id="@+id/speaker"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/speaker"
+			android:src="@drawable/ponente"
 			app:layout_constraintBottom_toTopOf="@id/calendar"
 			app:layout_constraintEnd_toStartOf="@id/logo"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/resources"
-			android:background="@drawable/ic_border_item"
 			android:contentDescription="@string/speaker" />
 
 		<ImageView
 			android:id="@+id/lecture"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/lecture"
+			android:src="@drawable/ponencia"
 			app:layout_constraintBottom_toTopOf="@id/calendar"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toEndOf="@id/logo"
 			app:layout_constraintTop_toBottomOf="@id/resources"
-			android:background="@drawable/ic_border_item"
 			android:contentDescription="@string/lecture" />
 
 		<View
@@ -125,7 +121,7 @@
 			android:layout_marginEnd="20dp"
 			android:padding="10dp"
 			android:gravity="center"
-			android:text="@string/txt_info"
+			android:text="@string/event_info"
 			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
