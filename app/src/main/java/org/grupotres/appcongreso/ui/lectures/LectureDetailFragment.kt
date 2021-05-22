@@ -1,11 +1,10 @@
 package org.grupotres.appcongreso.ui.lectures
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.view.*
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -37,7 +36,6 @@ class LectureDetailFragment : Fragment() {
 		inflater.inflate(R.menu.menu_fragment_lecture_detail, menu)
 	}
 
-	@RequiresApi(Build.VERSION_CODES.O)
 	override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
 		R.id.action_calendar -> {
 			addToCalendar(args.lectureSpeaker.lecture)
@@ -66,7 +64,7 @@ class LectureDetailFragment : Fragment() {
 		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.url
 	}
 
-	@RequiresApi(Build.VERSION_CODES.O)
+	@SuppressLint("QueryPermissionsNeeded")
 	private fun addToCalendar(lecture: Lecture) {
 		val intent = Intent(Intent.ACTION_INSERT).apply {
 			data = CalendarContract.Events.CONTENT_URI
@@ -81,8 +79,6 @@ class LectureDetailFragment : Fragment() {
 
 	}
 
-
-	@RequiresApi(Build.VERSION_CODES.O)
 	private fun toEpoch(datestring: String): Long {
 		val pattern = DateTimeFormatter.ofPattern("d/MM/yyyy K:mm a")
 		val date = LocalDateTime.parse(datestring, pattern)
