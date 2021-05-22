@@ -24,6 +24,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 
@@ -35,6 +38,12 @@ class MainActivity : AppCompatActivity(), INavigator {
 	// Google SignIn
 	private lateinit var googleSignInClient: GoogleSignInClient
 	private lateinit var auth: FirebaseAuth
+
+	// Firestore reference
+	val dbRef = Firebase.firestore
+
+	// Storage reference
+	val storage = Firebase.storage
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -78,6 +87,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 	}
 
+	@Suppress("DEPRECATION")
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 		super.onActivityResult(requestCode, resultCode, data)
 		// Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
@@ -169,6 +179,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			}.also { it.show() }
 	}
 
+	@Suppress("DEPRECATION")
 	private fun signIn() {
 		val signInIntent = googleSignInClient.signInIntent
 		startActivityForResult(signInIntent, RC_SIGN_IN)
