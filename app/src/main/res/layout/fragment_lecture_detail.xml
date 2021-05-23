@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
@@ -7,97 +7,148 @@
 	android:background="@color/dracula"
 	tools:context=".ui.lectures.LectureDetailFragment">
 
-	<TextView
-		android:id="@+id/lecture_title"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_margin="20dp"
-		android:ellipsize="end"
-		android:maxLines="5"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-		android:textColor="@color/white"
-		android:textStyle="bold|italic"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		tools:text="La informática en el desarrollo minero en el Perú en el siglo 21" />
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
 
-	<ImageView
-		android:id="@+id/speaker_photo"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="20dp"
-		android:contentDescription="@string/imgponente"
-		app:layout_constraintTop_toBottomOf="@id/lecture_title"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		tools:src="@tools:sample/avatars"/>
+		<TextView
+			android:id="@+id/lecture_title"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:ellipsize="end"
+			android:maxLines="5"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+			android:textColor="@color/white"
+			android:textStyle="bold|italic"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			tools:text="La informática en el desarrollo minero en el Perú en el siglo 21" />
 
-	<TextView
-		android:id="@+id/save_spot"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="20dp"
-		android:maxLines="1"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		android:textColor="@color/white"
-		android:textStyle="bold"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/speaker_photo"
-		tools:text="Linsday Maldonado" />
+		<TextView
+			android:id="@+id/lecture_date"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:maxLines="1"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+			android:textColor="@color/white"
+			android:textStyle="italic"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/lecture_title"
+			tools:text="Fecha: 21/11/2021 9:00 a.m. - 10:00 a.m." />
 
-	<TextView
-		android:id="@+id/lecture_detail"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
-		android:autoLink="web"
-		android:maxLines="2"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		android:textColor="@color/white"
-		android:textStyle="italic"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/save_spot"
-		tools:text="Detalle de la ponencia"/>
+		<TextView
+			android:id="@+id/lecture_detail"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:singleLine="false"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+			android:textColor="@color/white"
+			android:textStyle="italic"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/lecture_date"
+			tools:text="@string/desc"/>
 
-	<com.google.android.material.button.MaterialButton
-		android:id="@+id/btn_enroll"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="20dp"
-		android:layout_marginStart="10dp"
-		android:layout_marginEnd="10dp"
-		android:layout_marginBottom="10dp"
-		android:text="@string/enroll"
-		app:layout_constraintTop_toBottomOf="@id/lecture_detail"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent" />
+		<TextView
+			android:id="@+id/speaker"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:text="@string/speaker"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+			android:textColor="@color/white"
+			android:textStyle="bold"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/lecture_detail"/>
 
-	<com.google.android.material.button.MaterialButton
-		android:id="@+id/btn_map"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"
-		android:layout_marginStart="10dp"
-		android:layout_marginEnd="10dp"
-		android:layout_marginBottom="20dp"
-		android:text="@string/map"
-		app:layout_constraintTop_toBottomOf="@id/btn_enroll"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent" />
+		<com.google.android.material.imageview.ShapeableImageView
+			android:id="@+id/speaker_photo"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:contentDescription="@string/imgponente"
+			app:layout_constraintTop_toBottomOf="@id/speaker"
+			app:layout_constraintStart_toStartOf="parent"
+			app:shapeAppearanceOverlay="@style/ShapeAppearance.Circular"
+			tools:src="@tools:sample/avatars"/>
 
-	<TextView
-		android:id="@+id/promoter"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="5dp"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-		android:textColor="@color/white"
-		android:text="@string/promoter"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"/>
+		<TextView
+			android:id="@+id/speaker_name"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			android:textColor="@color/white"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/speaker_photo"
+			app:layout_constraintTop_toBottomOf="@+id/speaker"
+			tools:text="Doraliz León Rojas"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+		<TextView
+			android:id="@+id/speaker_company"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="20dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			android:textColor="@color/white"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/speaker_photo"
+			app:layout_constraintTop_toBottomOf="@+id/speaker_name"
+			tools:text="Universidad Continental"/>
+
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/btn_enroll"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:text="@string/enroll"
+			app:layout_constraintTop_toBottomOf="@id/speaker_photo"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
+
+		<TextView
+			android:id="@+id/promoter"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="5dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			android:textColor="@color/white"
+			android:text="@string/promoter"
+			app:layout_constraintTop_toBottomOf="@id/btn_enroll"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

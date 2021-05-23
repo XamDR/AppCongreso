@@ -10,7 +10,7 @@
 	<string name="menu_login">Login</string>
 	<string name="menu_event">Programa</string>
 	<string name="menu_speaker_list">Ponentes</string>
-	<string name="fragment_lecture_detail">Detalle Ponencia</string>
+	<string name="fragment_lecture_detail">Detalles</string>
 	<string name="fragment_speaker_detail">Detalle Ponente</string>
 
 	<string name="imgponente">imgPonente</string>
@@ -24,8 +24,8 @@
 
 	<string name="menu_resources">Recursos</string>
 
-	<string name="advertisements">IV Congreso Internacional de Ingeniería</string>
-	<string name="event_info">La cuarta edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
+	<string name="advertisements">III Congreso Internacional de Ingeniería</string>
+	<string name="event_info">La tercera edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
 	<string name="logo_desc">Descripción del logo</string>
 	<string name="action_login">Iniciar sesión</string>
 	<string name="menu_home">Página principal</string>
@@ -34,10 +34,10 @@
 	<string name="login_title">¡Te damos la bienvenida!</string>
 	<string name="cancel_button">Cancelar</string>
 	<string name="redirect_button">Iniciar sesión</string>
-	<string name="enroll">Inscribirse</string>
+	<string name="enroll">Reservar puesto</string>
 	<string name="promoter">Universidad Continental 2021</string>
 	<string name="resources">resources</string>
-	<string name="speaker">speaker</string>
+	<string name="speaker">PONENTE</string>
 	<string name="lecture">lecture</string>
 	<string name="calendar">calendar</string>
 	<string name="lecture_date_time">Fecha: %s - %s</string>
@@ -70,4 +70,8 @@
 	<string name="menu_settings">Configuración</string>
 	<string name="fragment_settings">Configuración</string>
 	<string name="fragment_info">Información</string>
+	<string name="ponente">PONENTE</string>
+
+	<string name="desc">El concepto de informática es muy amplio y ha evolucionado mucho y rápidamente a lo largo del tiempo. Este cambio ha afectado a todos los ámbitos de la sociedad y a nuestra forma de vivir. Enviar un whatsapp, hablarle a nuestro iPhone, hacer compras online, leer en un e-book o ver un vídeo en Youtube son cosas habituales y resulta extraño no repetirlas cada día.\nEn la actualidad no sólo hablamos de informática, sino de Tecnologías de la Información y la Comunicación (TIC), ya que los cambios tecnológicos afectan a todos los ámbitos de nuestra vida.</string>
+	<string name="action_map">Mapa</string>
 </resources>

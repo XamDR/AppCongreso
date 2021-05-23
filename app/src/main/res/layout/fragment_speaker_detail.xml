@@ -48,7 +48,7 @@
 		app:layout_constraintTop_toBottomOf="@+id/save_spot">
 
 		<TextView
-			android:id="@+id/speaker_info"
+			android:id="@+id/speaker_company"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"

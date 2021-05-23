@@ -21,7 +21,6 @@ class LectureDetailFragment : Fragment() {
 	private var binding: FragmentLectureDetailBinding? = null
 	private val args: LectureListFragmentArgs by navArgs()
 
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setHasOptionsMenu(true)
@@ -41,14 +40,18 @@ class LectureDetailFragment : Fragment() {
 			addToCalendar(args.lectureSpeaker.lecture)
 			true
 		}
+		R.id.action_map -> {
+			findNavController().navigate(R.id.mapsFragment)
+			true
+		}
 		else -> super.onOptionsItemSelected(item)
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		initLectureDetails()
-		binding?.btnMap?.setOnClickListener {
-			findNavController().navigate(R.id.mapsFragment)
+		binding?.speakerPhoto?.setOnClickListener {
+			findNavController().navigate(R.id.speakerDetailFragment)
 		}
 	}
 
@@ -59,9 +62,12 @@ class LectureDetailFragment : Fragment() {
 
 	private fun initLectureDetails() {
 		binding?.lectureTitle?.text = args.lectureSpeaker.lecture.title
-//		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
+		binding?.lectureDate?.text = getString(R.string.lecture_date_time,
+			args.lectureSpeaker.lecture.startTime, args.lectureSpeaker.lecture.endTime)
+		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.description
+		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
+		binding?.speakerCompany?.text = args.lectureSpeaker.speakers[0].company
 		binding?.speakerPhoto?.load(args.lectureSpeaker.speakers[0].uriPhoto)
-		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.url
 	}
 
 	@SuppressLint("QueryPermissionsNeeded")
