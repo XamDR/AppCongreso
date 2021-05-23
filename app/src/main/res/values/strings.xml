@@ -70,11 +70,25 @@
 	<string name="menu_settings">Configuración</string>
 	<string name="fragment_settings">Configuración</string>
 	<string name="fragment_info">Información</string>
+
+	<!-- Info Fragment -->
+	<string name="strInversion">Inversión</string>
+	<string name="info_certificado">Si deseas obtener el certificado como asistente, deberás realizar el pago</string>
+	<string name="monto_certificado">S/ 30.00</string>
+	<string name="info_cet_recuerda">"Recuerda que tienes que registrar tu participación en las ponencias que participarás. Asimismo, deberás asistir a más 50% de las ponencias para obtener la certificación como asistente."</string>
+	<string name="info_opc1">Si eres estudiante: Puedes realizar el pago indicando tu número de DNI en canales de pago autorizados: BBVA, Scotiabank, Interbank, Banbif y Caja Centro (Huancayo)</string>
+	<string name="info_opc2">Público en general: Podrás realizar el depósito en el Banco de Crédito del Perú (BCP) BCP N° 355-1618739-0-55 – CCI: 002-355-001618739055-60</string>
+	<string name="moreInfo">Más información</string>
+	<string name="info_email">Email: congresoingenieriauc@continental.edu.pe</string>
+	<string name="info_tel">Tel: (084) 480070 anexo 4</string>
+	<string name="info_cel">Cel. 995713984</string>
+
 	<string name="ponente">PONENTE</string>
 
 	<string name="desc">El concepto de informática es muy amplio y ha evolucionado mucho y rápidamente a lo largo del tiempo. Este cambio ha afectado a todos los ámbitos de la sociedad y a nuestra forma de vivir. Enviar un whatsapp, hablarle a nuestro iPhone, hacer compras online, leer en un e-book o ver un vídeo en Youtube son cosas habituales y resulta extraño no repetirlas cada día.\nEn la actualidad no sólo hablamos de informática, sino de Tecnologías de la Información y la Comunicación (TIC), ya que los cambios tecnológicos afectan a todos los ámbitos de nuestra vida.</string>
 	<string name="academic_info">Investigadora de Doctorado en Ciencias y Magíster de Ciencias en Urbanismo y Planeamiento Estratégico (Ku Leuven, Bélgica). Investigadora Asociada del Centro de Competencias del Agua (Ayacucho, Perú).</string>
 	<string name="action_map">Mapa</string>
 	<string name="linkedin">LinkedIn</string>
-	<string name="twitter">Twitter</string>
+	<string name="twitter">Twitter</string
+
 </resources>
