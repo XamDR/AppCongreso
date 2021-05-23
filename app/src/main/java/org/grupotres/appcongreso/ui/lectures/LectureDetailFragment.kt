@@ -59,7 +59,7 @@ class LectureDetailFragment : Fragment() {
 
 	private fun initLectureDetails() {
 		binding?.lectureTitle?.text = args.lectureSpeaker.lecture.title
-		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
+//		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
 		binding?.speakerPhoto?.load(args.lectureSpeaker.speakers[0].uriPhoto)
 		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.url
 	}

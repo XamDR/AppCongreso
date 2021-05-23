@@ -20,7 +20,7 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel, private val naviga
 
 		@SuppressLint("SetTextI18n")
 		fun bind(speaker: Speaker) {
-			binding.speakerName.text = speaker.toString()
+//			binding.speakerName.text = speaker.toString()
 			binding.speakerDesc.text = speaker.info
 			binding.speakerPhoto.load(speaker.uriPhoto)
 		}
@@ -34,9 +34,10 @@ class SpeakerAdapter(private val viewModel: SpeakerViewModel, private val naviga
 	}
 
 	private fun goToSpeakerDetail(position: Int) {
-		val speaker = getItem(position)
-		val navDirections = SpeakerListFragmentDirections.actionNavSpeakerListToSpeakerDetail(speaker)
-		navigator.navigate(navDirections)
+//		val speaker = getItem(position)
+//		val navDirections = SpeakerListFragmentDirections.actionNavSpeakerListToSpeakerDetail(speaker)
+//		navigator.navigate(navDirections)
+		TODO()
 	}
 
 

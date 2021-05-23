@@ -16,7 +16,7 @@ import org.grupotres.appcongreso.databinding.FragmentSpeakerDetailBinding
 class SpeakerDetailFragment : Fragment() {
 
 	private var binding: FragmentSpeakerDetailBinding? = null
-	private val args: SpeakerListFragmentArgs by navArgs()
+//	private val args: SpeakerListFragmentArgs by navArgs()
 
 	private val flags = mapOf(
 		"Bélgica" to R.drawable.belgium,
@@ -42,13 +42,13 @@ class SpeakerDetailFragment : Fragment() {
 	}
 
 	private fun initSpeakerDetails() {
-		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.toString())
-		binding?.speakerInfo?.text = args.speaker.info
-		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
-		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
-		val lineHeight = binding?.speakerName?.lineHeight
-		val bitmap = (drawable as BitmapDrawable).bitmap
-		val flag = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, lineHeight!!, lineHeight, true))
-		binding?.speakerName?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, flag, null)
+//		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.toString())
+//		binding?.speakerInfo?.text = args.speaker.info
+//		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
+//		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
+//		val lineHeight = binding?.speakerName?.lineHeight
+//		val bitmap = (drawable as BitmapDrawable).bitmap
+//		val flag = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, lineHeight!!, lineHeight, true))
+//		binding?.speakerName?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, flag, null)
 	}
 }

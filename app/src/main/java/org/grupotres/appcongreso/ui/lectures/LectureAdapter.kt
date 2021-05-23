@@ -19,11 +19,11 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 		RecyclerView.ViewHolder(binding.root) {
 
 		fun bind(lectureSpeaker: LectureSpeakers) {
-			binding.speakerPhoto.load(lectureSpeaker.speakers[0].uriPhoto)
+//			binding.speakerPhoto.load(lectureSpeaker.speakers[0].uriPhoto)
 			binding.lectureTitle.text = lectureSpeaker.lecture.title
-			binding.lectureDateTime.text = itemView.context.getString(R.string.lecture_date_time,
-				lectureSpeaker.lecture.startTime, lectureSpeaker.lecture.endTime)
-			binding.lectureDesc.text = itemView.context.getString(R.string.lecture_url, lectureSpeaker.lecture.url)
+//			binding.lectureDateTime.text = itemView.context.getString(R.string.lecture_date_time,
+//				lectureSpeaker.lecture.startTime, lectureSpeaker.lecture.endTime)
+//			binding.lectureDesc.text = itemView.context.getString(R.string.lecture_url, lectureSpeaker.lecture.url)
 		}
 	}
 
