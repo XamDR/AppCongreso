@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
@@ -7,66 +7,108 @@
 	android:background="@color/dracula"
 	tools:context=".ui.speakers.SpeakerDetailFragment">
 
-	<ImageView
-		android:id="@+id/speaker_photo"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="20dp"
-		android:contentDescription="@string/imgponente"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintBottom_toTopOf="@id/save_spot"
-		tools:src="@tools:sample/avatars" />
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
 
-	<TextView
-		android:id="@+id/save_spot"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="20dp"
-		android:layout_marginBottom="10dp"
-		android:maxLines="1"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		android:textStyle="bold"
-		android:textColor="@color/white"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/speaker_photo"
-		app:layout_constraintBottom_toTopOf="@id/info"
-		tools:text="Linsday Maldonado" />
-
-	<FrameLayout
-		android:id="@+id/info"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
-		android:padding="10dp"
-		android:background="@color/primaryDarkColor"
-		app:layout_constraintBottom_toTopOf="@id/promoter"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/save_spot">
+		<com.google.android.material.imageview.ShapeableImageView
+			android:id="@+id/speaker_photo"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:contentDescription="@string/imgponente"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintBottom_toTopOf="@id/speaker_name"
+			app:shapeAppearanceOverlay="@style/ShapeAppearance.Circular"
+			tools:src="@tools:sample/avatars" />
 
 		<TextView
-			android:id="@+id/speaker_company"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:id="@+id/speaker_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:maxLines="1"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+			android:textStyle="bold"
+			android:textColor="@color/white"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintBottom_toTopOf="@id/social_media"
+			tools:text="Doraliz Rojas León" />
+
+		<LinearLayout
+			android:id="@+id/social_media"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_marginStart="20dp"
+			android:layout_marginBottom="20dp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintBottom_toTopOf="@id/speaker_academic_info">
+
+			<TextView
+				android:id="@+id/linkedin"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="10dp"
+				android:layout_marginEnd="10dp"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="20dp"
+				android:text="@string/linkedin"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+				android:textColor="?attr/colorAccent"
+				tools:text="Linkedin"/>
+
+			<View
+				android:layout_width="1dp"
+				android:layout_height="20dp"
+				android:background="@color/dracula_light"
+				android:layout_gravity="center"/>
+
+			<TextView
+				android:id="@+id/twitter"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="10dp"
+				android:layout_marginEnd="10dp"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="20dp"
+				android:text="@string/twitter"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+				android:textColor="?attr/colorAccent"
+				tools:text="Twitter"/>
+
+		</LinearLayout>
+
+		<TextView
+			android:id="@+id/speaker_academic_info"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_margin="20dp"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
 			android:justificationMode="inter_word"
 			android:textColor="@color/white"
-			tools:text="Información del ponente"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintBottom_toTopOf="@id/promoter"
+			tools:text="@string/academic_info"
 			tools:targetApi="o" />
-	</FrameLayout>
 
-	<TextView
-		android:id="@+id/promoter"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="20dp"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-		android:textColor="@color/white"
-		android:text="@string/promoter"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+		<TextView
+			android:id="@+id/promoter"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			android:textColor="?attr/colorAccent"
+			android:text="@string/promoter"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"/>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -22,16 +22,13 @@
 		android:label="@string/menu_event"
 		tools:layout="@layout/fragment_lecture_list">
 
-
-		<action
-			android:id="@+id/action_home"
-			app:destination="@id/nav_lecture_list"/>
-
-
 		<argument
 			android:name="lectureSpeaker"
 			app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
 
+		<action
+			android:id="@+id/action_home"
+			app:destination="@id/nav_lecture_list"/>
 
 		<action
 			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
@@ -48,7 +45,21 @@
 		android:id="@+id/lectureDetailFragment"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureDetailFragment"
 		android:label="@string/fragment_lecture_detail"
-		tools:layout="@layout/fragment_lecture_detail" />
+		tools:layout="@layout/fragment_lecture_detail">
+
+		<argument
+			android:name="speaker"
+			app:argType="org.grupotres.appcongreso.core.Speaker" />
+
+		<action
+			android:id="@+id/action_lectureDetailFragment_to_speakerDetailFragment"
+			app:destination="@id/speakerDetailFragment">
+
+			<argument
+				android:name="speaker"
+				app:argType="org.grupotres.appcongreso.core.Speaker" />
+		</action>
+	</fragment>
 
 	<fragment
 		android:id="@+id/speakerDetailFragment"
