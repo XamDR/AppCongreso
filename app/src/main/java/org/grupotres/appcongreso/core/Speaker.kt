@@ -24,7 +24,7 @@ data class Speaker(
 	val country: String,
 	val company: String,
 	@ColumnInfo(name = "academic_info") val academicInfo: String,
-	@ColumnInfo(name = "uri_photo") val uriPhoto: String? = null,
+	@ColumnInfo(name = "uri_photo") val uriPhoto: String,
 	@ColumnInfo(name = "lecture_id", index = true) val lectureId: String
 ) : Parcelable {
 
