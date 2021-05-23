@@ -1,10 +1,10 @@
 package org.grupotres.appcongreso.ui.lectures
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.view.*
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -12,6 +12,7 @@ import coil.load
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
+import org.grupotres.appcongreso.util.mainActivity
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -20,7 +21,6 @@ class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
 	private val args: LectureListFragmentArgs by navArgs()
-
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -41,14 +41,21 @@ class LectureDetailFragment : Fragment() {
 			addToCalendar(args.lectureSpeaker.lecture)
 			true
 		}
+		R.id.action_map -> {
+			findNavController().navigate(R.id.mapsFragment)
+			true
+		}
 		else -> super.onOptionsItemSelected(item)
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		initLectureDetails()
-		binding?.btnMap?.setOnClickListener {
-			findNavController().navigate(R.id.mapsFragment)
+		binding?.speakerPhoto?.setOnClickListener {
+			val id = (it as ImageView).tag
+			val speaker = args.lectureSpeaker.speakers.first { speaker -> speaker.id == id }
+			val navDirections = LectureDetailFragmentDirections.actionLectureDetailFragmentToSpeakerDetailFragment(speaker)
+			mainActivity.navigate(navDirections)
 		}
 	}
 
@@ -59,12 +66,15 @@ class LectureDetailFragment : Fragment() {
 
 	private fun initLectureDetails() {
 		binding?.lectureTitle?.text = args.lectureSpeaker.lecture.title
-//		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
+		binding?.lectureDate?.text = getString(R.string.lecture_date_time,
+			args.lectureSpeaker.lecture.startTime, args.lectureSpeaker.lecture.endTime)
+		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.description
+		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
+		binding?.speakerCompany?.text = args.lectureSpeaker.speakers[0].company
 		binding?.speakerPhoto?.load(args.lectureSpeaker.speakers[0].uriPhoto)
-		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.url
+		binding?.speakerPhoto?.tag = args.lectureSpeaker.speakers[0].id
 	}
 
-	@SuppressLint("QueryPermissionsNeeded")
 	private fun addToCalendar(lecture: Lecture) {
 		val intent = Intent(Intent.ACTION_INSERT).apply {
 			data = CalendarContract.Events.CONTENT_URI
@@ -80,7 +90,7 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun toEpoch(datestring: String): Long {
-		val pattern = DateTimeFormatter.ofPattern("d/MM/yyyy K:mm a")
+		val pattern = DateTimeFormatter.ofPattern("dd/MM/yyyy K:mm a")
 		val date = LocalDateTime.parse(datestring, pattern)
 		val zone = ZoneId.of("America/Lima")
 		return date.atZone(zone).toInstant().toEpochMilli()

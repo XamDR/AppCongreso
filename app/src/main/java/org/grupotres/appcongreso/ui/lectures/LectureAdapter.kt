@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.LectureSpeakers
 import org.grupotres.appcongreso.databinding.ItemLectureDetailBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
@@ -19,11 +17,7 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 		RecyclerView.ViewHolder(binding.root) {
 
 		fun bind(lectureSpeaker: LectureSpeakers) {
-//			binding.speakerPhoto.load(lectureSpeaker.speakers[0].uriPhoto)
 			binding.lectureTitle.text = lectureSpeaker.lecture.title
-//			binding.lectureDateTime.text = itemView.context.getString(R.string.lecture_date_time,
-//				lectureSpeaker.lecture.startTime, lectureSpeaker.lecture.endTime)
-//			binding.lectureDesc.text = itemView.context.getString(R.string.lecture_url, lectureSpeaker.lecture.url)
 		}
 	}
 
@@ -36,7 +30,7 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 
 	private fun goToLectureDetail(position: Int) {
 		val lectureSpeaker = getItem(position)
-		val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lectureSpeaker)
+		val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lectureSpeaker, lectureSpeaker.speakers[0])
 		navigator.navigate(navDirections)
 	}
 

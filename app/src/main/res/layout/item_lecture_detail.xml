@@ -18,7 +18,6 @@
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
 		android:textColor="@color/white"
 		android:textStyle="bold|italic"
-		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintBottom_toTopOf="@id/save_spot"
 		tools:text="La informática en el desarrollo minero en el Perú" />

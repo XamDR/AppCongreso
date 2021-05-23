@@ -8,4 +8,11 @@
 		android:title="@string/action_calendar"
 		android:icon="@drawable/ic_agenda"
 		app:showAsAction="ifRoom"/>
+
+	<item
+		android:id="@+id/action_map"
+		android:orderInCategory="5"
+		android:title="@string/action_map"
+		android:icon="@drawable/ic_map"
+		app:showAsAction="ifRoom"/>
 </menu>
