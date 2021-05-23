@@ -8,7 +8,7 @@
 	<string name="action_settings">Settings</string>
 
 	<string name="menu_login">Login</string>
-	<string name="menu_event">Programa</string>
+	<string name="menu_event">Ponencias</string>
 	<string name="menu_speaker_list">Ponentes</string>
 	<string name="fragment_lecture_detail">Detalles</string>
 	<string name="fragment_speaker_detail">Detalle Ponente</string>
@@ -77,7 +77,7 @@
 	<string name="monto_certificado">S/ 30.00</string>
 	<string name="info_cet_recuerda">"Recuerda que tienes que registrar tu participación en las ponencias que participarás. Asimismo, deberás asistir a más 50% de las ponencias para obtener la certificación como asistente."</string>
 	<string name="info_opc1">Si eres estudiante: Puedes realizar el pago indicando tu número de DNI en canales de pago autorizados: BBVA, Scotiabank, Interbank, Banbif y Caja Centro (Huancayo)</string>
-	<string name="info_opc2">Público en general: Podrás realizar el depósito en el Banco de Crédito del Perú (BCP) BCP N° 355-1618739-0-55 – CCI: 002-355-001618739055-60</string>
+	<string name="info_opc2">Público en general: Podrás realizar el depósito en el Banco de Crédito del Perú (BCP) BCP N° 355–1618739–0–55 – CCI: 002–355–001618739055–60</string>
 	<string name="moreInfo">Más información</string>
 	<string name="info_email">Email: congresoingenieriauc@continental.edu.pe</string>
 	<string name="info_tel">Tel: (084) 480070 anexo 4</string>
@@ -89,6 +89,6 @@
 	<string name="academic_info">Investigadora de Doctorado en Ciencias y Magíster de Ciencias en Urbanismo y Planeamiento Estratégico (Ku Leuven, Bélgica). Investigadora Asociada del Centro de Competencias del Agua (Ayacucho, Perú).</string>
 	<string name="action_map">Mapa</string>
 	<string name="linkedin">LinkedIn</string>
-	<string name="twitter">Twitter</string
+	<string name="twitter">Twitter</string>
 
 </resources>
