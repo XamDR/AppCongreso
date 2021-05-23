@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 	}
 
+	@Suppress("DEPRECATION")
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 		super.onActivityResult(requestCode, resultCode, data)
 		// Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
@@ -169,6 +170,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			}.also { it.show() }
 	}
 
+	@Suppress("DEPRECATION")
 	private fun signIn() {
 		val signInIntent = googleSignInClient.signInIntent
 		startActivityForResult(signInIntent, RC_SIGN_IN)
