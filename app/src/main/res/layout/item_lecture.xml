@@ -16,7 +16,6 @@
 		android:layout_margin="10dp"
 		android:singleLine="false"
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-		android:textColor="@color/white"
 		android:textStyle="bold|italic"
 		android:justificationMode="inter_word"
 		app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +34,6 @@
 		android:maxLines="1"
 		android:text="@string/save_spot"
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		android:textColor="@color/white"
 		android:textStyle="bold"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintBottom_toTopOf="@id/topic_color"
@@ -53,7 +51,7 @@
 		app:layout_constraintEnd_toStartOf="@id/topic"
 		app:layout_constraintTop_toBottomOf="@id/save_spot"
 		app:shapeAppearanceOverlay="@style/ShapeAppearance.Circular"
-		tools:background="@color/dracula_light"/>
+		tools:background="@color/dracula"/>
 
 	<TextView
 		android:id="@+id/topic"
@@ -65,7 +63,6 @@
 		android:layout_marginEnd="5dp"
 		android:maxLines="1"
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		android:textColor="@color/white"
 		app:layout_constraintStart_toEndOf="@id/topic_color"
 		app:layout_constraintTop_toBottomOf="@id/save_spot"
 		tools:text="Informática"/>

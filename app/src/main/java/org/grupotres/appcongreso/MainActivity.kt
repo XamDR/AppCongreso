@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
 import coil.load
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.util.setNightMode
 
 class MainActivity : AppCompatActivity(), INavigator {
 
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.contentMain.toolbar)
+		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
 		initGoogleSignIn()
 	}

@@ -4,7 +4,6 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/dracula"
 	tools:context=".ui.speakers.SpeakerDetailFragment">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +35,6 @@
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
 			android:textSize="18sp"
 			android:textStyle="bold"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintBottom_toTopOf="@id/social_media"
@@ -68,7 +66,7 @@
 			<View
 				android:layout_width="1dp"
 				android:layout_height="20dp"
-				android:background="@color/dracula_light"
+				android:background="@color/dracula"
 				android:layout_gravity="center"/>
 
 			<TextView
@@ -93,7 +91,6 @@
 			android:layout_margin="20dp"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
 			android:justificationMode="inter_word"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintBottom_toTopOf="@id/promoter"

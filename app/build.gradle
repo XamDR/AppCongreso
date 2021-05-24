@@ -7,6 +7,10 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+
 android {
 	compileSdkVersion 30
 	buildToolsVersion "30.0.3"
@@ -16,7 +20,7 @@ android {
 		minSdkVersion 21
 		targetSdkVersion 30
 		versionCode 1
-		versionName "1.0"
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -26,6 +30,12 @@ android {
 	}
 
 	buildTypes {
+        debug {
+            debuggable true
+            versionNameSuffix ".debug"
+            resValue "string", "app_version",
+                    "${defaultConfig.versionName}${versionNameSuffix}"
+        }
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -56,8 +66,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     // Room components
