@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
 import coil.load
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentSpeakerDetailBinding
 import org.grupotres.appcongreso.ui.lectures.LectureDetailFragmentArgs
+import java.util.concurrent.TimeUnit
 
 class SpeakerDetailFragment : Fragment() {
 
@@ -28,6 +30,8 @@ class SpeakerDetailFragment : Fragment() {
 	)
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
+//		postponeEnterTransition(500L, TimeUnit.MILLISECONDS)
 		binding = FragmentSpeakerDetailBinding.inflate(inflater, container, false)
 		return binding?.root
 	}

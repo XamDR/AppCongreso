@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
 import coil.load
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
@@ -16,6 +17,7 @@ import org.grupotres.appcongreso.util.mainActivity
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.util.concurrent.TimeUnit
 
 class LectureDetailFragment : Fragment() {
 
@@ -28,6 +30,8 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
+//		postponeEnterTransition(500L, TimeUnit.MILLISECONDS)
 		binding = FragmentLectureDetailBinding.inflate(inflater, container, false)
 		return binding?.root
 	}
