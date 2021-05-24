@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/recyclerview_item_background"
+	android:paddingTop="10dp"
+	android:paddingBottom="10dp"
+	tools:context=".ui.lectures.LectureListFragment">
+
+	<TextView
+		android:id="@+id/lecture_title"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:singleLine="false"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+		android:textColor="@color/white"
+		android:textStyle="bold|italic"
+		android:justificationMode="inter_word"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintBottom_toTopOf="@id/save_spot"
+		tools:text="@string/lecture_title_tools"
+		tools:targetApi="o" />
+
+	<TextView
+		android:id="@+id/save_spot"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:padding="3dp"
+		android:drawablePadding="10dp"
+		android:maxLines="1"
+		android:text="@string/save_spot"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+		android:textColor="@color/white"
+		android:textStyle="bold"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintBottom_toTopOf="@id/topic_color"
+		app:drawableStartCompat="@drawable/ic_save_spot" />
+
+	<com.google.android.material.imageview.ShapeableImageView
+		android:id="@+id/topic_color"
+		android:layout_width="15dp"
+		android:layout_height="15dp"
+		android:layout_marginTop="13dp"
+		android:layout_marginBottom="10dp"
+		android:layout_marginStart="10dp"
+		android:layout_marginEnd="5dp"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toStartOf="@id/topic"
+		app:layout_constraintTop_toBottomOf="@id/save_spot"
+		app:shapeAppearanceOverlay="@style/ShapeAppearance.Circular"
+		tools:background="@color/dracula_light"/>
+
+	<TextView
+		android:id="@+id/topic"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:layout_marginStart="5dp"
+		android:layout_marginEnd="5dp"
+		android:maxLines="1"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+		android:textColor="@color/white"
+		app:layout_constraintStart_toEndOf="@id/topic_color"
+		app:layout_constraintTop_toBottomOf="@id/save_spot"
+		tools:text="Informática"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

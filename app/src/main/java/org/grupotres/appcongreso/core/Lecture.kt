@@ -17,7 +17,7 @@ data class Lecture(
 	@ColumnInfo(name = "start_time") val startTime: String = String.Empty,
 	@ColumnInfo(name = "end_time") val endTime: String = String.Empty,
 	val description: String = String.Empty,
-	val topics: String = String.Empty,
+	val topic: String = String.Empty,
 	val url: String = String.Empty
 ) : Parcelable {
 
