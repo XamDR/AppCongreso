@@ -49,7 +49,7 @@ class SpeakerDetailFragment : Fragment() {
 		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
 		val lineHeight = binding?.speakerName?.lineHeight
 		val bitmap = (drawable as BitmapDrawable).bitmap
-		val flag = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, lineHeight!!, lineHeight, true))
+		val flag = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, lineHeight!! + 10, lineHeight + 10, true))
 		binding?.speakerName?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, flag, null)
 	}
 }

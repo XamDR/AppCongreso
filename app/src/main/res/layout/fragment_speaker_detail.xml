@@ -34,6 +34,7 @@
 			android:layout_margin="10dp"
 			android:maxLines="1"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+			android:textSize="18sp"
 			android:textStyle="bold"
 			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"

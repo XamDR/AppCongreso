@@ -40,7 +40,7 @@
 	<string name="speaker">PONENTE</string>
 	<string name="lecture">lecture</string>
 	<string name="calendar">calendar</string>
-	<string name="lecture_date_time">Fecha: %s - %s</string>
+	<string name="lecture_date_time">Fecha: %s</string>
 	<string name="lecture_url">Enlace: %s</string>
 	<string name="speaker_name">%s\u0020\u0020</string>
 	<string name="map">Ver ubicación</string>
