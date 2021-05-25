@@ -63,19 +63,13 @@ dependencies {
 	implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 	implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
 	implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'    
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     // Room components
     implementation "androidx.room:room-ktx:$room_version"
-
-    implementation files('..\\libs\\activation.jar')
-    implementation files('..\\libs\\additionnal.jar')
-    implementation files('..\\libs\\mail.jar')
-
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
-
     kapt "androidx.room:room-compiler:$room_version"
 
     // Import the BoM for the Firebase platform
@@ -94,5 +88,10 @@ dependencies {
 
     // Google Maps
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
+
+    // Java Mail
+    implementation files('../libs/activation.jar')
+    implementation files('../libs/additionnal.jar')
+    implementation files('../libs/mail.jar')
     
 }
