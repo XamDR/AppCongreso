@@ -9,34 +9,22 @@
 		android:id="@+id/nav_home"
 		android:name="org.grupotres.appcongreso.ui.home.HomeFragment"
 		android:label="@string/menu_home"
-		tools:layout="@layout/fragment_home" >
-
-		<action
-			android:id="@+id/action_home"
-			app:destination="@id/nav_home"/>
-	</fragment>
+		tools:layout="@layout/fragment_home" />
 
 	<fragment
 		android:id="@+id/nav_lecture_list"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureListFragment"
-		android:label="@string/menu_lecture_list"
+		android:label="@string/menu_event"
 		tools:layout="@layout/fragment_lecture_list">
 
-		<!--suppress AndroidElementNotAllowed -->
-		<action
-			android:id="@+id/action_home"
-			app:destination="@id/nav_lecture_list"/>
-
-		<!--suppress AndroidElementNotAllowed -->
 		<argument
 			android:name="lectureSpeaker"
 			app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
 
-		<!--suppress AndroidElementNotAllowed -->
 		<action
 			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
-			app:destination="@id/lectureDetailFragment">
-			<!--suppress AndroidElementNotAllowed -->
+			app:destination="@id/nav_lecture_detail">
+
 			<argument
 				android:name="lectureSpeaker"
 				app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
@@ -45,22 +33,19 @@
 	</fragment>
 
 	<fragment
-		android:id="@+id/nav_speaker_list"
-		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerListFragment"
-		android:label="@string/menu_speaker_list"
-		tools:layout="@layout/fragment_speaker_list" >
+		android:id="@+id/nav_lecture_detail"
+		android:name="org.grupotres.appcongreso.ui.lectures.LectureDetailFragment"
+		android:label="@string/fragment_lecture_detail"
+		tools:layout="@layout/fragment_lecture_detail">
 
-		<action
-			android:id="@+id/action_home"
-			app:destination="@id/nav_speaker_list"/>
-    
 		<argument
 			android:name="speaker"
 			app:argType="org.grupotres.appcongreso.core.Speaker" />
-    
+
 		<action
-			android:id="@+id/action_nav_speaker_list_to_speaker_detail"
-			app:destination="@id/speakerDetailFragment">
+			android:id="@+id/action_lectureDetailFragment_to_speakerDetailFragment"
+			app:destination="@id/nav_speaker_detail">
+
 			<argument
 				android:name="speaker"
 				app:argType="org.grupotres.appcongreso.core.Speaker" />
@@ -68,20 +53,31 @@
 	</fragment>
 
 	<fragment
-		android:id="@+id/lectureDetailFragment"
-		android:name="org.grupotres.appcongreso.ui.lectures.LectureDetailFragment"
-		android:label="@string/fragment_lecture_detail"
-		tools:layout="@layout/fragment_lecture_detail" />
-
-	<fragment
-		android:id="@+id/speakerDetailFragment"
+		android:id="@+id/nav_speaker_detail"
 		android:name="org.grupotres.appcongreso.ui.speakers.SpeakerDetailFragment"
 		android:label="@string/fragment_speaker_detail"
-		tools:layout="@layout/fragment_speaker_detail" />
+		tools:layout="@layout/fragment_speaker_detail"/>
 
 	<fragment
 		android:id="@+id/nav_resources"
 		android:name="org.grupotres.appcongreso.ui.resources.ResourceFragment"
 		android:label="Resources"
 		tools:layout="@layout/fragment_resources" />
+
+	<fragment
+		android:id="@+id/nav_map"
+		android:name="org.grupotres.appcongreso.ui.map.MapFragment"
+		android:label="@string/fragment_map"
+		tools:layout="@layout/fragment_map" />
+
+	<fragment
+		android:id="@+id/nav_info"
+		android:name="org.grupotres.appcongreso.ui.info.InfoFragment"
+		android:label="@string/fragment_info"
+		tools:layout="@layout/info_fragment"/>
+
+	<fragment
+		android:id="@+id/nav_settings"
+		android:name="org.grupotres.appcongreso.ui.settings.SettingsFragment"
+		android:label="@string/fragment_settings"/>
 </navigation>

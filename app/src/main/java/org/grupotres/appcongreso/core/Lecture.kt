@@ -13,11 +13,19 @@ import org.grupotres.appcongreso.util.Empty
 @Entity
 data class Lecture(
 	@PrimaryKey val id: String = String.Empty,
+	val title: String = String.Empty,
 	@ColumnInfo(name = "start_time") val startTime: String = String.Empty,
 	@ColumnInfo(name = "end_time") val endTime: String = String.Empty,
-	val title: String = String.Empty,
+	val description: String = String.Empty,
+	val topic: String = String.Empty,
 	val url: String = String.Empty
 ) : Parcelable {
+
 	@IgnoredOnParcel
 	@Ignore val resources: List<String>? = null
+
+	fun getDate(): String {
+		val endTimeWithoutDate = endTime.replaceBefore(" ", "")
+		return "$startTime –$endTimeWithoutDate"
+	}
 }

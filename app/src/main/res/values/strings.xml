@@ -7,11 +7,9 @@
 	<string name="nav_header_desc">Navigation header</string>
 	<string name="action_settings">Settings</string>
 
-	<string name="menu_login">Login</string>
-	<string name="menu_lecture_list">Ponencias</string>
-	<string name="menu_speaker_list">Ponentes</string>
-	<string name="fragment_lecture_detail">Detalle Ponencia</string>
-	<string name="fragment_speaker_detail">Detalle Ponente</string>
+	<string name="menu_event">Ponencias</string>
+	<string name="fragment_lecture_detail">Detalles de la ponencia</string>
+	<string name="fragment_speaker_detail">Información del ponente</string>
 
 	<string name="imgponente">imgPonente</string>
 	<string name="nombrePonente">TextView</string>
@@ -19,25 +17,82 @@
 	<string name="descPonencia">descPonencia</string>
 	<string name="nombrePonencia">nombrePonencia</string>
 	<string name="datePonencia">datePonencia</string>
-	<!-- TODO: Remove or change this placeholder text -->
+
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 
 	<string name="menu_resources">Recursos</string>
 
-	<string name="welcome">Welcome</string>
 	<string name="advertisements">III Congreso Internacional de Ingeniería</string>
-	<string name="txt_info">La tercera edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
-	<string name="logo_desc">Logo description</string>
-	<string name="action_login">Login</string>
-	<string name="menu_home">Main Page</string>
-	<string name="menu_main_page">Main Page</string>
-	<!-- TODO: Remove or change this placeholder text -->
+	<string name="event_info">La tercera edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
+	<string name="logo_desc">Descripción del logo</string>
+	<string name="action_login">Iniciar sesión</string>
+	<string name="menu_home">Página principal</string>
+	<string name="menu_main_page">Página principal</string>
 	<string name="login_message">Accede a tu cuenta para guardar eventos, reservar puestos y calificar sesiones. Las acciones se sincronizaran con tu app y el sitio desde tu cuenta.</string>
 	<string name="login_title">¡Te damos la bienvenida!</string>
 	<string name="cancel_button">Cancelar</string>
 	<string name="redirect_button">Iniciar sesión</string>
-	<string name="enroll">Inscribirse</string>
+	<string name="enroll">Reservar puesto</string>
 	<string name="promoter">Universidad Continental 2021</string>
+
 	<string name="download_resources">Descargar Materiales</string>
+	<string name="resources">resources</string>
+	<string name="speaker">PONENTE</string>
+	<string name="lecture">lecture</string>
+	<string name="calendar">calendar</string>
+	<string name="lecture_date_time">Fecha: %s</string>
+	<string name="lecture_url">Enlace: %s</string>
+	<string name="speaker_name">%s\u0020\u0020</string>
+	<string name="map">Ver ubicación</string>
+	<string name="info_uc">Información sobre la Universidad Continental</string>
+	<string name="uc">Universidad Continental</string>
+	<string name="detail_info_uc">El campus Huancayo de la Universidad Continental se encuentra ubicada en la Avenida San Carlos 1980, Huancayo 12000.</string>
+	<string name="share_location_uc">Hola, la ubicación de la Universidad Continental es Av. San Carlos 1980, Huancayo.</string>
+	<string name="ok_button">Aceptar</string>
+	<string name="share_uc">Compartir ubicación</string>
+	<string name="fragment_map">Mapa</string>
+	<string name="action_calendar">Calendario</string>
+	<string name="save_spot">RESERVAR PUESTO</string>
+
+	<!-- Preference Titles -->
+	<string name="personalisation_header">Personalización</string>
+	<string name="about_header">Acerca de la App</string>
+
+	<string name="menu_info">Información</string>
+	<string name="menu_settings">Configuración</string>
+	<string name="fragment_settings">Configuración</string>
+	<string name="fragment_info">Información</string>
+
+	<!-- Info Fragment -->
+	<string name="strInversion">Inversión</string>
+	<string name="info_certificado">Si deseas obtener el certificado como asistente, deberás realizar el pago</string>
+	<string name="monto_certificado">S/ 30.00</string>
+	<string name="info_cet_recuerda">"Recuerda que tienes que registrar tu participación en las ponencias que participarás. Asimismo, deberás asistir a más 50% de las ponencias para obtener la certificación como asistente."</string>
+	<string name="info_opc1">Si eres estudiante: Puedes realizar el pago indicando tu número de DNI en canales de pago autorizados: BBVA, Scotiabank, Interbank, Banbif y Caja Centro (Huancayo)</string>
+	<string name="info_opc2">Público en general: Podrás realizar el depósito en el Banco de Crédito del Perú (BCP) BCP N° 355–1618739–0–55 – CCI: 002–355–001618739055–60</string>
+	<string name="moreInfo">Más información</string>
+	<string name="info_email">Email: congresoingenieriauc@continental.edu.pe</string>
+	<string name="info_tel">Tel: (084) 480070 anexo 4</string>
+	<string name="info_cel">Cel. 995713984</string>
+
+	<string name="ponente">PONENTE</string>
+
+	<string name="desc">El concepto de informática es muy amplio y ha evolucionado mucho y rápidamente a lo largo del tiempo. Este cambio ha afectado a todos los ámbitos de la sociedad y a nuestra forma de vivir. Enviar un whatsapp, hablarle a nuestro iPhone, hacer compras online, leer en un e-book o ver un vídeo en Youtube son cosas habituales y resulta extraño no repetirlas cada día.\nEn la actualidad no sólo hablamos de informática, sino de Tecnologías de la Información y la Comunicación (TIC), ya que los cambios tecnológicos afectan a todos los ámbitos de nuestra vida.</string>
+	<string name="academic_info">Investigadora de Doctorado en Ciencias y Magíster de Ciencias en Urbanismo y Planeamiento Estratégico (Ku Leuven, Bélgica). Investigadora Asociada del Centro de Competencias del Agua (Ayacucho, Perú).</string>
+	<string name="action_map">Mapa</string>
+	<string name="linkedin">LinkedIn</string>
+	<string name="twitter">Twitter</string>
+
+	<string name="lecture_title_tools">Investigación e innovación para posicionar a la madera como un material del futuro sostenible en la industria de la Construcción</string>
+	<string name="developer">Desarrolladores</string>
+	<string name="version">Versión</string>
+	<string name="app_theme_title">Tema de la aplicación</string>
+
+	<string name="light_theme">Claro</string>
+	<string name="dark_theme">Oscuro</string>
+	<string name="os_theme">Predeterminado del Sistema</string>
+	<string name="devs"><![CDATA[ &#8226; Max Díaz Romaní<br /> &#8226; Samuel Bellido Contreras<br /> &#8226; Nayif Sotacuro Matos<br /> &#8226; Diomedes Valdivia Picón<br /> &#8226; Jeferson Unchupaico Huaringa<br /> ]]></string>
+	<string name="agenda">Agenda</string>
+	<string name="feedback">Evaluar</string>
 
 </resources>

@@ -10,17 +10,17 @@
 			android:title="@string/menu_main_page" />
 		<item
 			android:id="@+id/nav_lecture_list"
-			android:icon="@drawable/ic_list_lecture"
-			android:title="@string/menu_lecture_list" />
-		<item
-			android:id="@+id/nav_speaker_list"
-			android:icon="@drawable/ic_menu_slideshow"
-			android:title="@string/menu_speaker_list" />
+			android:icon="@drawable/ic_event"
+			android:title="@string/menu_event" />
 
 		<item
-			android:id="@+id/nav_resources"
-			android:icon="@drawable/ic_menu_slideshow"
-			android:title="@string/menu_resources"
-			android:visible="false"	/>
+			android:id="@+id/nav_info"
+			android:icon="@drawable/ic_info"
+			android:title="@string/menu_info"/>
+
+		<item
+			android:id="@+id/nav_settings"
+			android:icon="@drawable/ic_settings"
+			android:title="@string/menu_settings"/>
 	</group>
 </menu>
