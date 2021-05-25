@@ -3,6 +3,9 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	package="org.grupotres.appcongreso">
 
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+		tools:ignore="ScopedStorage" />
+
 	<!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -18,6 +21,7 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/Theme.AppCongreso"
+		android:requestLegacyExternalStorage="true"
 		tools:ignore="AllowBackup">
 
 		<!--

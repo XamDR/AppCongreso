@@ -25,6 +25,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setNightMode
@@ -38,7 +41,14 @@ class MainActivity : AppCompatActivity(), INavigator {
 	private lateinit var googleSignInClient: GoogleSignInClient
 	private lateinit var auth: FirebaseAuth
 
+	// Firestore reference
+	val dbRef = Firebase.firestore
+
+	// Storage reference
+	val storage = Firebase.storage
+
 	var isUserLoginSuccessful = false
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
