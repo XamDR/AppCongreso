@@ -9,14 +9,16 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
 import coil.load
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentSpeakerDetailBinding
+import org.grupotres.appcongreso.ui.lectures.LectureDetailFragmentArgs
 
 class SpeakerDetailFragment : Fragment() {
 
 	private var binding: FragmentSpeakerDetailBinding? = null
-	private val args: SpeakerListFragmentArgs by navArgs()
+	private val args: LectureDetailFragmentArgs by navArgs()
 
 	private val flags = mapOf(
 		"Bélgica" to R.drawable.belgium,
@@ -27,6 +29,8 @@ class SpeakerDetailFragment : Fragment() {
 	)
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
+//		postponeEnterTransition(500L, TimeUnit.MILLISECONDS)
 		binding = FragmentSpeakerDetailBinding.inflate(inflater, container, false)
 		return binding?.root
 	}
@@ -43,12 +47,12 @@ class SpeakerDetailFragment : Fragment() {
 
 	private fun initSpeakerDetails() {
 		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.toString())
-		binding?.speakerInfo?.text = args.speaker.info
+		binding?.speakerAcademicInfo?.text = args.speaker.academicInfo
 		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
 		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
 		val lineHeight = binding?.speakerName?.lineHeight
 		val bitmap = (drawable as BitmapDrawable).bitmap
-		val flag = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, lineHeight!!, lineHeight, true))
+		val flag = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, lineHeight!! + 10, lineHeight + 10, true))
 		binding?.speakerName?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, flag, null)
 	}
 }
