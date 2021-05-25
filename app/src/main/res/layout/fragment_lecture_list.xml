@@ -4,7 +4,6 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/dracula"
 	tools:context=".ui.lectures.LectureListFragment">
 
 	<androidx.recyclerview.widget.RecyclerView

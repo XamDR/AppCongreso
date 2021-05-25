@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
 import coil.load
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.util.setNightMode
 
 class MainActivity : AppCompatActivity(), INavigator {
 
@@ -36,11 +38,14 @@ class MainActivity : AppCompatActivity(), INavigator {
 	private lateinit var googleSignInClient: GoogleSignInClient
 	private lateinit var auth: FirebaseAuth
 
+	var isUserLoginSuccessful = false
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.contentMain.toolbar)
+		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
 		initGoogleSignIn()
 	}
@@ -107,12 +112,12 @@ class MainActivity : AppCompatActivity(), INavigator {
 				if (task.isSuccessful) {
 					// Sign in success, update UI with the signed-in user's information
 					Log.d("MainActivity", "signInWithCredential:success")
-					addItemsToNavigationDrawer()
-					navigateBackToHome()
 					val user = auth.currentUser
 					if (user != null) {
 						loadUserData(user)
+						isUserLoginSuccessful = true
 					}
+					callback?.invoke(isUserLoginSuccessful)
 				}
 				else {
 					// If sign in fails, display a message to the user.
@@ -122,24 +127,13 @@ class MainActivity : AppCompatActivity(), INavigator {
 			}
 	}
 
-	private fun navigateBackToHome() {
-		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-		val navController = navHostFragment.navController
-		navController.navigate(R.id.action_home)
-	}
-
 	private fun loadUserData(user: FirebaseUser) {
-		val imageView = binding.navView.findViewById<ImageView>(R.id.imageView)
-		val nameUser = binding.navView.findViewById<TextView>(R.id.nameUser)
-		val nameEmail = binding.navView.findViewById<TextView>(R.id.emailUser)
-		imageView.load(user.photoUrl)
-		nameUser.text = user.displayName
-		nameEmail.text = user.email
-	}
-
-	private fun addItemsToNavigationDrawer(){
-		val navMenu = binding.navView.menu
-		navMenu.findItem(R.id.nav_resources).isVisible = true
+		val userAvatar = binding.navView.findViewById<ImageView>(R.id.user_avatar)
+		val userName = binding.navView.findViewById<TextView>(R.id.user_name)
+		val userEmail = binding.navView.findViewById<TextView>(R.id.user_email)
+		userAvatar.load(user.photoUrl)
+		userName.text = user.displayName
+		userEmail.text = user.email
 	}
 
 	private fun setupNavigation() {
@@ -174,6 +168,12 @@ class MainActivity : AppCompatActivity(), INavigator {
 	private fun signIn() {
 		val signInIntent = googleSignInClient.signInIntent
 		startActivityForResult(signInIntent, RC_SIGN_IN)
+	}
+
+	private var callback: ((success: Boolean) -> Unit)? = null
+
+	fun setOnUserLoginSuccessful(callback: (success: Boolean) -> Unit) {
+		this.callback = callback
 	}
 
 	companion object {

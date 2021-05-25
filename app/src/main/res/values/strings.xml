@@ -7,11 +7,9 @@
 	<string name="nav_header_desc">Navigation header</string>
 	<string name="action_settings">Settings</string>
 
-	<string name="menu_login">Login</string>
 	<string name="menu_event">Ponencias</string>
-	<string name="menu_speaker_list">Ponentes</string>
-	<string name="fragment_lecture_detail">Detalles</string>
-	<string name="fragment_speaker_detail">Detalle Ponente</string>
+	<string name="fragment_lecture_detail">Detalles de la ponencia</string>
+	<string name="fragment_speaker_detail">Información del ponente</string>
 
 	<string name="imgponente">imgPonente</string>
 	<string name="nombrePonente">TextView</string>
@@ -19,7 +17,7 @@
 	<string name="descPonencia">descPonencia</string>
 	<string name="nombrePonencia">nombrePonencia</string>
 	<string name="datePonencia">datePonencia</string>
-	<!-- TODO: Remove or change this placeholder text -->
+
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 
 	<string name="menu_resources">Recursos</string>
@@ -53,19 +51,11 @@
 	<string name="fragment_map">Mapa</string>
 	<string name="action_calendar">Calendario</string>
 	<string name="save_spot">RESERVAR PUESTO</string>
+
 	<!-- Preference Titles -->
-	<string name="messages_header">Messages</string>
-	<string name="sync_header">Sync</string>
+	<string name="personalisation_header">Personalización</string>
+	<string name="about_header">Acerca de la App</string>
 
-	<!-- Messages Preferences -->
-	<string name="signature_title">Your signature</string>
-	<string name="reply_title">Default reply action</string>
-
-	<!-- Sync Preferences -->
-	<string name="sync_title">Sync email periodically</string>
-	<string name="attachment_title">Download incoming attachments</string>
-	<string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
-	<string name="attachment_summary_off">Only download attachments when manually requested</string>
 	<string name="menu_info">Información</string>
 	<string name="menu_settings">Configuración</string>
 	<string name="fragment_settings">Configuración</string>
@@ -92,5 +82,15 @@
 	<string name="twitter">Twitter</string>
 
 	<string name="lecture_title_tools">Investigación e innovación para posicionar a la madera como un material del futuro sostenible en la industria de la Construcción</string>
+	<string name="developer">Desarrolladores</string>
+	<string name="version">Versión</string>
+	<string name="app_theme_title">Tema de la aplicación</string>
+
+	<string name="light_theme">Claro</string>
+	<string name="dark_theme">Oscuro</string>
+	<string name="os_theme">Predeterminado del Sistema</string>
+	<string name="devs"><![CDATA[ &#8226; Max Díaz Romaní<br /> &#8226; Samuel Bellido Contreras<br /> &#8226; Nayif Sotacuro Matos<br /> &#8226; Diomedes Valdivia Picón<br /> &#8226; Jeferson Unchupaico Huaringa<br /> ]]></string>
+	<string name="agenda">Agenda</string>
+	<string name="feedback">Evaluar</string>
 
 </resources>

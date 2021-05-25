@@ -4,11 +4,12 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/dracula"
 	tools:context=".ui.info.InfoFragment">
+
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="wrap_content">
+
 		<TextView
 			android:id="@+id/strInversion"
 			style="@style/TextAppearance.MaterialComponents.Headline4"
@@ -18,13 +19,13 @@
 			android:layout_marginTop="11dp"
 			android:layout_marginEnd="20dp"
 			android:text="@string/strInversion"
-			android:textColor="@color/white"
 			android:textStyle="bold"
 			android:gravity="center"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
 			tools:ignore="MissingConstraints" />
+
 		<View
 			android:id="@+id/divider3"
 			android:layout_width="0dp"
@@ -35,6 +36,7 @@
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/strInversion" />
+
 		<TextView
 			android:id="@+id/info_certificado"
 			style="@style/TextAppearance.MaterialComponents.Headline6"
@@ -45,7 +47,6 @@
 			android:padding="10dp"
 			android:gravity="center"
 			android:text="@string/info_certificado"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +74,6 @@
 				android:padding="10dp"
 				android:gravity="center"
 				android:text="@string/monto_certificado"
-				android:textColor="@color/white"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintHorizontal_bias="0.0"
 				app:layout_constraintStart_toStartOf="parent"
@@ -91,11 +91,11 @@
 			android:padding="10dp"
 			android:gravity="center"
 			android:text="@string/info_cet_recuerda"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/info" />
+
 		<View
 			android:id="@+id/divider4"
 			android:layout_width="0dp"
@@ -106,6 +106,7 @@
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/info_cet_recuerda" />
+
 		<TextView
 			android:id="@+id/info_opc1"
 			android:textSize="14sp"
@@ -116,11 +117,11 @@
 			android:padding="10dp"
 			android:ellipsize="end"
 			android:text="@string/info_opc1"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/info_cet_recuerda" />
+
 		<TextView
 			android:id="@+id/info_opc2"
 			android:textSize="14sp"
@@ -131,11 +132,11 @@
 			android:padding="10dp"
 			android:ellipsize="end"
 			android:text="@string/info_opc2"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/info_opc1" />
+
 		<View
 			android:id="@+id/divider5"
 			android:layout_width="0dp"
@@ -146,6 +147,7 @@
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/info_opc2" />
+
 		<TextView
 			android:id="@+id/moreInfo"
 			style="@style/TextAppearance.MaterialComponents.Headline6"
@@ -155,13 +157,13 @@
 			android:layout_marginTop="11dp"
 			android:layout_marginEnd="20dp"
 			android:text="@string/moreInfo"
-			android:textColor="@color/white"
 			android:textStyle="bold"
 			android:gravity="center"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/divider5" />
+
 		<TextView
 			android:id="@+id/info_more_info"
 			android:textSize="14sp"
@@ -172,11 +174,11 @@
 			android:padding="10dp"
 			android:ellipsize="end"
 			android:text="@string/info_opc2"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/moreInfo" />
+
 		<TextView
 			android:id="@+id/info_email"
 			android:layout_width="wrap_content"
@@ -186,12 +188,12 @@
 			android:padding="3dp"
 			android:drawablePadding="10dp"
 			android:text="@string/info_email"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/info_more_info"
 			app:drawableStartCompat="@drawable/ic_select_option" />
+
 		<TextView
 			android:id="@+id/info_tel"
 			android:layout_width="wrap_content"
@@ -201,12 +203,12 @@
 			android:padding="3dp"
 			android:drawablePadding="10dp"
 			android:text="@string/info_tel"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/info_email"
 			app:drawableStartCompat="@drawable/ic_select_option" />
+
 		<TextView
 			android:id="@+id/info_cel"
 			android:layout_width="wrap_content"
@@ -216,7 +218,6 @@
 			android:padding="3dp"
 			android:drawablePadding="10dp"
 			android:text="@string/info_cel"
-			android:textColor="@color/white"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
