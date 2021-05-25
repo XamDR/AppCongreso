@@ -14,7 +14,6 @@ import coil.load
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentSpeakerDetailBinding
 import org.grupotres.appcongreso.ui.lectures.LectureDetailFragmentArgs
-import java.util.concurrent.TimeUnit
 
 class SpeakerDetailFragment : Fragment() {
 

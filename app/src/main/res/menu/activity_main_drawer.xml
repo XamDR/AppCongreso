@@ -14,12 +14,6 @@
 			android:title="@string/menu_event" />
 
 		<item
-			android:id="@+id/nav_resources"
-			android:icon="@drawable/ic_resources"
-			android:title="@string/menu_resources"
-			android:visible="false"	/>
-
-		<item
 			android:id="@+id/nav_info"
 			android:icon="@drawable/ic_info"
 			android:title="@string/menu_info"/>
