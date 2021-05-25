@@ -22,7 +22,11 @@ data class Speaker(
 	@ColumnInfo(name = "maternal_surname") val maternalSurname: String? = null,
 	val name: String,
 	val country: String,
-	val info: String,
-	@ColumnInfo(name = "uri_photo") val uriPhoto: String? = null,
+	val company: String,
+	@ColumnInfo(name = "academic_info") val academicInfo: String,
+	@ColumnInfo(name = "uri_photo") val uriPhoto: String,
 	@ColumnInfo(name = "lecture_id", index = true) val lectureId: String
-) : Parcelable
+) : Parcelable {
+
+	override fun toString() = "$name $surname $maternalSurname"
+}

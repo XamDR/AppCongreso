@@ -1,0 +1,33 @@
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<PreferenceCategory app:title="@string/personalisation_header">
+
+		<ListPreference
+			app:defaultValue="-1"
+			app:entries="@array/theme_entries"
+			app:entryValues="@array/theme_values"
+			app:key="app_theme"
+			app:title="@string/app_theme_title"
+			app:dialogTitle="@string/app_theme_title"
+			app:summary="%s"
+			app:icon="@drawable/ic_app_theme"/>
+
+	</PreferenceCategory>
+
+	<PreferenceCategory app:title="@string/about_header">
+
+		<org.grupotres.appcongreso.ui.settings.LongSummaryPreference
+			app:key="developer"
+			app:title="@string/developer"
+			app:summary="@string/devs"
+			app:icon="@drawable/ic_devs"/>
+
+		<Preference
+			app:key="version"
+			app:title="@string/version"
+			app:summary="@string/app_version"
+			app:icon="@drawable/ic_info"/>
+
+	</PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

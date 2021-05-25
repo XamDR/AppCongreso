@@ -1,80 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	tools:context=".ui.lectures.LectureDetailFragment"
-	android:orientation="vertical"
-	android:gravity="center_horizontal">
+	tools:context=".ui.lectures.LectureDetailFragment">
 
-	<TextView
-		android:id="@+id/lecture_title"
-		android:layout_width="351dp"
-		android:layout_height="52dp"
-		android:layout_marginTop="10dp"
+	<androidx.core.widget.NestedScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingBottom="10dp">
+
+			<TextView
+				android:id="@+id/lecture_title"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_margin="20dp"
+				android:ellipsize="end"
+				android:maxLines="5"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+				android:textStyle="bold|italic"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				tools:text="La informática en el desarrollo minero en el Perú en el siglo 21" />
+
+			<TextView
+				android:id="@+id/lecture_date"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="20dp"
+				android:maxLines="1"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+				android:textStyle="italic"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/lecture_title"
+				tools:text="Fecha: 21/11/2021 9:00 a.m. - 10:00 a.m." />
+
+			<TextView
+				android:id="@+id/lecture_detail"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_margin="20dp"
+				android:singleLine="false"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+				android:textStyle="italic"
+				android:justificationMode="inter_word"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/lecture_date"
+				tools:targetApi="o"
+				tools:text="@string/desc"/>
+
+			<TextView
+				android:id="@+id/speaker"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_margin="20dp"
+				android:text="@string/speaker"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+				android:textStyle="bold"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/lecture_detail"/>
+
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/speaker_photo"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:layout_margin="20dp"
+				android:contentDescription="@string/imgponente"
+				app:layout_constraintTop_toBottomOf="@id/speaker"
+				app:layout_constraintStart_toStartOf="parent"
+				app:shapeAppearanceOverlay="@style/ShapeAppearance.Circular"
+				tools:src="@tools:sample/avatars"/>
+
+			<TextView
+				android:id="@+id/speaker_name"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="10dp"
+				android:layout_marginEnd="10dp"
+				android:layout_marginTop="20dp"
+				android:layout_marginBottom="20dp"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@id/speaker_photo"
+				app:layout_constraintTop_toBottomOf="@+id/speaker"
+				tools:text="Doraliz León Rojas"/>
+
+			<TextView
+				android:id="@+id/speaker_company"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="10dp"
+				android:layout_marginEnd="10dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="20dp"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@id/speaker_photo"
+				app:layout_constraintTop_toBottomOf="@+id/speaker_name"
+				tools:text="Universidad Continental"/>
+
+			<TextView
+				android:id="@+id/promoter"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+				android:textColor="?attr/colorAccent"
+				android:text="@string/promoter"
+				app:layout_constraintTop_toBottomOf="@id/speaker_photo"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"/>
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.core.widget.NestedScrollView>
+
+	<com.google.android.material.bottomappbar.BottomAppBar
+		android:id="@+id/bottom_menu"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="bottom"
 		android:gravity="center"
-		android:layout_weight="1"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-		android:textStyle="bold|italic"
-		tools:text="La informática en el desarrollo minero en el Perú" />
+		app:layout_anchorGravity="start"
+		app:hideOnScroll="true"
+		app:fabAnimationMode="scale"
+		app:fabAlignmentMode="end"
+		app:contentInsetEnd="16dp"
+		app:contentInsetStart="16dp">
 
-	<ImageView
-		android:id="@+id/speaker_photo"
-		android:layout_width="257dp"
-		android:layout_height="147dp"
-		android:layout_marginTop="10dp"
-		android:contentDescription="@string/imgponente"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		tools:src="@tools:sample/avatars"
-		android:layout_weight="1"/>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:weightSum="5">
 
-	<TextView
-		android:id="@+id/lecture_detail"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"
-		android:maxLines="1"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		android:textStyle="bold"
-		app:layout_constraintBottom_toTopOf="@+id/speaker_name"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/speaker_photo"
-		app:layout_constraintVertical_bias="0.24"
-		tools:text="Detalle de la ponencia"
-		android:layout_weight="1"/>
+			<ImageButton
+				android:id="@+id/action_calendar"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				app:srcCompat="@drawable/ic_agenda"
+				android:background="?attr/selectableItemBackgroundBorderless"
+				android:contentDescription="@string/agenda" />
 
-	<TextView
-		android:id="@+id/speaker_name"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"
-		android:maxLines="1"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		android:textStyle="bold"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.498"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/speaker_photo"
-		tools:text="Linsday Maldonado"
-		android:layout_weight="1"/>
+			<ImageButton
+				android:id="@+id/action_map"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				app:srcCompat="@drawable/ic_map"
+				android:background="?attr/selectableItemBackgroundBorderless"
+				android:contentDescription="@string/map" />
 
-	<Button
+			<ImageButton
+				android:id="@+id/empty"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:background="@android:color/transparent"
+				tools:ignore="ContentDescription"
+				android:visibility="gone"/>
+
+			<ImageButton
+				android:id="@+id/action_feedback"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				app:srcCompat="@drawable/ic_feedback"
+				android:background="?attr/selectableItemBackgroundBorderless"
+				android:contentDescription="@string/feedback" />
+
+			<ImageButton
+				android:id="@+id/action_resources"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				app:srcCompat="@drawable/ic_resources"
+				android:background="?attr/selectableItemBackgroundBorderless"
+				android:contentDescription="@string/resources"
+				android:visibility="gone"/>
+		</LinearLayout>
+	</com.google.android.material.bottomappbar.BottomAppBar>
+
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
 		android:id="@+id/btn_enroll"
-		android:layout_width="200dp"
-		android:layout_height="10dp"
-		android:layout_weight="1"
-		android:text="@string/enroll"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintHorizontal_bias="0.501"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/speaker_info"
-		app:layout_constraintVertical_bias="0.276"/>
-
-
-
-</LinearLayout>
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:srcCompat="@drawable/ic_save_spot"
+		app:layout_anchor="@id/bottom_menu"
+		app:layout_behavior="org.grupotres.appcongreso.ui.helpers.FabScrollingBehavior"
+		app:backgroundTint="?attr/colorPrimary"
+		app:tint="@android:color/white"
+		android:contentDescription="@string/enroll" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

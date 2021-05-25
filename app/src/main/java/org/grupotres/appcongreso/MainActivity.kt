@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
 import coil.load
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -24,8 +25,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.util.setNightMode
 
 class MainActivity : AppCompatActivity(), INavigator {
 
@@ -36,11 +41,21 @@ class MainActivity : AppCompatActivity(), INavigator {
 	private lateinit var googleSignInClient: GoogleSignInClient
 	lateinit var auth: FirebaseAuth
 
+	// Firestore reference
+	val dbRef = Firebase.firestore
+
+	// Storage reference
+	val storage = Firebase.storage
+
+	var isUserLoginSuccessful = false
+
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.contentMain.toolbar)
+		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
 		initGoogleSignIn()
 	}
@@ -78,6 +93,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 	}
 
+	@Suppress("DEPRECATION")
 	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 		super.onActivityResult(requestCode, resultCode, data)
 		// Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
@@ -106,12 +122,12 @@ class MainActivity : AppCompatActivity(), INavigator {
 				if (task.isSuccessful) {
 					// Sign in success, update UI with the signed-in user's information
 					Log.d("MainActivity", "signInWithCredential:success")
-					addItemsToNavigationDrawer()
-					navigateBackToHome()
 					val user = auth.currentUser
 					if (user != null) {
 						loadUserData(user)
+						isUserLoginSuccessful = true
 					}
+					callback?.invoke(isUserLoginSuccessful)
 				}
 				else {
 					// If sign in fails, display a message to the user.
@@ -121,31 +137,20 @@ class MainActivity : AppCompatActivity(), INavigator {
 			}
 	}
 
-	private fun navigateBackToHome() {
-		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-		val navController = navHostFragment.navController
-		navController.navigate(R.id.action_home)
-	}
-
 	private fun loadUserData(user: FirebaseUser) {
-		val imageView = binding.navView.findViewById<ImageView>(R.id.imageView)
-		val nameUser = binding.navView.findViewById<TextView>(R.id.nameUser)
-		val nameEmail = binding.navView.findViewById<TextView>(R.id.emailUser)
-		imageView.load(user.photoUrl)
-		nameUser.text = user.displayName
-		nameEmail.text = user.email
-	}
-
-	private fun addItemsToNavigationDrawer(){
-		val navMenu = binding.navView.menu
-		navMenu.findItem(R.id.nav_resources).isVisible = true
+		val userAvatar = binding.navView.findViewById<ImageView>(R.id.user_avatar)
+		val userName = binding.navView.findViewById<TextView>(R.id.user_name)
+		val userEmail = binding.navView.findViewById<TextView>(R.id.user_email)
+		userAvatar.load(user.photoUrl)
+		userName.text = user.displayName
+		userEmail.text = user.email
 	}
 
 	private fun setupNavigation() {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
 		appBarConfiguration = AppBarConfiguration(
-			setOf(R.id.nav_home, R.id.nav_lecture_list, R.id.nav_speaker_list, R.id.nav_resources),
+			setOf(R.id.nav_home, R.id.nav_lecture_list, R.id.nav_resources, R.id.nav_info, R.id.nav_settings),
 			binding.drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
@@ -169,9 +174,16 @@ class MainActivity : AppCompatActivity(), INavigator {
 			}.also { it.show() }
 	}
 
+	@Suppress("DEPRECATION")
 	private fun signIn() {
 		val signInIntent = googleSignInClient.signInIntent
 		startActivityForResult(signInIntent, RC_SIGN_IN)
+	}
+
+	private var callback: ((success: Boolean) -> Unit)? = null
+
+	fun setOnUserLoginSuccessful(callback: (success: Boolean) -> Unit) {
+		this.callback = callback
 	}
 
 	companion object {
