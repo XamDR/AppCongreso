@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 						loadUserData(user)
 						isUserLoginSuccessful = true
 					}
-					callback?.invoke(user != null)
+					callback?.invoke(isUserLoginSuccessful)
 				}
 				else {
 					// If sign in fails, display a message to the user.
@@ -128,12 +128,12 @@ class MainActivity : AppCompatActivity(), INavigator {
 	}
 
 	private fun loadUserData(user: FirebaseUser) {
-		val imageView = binding.navView.findViewById<ImageView>(R.id.imageView)
-		val nameUser = binding.navView.findViewById<TextView>(R.id.nameUser)
-		val nameEmail = binding.navView.findViewById<TextView>(R.id.emailUser)
-		imageView.load(user.photoUrl)
-		nameUser.text = user.displayName
-		nameEmail.text = user.email
+		val userAvatar = binding.navView.findViewById<ImageView>(R.id.user_avatar)
+		val userName = binding.navView.findViewById<TextView>(R.id.user_name)
+		val userEmail = binding.navView.findViewById<TextView>(R.id.user_email)
+		userAvatar.load(user.photoUrl)
+		userName.text = user.displayName
+		userEmail.text = user.email
 	}
 
 	private fun setupNavigation() {

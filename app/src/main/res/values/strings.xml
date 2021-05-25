@@ -7,11 +7,9 @@
 	<string name="nav_header_desc">Navigation header</string>
 	<string name="action_settings">Settings</string>
 
-	<string name="menu_login">Login</string>
 	<string name="menu_event">Ponencias</string>
-	<string name="menu_speaker_list">Ponentes</string>
-	<string name="fragment_lecture_detail">Detalles</string>
-	<string name="fragment_speaker_detail">Detalle Ponente</string>
+	<string name="fragment_lecture_detail">Detalles de la ponencia</string>
+	<string name="fragment_speaker_detail">Información del ponente</string>
 
 	<string name="imgponente">imgPonente</string>
 	<string name="nombrePonente">TextView</string>
@@ -19,7 +17,7 @@
 	<string name="descPonencia">descPonencia</string>
 	<string name="nombrePonencia">nombrePonencia</string>
 	<string name="datePonencia">datePonencia</string>
-	<!-- TODO: Remove or change this placeholder text -->
+
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 
 	<string name="menu_resources">Recursos</string>

@@ -194,6 +194,7 @@
 		app:srcCompat="@drawable/ic_save_spot"
 		app:layout_anchor="@id/bottom_menu"
 		app:layout_behavior="org.grupotres.appcongreso.ui.helpers.FabScrollingBehavior"
+		app:backgroundTint="?attr/colorPrimary"
 		app:tint="@android:color/white"
 		android:contentDescription="@string/enroll" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
