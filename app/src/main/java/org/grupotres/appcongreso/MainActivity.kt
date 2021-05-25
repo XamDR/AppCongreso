@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 
 	// Google SignIn
 	private lateinit var googleSignInClient: GoogleSignInClient
-	private lateinit var auth: FirebaseAuth
+	lateinit var auth: FirebaseAuth
 
 	// Firestore reference
 	val dbRef = Firebase.firestore
