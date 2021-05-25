@@ -44,6 +44,7 @@ class LectureDetailFragment : Fragment() {
 		}
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
+		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
 	}
 
 	override fun onDestroyView() {
@@ -78,6 +79,9 @@ class LectureDetailFragment : Fragment() {
 		if (intent.resolveActivity(requireContext().packageManager) != null) {
 			startActivity(intent)
 		}
+	}
+
+	private fun enrollToLecture() {
 
 	}
 }
