@@ -4,9 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -17,20 +15,12 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
-    //Add those line in dependencies
-    //implementation files('libs/activation.jar')
-    //implementation files('libs/additionnal.jar')
-    //implementation files('libs/mail.jar')
-
-    //Need INTERNET permission
-
-    //Variables
-    private Context mContext;
+    private final Context mContext;
     private Session mSession;
 
-    private String mEmail;
-    private String mSubject;
-    private String mMessage;
+    private final String mEmail;
+    private final String mSubject;
+    private final String mMessage;
 
     private ProgressDialog mProgressDialog;
 
@@ -66,13 +56,10 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
         //Configuring properties for gmail
         //If you are not using gmail you may need to change the values
-        // Nombre del host de correo, es smtp.gmail.com
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
         props.put("mail.smtp.auth", "true");
-        // Puerto de gmail para envio de correos
         props.put("mail.smtp.port", "465");
 
         //Creating a new session
@@ -91,7 +78,6 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
             //Setting sender address
             mm.setFrom(new InternetAddress(Utils.EMAIL));
             //Adding receiver
-            //Destinatario principal del mensaje
             mm.addRecipient(Message.RecipientType.TO, new InternetAddress(mEmail));
             //Adding subject
             mm.setSubject(mSubject);
@@ -100,25 +86,6 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
             //Sending email
             Transport.send(mm);
 
-//            BodyPart messageBodyPart = new MimeBodyPart();
-//
-//            messageBodyPart.setText(message);
-//
-//            Multipart multipart = new MimeMultipart();
-//
-//            multipart.addBodyPart(messageBodyPart);
-//
-//            messageBodyPart = new MimeBodyPart();
-//
-//            DataSource source = new FileDataSource(filePath);
-//
-//            messageBodyPart.setDataHandler(new DataHandler(source));
-//
-//            messageBodyPart.setFileName(filePath);
-//
-//            multipart.addBodyPart(messageBodyPart);
-
-//            mm.setContent(multipart);
 
         } catch (MessagingException e) {
             e.printStackTrace();

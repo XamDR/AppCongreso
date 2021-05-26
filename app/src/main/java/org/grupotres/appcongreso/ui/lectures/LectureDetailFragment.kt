@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.firebase.auth.FirebaseAuth
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
@@ -23,6 +24,7 @@ class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
 	private val args: LectureListFragmentArgs by navArgs()
+	lateinit var auth: FirebaseAuth
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
@@ -44,6 +46,7 @@ class LectureDetailFragment : Fragment() {
 		}
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
+		binding?.actionFeedback?.setOnClickListener { findNavController().navigate(R.id.nav_feedback) }
 		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
 	}
 
@@ -82,6 +85,19 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun enrollToLecture() {
+
+		auth = FirebaseAuth.getInstance()
+
+		val userEmail = auth.currentUser?.email
+
+		val mail: String = userEmail.toString()
+		val message: String = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
+		val subject: String = "App Congreso "
+		//Send Mail
+		val javaMailAPI = JavaMailAPI(context, mail, subject, message)
+
+		javaMailAPI.execute()
+
 
 	}
 }

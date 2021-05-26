@@ -69,6 +69,11 @@
 		android:name="org.grupotres.appcongreso.ui.map.MapFragment"
 		android:label="@string/fragment_map"
 		tools:layout="@layout/fragment_map" />
+	<fragment
+		android:id="@+id/nav_feedback"
+		android:name="org.grupotres.appcongreso.ui.feedback.FeedbackFragment"
+		android:label="@string/feedback"
+		tools:layout="@layout/fragment_feedback" />
 
 	<fragment
 		android:id="@+id/nav_info"
