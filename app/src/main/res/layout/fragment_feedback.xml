@@ -7,65 +7,69 @@
 	tools:context=".ui.feedback.FeedbackFragment">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/constraintLayout"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:paddingBottom="10dp">
 
 		<TextView
-			android:id="@+id/lecture_title"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_margin="20dp"
-			android:ellipsize="end"
-			android:maxLines="5"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-			android:textStyle="bold|italic"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			tools:text="La informática en el desarrollo minero en el Perú en el siglo 21" />
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:text="¿Cómo califica la ponencia?"
+			tools:layout_editor_absoluteX="0dp"
+			tools:layout_editor_absoluteY="49dp" />
 
 		<RatingBar
+			android:id="@+id/ratingBar"
 			android:layout_width="241dp"
 			android:layout_height="50dp"
-			android:layout_marginTop="12dp"
 			android:numStars="5"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.497"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/lecture_title"
 			android:progressTint="#FFD700"
-			android:secondaryProgressTint="#e5e4e2"
-			>
-
-		</RatingBar>
+			android:secondaryProgressTint="#d4af37"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			tools:layout_editor_absoluteY="29dp"
+			/>
 
 		<EditText
 			android:id="@+id/messageTextField"
-			android:layout_width="0dp"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="8dp"
-			android:layout_marginLeft="8dp"
-			android:layout_marginBottom="16dp"
+			android:layout_marginTop="40dp"
 			android:ems="10"
 			android:hint="Escribe Comentario"
 			android:inputType="textPersonName"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toStartOf="@+id/sendMessageButton"
-			app:layout_constraintStart_toStartOf="parent" />
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.497"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
 		<Button
 			android:id="@+id/sendMessageButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginEnd="8dp"
-			android:layout_marginRight="8dp"
 			android:layout_marginBottom="16dp"
 			android:text="Enviar"
 			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent" />
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.219"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/messageTextField"
+			app:layout_constraintVertical_bias="0.078" />
+
+		<Button
+			android:id="@+id/cancelPopUp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"
+			android:text="Cancelar"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.439"
+			app:layout_constraintStart_toEndOf="@+id/sendMessageButton"
+			app:layout_constraintTop_toBottomOf="@+id/messageTextField"
+			app:layout_constraintVertical_bias="0.09" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

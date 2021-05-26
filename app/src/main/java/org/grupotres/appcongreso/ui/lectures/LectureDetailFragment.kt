@@ -6,7 +6,9 @@ import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -46,13 +48,33 @@ class LectureDetailFragment : Fragment() {
 		}
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
-		binding?.actionFeedback?.setOnClickListener { findNavController().navigate(R.id.nav_feedback) }
 		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
+		binding?.actionFeedback?.setOnClickListener { createComment() }
 	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()
 		binding = null
+	}
+
+	private fun createComment(){
+		var modelDialog = AlertDialog.Builder(requireActivity())
+		val dialogVista = layoutInflater.inflate(R.layout.fragment_feedback, null)
+		val btnRedireccion = dialogVista.findViewById<Button>(R.id.sendMessageButton)
+		modelDialog.setView(dialogVista)
+		var dialogUserRedirect = modelDialog.create()
+		dialogUserRedirect.show()
+
+		btnRedireccion.setOnClickListener() {
+			if (user != null){
+				val dashboardIntent = Intent(requireActivity(), HomeActivity::class.java)
+				startActivity(dashboardIntent)
+				requireActivity().finish()
+			}else{
+				dialogUserRedirect.dismiss()
+				signIn()
+			}
+		}
 	}
 
 	private fun initLectureDetails() {
