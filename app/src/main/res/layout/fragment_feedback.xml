@@ -13,34 +13,36 @@
 		android:paddingBottom="10dp">
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:id="@+id/textView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginVertical="10dp"
 			android:text="¿Cómo califica la ponencia?"
-			tools:layout_editor_absoluteX="0dp"
-			tools:layout_editor_absoluteY="49dp" />
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<RatingBar
 			android:id="@+id/ratingBar"
-			android:layout_width="241dp"
-			android:layout_height="50dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginVertical="10dp"
 			android:numStars="5"
 			android:progressTint="#FFD700"
 			android:secondaryProgressTint="#d4af37"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			tools:layout_editor_absoluteY="29dp"
-			/>
+			app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 		<EditText
 			android:id="@+id/messageTextField"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="40dp"
+			android:layout_marginVertical="10dp"
 			android:ems="10"
 			android:hint="Escribe Comentario"
 			android:inputType="textPersonName"
 			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.497"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
@@ -48,28 +50,19 @@
 			android:id="@+id/sendMessageButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="8dp"
-			android:layout_marginBottom="16dp"
+			android:layout_marginVertical="10dp"
 			android:text="Enviar"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.219"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/messageTextField"
-			app:layout_constraintVertical_bias="0.078" />
+			app:layout_constraintEnd_toEndOf="@+id/messageTextField"
+			app:layout_constraintTop_toBottomOf="@+id/messageTextField" />
 
 		<Button
 			android:id="@+id/cancelPopUp"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="16dp"
+			android:layout_marginVertical="10dp"
 			android:text="Cancelar"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.439"
-			app:layout_constraintStart_toEndOf="@+id/sendMessageButton"
-			app:layout_constraintTop_toBottomOf="@+id/messageTextField"
-			app:layout_constraintVertical_bias="0.09" />
+			app:layout_constraintStart_toStartOf="@+id/messageTextField"
+			app:layout_constraintTop_toBottomOf="@+id/messageTextField" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
