@@ -34,8 +34,8 @@ class LectureDetailFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		initLectureDetails()
-		mainActivity.setOnUserLoginSuccessful { setupBottomMenu(it) }
-		setupBottomMenu(mainActivity.isUserLoginSuccessful)
+		mainActivity.setOnLoginListener { setupBottomMenu(it) }
+		setupBottomMenu(mainActivity.auth.currentUser != null)
 		binding?.speakerPhoto?.setOnClickListener {
 			val id = (it as ImageView).tag
 			val speaker = args.lectureSpeaker.speakers.first { speaker -> speaker.id == id }
