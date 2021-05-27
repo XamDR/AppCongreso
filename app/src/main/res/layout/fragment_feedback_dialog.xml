@@ -55,7 +55,6 @@
 			android:gravity="top|start"
 			tools:text="Este es un comentario de ejemplo"/>
 	</com.google.android.material.textfield.TextInputLayout>
-
 	<com.google.android.material.button.MaterialButton
 		android:id="@+id/btn_send_message"
 		android:layout_width="wrap_content"

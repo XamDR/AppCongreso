@@ -108,7 +108,8 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun showDialogFeedback(){
-		val dialog = FeedbackDialogFragment()
+		val id = args.lectureSpeaker.lecture.id
+		val dialog = FeedbackDialogFragment.newInstance(id)
 		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 }
