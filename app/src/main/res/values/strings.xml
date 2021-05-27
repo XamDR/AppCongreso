@@ -98,5 +98,5 @@
 	<string name="send">Enviar</string>
 	<string name="placeholder">Escribe tu comentario</string>
 	<string name="cancel">Cancelar</string>
-
+	<string name="email_message">Hola, este es un mensaje de verificacion de su inscripcion al congreso, este es el link para el ingreso a la ponencia: https://meet.google.com/fmt-wyyr-fdn.</string>
 </resources>

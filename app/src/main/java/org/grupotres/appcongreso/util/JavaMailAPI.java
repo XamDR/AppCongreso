@@ -1,11 +1,12 @@
 package org.grupotres.appcongreso.util;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
 import java.lang.ref.WeakReference;
 import java.util.Properties;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -17,12 +18,9 @@ import javax.mail.internet.MimeMessage;
 public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
     private final WeakReference<Context> mWeakContext;
-
     private final String mEmail;
     private final String mSubject;
     private final String mMessage;
-
-    private ProgressDialog mProgressDialog;
 
     //Constructor
     @SuppressWarnings("deprecation")
@@ -34,21 +32,11 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
     }
 
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        //Show progress dialog while sending email
-        mProgressDialog = ProgressDialog.show(mWeakContext.get(),"Sending message",
-                "Please wait...",false,false);
-    }
-
-    @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        //Dismiss progress dialog when message successfully send
-        mProgressDialog.dismiss();
 
         //Show success toast
-        Toast.makeText(mWeakContext.get(),"Message Sent",Toast.LENGTH_SHORT).show();
+        Toast.makeText(mWeakContext.get(),"Se le ha enviado un correo.",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -88,9 +76,8 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
             mm.setText(mMessage);
             //Sending email
             Transport.send(mm);
-
-
-        } catch (MessagingException e) {
+        }
+        catch (MessagingException e) {
             e.printStackTrace();
         }
         return null;

@@ -89,8 +89,8 @@ class LectureDetailFragment : Fragment() {
 	private fun enrollToLecture() {
 		val userEmail = mainActivity.auth.currentUser?.email
 		val mail: String = userEmail.toString()
-		val message = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
-		val subject = "App Congreso"
+		val message = getString(R.string.email_message)
+		val subject = "App Congreso 2021"
 
 		//Send Mail
 		val javaMailAPI = JavaMailAPI(WeakReference(requireContext()), mail, subject, message)
