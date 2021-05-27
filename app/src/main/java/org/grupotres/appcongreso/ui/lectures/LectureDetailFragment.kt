@@ -19,6 +19,7 @@ import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
+import org.grupotres.appcongreso.util.JavaMailAPI
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
@@ -99,8 +100,8 @@ class LectureDetailFragment : Fragment() {
 	private fun enrollToLecture() {
 		val userEmail = mainActivity.auth.currentUser?.email
 		val mail: String = userEmail.toString()
-		val message = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
-		val subject = "App Congreso"
+		val message = getString(R.string.email_message)
+		val subject = "App Congreso 2021"
 
 		//Send Mail
 		val javaMailAPI = JavaMailAPI(WeakReference(requireContext()), mail, subject, message)
