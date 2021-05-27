@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
@@ -31,7 +32,6 @@ class LectureDetailFragment : Fragment() {
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
-//		postponeEnterTransition(500L, TimeUnit.MILLISECONDS)
 		binding = FragmentLectureDetailBinding.inflate(inflater, container, false)
 		return binding?.root
 	}
@@ -45,7 +45,8 @@ class LectureDetailFragment : Fragment() {
 			val id = (it as ImageView).tag
 			val speaker = args.lectureSpeaker.speakers.first { speaker -> speaker.id == id }
 			val navDirections = LectureDetailFragmentDirections.actionLectureDetailFragmentToSpeakerDetailFragment(speaker)
-			mainActivity.navigate(navDirections)
+			val extras = FragmentNavigatorExtras(binding?.speakerPhoto!! to "photo")
+			mainActivity.navigate(navDirections, extras)
 		}
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
