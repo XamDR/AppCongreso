@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -28,6 +31,8 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setNightMode
@@ -39,16 +44,13 @@ class MainActivity : AppCompatActivity(), INavigator {
 
 	// Google SignIn
 	private lateinit var googleSignInClient: GoogleSignInClient
-	lateinit var auth: FirebaseAuth
+	val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
 	// Firestore reference
 	val dbRef = Firebase.firestore
 
 	// Storage reference
 	val storage = Firebase.storage
-
-	var isUserLoginSuccessful = false
-
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -57,19 +59,16 @@ class MainActivity : AppCompatActivity(), INavigator {
 		setSupportActionBar(binding.contentMain.toolbar)
 		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
-		initGoogleSignIn()
-	}
 
-	private fun initGoogleSignIn() {
-		val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-			.requestIdToken(getString(R.string.default_web_client_id))
-			.requestEmail()
-			.build()
-
-		googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-		//Firebase Auth instance
-		auth = FirebaseAuth.getInstance()
+		// We attach a listener to the drawer sliding event.
+		// If slideOffset is greater than 0 it means that the drawer is opening.
+		binding.drawerLayout.addDrawerListener(object: DrawerLayout.SimpleDrawerListener() {
+			override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+				if (slideOffset > 0 && auth.currentUser != null) {
+					loadUserData(auth.currentUser!!)
+				}
+			}
+		})
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -80,7 +79,16 @@ class MainActivity : AppCompatActivity(), INavigator {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.action_login -> {
-				showAlertDialog()
+				if (auth.currentUser == null) {
+					initGoogleSignIn()
+					showAlertDialog()
+				}
+				else {
+					auth.signOut()
+					loadUserData(null)
+					Toast.makeText(this, "Se cerró la sesión", Toast.LENGTH_SHORT).show()
+				}
+				callback?.invoke(auth.currentUser != null)
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
@@ -111,39 +119,50 @@ class MainActivity : AppCompatActivity(), INavigator {
 			catch (e: ApiException) {
 				// Google Sign In failed, update UI appropriately
 				Log.d("MainActivity", "Google sign in failed $e")
+				Toast.makeText(this, "Error al autenticar inicio de sesión con Google.", Toast.LENGTH_SHORT).show()
 			}
 		}
 	}
 
-	private fun firebaseAuthWithGoogle(idToken: String) {
-		val credential = GoogleAuthProvider.getCredential(idToken, null)
-		auth.signInWithCredential(credential)
-			.addOnCompleteListener(this) { task ->
-				if (task.isSuccessful) {
-					// Sign in success, update UI with the signed-in user's information
-					Log.d("MainActivity", "signInWithCredential:success")
-					val user = auth.currentUser
-					if (user != null) {
-						loadUserData(user)
-						isUserLoginSuccessful = true
-					}
-					callback?.invoke(isUserLoginSuccessful)
-				}
-				else {
-					// If sign in fails, display a message to the user.
-					Log.d("MainActivity", "signInWithCredential:failure")
-					Toast.makeText(this, "Error al autenticar.", Toast.LENGTH_SHORT).show()
-				}
-			}
+	private fun initGoogleSignIn() {
+		val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+			.requestIdToken(getString(R.string.default_web_client_id))
+			.requestEmail()
+			.build()
+
+		googleSignInClient = GoogleSignIn.getClient(this, gso)
 	}
 
-	private fun loadUserData(user: FirebaseUser) {
-		val userAvatar = binding.navView.findViewById<ImageView>(R.id.user_avatar)
-		val userName = binding.navView.findViewById<TextView>(R.id.user_name)
-		val userEmail = binding.navView.findViewById<TextView>(R.id.user_email)
-		userAvatar.load(user.photoUrl)
-		userName.text = user.displayName
-		userEmail.text = user.email
+	private fun firebaseAuthWithGoogle(idToken: String) {
+		lifecycleScope.launch {
+			val credential = GoogleAuthProvider.getCredential(idToken, null)
+			val result = auth.signInWithCredential(credential).await()
+
+			if (result.user != null) {
+				Log.d("MainActivity", "signInWithCredential:success")
+				loadUserData(result.user!!)
+			}
+			else {
+				Log.d("MainActivity", "signInWithCredential:failure")
+				Toast.makeText(this@MainActivity, "Error al autenticar.", Toast.LENGTH_SHORT).show()
+			}
+			callback?.invoke(result.user != null)
+		}
+	}
+
+	private fun loadUserData(user: FirebaseUser?) {
+		binding.navView.findViewById<ImageView>(R.id.user_avatar).apply {
+			load(user?.photoUrl)
+			visibility = if (user != null) View.VISIBLE else View.GONE
+		}
+		binding.navView.findViewById<TextView>(R.id.user_name).apply {
+			text = user?.displayName
+			visibility = if (user != null) View.VISIBLE else View.GONE
+		}
+		binding.navView.findViewById<TextView>(R.id.user_email).apply {
+			text = user?.email
+			visibility = if (user != null) View.VISIBLE else View.GONE
+		}
 	}
 
 	private fun setupNavigation() {
@@ -180,11 +199,11 @@ class MainActivity : AppCompatActivity(), INavigator {
 		startActivityForResult(signInIntent, RC_SIGN_IN)
 	}
 
-	private var callback: ((success: Boolean) -> Unit)? = null
-
-	fun setOnUserLoginSuccessful(callback: (success: Boolean) -> Unit) {
+	fun setOnLoginListener(callback: (Boolean) -> Unit) {
 		this.callback = callback
 	}
+
+	private var callback: ((Boolean) -> Unit)? = null
 
 	companion object {
 		private const val RC_SIGN_IN = 9001
