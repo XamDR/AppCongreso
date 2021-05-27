@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/constraintLayout"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:paddingBottom="10dp"
+	app:behavior_hideable="true"
+	app:behavior_peekHeight="0dp"
+	app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+	<TextView
+		android:id="@+id/comment_title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:text="@string/comment_title"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintBottom_toTopOf="@id/lecture_rating"/>
+
+	<RatingBar
+		android:id="@+id/lecture_rating"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		android:numStars="5"
+		android:progressTint="?attr/colorAccent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/comment_title"/>
+
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/message_text_field"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="10dp"
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		app:counterEnabled="true"
+		app:counterMaxLength="100"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/lecture_rating">
+
+		<com.google.android.material.textfield.TextInputEditText
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:imeOptions="flagNoFullscreen"
+			android:inputType="textMultiLine|textCapSentences"
+			android:minLines="5"
+			android:hint="@string/placeholder"
+			android:gravity="top|start"
+			tools:text="Este es un comentario de ejemplo"/>
+	</com.google.android.material.textfield.TextInputLayout>
+
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/btn_send_message"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:text="@string/send"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toStartOf="@id/btn_cancel"
+		app:layout_constraintTop_toBottomOf="@+id/message_text_field"/>
+
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/btn_cancel"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:text="@string/cancel"
+		app:layout_constraintStart_toEndOf="@id/btn_send_message"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/message_text_field"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

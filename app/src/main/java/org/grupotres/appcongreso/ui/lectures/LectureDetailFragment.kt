@@ -14,17 +14,21 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.firebase.auth.FirebaseAuth
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
+import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.toEpoch
+import java.lang.ref.WeakReference
 
 class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
 	private val viewModel by viewModels<ResourceViewModel>()
 	private val args: LectureListFragmentArgs by navArgs()
+	lateinit var auth: FirebaseAuth
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
@@ -36,8 +40,8 @@ class LectureDetailFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		initLectureDetails()
-		mainActivity.setOnUserLoginSuccessful { setupBottomMenu(it) }
-		setupBottomMenu(mainActivity.isUserLoginSuccessful)
+		mainActivity.setOnLoginListener { setupBottomMenu(it) }
+		setupBottomMenu(mainActivity.auth.currentUser != null)
 		binding?.speakerPhoto?.setOnClickListener {
 			val id = (it as ImageView).tag
 			val speaker = args.lectureSpeaker.speakers.first { speaker -> speaker.id == id }
@@ -47,6 +51,8 @@ class LectureDetailFragment : Fragment() {
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
 		binding?.actionResources?.setOnClickListener { downloadResources() }
+		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
+		binding?.actionFeedback?.setOnClickListener { showDialogFeedback() }
 	}
 
 	override fun onDestroyView() {
@@ -87,9 +93,22 @@ class LectureDetailFragment : Fragment() {
 		viewModel.downloadFiles(requireContext(), args.lectureSpeaker.lecture.id,
 			mainActivity.dbRef, mainActivity.storage)
 	}
+
+	@Suppress("DEPRECATION")
+	private fun enrollToLecture() {
+		auth = FirebaseAuth.getInstance()
+		val userEmail = auth.currentUser?.email
+		val mail: String = userEmail.toString()
+		val message = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
+		val subject = "App Congreso"
+
+		//Send Mail
+		val javaMailAPI = JavaMailAPI(WeakReference(requireContext()), mail, subject, message)
+		javaMailAPI.execute()
+	}
+
+	private fun showDialogFeedback(){
+		val dialog = FeedbackDialogFragment()
+		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
+	}
 }
-
-
-
-
-

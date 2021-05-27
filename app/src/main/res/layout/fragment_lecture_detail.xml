@@ -175,6 +175,7 @@
 				android:background="?attr/selectableItemBackgroundBorderless"
 				android:contentDescription="@string/feedback" />
 
+
 			<ImageButton
 				android:id="@+id/action_resources"
 				android:layout_width="0dp"

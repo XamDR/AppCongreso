@@ -59,9 +59,9 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 	class LectureCallback : DiffUtil.ItemCallback<LectureSpeakers>() {
 
 		override fun areItemsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
-			= oldLecture.lecture.id == newLecture.lecture.id
+				= oldLecture.lecture.id == newLecture.lecture.id
 
 		override fun areContentsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
-			= oldLecture == newLecture
+				= oldLecture == newLecture
 	}
 }
