@@ -10,3 +10,12 @@ fun setNightMode(preferences: SharedPreferences) {
 		-1 -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 	}
 }
+/*
+fun utils (preferences: SharedPreferences){
+	val prefs: SharedPreferences = getSharedPreferences("MisPreferencias", this.MODE_PRIVATE)
+
+	val editor = prefs.edit()
+	editor.putString("email", "Dean86collis@email.com")
+	editor.putString("password", "86142DCL")
+	editor.commit()
+}*/

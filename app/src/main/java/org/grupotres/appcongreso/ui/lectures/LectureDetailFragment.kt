@@ -13,16 +13,20 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.firebase.auth.FirebaseAuth
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
+import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.toEpoch
+import java.lang.ref.WeakReference
 
 class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
 	private val args: LectureListFragmentArgs by navArgs()
+	lateinit var auth: FirebaseAuth
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
@@ -44,6 +48,8 @@ class LectureDetailFragment : Fragment() {
 		}
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
+		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
+		binding?.actionFeedback?.setOnClickListener { showDialogFeedback() }
 	}
 
 	override fun onDestroyView() {
@@ -78,11 +84,23 @@ class LectureDetailFragment : Fragment() {
 		if (intent.resolveActivity(requireContext().packageManager) != null) {
 			startActivity(intent)
 		}
+	}
 
+	@Suppress("DEPRECATION")
+	private fun enrollToLecture() {
+		auth = FirebaseAuth.getInstance()
+		val userEmail = auth.currentUser?.email
+		val mail: String = userEmail.toString()
+		val message = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
+		val subject = "App Congreso"
+
+		//Send Mail
+		val javaMailAPI = JavaMailAPI(WeakReference(requireContext()), mail, subject, message)
+		javaMailAPI.execute()
+	}
+
+	private fun showDialogFeedback(){
+		val dialog = FeedbackDialogFragment()
+		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 }
-
-
-
-
-
