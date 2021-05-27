@@ -59,12 +59,6 @@
 		tools:layout="@layout/fragment_speaker_detail"/>
 
 	<fragment
-		android:id="@+id/nav_resources"
-		android:name="org.grupotres.appcongreso.ui.resources.ResourceFragment"
-		android:label="Resources"
-		tools:layout="@layout/fragment_resources" />
-
-	<fragment
 		android:id="@+id/nav_map"
 		android:name="org.grupotres.appcongreso.ui.map.MapFragment"
 		android:label="@string/fragment_map"
@@ -74,7 +68,7 @@
 		android:id="@+id/nav_feedback"
 		android:name="org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment"
 		android:label="@string/feedback"
-		tools:layout="@layout/fragment_feedback" />
+		tools:layout="@layout/fragment_feedback_dialog" />
 
 	<fragment
 		android:id="@+id/nav_info"

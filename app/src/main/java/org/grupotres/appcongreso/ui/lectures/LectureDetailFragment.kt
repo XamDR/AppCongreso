@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
@@ -19,17 +21,18 @@ import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.util.JavaMailAPI
 import org.grupotres.appcongreso.util.mainActivity
+import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
 import java.lang.ref.WeakReference
 
 class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
+	private val viewModel by viewModels<ResourceViewModel>()
 	private val args: LectureListFragmentArgs by navArgs()
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
-//		postponeEnterTransition(500L, TimeUnit.MILLISECONDS)
 		binding = FragmentLectureDetailBinding.inflate(inflater, container, false)
 		return binding?.root
 	}
@@ -43,10 +46,12 @@ class LectureDetailFragment : Fragment() {
 			val id = (it as ImageView).tag
 			val speaker = args.lectureSpeaker.speakers.first { speaker -> speaker.id == id }
 			val navDirections = LectureDetailFragmentDirections.actionLectureDetailFragmentToSpeakerDetailFragment(speaker)
-			mainActivity.navigate(navDirections)
+			val extras = FragmentNavigatorExtras(binding?.speakerPhoto!! to "photo")
+			mainActivity.navigate(navDirections, extras)
 		}
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
+		binding?.actionResources?.setOnClickListener { downloadResources() }
 		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
 		binding?.actionFeedback?.setOnClickListener { showDialogFeedback() }
 	}
@@ -85,6 +90,12 @@ class LectureDetailFragment : Fragment() {
 		}
 	}
 
+	private fun downloadResources() {
+		binding?.root?.showSnackbar(message = R.string.download_files_message)
+		viewModel.downloadFiles(requireContext(), args.lectureSpeaker.lecture.id,
+			mainActivity.dbRef, mainActivity.storage)
+	}
+
 	@Suppress("DEPRECATION")
 	private fun enrollToLecture() {
 		val userEmail = mainActivity.auth.currentUser?.email
@@ -98,7 +109,8 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun showDialogFeedback(){
-		val dialog = FeedbackDialogFragment()
+		val id = args.lectureSpeaker.lecture.id
+		val dialog = FeedbackDialogFragment.newInstance(id)
 		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 }

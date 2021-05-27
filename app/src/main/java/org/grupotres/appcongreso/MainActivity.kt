@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -36,6 +37,7 @@ import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setNightMode
+import org.grupotres.appcongreso.util.showSnackbar
 
 class MainActivity : AppCompatActivity(), INavigator {
 
@@ -86,7 +88,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 				else {
 					auth.signOut()
 					loadUserData(null)
-					Toast.makeText(this, "Se cerró la sesión", Toast.LENGTH_SHORT).show()
+					binding.root.showSnackbar(message = R.string.logout_message)
 				}
 				callback?.invoke(auth.currentUser != null)
 				true
@@ -119,7 +121,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			catch (e: ApiException) {
 				// Google Sign In failed, update UI appropriately
 				Log.d("MainActivity", "Google sign in failed $e")
-				Toast.makeText(this, "Error al autenticar inicio de sesión con Google.", Toast.LENGTH_SHORT).show()
+				Toast.makeText(this, getString(R.string.error_login_message), Toast.LENGTH_SHORT).show()
 			}
 		}
 	}
@@ -144,7 +146,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			}
 			else {
 				Log.d("MainActivity", "signInWithCredential:failure")
-				Toast.makeText(this@MainActivity, "Error al autenticar.", Toast.LENGTH_SHORT).show()
+				Toast.makeText(this@MainActivity, getString(R.string.error_auth), Toast.LENGTH_SHORT).show()
 			}
 			callback?.invoke(result.user != null)
 		}
@@ -169,17 +171,22 @@ class MainActivity : AppCompatActivity(), INavigator {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
 		appBarConfiguration = AppBarConfiguration(
-			setOf(R.id.nav_home, R.id.nav_lecture_list, R.id.nav_resources, R.id.nav_info, R.id.nav_settings),
+			setOf(R.id.nav_home, R.id.nav_lecture_list, R.id.nav_info, R.id.nav_settings),
 			binding.drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		binding.navView.setupWithNavController(navController)
 	}
 
-	override fun navigate(navDirections: NavDirections) {
+	override fun navigate(navDirections: NavDirections, extras: FragmentNavigator.Extras?) {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
-		navController.navigate(navDirections)
+		if (extras != null) {
+			navController.navigate(navDirections, extras)
+		}
+		else {
+			navController.navigate(navDirections)
+		}
 	}
 
 	private fun showAlertDialog() {
