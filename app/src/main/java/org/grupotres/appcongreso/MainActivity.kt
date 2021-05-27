@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -177,10 +178,15 @@ class MainActivity : AppCompatActivity(), INavigator {
 		binding.navView.setupWithNavController(navController)
 	}
 
-	override fun navigate(navDirections: NavDirections) {
+	override fun navigate(navDirections: NavDirections, extras: FragmentNavigator.Extras?) {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
-		navController.navigate(navDirections)
+		if (extras != null) {
+			navController.navigate(navDirections, extras)
+		}
+		else {
+			navController.navigate(navDirections)
+		}
 	}
 
 	private fun showAlertDialog() {

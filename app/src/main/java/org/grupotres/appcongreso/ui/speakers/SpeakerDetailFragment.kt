@@ -30,7 +30,6 @@ class SpeakerDetailFragment : Fragment() {
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
-//		postponeEnterTransition(500L, TimeUnit.MILLISECONDS)
 		binding = FragmentSpeakerDetailBinding.inflate(inflater, container, false)
 		return binding?.root
 	}
