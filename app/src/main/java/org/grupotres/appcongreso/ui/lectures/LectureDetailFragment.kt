@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
@@ -90,6 +91,9 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun downloadResources() {
+		binding?.root?.let {
+			Snackbar.make(it, getString(R.string.download_files_message), Snackbar.LENGTH_SHORT).show()
+		}
 		viewModel.downloadFiles(requireContext(), args.lectureSpeaker.lecture.id,
 			mainActivity.dbRef, mainActivity.storage)
 	}

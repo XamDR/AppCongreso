@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 				else {
 					auth.signOut()
 					loadUserData(null)
-					Toast.makeText(this, "Se cerró la sesión", Toast.LENGTH_SHORT).show()
+					Snackbar.make(binding.root, getString(R.string.logout_message), Snackbar.LENGTH_SHORT).show()
 				}
 				callback?.invoke(auth.currentUser != null)
 				true
@@ -119,7 +120,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			catch (e: ApiException) {
 				// Google Sign In failed, update UI appropriately
 				Log.d("MainActivity", "Google sign in failed $e")
-				Toast.makeText(this, "Error al autenticar inicio de sesión con Google.", Toast.LENGTH_SHORT).show()
+				Toast.makeText(this, getString(R.string.error_login_message), Toast.LENGTH_SHORT).show()
 			}
 		}
 	}
@@ -144,7 +145,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			}
 			else {
 				Log.d("MainActivity", "signInWithCredential:failure")
-				Toast.makeText(this@MainActivity, "Error al autenticar.", Toast.LENGTH_SHORT).show()
+				Toast.makeText(this@MainActivity, getString(R.string.error_auth), Toast.LENGTH_SHORT).show()
 			}
 			callback?.invoke(result.user != null)
 		}
