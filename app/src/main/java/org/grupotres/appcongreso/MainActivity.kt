@@ -25,7 +25,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -37,6 +36,7 @@ import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setNightMode
+import org.grupotres.appcongreso.util.showSnackbar
 
 class MainActivity : AppCompatActivity(), INavigator {
 
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 				else {
 					auth.signOut()
 					loadUserData(null)
-					Snackbar.make(binding.root, getString(R.string.logout_message), Snackbar.LENGTH_SHORT).show()
+					binding.root.showSnackbar(message = R.string.logout_message)
 				}
 				callback?.invoke(auth.currentUser != null)
 				true
