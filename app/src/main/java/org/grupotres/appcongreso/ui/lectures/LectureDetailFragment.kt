@@ -6,9 +6,7 @@ import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -19,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
+import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.toEpoch
 
@@ -49,7 +48,7 @@ class LectureDetailFragment : Fragment() {
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
 		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
-		binding?.actionFeedback?.setOnClickListener { createComment() }
+		binding?.actionFeedback?.setOnClickListener { showDialogComment() }
 	}
 
 	override fun onDestroyView() {
@@ -57,24 +56,9 @@ class LectureDetailFragment : Fragment() {
 		binding = null
 	}
 
-	private fun createComment(){
-		var modelDialog = AlertDialog.Builder(requireActivity())
-		val dialogVista = layoutInflater.inflate(R.layout.fragment_feedback, null)
-		val btnRedireccion = dialogVista.findViewById<Button>(R.id.sendMessageButton)
-		modelDialog.setView(dialogVista)
-		var dialogUserRedirect = modelDialog.create()
-		dialogUserRedirect.show()
-
-		btnRedireccion.setOnClickListener() {
-			if (user != null){
-				val dashboardIntent = Intent(requireActivity(), HomeActivity::class.java)
-				startActivity(dashboardIntent)
-				requireActivity().finish()
-			}else{
-				dialogUserRedirect.dismiss()
-				signIn()
-			}
-		}
+	private fun showDialogComment(){
+		val dialog = FeedbackDialogFragment()
+		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 
 	private fun initLectureDetails() {
@@ -106,20 +90,16 @@ class LectureDetailFragment : Fragment() {
 		}
 	}
 
+	@Suppress("DEPRECATION")
 	private fun enrollToLecture() {
-
 		auth = FirebaseAuth.getInstance()
-
 		val userEmail = auth.currentUser?.email
-
 		val mail: String = userEmail.toString()
-		val message: String = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
-		val subject: String = "App Congreso "
+		val message = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
+		val subject = "App Congreso"
+
 		//Send Mail
 		val javaMailAPI = JavaMailAPI(context, mail, subject, message)
-
 		javaMailAPI.execute()
-
-
 	}
 }

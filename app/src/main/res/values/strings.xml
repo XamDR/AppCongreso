@@ -94,5 +94,9 @@
 	<string name="devs"><![CDATA[ &#8226; Max Díaz Romaní<br /> &#8226; Samuel Bellido Contreras<br /> &#8226; Nayif Sotacuro Matos<br /> &#8226; Diomedes Valdivia Picón<br /> &#8226; Jeferson Unchupaico Huaringa<br /> ]]></string>
 	<string name="agenda">Agenda</string>
 	<string name="feedback">Evaluar</string>
+	<string name="comment_title">¿Cómo califica la ponencia?</string>
+	<string name="send">Enviar</string>
+	<string name="placeholder">Escribe tu comentario</string>
+	<string name="cancel">Cancelar</string>
 
 </resources>
