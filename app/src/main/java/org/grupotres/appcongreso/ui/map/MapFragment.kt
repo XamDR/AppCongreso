@@ -19,7 +19,7 @@ class MapFragment : Fragment() {
 		val uc = LatLng(latitude, longitud)
 		initMapUIControls(googleMap)
 		googleMap.addMarker(MarkerOptions().position(uc).title("Marker en la Universidad Continental"))
-		googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(uc,16.0f))
+		googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(uc, zoom))
 		googleMap.setOnMarkerClickListener {
 			showBottomSheetDialog()
 			true
@@ -53,5 +53,6 @@ class MapFragment : Fragment() {
 		// Coordenadas de la Universidad Continental
 		private const val latitude = -12.047555156621264
 		private const val longitud = -75.19878650574097
+		private const val zoom = 18.0f
 	}
 }
