@@ -14,12 +14,12 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.firebase.auth.FirebaseAuth
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.util.mainActivity
+import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
 import java.lang.ref.WeakReference
 
@@ -28,7 +28,6 @@ class LectureDetailFragment : Fragment() {
 	private var binding: FragmentLectureDetailBinding? = null
 	private val viewModel by viewModels<ResourceViewModel>()
 	private val args: LectureListFragmentArgs by navArgs()
-	lateinit var auth: FirebaseAuth
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
@@ -90,14 +89,14 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun downloadResources() {
+		binding?.root?.showSnackbar(message = R.string.download_files_message)
 		viewModel.downloadFiles(requireContext(), args.lectureSpeaker.lecture.id,
 			mainActivity.dbRef, mainActivity.storage)
 	}
 
 	@Suppress("DEPRECATION")
 	private fun enrollToLecture() {
-		auth = FirebaseAuth.getInstance()
-		val userEmail = auth.currentUser?.email
+		val userEmail = mainActivity.auth.currentUser?.email
 		val mail: String = userEmail.toString()
 		val message = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
 		val subject = "App Congreso"

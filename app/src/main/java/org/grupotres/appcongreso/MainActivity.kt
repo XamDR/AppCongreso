@@ -36,6 +36,7 @@ import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setNightMode
+import org.grupotres.appcongreso.util.showSnackbar
 
 class MainActivity : AppCompatActivity(), INavigator {
 
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 				else {
 					auth.signOut()
 					loadUserData(null)
-					Toast.makeText(this, "Se cerró la sesión", Toast.LENGTH_SHORT).show()
+					binding.root.showSnackbar(message = R.string.logout_message)
 				}
 				callback?.invoke(auth.currentUser != null)
 				true
@@ -119,7 +120,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			catch (e: ApiException) {
 				// Google Sign In failed, update UI appropriately
 				Log.d("MainActivity", "Google sign in failed $e")
-				Toast.makeText(this, "Error al autenticar inicio de sesión con Google.", Toast.LENGTH_SHORT).show()
+				Toast.makeText(this, getString(R.string.error_login_message), Toast.LENGTH_SHORT).show()
 			}
 		}
 	}
@@ -144,7 +145,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			}
 			else {
 				Log.d("MainActivity", "signInWithCredential:failure")
-				Toast.makeText(this@MainActivity, "Error al autenticar.", Toast.LENGTH_SHORT).show()
+				Toast.makeText(this@MainActivity, getString(R.string.error_auth), Toast.LENGTH_SHORT).show()
 			}
 			callback?.invoke(result.user != null)
 		}
