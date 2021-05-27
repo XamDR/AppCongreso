@@ -109,7 +109,7 @@ class LectureDetailFragment : Fragment() {
 
 	private fun showDialogFeedback(){
 		val id = args.lectureSpeaker.lecture.id
-		val dialog = FeedbackDialogFragment(id)
+		val dialog = FeedbackDialogFragment.newInstance(id)
 		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 }

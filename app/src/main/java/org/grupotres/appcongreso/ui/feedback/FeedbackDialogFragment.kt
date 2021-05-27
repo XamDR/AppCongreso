@@ -4,26 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import org.grupotres.appcongreso.databinding.FragmentFeedbackDialogBinding
-import org.grupotres.appcongreso.ui.lectures.LectureListFragmentArgs
+import org.grupotres.appcongreso.util.Empty
+import org.grupotres.appcongreso.util.mainActivity
 
-class FeedbackDialogFragment(idLecture: String) : BottomSheetDialogFragment() {
+class FeedbackDialogFragment : BottomSheetDialogFragment() {
 
 	private var binding: FragmentFeedbackDialogBinding? = null
-	private var idU = idLecture
-	private val db = FirebaseFirestore.getInstance()
-	lateinit var auth: FirebaseAuth
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
 		binding = FragmentFeedbackDialogBinding.inflate(inflater, container, false)
-		binding?.btnSendMessage?.setOnClickListener { sendFeedback() }
 		return binding?.root
 	}
 
@@ -32,24 +26,39 @@ class FeedbackDialogFragment(idLecture: String) : BottomSheetDialogFragment() {
 		binding = null
 	}
 
-	private fun sendFeedback(){
-		auth = FirebaseAuth.getInstance()
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+		val idLecture = arguments?.getString("idLecture") ?: String.Empty
+		binding?.btnSendMessage?.setOnClickListener { sendFeedback(idLecture) }
+	}
 
-		val userEmail = auth.currentUser?.email.toString()
-		val name = auth.currentUser?.displayName
-		val primaryKey = "$userEmail$idU"
+	private fun sendFeedback(idLecture: String){
+		val userEmail = mainActivity.auth.currentUser?.email
+		val name = mainActivity.auth.currentUser?.displayName
+		val primaryKey = "$userEmail-$idLecture"
 		val rating = binding?.lectureRating?.rating
+		val comment = binding?.comment?.text.toString()
 
-
-		db.collection("comentarios").document(primaryKey).set(
+		mainActivity.dbRef.collection("comments").document(primaryKey).set(
 			hashMapOf(
-				"primaryKey" to primaryKey,
-				"idLecture" to idU,
-				"nameUser" to name,
+				"id" to primaryKey,
+				"idLecture" to idLecture,
+				"userName" to name,
+				"comment" to comment,
 				"rating" to rating,
-				"coment" to binding?.comment?.text.toString()
 			)
 		)
-		onDestroyView()
+		dismiss()
+		android.util.Log.d("COMMENT", "Comentario Enviado")
+	}
+
+	companion object {
+		fun newInstance(idLecture: String) : FeedbackDialogFragment {
+			return FeedbackDialogFragment().apply {
+				arguments = Bundle().apply {
+					putString("idLecture", idLecture)
+				}
+			}
+		}
 	}
 }
