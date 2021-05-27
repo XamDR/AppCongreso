@@ -1,12 +1,9 @@
-package org.grupotres.appcongreso.ui.lectures;
+package org.grupotres.appcongreso.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
-import org.grupotres.appcongreso.util.Strings;
-
 import java.lang.ref.WeakReference;
 import java.util.Properties;
 import javax.mail.Message;
