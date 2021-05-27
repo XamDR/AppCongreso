@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
@@ -25,6 +26,7 @@ import java.lang.ref.WeakReference
 class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
+	private val viewModel by viewModels<ResourceViewModel>()
 	private val args: LectureListFragmentArgs by navArgs()
 	lateinit var auth: FirebaseAuth
 
@@ -48,6 +50,7 @@ class LectureDetailFragment : Fragment() {
 		}
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
+		binding?.actionResources?.setOnClickListener { downloadResources() }
 		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
 		binding?.actionFeedback?.setOnClickListener { showDialogFeedback() }
 	}
@@ -84,6 +87,11 @@ class LectureDetailFragment : Fragment() {
 		if (intent.resolveActivity(requireContext().packageManager) != null) {
 			startActivity(intent)
 		}
+	}
+
+	private fun downloadResources() {
+		viewModel.downloadFiles(requireContext(), args.lectureSpeaker.lecture.id,
+			mainActivity.dbRef, mainActivity.storage)
 	}
 
 	@Suppress("DEPRECATION")
