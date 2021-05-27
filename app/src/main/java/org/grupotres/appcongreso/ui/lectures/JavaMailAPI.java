@@ -4,6 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import org.grupotres.appcongreso.util.Strings;
+
+import java.lang.ref.WeakReference;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -15,8 +19,7 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
-    private final Context mContext;
-    private Session mSession;
+    private final WeakReference<Context> mWeakContext;
 
     private final String mEmail;
     private final String mSubject;
@@ -25,18 +28,20 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
     private ProgressDialog mProgressDialog;
 
     //Constructor
-    public JavaMailAPI(Context mContext, String mEmail, String mSubject, String mMessage) {
-        this.mContext = mContext;
-        this.mEmail = mEmail;
-        this.mSubject = mSubject;
-        this.mMessage = mMessage;
+    @SuppressWarnings("deprecation")
+    public JavaMailAPI(WeakReference<Context> weakContext, String email, String subject, String message) {
+        this.mWeakContext = weakContext;
+        this.mEmail = email;
+        this.mSubject = subject;
+        this.mMessage = message;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         //Show progress dialog while sending email
-        mProgressDialog = ProgressDialog.show(mContext,"Sending message", "Please wait...",false,false);
+        mProgressDialog = ProgressDialog.show(mWeakContext.get(),"Sending message",
+                "Please wait...",false,false);
     }
 
     @Override
@@ -46,7 +51,7 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
         mProgressDialog.dismiss();
 
         //Show success toast
-        Toast.makeText(mContext,"Message Sent",Toast.LENGTH_SHORT).show();
+        Toast.makeText(mWeakContext.get(),"Message Sent",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -63,11 +68,12 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
         props.put("mail.smtp.port", "465");
 
         //Creating a new session
-        mSession = Session.getDefaultInstance(props,
+        //Authenticating the password
+        Session mSession = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     //Authenticating the password
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(Utils.EMAIL, Utils.PASSWORD);
+                        return new PasswordAuthentication(Strings.EMAIL, Strings.PASSWORD);
                     }
                 });
 
@@ -76,7 +82,7 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
             MimeMessage mm = new MimeMessage(mSession);
 
             //Setting sender address
-            mm.setFrom(new InternetAddress(Utils.EMAIL));
+            mm.setFrom(new InternetAddress(Strings.EMAIL));
             //Adding receiver
             mm.addRecipient(Message.RecipientType.TO, new InternetAddress(mEmail));
             //Adding subject

@@ -20,6 +20,7 @@ import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.toEpoch
+import java.lang.ref.WeakReference
 
 class LectureDetailFragment : Fragment() {
 
@@ -48,17 +49,12 @@ class LectureDetailFragment : Fragment() {
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
 		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
-		binding?.actionFeedback?.setOnClickListener { showDialogComment() }
+		binding?.actionFeedback?.setOnClickListener { showDialogFeedback() }
 	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()
 		binding = null
-	}
-
-	private fun showDialogComment(){
-		val dialog = FeedbackDialogFragment()
-		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 
 	private fun initLectureDetails() {
@@ -99,7 +95,12 @@ class LectureDetailFragment : Fragment() {
 		val subject = "App Congreso"
 
 		//Send Mail
-		val javaMailAPI = JavaMailAPI(context, mail, subject, message)
+		val javaMailAPI = JavaMailAPI(WeakReference(requireContext()), mail, subject, message)
 		javaMailAPI.execute()
+	}
+
+	private fun showDialogFeedback(){
+		val dialog = FeedbackDialogFragment()
+		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 }
