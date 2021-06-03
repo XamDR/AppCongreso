@@ -71,6 +71,23 @@
 		tools:layout="@layout/fragment_feedback_dialog" />
 
 	<fragment
+		android:id="@+id/nav_pdf_signature"
+		android:name="org.grupotres.appcongreso.ui.pdf.PdfSignatureFragment"
+		android:label="@string/action_sign_pdf"
+		tools:layout="@layout/fragment_pdf_signature">
+
+		<action
+			android:id="@+id/action_nav_pdf_signature_to_nav_signature_panel"
+			app:destination="@id/nav_signature_panel" />
+	</fragment>
+
+	<fragment
+		android:id="@+id/nav_signature_panel"
+		android:name="org.grupotres.appcongreso.ui.pdf.SignaturePanelFragment"
+		android:label="@string/signature"
+		tools:layout="@layout/fragment_signature_panel"/>
+
+	<fragment
 		android:id="@+id/nav_info"
 		android:name="org.grupotres.appcongreso.ui.info.InfoFragment"
 		android:label="@string/fragment_info"

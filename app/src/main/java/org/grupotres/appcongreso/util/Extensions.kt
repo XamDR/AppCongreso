@@ -46,3 +46,5 @@ fun View.showSnackbar(@StringRes message: Int,
 		.setTextColor(ContextCompat.getColor(this.context, textColor))
 		.also { it.show() }
 }
+
+fun debug(tag: String, msg: Any?) = android.util.Log.d(tag, msg.toString())

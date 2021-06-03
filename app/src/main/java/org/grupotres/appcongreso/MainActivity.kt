@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
 				if (slideOffset > 0 && auth.currentUser != null) {
 					loadUserData(auth.currentUser!!)
+					showPdfSignatureOption()
 				}
 			}
 		})
@@ -143,6 +144,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 			if (result.user != null) {
 				Log.d("MainActivity", "signInWithCredential:success")
 				loadUserData(result.user!!)
+				showPdfSignatureOption()
 			}
 			else {
 				Log.d("MainActivity", "signInWithCredential:failure")
@@ -171,11 +173,16 @@ class MainActivity : AppCompatActivity(), INavigator {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
 		appBarConfiguration = AppBarConfiguration(
-			setOf(R.id.nav_home, R.id.nav_lecture_list, R.id.nav_info, R.id.nav_settings),
+			setOf(R.id.nav_home, R.id.nav_lecture_list, R.id.nav_pdf_signature, R.id.nav_info, R.id.nav_settings),
 			binding.drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		binding.navView.setupWithNavController(navController)
+	}
+
+	private fun showPdfSignatureOption() {
+		val navMenu = binding.navView.menu
+		navMenu.findItem(R.id.nav_pdf_signature).isVisible = true
 	}
 
 	override fun navigate(navDirections: NavDirections, extras: FragmentNavigator.Extras?) {
