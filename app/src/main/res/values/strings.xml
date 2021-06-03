@@ -109,4 +109,5 @@
 	<string name="add_signature">Añadir</string>
 	<string name="clear_signature">Limpiar</string>
 	<string name="signature_here">Firma aquí</string>
+	<string name="digital_signature">Firma digital</string>
 </resources>

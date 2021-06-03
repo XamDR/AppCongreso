@@ -71,21 +71,21 @@
 		tools:layout="@layout/fragment_feedback_dialog" />
 
 	<fragment
-		android:id="@+id/nav_pdf_signature"
-		android:name="org.grupotres.appcongreso.ui.pdf.PdfSignatureFragment"
-		android:label="@string/action_sign_pdf"
-		tools:layout="@layout/fragment_pdf_signature">
-
-		<action
-			android:id="@+id/action_nav_pdf_signature_to_nav_signature_panel"
-			app:destination="@id/nav_signature_panel" />
-	</fragment>
-
-	<fragment
 		android:id="@+id/nav_signature_panel"
 		android:name="org.grupotres.appcongreso.ui.pdf.SignaturePanelFragment"
 		android:label="@string/signature"
-		tools:layout="@layout/fragment_signature_panel"/>
+		tools:layout="@layout/fragment_signature_panel">
+
+		<action
+			android:id="@+id/action_nav_signature_panel_to_nav_pdf_viewer"
+			app:destination="@id/nav_pdf_viewer" />
+	</fragment>
+
+	<fragment
+		android:id="@+id/nav_pdf_viewer"
+		android:name="org.grupotres.appcongreso.ui.pdf.PdfViewerFragment"
+		android:label="@string/action_sign_pdf"
+		tools:layout="@layout/fragment_pdf_viewer"/>
 
 	<fragment
 		android:id="@+id/nav_info"

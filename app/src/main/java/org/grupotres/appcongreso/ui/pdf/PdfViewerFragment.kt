@@ -3,31 +3,26 @@ package org.grupotres.appcongreso.ui.pdf
 import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import org.grupotres.appcongreso.R
-import org.grupotres.appcongreso.databinding.FragmentPdfSignatureBinding
+import org.grupotres.appcongreso.databinding.FragmentPdfViewerBinding
 import org.grupotres.appcongreso.util.createBitmap
 import org.grupotres.appcongreso.util.debug
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.writeFile
 
-class PdfSignatureFragment : Fragment() {
+class PdfViewerFragment : Fragment() {
 
-	private var binding: FragmentPdfSignatureBinding? = null
+	private var binding: FragmentPdfViewerBinding? = null
 	private val viewModel by viewModels<PdfSignatureViewModel> {
 		PdfSignatureViewModelFactory(mainActivity.storage)
 	}
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setHasOptionsMenu(true)
-	}
-
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-		binding = FragmentPdfSignatureBinding.inflate(inflater, container, false)
+		binding = FragmentPdfViewerBinding.inflate(inflater, container, false)
 		return binding?.root
 	}
 
@@ -50,26 +45,18 @@ class PdfSignatureFragment : Fragment() {
 				}
 				close()
 			}
+			signPdf()
 			binding?.pdfView?.setImageBitmap(bitmap)
 			debug("URI", uri)
 		})
 	}
 
-	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-		super.onCreateOptionsMenu(menu, inflater)
-		inflater.inflate(R.menu.menu_pdf_signature, menu)
+	private fun signPdf() {
+		// TODO
 	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()
 		binding = null
-	}
-
-	override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-		R.id.action_sign_pdf -> {
-			findNavController().navigate(R.id.action_nav_pdf_signature_to_nav_signature_panel)
-			true
-		}
-		else -> false
 	}
 }
