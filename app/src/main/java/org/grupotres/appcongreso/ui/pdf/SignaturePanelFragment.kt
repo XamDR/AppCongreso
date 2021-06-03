@@ -8,6 +8,7 @@ import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentSignaturePanelBinding
 import org.grupotres.appcongreso.util.getBitmapFromView
 import org.grupotres.appcongreso.util.saveToInternalStorage
+import org.grupotres.appcongreso.util.showSnackbar
 
 class SignaturePanelFragment : Fragment() {
 
@@ -50,5 +51,6 @@ class SignaturePanelFragment : Fragment() {
 	private fun saveSignature() {
 		val bitmap = binding?.drawingView?.let { getBitmapFromView(it) }
 		bitmap?.let { saveToInternalStorage(requireContext(), it, "signature.png") }
+		binding?.root?.showSnackbar(R.string.signature_saved)
 	}
 }
