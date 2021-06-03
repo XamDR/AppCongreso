@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.itextpdf.text.Document
+import com.itextpdf.text.Image
+import com.itextpdf.text.pdf.PdfWriter
 import org.grupotres.appcongreso.databinding.FragmentPdfViewerBinding
-import org.grupotres.appcongreso.util.createBitmap
-import org.grupotres.appcongreso.util.debug
-import org.grupotres.appcongreso.util.mainActivity
-import org.grupotres.appcongreso.util.writeFile
+import org.grupotres.appcongreso.util.*
+import java.io.File
+import java.io.FileOutputStream
 
 class PdfViewerFragment : Fragment() {
 
@@ -29,6 +31,11 @@ class PdfViewerFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		view.post { renderPdf() }
+	}
+
+	override fun onDestroyView() {
+		super.onDestroyView()
+		binding = null
 	}
 
 	private fun renderPdf() {
@@ -52,11 +59,18 @@ class PdfViewerFragment : Fragment() {
 	}
 
 	private fun signPdf() {
-		// TODO
+		val document = Document()
+		val pdfFile = getFileFromInternalStorage(requireContext(), "certificado.pdf")
+		val imageFile = getFileFromInternalStorage(requireContext(), "signature.png")
+		PdfWriter.getInstance(document, FileOutputStream(pdfFile))
+		document.open()
+		addSignatureImageToPdf(imageFile, document)
+		document.close()
 	}
 
-	override fun onDestroyView() {
-		super.onDestroyView()
-		binding = null
+	private fun addSignatureImageToPdf(imageFile: File, document: Document) {
+		val image = Image.getInstance(imageFile.path)
+		val result = document.add(image)
+		debug("IMAGE", result)
 	}
 }

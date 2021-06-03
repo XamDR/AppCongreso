@@ -3,6 +3,8 @@ package org.grupotres.appcongreso.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import java.io.File
 import java.io.FileOutputStream
@@ -30,6 +32,25 @@ fun createBitmap(context: Context): Bitmap {
 	val modifiedScreenWidth = (modifiedScreenHeight * aspectRatio).toInt()
 
 	return Bitmap.createBitmap(modifiedScreenWidth, modifiedScreenHeight, Bitmap.Config.ARGB_8888)
+}
+
+fun saveToInternalStorage(context: Context, bitmapImage: Bitmap, imageFileName: String): String {
+	context.openFileOutput(imageFileName, Context.MODE_PRIVATE).use { fos ->
+		bitmapImage.compress(Bitmap.CompressFormat.PNG, 25, fos)
+	}
+	return context.filesDir.absolutePath
+}
+
+fun getBitmapFromView(view: View): Bitmap? {
+	val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+	val canvas = Canvas(bitmap)
+	view.draw(canvas)
+	return bitmap
+}
+
+fun getFileFromInternalStorage(context: Context, fileName: String): File {
+	val directory = context.filesDir
+	return File(directory, fileName)
 }
 
 /*

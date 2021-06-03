@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentSignaturePanelBinding
+import org.grupotres.appcongreso.util.getBitmapFromView
+import org.grupotres.appcongreso.util.saveToInternalStorage
 
 class SignaturePanelFragment : Fragment() {
 
@@ -29,7 +31,7 @@ class SignaturePanelFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		binding?.btnClearSignature?.setOnClickListener { binding?.drawingView?.clear() }
-		binding?.btnAddSignature?.setOnClickListener {  }
+		binding?.btnAddSignature?.setOnClickListener { saveSignature() }
 	}
 
 	override fun onDestroyView() {
@@ -43,5 +45,10 @@ class SignaturePanelFragment : Fragment() {
 			true
 		}
 		else -> false
+	}
+
+	private fun saveSignature() {
+		val bitmap = binding?.drawingView?.let { getBitmapFromView(it) }
+		bitmap?.let { saveToInternalStorage(requireContext(), it, "signature.png") }
 	}
 }
