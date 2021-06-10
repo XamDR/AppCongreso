@@ -8,7 +8,7 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-class PdfSignatureViewModel(storage: FirebaseStorage): ViewModel() {
+class PdfViewerViewModel(storage: FirebaseStorage): ViewModel() {
 
 	init {
 		fetchPdfFile(storage)
