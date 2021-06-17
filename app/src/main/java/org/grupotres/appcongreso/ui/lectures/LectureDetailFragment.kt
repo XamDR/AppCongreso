@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
@@ -52,7 +53,7 @@ class LectureDetailFragment : Fragment() {
 		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
 		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
 		binding?.actionResources?.setOnClickListener { downloadResources() }
-		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
+		binding?.btnEnroll?.setOnClickListener { showConfirmationDialog() }
 		binding?.actionFeedback?.setOnClickListener { showDialogFeedback() }
 	}
 
@@ -108,7 +109,18 @@ class LectureDetailFragment : Fragment() {
 		javaMailAPI.execute()
 	}
 
-	private fun showDialogFeedback(){
+	private fun showConfirmationDialog() {
+		val view = layoutInflater.inflate(R.layout.confirmation_dialog, null)
+		MaterialAlertDialogBuilder(requireContext())
+			.setView(view)
+			.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
+			.setPositiveButton(R.string.ok_button) { dialog, _ ->
+				dialog.dismiss()
+				enrollToLecture()
+			}.show()
+	}
+
+	private fun showDialogFeedback() {
 		val id = args.lectureSpeaker.lecture.id
 		val dialog = FeedbackDialogFragment.newInstance(id)
 		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
