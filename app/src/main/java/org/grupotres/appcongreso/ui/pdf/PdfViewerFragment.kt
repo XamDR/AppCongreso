@@ -61,7 +61,7 @@ class PdfViewerFragment : Fragment() {
 
 	private fun renderPdf() {
 		viewModel.pdfBytes.observe(viewLifecycleOwner, { bytes ->
-			val file = writeFile(requireContext(), bytes, "certificado.pdf")
+			val file = writeFile(requireContext(), bytes, "certificado_ponencia.pdf")
 			val uri = Uri.fromFile(file)
 			val fileDescriptor = mainActivity.contentResolver.openFileDescriptor(uri, "r", null)
 			val renderer = fileDescriptor?.let { PdfRenderer(it) }
@@ -80,7 +80,7 @@ class PdfViewerFragment : Fragment() {
 
 	private fun downloadCertificate() {
 		viewLifecycleOwner.lifecycleScope.launch {
-			val storageRef = mainActivity.storage.reference.child("certificados").child("certificado.pdf")
+			val storageRef = mainActivity.storage.reference.child("certificados").child("certificado_ponencia.pdf")
 			val uri = storageRef.downloadUrl.await()
 			val downloadManager = requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
 			val request = DownloadManager.Request(uri)

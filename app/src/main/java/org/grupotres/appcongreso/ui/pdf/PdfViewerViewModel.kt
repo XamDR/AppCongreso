@@ -19,7 +19,7 @@ class PdfViewerViewModel(storage: FirebaseStorage): ViewModel() {
 
 	private fun fetchPdfFile(storage: FirebaseStorage) {
 		viewModelScope.launch {
-			val bytes = storage.reference.child("certificados").child("certificado.pdf")
+			val bytes = storage.reference.child("certificados").child("certificado_ponencia.pdf")
 				.getBytes(ONE_MEGABYTE).await()
 			_pdfBytes.value = bytes
 		}
