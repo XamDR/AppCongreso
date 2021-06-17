@@ -8,7 +8,7 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-class PdfSignatureViewModel(storage: FirebaseStorage): ViewModel() {
+class PdfViewerViewModel(storage: FirebaseStorage): ViewModel() {
 
 	init {
 		fetchPdfFile(storage)
@@ -19,7 +19,7 @@ class PdfSignatureViewModel(storage: FirebaseStorage): ViewModel() {
 
 	private fun fetchPdfFile(storage: FirebaseStorage) {
 		viewModelScope.launch {
-			val bytes = storage.reference.child("certificados").child("certificado.pdf")
+			val bytes = storage.reference.child("certificados").child("certificado_ponencia.pdf")
 				.getBytes(ONE_MEGABYTE).await()
 			_pdfBytes.value = bytes
 		}

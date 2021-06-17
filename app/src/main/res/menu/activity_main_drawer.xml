@@ -15,9 +15,9 @@
 			android:title="@string/menu_event" />
 
 		<item
-			android:id="@+id/nav_signature_panel"
+			android:id="@+id/nav_pdf_viewer"
 			android:icon="@drawable/ic_sign"
-			android:title="@string/digital_signature"
+			android:title="@string/digital_certificate"
 			android:visible="false"/>
 
 		<item
