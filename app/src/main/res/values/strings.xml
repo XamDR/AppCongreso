@@ -106,5 +106,7 @@
 	<string name="digital_certificate">Certificado digital</string>
 	<string name="action_download">Descargar certificado</string>
 	<string name="action_pdf_viewer">Certificado digital</string>
+	<string name="enter_token">Código de 4 dígitos</string>
+	<string name="verification_token_message">Ingrese el código de verificación de 4 dígitos para enviarle el enlace de la ponencia.</string>
 
 </resources>
