@@ -6,22 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import androidx.fragment.app.DialogFragment
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import org.grupotres.appcongreso.R
-import org.grupotres.appcongreso.databinding.FragmentFeedbackDialogBinding
 import org.grupotres.appcongreso.databinding.FragmentPhoneBinding
 import java.util.concurrent.TimeUnit
 
-class PhoneFragment : BottomSheetDialogFragment(){
+class PhoneFragment : DialogFragment(){
 
 	lateinit var auth: FirebaseAuth
 	lateinit var storedVerificationId:String
@@ -63,7 +58,7 @@ class PhoneFragment : BottomSheetDialogFragment(){
 			}
 
 			override fun onVerificationFailed(e: FirebaseException) {
-				Toast.makeText(context, "Failed", Toast.LENGTH_LONG).show()
+				Toast.makeText(context, "Falló", Toast.LENGTH_LONG).show()
 			}
 
 			override fun onCodeSent(
@@ -75,12 +70,12 @@ class PhoneFragment : BottomSheetDialogFragment(){
 				storedVerificationId = verificationId
 				resendToken = token
 
-				var intent = Intent(context,Verify::class.java)
-				intent.putExtra("storedVerificationId",storedVerificationId)
-				startActivity(intent)
+				dismiss()
+
+				val dialog = VerifyFragment(storedVerificationId.toString())
+				dialog.show(parentFragmentManager, "VERIFY_DIALOG_FRAGMENT")
 			}
 		}
-
 		return binding?.root
 	}
 	private fun login() {
@@ -92,7 +87,7 @@ class PhoneFragment : BottomSheetDialogFragment(){
 			number="+51"+number
 			sendVerificationcode (number)
 		}else{
-			Toast.makeText(context,"Enter mobile number",Toast.LENGTH_SHORT).show()
+			Toast.makeText(context,"Ingrese su número telefónico",Toast.LENGTH_SHORT).show()
 		}
 	}
 

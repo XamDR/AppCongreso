@@ -4,6 +4,7 @@ buildscript {
     ext.room_version = '2.3.0'
 	repositories {
 		google()
+        jcenter()
         mavenCentral()
         jcenter()
 	}
@@ -18,6 +19,7 @@ buildscript {
 allprojects {
 	repositories {
 		google()
+        jcenter()
         mavenCentral()
         jcenter()
 	}

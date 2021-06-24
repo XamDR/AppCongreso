@@ -97,10 +97,7 @@ class LectureDetailFragment : Fragment() {
 			mainActivity.dbRef, mainActivity.storage)
 	}
 
-	@Suppress("DEPRECATION")
 	private fun enrollToLecture() {
-		/*val intent = Intent(activity, Home::class.java)
-		requireActivity().startActivity(intent)*/
 		val dialog = PhoneFragment()
 		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 
