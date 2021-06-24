@@ -19,10 +19,12 @@ import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
+import org.grupotres.appcongreso.ui.phoneauth.Home
+import org.grupotres.appcongreso.ui.phoneauth.PhoneFragment
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
-import java.lang.ref.WeakReference
+
 
 class LectureDetailFragment : Fragment() {
 
@@ -97,14 +99,23 @@ class LectureDetailFragment : Fragment() {
 
 	@Suppress("DEPRECATION")
 	private fun enrollToLecture() {
-		val userEmail = mainActivity.auth.currentUser?.email
+		/*val intent = Intent(activity, Home::class.java)
+		requireActivity().startActivity(intent)*/
+		val dialog = PhoneFragment()
+		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
+
+
+		//------------------
+		/*val userEmail = mainActivity.auth.currentUser?.email
 		val mail: String = userEmail.toString()
-		val message = "Hola, este es un mensaje de verificacion de su inscripcion al congreso"
+		val message = "mensaje"
 		val subject = "App Congreso"
 
 		//Send Mail
 		val javaMailAPI = JavaMailAPI(WeakReference(requireContext()), mail, subject, message)
-		javaMailAPI.execute()
+		javaMailAPI.execute()*/
+
+
 	}
 
 	private fun showDialogFeedback(){
