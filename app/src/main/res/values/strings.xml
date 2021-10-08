@@ -22,8 +22,8 @@
 
 	<string name="menu_resources">Recursos</string>
 
-	<string name="advertisements">III Congreso Internacional de Ingeniería</string>
-	<string name="event_info">La tercera edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
+	<string name="advertisements">IV Congreso Internacional de Ingeniería</string>
+	<string name="event_info">La cuarta edición del Congreso Internacional de Ingeniería – Industria 4.0 reunirá a especialistas de países como Chile, Colombia, Puerto Rico, Alemania, México y Perú.</string>
 	<string name="logo_desc">Descripción del logo</string>
 	<string name="action_login">Iniciar sesión</string>
 	<string name="menu_home">Página principal</string>
@@ -98,6 +98,7 @@
 	<string name="send">Enviar</string>
 	<string name="placeholder">Escribe tu comentario</string>
 	<string name="cancel">Cancelar</string>
+	<string name="email_message">Hola, este es un mensaje de verificacion de su inscripcion al congreso, este es el link para el ingreso a la ponencia: https://meet.google.com/fmt-wyyr-fdn.</string>
 	<string name="download_files_message">En un instante se empezarán a descargar los archivos…</string>
 	<string name="logout_message">Se cerró la sesión.</string>
 	<string name="error_login_message">Error al autenticar inicio de sesión con Google.</string>
@@ -111,5 +112,13 @@
 	<string name="peru_phone_code">+51</string>
 	<string name="phone_number_example">999999999</string>
 	<string name="verify_btn">VERIFICAR</string>
+	<string name="digital_certificate">Certificado digital</string>
+	<string name="action_download">Descargar certificado</string>
+	<string name="action_pdf_viewer">Certificado digital</string>
+	<string name="enter_token">Código de 4 dígitos</string>
+	<string name="verification_token_message">Ingrese el código de verificación de 4 dígitos para enviarle el enlace de la ponencia.</string>
+	<string name="description">Bienvenido a la aplicación AppCongreso, desarrollada exclusivamente para el IV Congreso de Ingeniería 2021.</string>
+	<string name="features"><![CDATA[ La app te permitirá:<br /> &#8226; Autenticarte para acceder a los beneficios de usuarios registrados.<br /> &#8226; Conocer los detalles para la inscripción en el IV Congreso de Ingeniería.<br /> &#8226; Visualizar información de ponencias y ponentes.<br /> &#8226; Guardar recordatorios en el calendario de las ponencias que te interesen.<br />  &#8226; Descargar de materiales y certificados de participación.<br />]]></string>
+	<string name="next">Siguiente</string>
 
 </resources>

@@ -3,13 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/mobile_navigation"
-	app:startDestination="@+id/nav_home">
-
-	<fragment
-		android:id="@+id/nav_home"
-		android:name="org.grupotres.appcongreso.ui.home.HomeFragment"
-		android:label="@string/menu_home"
-		tools:layout="@layout/fragment_home" />
+	app:startDestination="@+id/nav_lecture_list">
 
 	<fragment
 		android:id="@+id/nav_lecture_list"
@@ -69,6 +63,12 @@
 		android:name="org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment"
 		android:label="@string/feedback"
 		tools:layout="@layout/fragment_feedback_dialog" />
+
+	<fragment
+		android:id="@+id/nav_pdf_viewer"
+		android:name="org.grupotres.appcongreso.ui.pdf.PdfViewerFragment"
+		android:label="@string/action_pdf_viewer"
+		tools:layout="@layout/fragment_pdf_viewer"/>
 
 	<fragment
 		android:id="@+id/nav_info"

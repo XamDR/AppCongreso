@@ -4,9 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
 import org.grupotres.appcongreso.util.Strings;
-
 import java.lang.ref.WeakReference;
 import java.util.Properties;
 import javax.mail.Message;
@@ -18,41 +16,24 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
+    private final WeakReference<Context> mWeakContext;
+    private final String mEmail;
+    private final String mSubject;
+    private final String mMessage;
 
-    //Declaring Variables
-    private Context context;
-    private Session session;
-
-    //Information to send email
-    private String email;
-    private String subject;
-    private String message;
-
-
-    //Class Constructor
-    public JavaMailAPI(Context context, String email, String subject, String message) {
-        //Initializing variables
-        this.context = context;
-        this.email = email;
-        this.subject = subject;
-        this.message = message;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        //Showing progress dialog while sending email
-//            progressDialog = ProgressDialog.show(context, "Sending message", "Please wait...", false, false);
-
+    //Constructor
+    @SuppressWarnings("deprecation")
+    public JavaMailAPI(WeakReference<Context> weakContext, String email, String subject, String message) {
+        this.mWeakContext = weakContext;
+        this.mEmail = email;
+        this.mSubject = subject;
+        this.mMessage = message;
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        //Dismissing the progress dialog
-        //progressDialog.dismiss();
-        //Showing a success message
-        Toast.makeText(context, "El mensaje se envió correctamente.", Toast.LENGTH_LONG).show();
+        Toast.makeText(mWeakContext.get(),"Se le ha enviado un correo.",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -67,8 +48,10 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
+
         //Creating a new session
-        session = Session.getDefaultInstance(props,
+        //Authenticating the password
+        Session mSession = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     //Authenticating the password
                     protected PasswordAuthentication getPasswordAuthentication() {
@@ -88,11 +71,10 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
             mm.setSubject(subject);
             //Adding message
             mm.setText(message);
-
             //Sending email
             Transport.send(mm);
-
-        } catch (MessagingException e) {
+        } 
+        catch (MessagingException e) {
             e.printStackTrace();
         }
         return null;

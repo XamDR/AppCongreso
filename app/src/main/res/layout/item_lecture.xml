@@ -36,34 +36,18 @@
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
 		android:textStyle="bold"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintBottom_toTopOf="@id/topic_color"
+		app:layout_constraintBottom_toTopOf="@id/topic"
 		app:drawableStartCompat="@drawable/ic_save_spot" />
 
-	<com.google.android.material.imageview.ShapeableImageView
-		android:id="@+id/topic_color"
-		android:layout_width="15dp"
-		android:layout_height="15dp"
-		android:layout_marginTop="13dp"
-		android:layout_marginBottom="10dp"
-		android:layout_marginStart="10dp"
-		android:layout_marginEnd="5dp"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toStartOf="@id/topic"
-		app:layout_constraintTop_toBottomOf="@id/save_spot"
-		app:shapeAppearanceOverlay="@style/ShapeAppearance.Circular"
-		tools:background="@color/dracula"/>
-
-	<TextView
+	<com.google.android.material.chip.Chip
 		android:id="@+id/topic"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"
-		android:layout_marginBottom="10dp"
-		android:layout_marginStart="5dp"
-		android:layout_marginEnd="5dp"
-		android:maxLines="1"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		app:layout_constraintStart_toEndOf="@id/topic_color"
+		android:layout_margin="10dp"
+		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toBottomOf="@id/save_spot"
+		app:chipIcon="@drawable/ic_chip_icon"
+		app:chipStartPadding="5dp"
+		app:chipEndPadding="10dp"
 		tools:text="Informática"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
