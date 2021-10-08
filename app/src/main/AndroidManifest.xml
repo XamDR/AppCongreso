@@ -39,7 +39,7 @@
         -->
 		<meta-data
 			android:name="com.google.android.geo.API_KEY"
-			android:value="AIzaSyDPdg15qgMuk4bLl6Lk4Og0SeYiAxIImhY" />
+			android:value="AIzaSyD5U4CyIcfTk6gb3sFUVsVYrnEqQ0QLTrU" />
 
 		<activity
 			android:name=".MainActivity"
@@ -47,5 +47,4 @@
 			android:theme="@style/Theme.AppCongreso.NoActionBar"
 			android:exported="true"/>
 	</application>
-
 </manifest>

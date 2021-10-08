@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
 		appBarConfiguration = AppBarConfiguration(
-			setOf(R.id.nav_home, R.id.nav_lecture_list, R.id.nav_pdf_viewer, R.id.nav_info, R.id.nav_settings),
+			setOf(R.id.nav_lecture_list, R.id.nav_pdf_viewer, R.id.nav_info, R.id.nav_settings),
 			binding.drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
@@ -183,6 +183,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 	private fun showSignaturePanelOption() {
 		val navMenu = binding.navView.menu
 		navMenu.findItem(R.id.nav_pdf_viewer).isVisible = true
+		binding.navView.setCheckedItem(R.id.nav_lecture_list)
 	}
 
 	override fun navigate(navDirections: NavDirections, extras: FragmentNavigator.Extras?) {
