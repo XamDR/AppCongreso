@@ -1,6 +1,6 @@
 package org.grupotres.appcongreso.util
 
 object Strings {
-	const val EMAIL = "Dean86collis@gmail.com"
-	const val PASSWORD = "86142DCL"
+	const val EMAIL = "congreso2021app@gmail.com"
+	const val PASSWORD = "congreso123"
 }

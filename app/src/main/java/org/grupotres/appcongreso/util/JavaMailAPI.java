@@ -1,4 +1,4 @@
-package org.grupotres.appcongreso.ui.lectures;
+package org.grupotres.appcongreso.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -19,39 +19,40 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
-    private final WeakReference<Context> mWeakContext;
+    //Declaring Variables
+    private Context context;
+    private Session session;
 
-    private final String mEmail;
-    private final String mSubject;
-    private final String mMessage;
+    //Information to send email
+    private String email;
+    private String subject;
+    private String message;
 
-    private ProgressDialog mProgressDialog;
 
-    //Constructor
-    @SuppressWarnings("deprecation")
-    public JavaMailAPI(WeakReference<Context> weakContext, String email, String subject, String message) {
-        this.mWeakContext = weakContext;
-        this.mEmail = email;
-        this.mSubject = subject;
-        this.mMessage = message;
+    //Class Constructor
+    public JavaMailAPI(Context context, String email, String subject, String message) {
+        //Initializing variables
+        this.context = context;
+        this.email = email;
+        this.subject = subject;
+        this.message = message;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        //Show progress dialog while sending email
-        mProgressDialog = ProgressDialog.show(mWeakContext.get(),"Sending message",
-                "Please wait...",false,false);
+        //Showing progress dialog while sending email
+//            progressDialog = ProgressDialog.show(context, "Sending message", "Please wait...", false, false);
+
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        //Dismiss progress dialog when message successfully send
-        mProgressDialog.dismiss();
-
-        //Show success toast
-        Toast.makeText(mWeakContext.get(),"Message Sent",Toast.LENGTH_SHORT).show();
+        //Dismissing the progress dialog
+        //progressDialog.dismiss();
+        //Showing a success message
+        Toast.makeText(context, "Poll emailed", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -66,10 +67,8 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
-
         //Creating a new session
-        //Authenticating the password
-        Session mSession = Session.getDefaultInstance(props,
+        session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     //Authenticating the password
                     protected PasswordAuthentication getPasswordAuthentication() {
@@ -79,19 +78,19 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
         try {
             //Creating MimeMessage object
-            MimeMessage mm = new MimeMessage(mSession);
+            MimeMessage mm = new MimeMessage(session);
 
             //Setting sender address
             mm.setFrom(new InternetAddress(Strings.EMAIL));
             //Adding receiver
-            mm.addRecipient(Message.RecipientType.TO, new InternetAddress(mEmail));
+            mm.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             //Adding subject
-            mm.setSubject(mSubject);
+            mm.setSubject(subject);
             //Adding message
-            mm.setText(mMessage);
+            mm.setText(message);
+
             //Sending email
             Transport.send(mm);
-
 
         } catch (MessagingException e) {
             e.printStackTrace();

@@ -1,15 +1,16 @@
 package org.grupotres.appcongreso.ui.phoneauth
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.google.firebase.auth.*
+import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentVerifyBinding
-import org.grupotres.appcongreso.ui.lectures.JavaMailAPI
+import org.grupotres.appcongreso.util.JavaMailAPI
 import org.grupotres.appcongreso.util.mainActivity
 import java.lang.ref.WeakReference
 
@@ -56,14 +57,14 @@ class VerifyFragment(storedVerification: String) : DialogFragment(){
 			.addOnCompleteListener(requireActivity()) { task ->
 				if (task.isSuccessful) {
 
-					val userEmail = mainActivity.auth.currentUser?.email
+					val userEmail = "samuel_ibc@hotmail.com"
 					val mail: String = userEmail.toString()
-					val message = "mensaje"
-					val subject = "App Congreso"
+					val message = getString(R.string.email_message)
+					val subject = "App Congreso 2021"
+					Log.i("hola", userEmail + message + subject);
 
-					//Send Mail
-					val javaMailAPI = JavaMailAPI(WeakReference(requireContext()), mail, subject, message)
-					javaMailAPI.execute()
+					val sm = JavaMailAPI(context, mail, subject, message)
+					sm.execute()
 					dismiss()
 
 				} else {

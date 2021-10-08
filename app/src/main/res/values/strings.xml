@@ -102,5 +102,6 @@
 	<string name="logout_message">Se cerró la sesión.</string>
 	<string name="error_login_message">Error al autenticar inicio de sesión con Google.</string>
 	<string name="error_auth">Error al autenticar.</string>
+	<string name="email_message">Hola, este es un mensaje de verificacion de su inscripcion al congreso, este es el link para el ingreso a la ponencia: https://meet.google.com/fmt-wyyr-fdn.</string>
 
 </resources>

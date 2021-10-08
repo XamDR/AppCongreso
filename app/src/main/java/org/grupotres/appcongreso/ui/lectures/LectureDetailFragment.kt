@@ -3,6 +3,7 @@ package org.grupotres.appcongreso.ui.lectures
 import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.ui.phoneauth.Home
 import org.grupotres.appcongreso.ui.phoneauth.PhoneFragment
+import org.grupotres.appcongreso.util.JavaMailAPI
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
@@ -100,19 +102,6 @@ class LectureDetailFragment : Fragment() {
 	private fun enrollToLecture() {
 		val dialog = PhoneFragment()
 		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
-
-
-		//------------------
-		/*val userEmail = mainActivity.auth.currentUser?.email
-		val mail: String = userEmail.toString()
-		val message = "mensaje"
-		val subject = "App Congreso"
-
-		//Send Mail
-		val javaMailAPI = JavaMailAPI(WeakReference(requireContext()), mail, subject, message)
-		javaMailAPI.execute()*/
-
-
 	}
 
 	private fun showDialogFeedback(){
