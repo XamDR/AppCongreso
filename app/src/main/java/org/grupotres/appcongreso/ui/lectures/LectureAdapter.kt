@@ -3,6 +3,7 @@ package org.grupotres.appcongreso.ui.lectures
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -34,7 +35,7 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 			binding.lectureTitle.text = lectureSpeaker.lecture.title
 			binding.topic.text = lectureSpeaker.lecture.topic
 			val color = Color.parseColor(colors[lectureSpeaker.lecture.topic])
-			binding.topicColor.setBackgroundColor(color)
+			DrawableCompat.setTint(binding.topic.chipIcon!!, color)
 		}
 	}
 
