@@ -80,4 +80,5 @@
 		android:id="@+id/nav_settings"
 		android:name="org.grupotres.appcongreso.ui.settings.SettingsFragment"
 		android:label="@string/fragment_settings"/>
+
 </navigation>

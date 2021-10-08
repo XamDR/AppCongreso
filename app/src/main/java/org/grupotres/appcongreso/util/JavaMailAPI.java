@@ -1,12 +1,12 @@
 package org.grupotres.appcongreso.util;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
+import org.grupotres.appcongreso.util.Strings;
 import java.lang.ref.WeakReference;
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -16,7 +16,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
-
     private final WeakReference<Context> mWeakContext;
     private final String mEmail;
     private final String mSubject;
@@ -34,8 +33,6 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-
-        //Show success toast
         Toast.makeText(mWeakContext.get(),"Se le ha enviado un correo.",Toast.LENGTH_SHORT).show();
     }
 
@@ -64,19 +61,19 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
         try {
             //Creating MimeMessage object
-            MimeMessage mm = new MimeMessage(mSession);
+            MimeMessage mm = new MimeMessage(session);
 
             //Setting sender address
             mm.setFrom(new InternetAddress(Strings.EMAIL));
             //Adding receiver
-            mm.addRecipient(Message.RecipientType.TO, new InternetAddress(mEmail));
+            mm.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             //Adding subject
-            mm.setSubject(mSubject);
+            mm.setSubject(subject);
             //Adding message
-            mm.setText(mMessage);
+            mm.setText(message);
             //Sending email
             Transport.send(mm);
-        }
+        } 
         catch (MessagingException e) {
             e.printStackTrace();
         }

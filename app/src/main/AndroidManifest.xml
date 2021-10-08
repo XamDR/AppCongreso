@@ -19,6 +19,7 @@
 		android:supportsRtl="true"
 		android:theme="@style/Theme.AppCongreso"
 		tools:ignore="AllowBackup">
+
 		<activity
 			android:name=".WelcomeActivity"
 			android:exported="true"
@@ -44,7 +45,6 @@
 		<activity
 			android:name=".MainActivity"
 			android:label="@string/app_name"
-			android:theme="@style/Theme.AppCongreso.NoActionBar"
-			android:exported="true"/>
+			android:theme="@style/Theme.AppCongreso.NoActionBar"/>
 	</application>
 </manifest>

@@ -3,6 +3,7 @@ package org.grupotres.appcongreso.ui.lectures
 import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,11 +21,11 @@ import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
+import org.grupotres.appcongreso.ui.phoneauth.PhoneFragment
 import org.grupotres.appcongreso.util.JavaMailAPI
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
-import java.lang.ref.WeakReference
 
 class LectureDetailFragment : Fragment() {
 
@@ -97,16 +98,11 @@ class LectureDetailFragment : Fragment() {
 			mainActivity.dbRef, mainActivity.storage)
 	}
 
-	@Suppress("DEPRECATION")
 	private fun enrollToLecture() {
-		val userEmail = mainActivity.auth.currentUser?.email
-		val mail: String = userEmail.toString()
-		val message = getString(R.string.email_message)
-		val subject = "App Congreso 2021"
-
-		//Send Mail
-		val javaMailAPI = JavaMailAPI(WeakReference(requireContext()), mail, subject, message)
-		javaMailAPI.execute()
+		val usuario = mainActivity.auth.currentUser?.email
+		Log.i("USER", usuario.toString())
+		val dialog = usuario?.let { PhoneFragment.newInstance(it) }
+		dialog?.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 
 	private fun showConfirmationDialog() {
