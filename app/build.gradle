@@ -94,6 +94,7 @@ dependencies {
     implementation files('../libs/activation.jar')
     implementation files('../libs/additionnal.jar')
     implementation files('../libs/mail.jar')
-    //    PinView
-    implementation 'com.chaos.view:pinview:1.4.3'
+
+    // PinView
+    implementation 'io.github.chaosleung:pinview:1.4.4'
 }

@@ -1,41 +1,45 @@
 package org.grupotres.appcongreso.ui.phoneauth
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import org.grupotres.appcongreso.databinding.FragmentPhoneBinding
+import org.grupotres.appcongreso.util.mainActivity
 import java.util.concurrent.TimeUnit
 
-class PhoneFragment(usuario: String?) : DialogFragment(){
+class PhoneFragment : BottomSheetDialogFragment() {
 
-	lateinit var auth: FirebaseAuth
+	private lateinit var auth: FirebaseAuth
 	lateinit var storedVerificationId:String
 	lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
 	private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-	public var usuario = usuario
+	private var usuario: String? = null
 
 	private var binding: FragmentPhoneBinding? = null
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		usuario = arguments?.getString("user")
+	}
+
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
 		binding = FragmentPhoneBinding.inflate(inflater, container, false)
-
-
-		auth=FirebaseAuth.getInstance()
+		auth =FirebaseAuth.getInstance()
 
 //        Reference
-		val Login= binding!!.loginBtn
+		val login = binding!!.loginBtn
 		//val Login=findViewById<Button>(R.id.loginBtn)
 
 //
@@ -46,7 +50,7 @@ class PhoneFragment(usuario: String?) : DialogFragment(){
 //			//finish()
 //		}
 
-		Login.setOnClickListener{
+		login.setOnClickListener{
 			login()
 		}
 
@@ -54,8 +58,8 @@ class PhoneFragment(usuario: String?) : DialogFragment(){
 		callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
 			override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-				startActivity(Intent(context, Home::class.java))
-				getActivity()?.finish()
+//				startActivity(Intent(context, Home::class.java))
+//				activity?.finish()
 			}
 
 			override fun onVerificationFailed(e: FirebaseException) {
@@ -73,8 +77,8 @@ class PhoneFragment(usuario: String?) : DialogFragment(){
 
 				dismiss()
 
-				val dialog = VerifyFragment(storedVerificationId.toString(), usuario)
-				dialog.show(parentFragmentManager, "VERIFY_DIALOG_FRAGMENT")
+				val dialog = usuario?.let { VerifyFragment.newInstance(storedVerificationId, it) }
+				dialog?.show(parentFragmentManager, "VERIFY_DIALOG_FRAGMENT")
 			}
 		}
 		return binding?.root
@@ -84,10 +88,11 @@ class PhoneFragment(usuario: String?) : DialogFragment(){
 		//val mobileNumber=findViewById<EditText>(R.id.phoneNumber)
 		var number=mobileNumber.text.toString().trim()
 
-		if(!number.isEmpty()){
-			number="+51"+number
-			sendVerificationcode (number)
-		}else{
+		if (number.isNotEmpty()) {
+			number= "+51$number"
+			sendVerificationcode(number)
+		}
+		else {
 			Toast.makeText(context,"Ingrese su número telefónico",Toast.LENGTH_SHORT).show()
 		}
 	}
@@ -96,13 +101,25 @@ class PhoneFragment(usuario: String?) : DialogFragment(){
 		val options = PhoneAuthOptions.newBuilder(auth)
 			.setPhoneNumber(number) // Phone number to verify
 			.setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-			.setActivity(activity) // Activity (for callback binding)
+			.setActivity(mainActivity) // Activity (for callback binding)
 			.setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
 			.build()
 		PhoneAuthProvider.verifyPhoneNumber(options)
 	}
+
 	override fun onDestroyView() {
 		super.onDestroyView()
 		binding = null
+	}
+
+	companion object {
+		fun newInstance(value: String): PhoneFragment {
+			val fragment = PhoneFragment()
+			val bundle = Bundle().apply {
+				putString("user", value)
+			}
+			fragment.arguments = bundle
+			return fragment
+		}
 	}
 }

@@ -105,5 +105,11 @@
 	<string name="email_message">Hola, este es un mensaje de verificacion de su inscripcion al congreso, este es el link para el ingreso a la ponencia: https://meet.google.com/fmt-wyyr-fdn.</string>
 	<string name="phone_verification">Verificaremos su número celular y le enviaremos el medio por el cual asistirá a su ponencia elegida.</string>
 	<string name="sms_verification">Ingrese el código enviado a su celular en los espacios en blanco.</string>
+	<string name="send_msg">Enviar mensaje</string>
+	<string name="verify_sms_token">Verificar código SMS</string>
+	<string name="enter_phone_number">Ingresa tu número de celular</string>
+	<string name="peru_phone_code">+51</string>
+	<string name="phone_number_example">999999999</string>
+	<string name="verify_btn">VERIFICAR</string>
 
 </resources>

@@ -80,9 +80,5 @@
 		android:id="@+id/nav_settings"
 		android:name="org.grupotres.appcongreso.ui.settings.SettingsFragment"
 		android:label="@string/fragment_settings"/>
-	<activity
-		android:id="@+id/nav_sphone"
-		android:name="org.grupotres.appcongreso.ui.phoneauth.Home"
-		android:label="@string/fragment_settings"/>
 
 </navigation>

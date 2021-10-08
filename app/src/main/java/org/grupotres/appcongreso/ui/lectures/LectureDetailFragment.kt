@@ -99,9 +99,9 @@ class LectureDetailFragment : Fragment() {
 
 	private fun enrollToLecture() {
 		val usuario = mainActivity.auth.currentUser?.email
-		Log.i("hola1", usuario.toString());
-		val dialog = PhoneFragment(usuario)
-		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
+		Log.i("USER", usuario.toString())
+		val dialog = usuario?.let { PhoneFragment.newInstance(it) }
+		dialog?.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 
 	private fun showDialogFeedback(){

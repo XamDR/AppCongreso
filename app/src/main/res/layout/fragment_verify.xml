@@ -6,12 +6,9 @@
 	android:id="@+id/constraintLayout"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:minWidth="300dp"
-	android:minHeight="300dp"
 	android:paddingBottom="10dp"
-	app:behavior_hideable="true"
-	app:behavior_peekHeight="0dp"
-	tools:context=".ui.phoneauth.VerifyFragment" >
+	tools:context=".ui.phoneauth.VerifyFragment">
+
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
@@ -24,9 +21,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:fontFamily="@font/montserrat_bold"
-			android:text="VERIFICAR CÓDIGO SMS"
+			android:text="@string/verify_sms_token"
 			android:textAlignment="center"
-			android:textColor="@color/white"
 			android:textSize="30sp" />
 
 		<TextView
@@ -35,12 +31,11 @@
 			android:fontFamily="@font/montserrat_bold"
 			android:text="@string/sms_verification"
 			android:textAlignment="center"
-			android:textColor="@color/white"
 			android:textSize="15sp" />
 
 		<com.chaos.view.PinView
-			android:layout_marginTop="40dp"
 			android:id="@+id/id_otp"
+			android:layout_marginTop="40dp"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			app:itemCount="6"
@@ -52,15 +47,15 @@
 			app:hideLineWhenFilled="true"
 			style="@style/PinWidget.PinView"
 			app:itemRadius="5dp"/>
+
 		<Button
 			android:id="@+id/verifyBtn"
-			android:layout_width="match_parent"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="ENVIAR MENSAJE"
+			android:text="@string/send_msg"
 			android:textAllCaps="false"
 			android:fontFamily="@font/montserrat_bold"
 			android:layout_margin="40dp"
-			android:textColor="#ffffff"
 			android:background="#6372FF"/>
 	</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
