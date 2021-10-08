@@ -30,6 +30,7 @@
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:padding="10dp"
 			android:fontFamily="@font/montserrat_bold"
 			android:text="@string/phone_verification"
 			android:textAlignment="center"
@@ -75,12 +76,11 @@
 				tools:ignore="LabelFor" />
 		</LinearLayout>
 
-		<Button
+		<com.google.android.material.button.MaterialButton
 			android:id="@+id/loginBtn"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_margin="40dp"
-			android:background="#6372FF"
+			android:layout_margin="20dp"
 			android:fontFamily="@font/montserrat_bold"
 			android:text="@string/verify_btn" />
 	</LinearLayout>

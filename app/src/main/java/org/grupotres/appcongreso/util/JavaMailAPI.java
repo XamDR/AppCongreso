@@ -1,12 +1,12 @@
 package org.grupotres.appcongreso.util;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-import org.grupotres.appcongreso.util.Strings;
+
 import java.lang.ref.WeakReference;
 import java.util.Properties;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -61,16 +61,16 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
 
         try {
             //Creating MimeMessage object
-            MimeMessage mm = new MimeMessage(session);
+            MimeMessage mm = new MimeMessage(mSession);
 
             //Setting sender address
             mm.setFrom(new InternetAddress(Strings.EMAIL));
             //Adding receiver
-            mm.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+            mm.addRecipient(Message.RecipientType.TO, new InternetAddress(mEmail));
             //Adding subject
-            mm.setSubject(subject);
+            mm.setSubject(mSubject);
             //Adding message
-            mm.setText(message);
+            mm.setText(mMessage);
             //Sending email
             Transport.send(mm);
         } 

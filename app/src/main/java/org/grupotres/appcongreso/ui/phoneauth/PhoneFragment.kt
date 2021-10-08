@@ -23,12 +23,12 @@ class PhoneFragment : BottomSheetDialogFragment() {
 	lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
 	private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 	private var usuario: String? = null
-
 	private var binding: FragmentPhoneBinding? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		usuario = arguments?.getString("user")
+		auth = FirebaseAuth.getInstance()
 	}
 
 	override fun onCreateView(
@@ -36,19 +36,14 @@ class PhoneFragment : BottomSheetDialogFragment() {
 		savedInstanceState: Bundle?
 	): View? {
 		binding = FragmentPhoneBinding.inflate(inflater, container, false)
-		auth =FirebaseAuth.getInstance()
+		return binding?.root
+	}
 
-//        Reference
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+
+		// Reference
 		val login = binding!!.loginBtn
-		//val Login=findViewById<Button>(R.id.loginBtn)
-
-//
-//		var currentUser = auth.currentUser
-//		if(currentUser != null) {
-//			startActivity(Intent(activity, Home::class.java))
-//			this.getActivity()?.finish()
-//			//finish()
-//		}
 
 		login.setOnClickListener{
 			login()
@@ -57,10 +52,7 @@ class PhoneFragment : BottomSheetDialogFragment() {
 		// Callback function for Phone Auth
 		callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-			override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-//				startActivity(Intent(context, Home::class.java))
-//				activity?.finish()
-			}
+			override fun onVerificationCompleted(credential: PhoneAuthCredential) { }
 
 			override fun onVerificationFailed(e: FirebaseException) {
 				Toast.makeText(context, "Falló", Toast.LENGTH_LONG).show()
@@ -81,8 +73,8 @@ class PhoneFragment : BottomSheetDialogFragment() {
 				dialog?.show(parentFragmentManager, "VERIFY_DIALOG_FRAGMENT")
 			}
 		}
-		return binding?.root
 	}
+
 	private fun login() {
 		val mobileNumber= binding!!.phoneNumber
 		//val mobileNumber=findViewById<EditText>(R.id.phoneNumber)

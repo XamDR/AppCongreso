@@ -14,6 +14,7 @@ import com.google.firebase.auth.PhoneAuthProvider
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentVerifyBinding
 import org.grupotres.appcongreso.util.JavaMailAPI
+import java.lang.ref.WeakReference
 
 class VerifyFragment : DialogFragment() {
 
@@ -24,6 +25,7 @@ class VerifyFragment : DialogFragment() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		auth = FirebaseAuth.getInstance()
 		idVerification = arguments?.getString("verification")
 		userReal = arguments?.getString("user")
 	}
@@ -33,10 +35,13 @@ class VerifyFragment : DialogFragment() {
 		savedInstanceState: Bundle?
 	): View? {
 		binding = FragmentVerifyBinding.inflate(inflater, container, false)
+		return binding?.root
+	}
 
-		auth = FirebaseAuth.getInstance()
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
 
-        // Reference
+		// Reference
 		val otpGiven = binding?.idOtp
 
 		binding?.verifyBtn?.setOnClickListener {
@@ -52,9 +57,7 @@ class VerifyFragment : DialogFragment() {
 			else {
 				Toast.makeText(context, "Ingrese OTP", Toast.LENGTH_SHORT).show()
 			}
-
 		}
-		return binding?.root
 	}
 
 	@Suppress("DEPRECATION")
@@ -70,10 +73,9 @@ class VerifyFragment : DialogFragment() {
 					Log.d("EMAIL", userReal + message + subject)
 
 					//Send Mail
-					val javaMailAPI = JavaMailAPI(context, mail, subject, message)
+					val javaMailAPI = JavaMailAPI(WeakReference(context), mail, subject, message)
 					javaMailAPI.execute()
 					dismiss()
-
 				}
 				else {
 // Sign in failed, display a message and update the UI
