@@ -1,5 +1,6 @@
 package org.grupotres.appcongreso.ui.phoneauth
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,11 +16,12 @@ import org.grupotres.appcongreso.util.mainActivity
 import java.lang.ref.WeakReference
 
 
-class VerifyFragment(storedVerification: String) : DialogFragment(){
+class VerifyFragment(storedVerification: String, usuario: String?) : DialogFragment(){
 
 	private var binding:FragmentVerifyBinding ? = null
 	lateinit var auth: FirebaseAuth
 	private var idVerification = storedVerification
+	private var userReal = usuario
 
 	var task = FirebaseAuth.getInstance().signInAnonymously()
 
@@ -57,14 +59,15 @@ class VerifyFragment(storedVerification: String) : DialogFragment(){
 			.addOnCompleteListener(requireActivity()) { task ->
 				if (task.isSuccessful) {
 
-					val userEmail = "samuel_ibc@hotmail.com"
+					val userEmail = userReal
 					val mail: String = userEmail.toString()
 					val message = getString(R.string.email_message)
 					val subject = "App Congreso 2021"
-					Log.i("hola", userEmail + message + subject);
+					Log.i("hola", userReal + message + subject);
 
-					val sm = JavaMailAPI(context, mail, subject, message)
-					sm.execute()
+					//Send Mail
+					val javaMailAPI = JavaMailAPI(context, mail, subject, message)
+					javaMailAPI.execute()
 					dismiss()
 
 				} else {

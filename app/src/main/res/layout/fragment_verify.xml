@@ -19,22 +19,31 @@
 		android:gravity="bottom|center"
 		android:layout_weight="1"
 		app:layout_constraintBottom_toBottomOf="parent">
+
 		<TextView
 			android:layout_width="match_parent"
-			android:paddingLeft="40dp"
 			android:layout_height="wrap_content"
-			android:text="Verificar código SMS"
-			android:paddingBottom="15dp"
-			android:textSize="20sp"
 			android:fontFamily="@font/montserrat_bold"
-			android:textColor="#444444"/>
+			android:text="VERIFICAR CÓDIGO SMS"
+			android:textAlignment="center"
+			android:textColor="@color/white"
+			android:textSize="30sp" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/montserrat_bold"
+			android:text="@string/sms_verification"
+			android:textAlignment="center"
+			android:textColor="@color/white"
+			android:textSize="15sp" />
 
 		<com.chaos.view.PinView
+			android:layout_marginTop="40dp"
 			android:id="@+id/id_otp"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			app:itemCount="6"
-			android:layout_margin="10dp"
 			android:itemBackground="#F4F6F9"
 			android:cursorVisible="true"
 			app:lineColor="#2196F3"
@@ -47,7 +56,7 @@
 			android:id="@+id/verifyBtn"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="Verificar"
+			android:text="ENVIAR MENSAJE"
 			android:textAllCaps="false"
 			android:fontFamily="@font/montserrat_bold"
 			android:layout_margin="40dp"

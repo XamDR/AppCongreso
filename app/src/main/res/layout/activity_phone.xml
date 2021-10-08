@@ -23,8 +23,9 @@
 			android:layout_height="wrap_content"
 			android:fontFamily="@font/montserrat_bold"
 			android:paddingLeft="40dp"
-			android:text="Login"
-			android:textColor="#444444"
+			android:text="Ingrese sun número celular"
+			android:textColor="@color/white"
+			android:layout_gravity="center"
 			android:textSize="20sp" />
 
 		<LinearLayout
@@ -63,7 +64,7 @@
 			android:layout_margin="40dp"
 			android:background="#6372FF"
 			android:fontFamily="@font/montserrat_bold"
-			android:text="LOGIN"
+			android:text="Enviar Mensaje"
 			android:textColor="#ffffff" />
 	</LinearLayout>
 </LinearLayout>

@@ -20,9 +20,7 @@ import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
-import org.grupotres.appcongreso.ui.phoneauth.Home
 import org.grupotres.appcongreso.ui.phoneauth.PhoneFragment
-import org.grupotres.appcongreso.util.JavaMailAPI
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
@@ -100,7 +98,9 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun enrollToLecture() {
-		val dialog = PhoneFragment()
+		val usuario = mainActivity.auth.currentUser?.email
+		Log.i("hola1", usuario.toString());
+		val dialog = PhoneFragment(usuario)
 		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 

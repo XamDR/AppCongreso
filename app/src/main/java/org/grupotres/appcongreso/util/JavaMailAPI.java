@@ -52,7 +52,7 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
         //Dismissing the progress dialog
         //progressDialog.dismiss();
         //Showing a success message
-        Toast.makeText(context, "Poll emailed", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "El mensaje se envió correctamente.", Toast.LENGTH_LONG).show();
     }
 
     @Override

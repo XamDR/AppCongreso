@@ -16,12 +16,13 @@ import com.google.firebase.auth.PhoneAuthProvider
 import org.grupotres.appcongreso.databinding.FragmentPhoneBinding
 import java.util.concurrent.TimeUnit
 
-class PhoneFragment : DialogFragment(){
+class PhoneFragment(usuario: String?) : DialogFragment(){
 
 	lateinit var auth: FirebaseAuth
 	lateinit var storedVerificationId:String
 	lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
 	private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+	public var usuario = usuario
 
 	private var binding: FragmentPhoneBinding? = null
 	override fun onCreateView(
@@ -72,7 +73,7 @@ class PhoneFragment : DialogFragment(){
 
 				dismiss()
 
-				val dialog = VerifyFragment(storedVerificationId.toString())
+				val dialog = VerifyFragment(storedVerificationId.toString(), usuario)
 				dialog.show(parentFragmentManager, "VERIFY_DIALOG_FRAGMENT")
 			}
 		}
