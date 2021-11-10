@@ -64,7 +64,8 @@ class LectureDetailFragment : Fragment() {
 	private fun initLectureDetails() {
 		binding?.lectureTitle?.text = args.lectureSpeaker.lecture.title
 		binding?.lectureDate?.text = getString(R.string.lecture_date_time, args.lectureSpeaker.lecture.getDate())
-		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.description
+		//binding?.lectureContador?.text =args.lectureSpeaker.lecture.ncupos
+		binding?.lectureDetail?.text  = args.lectureSpeaker.lecture.description
 		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
 		binding?.speakerCompany?.text = args.lectureSpeaker.speakers[0].company
 		binding?.speakerPhoto?.load(args.lectureSpeaker.speakers[0].uriPhoto)

@@ -36,6 +36,7 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 			binding.topic.text = lectureSpeaker.lecture.topic
 			val color = Color.parseColor(colors[lectureSpeaker.lecture.topic])
 			DrawableCompat.setTint(binding.topic.chipIcon!!, color)
+			//binding.lectureContador.text = lectureSpeaker.lecture.ncupos
 		}
 	}
 

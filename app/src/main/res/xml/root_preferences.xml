@@ -20,7 +20,7 @@
 			app:key="developer"
 			app:title="@string/developer"
 			app:summary="@string/devs"
-			app:icon="@drawable/ic_devs"/>
+			app:icon="@drawable/ucci"/>
 
 		<Preference
 			app:key="version"

@@ -14,13 +14,14 @@ def versionPatch = 0
 android {
 	signingConfigs {
         debug {
-            storeFile file('C:\\Users\\Max\\keystores\\tantakuygo.jks')
+            //storeFile file('C:\\Users\\Max\\keystores\\tantakuygo.jks')
+            storeFile file('C:\\Users\\NAYKA\\AndroidStudioProjects\\AppCongreso\\keystores\\tantakuygo.jks')
             storePassword 'tantakuygo'
             keyAlias 'AppCongreso'
             keyPassword 'tantakuygo'
         }
         realease {
-            storeFile file('C:\\Users\\Max\\keystores\\tantakuygo.jks')
+            storeFile file('C:\\Users\\NAYKA\\AndroidStudioProjects\\AppCongreso\\keystores\\tantakuygo.jks')
             storePassword 'tantakuygo'
             keyAlias 'AppCongreso'
             keyPassword 'tantakuygo'
