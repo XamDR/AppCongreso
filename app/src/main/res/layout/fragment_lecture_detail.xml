@@ -142,7 +142,7 @@
 				android:layout_height="20dp"
 				android:layout_marginStart="20dp"
 				android:layout_marginTop="32dp"
-				android:text="80"
+				android:text=""
 				android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
 				android:textStyle="bold"
 				app:layout_constraintStart_toStartOf="parent"

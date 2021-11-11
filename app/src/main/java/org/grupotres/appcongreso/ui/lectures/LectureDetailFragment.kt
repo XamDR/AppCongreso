@@ -16,6 +16,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
@@ -27,6 +29,7 @@ import org.grupotres.appcongreso.util.toEpoch
 
 class LectureDetailFragment : Fragment() {
 
+	private val db = FirebaseFirestore.getInstance()
 	private var binding: FragmentLectureDetailBinding? = null
 	private val viewModel by viewModels<ResourceViewModel>()
 	private val args: LectureListFragmentArgs by navArgs()
@@ -62,9 +65,20 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun initLectureDetails() {
+
+		val idS = args.lectureSpeaker.lecture.id
+		val idLecture = "lecture" + idS;
+
 		binding?.lectureTitle?.text = args.lectureSpeaker.lecture.title
 		binding?.lectureDate?.text = getString(R.string.lecture_date_time, args.lectureSpeaker.lecture.getDate())
-		//binding?.lectureContador?.text =args.lectureSpeaker.lecture.ncupos
+
+		db.collection("lectures").document(idLecture).get().addOnSuccessListener {
+			var sasd = (it.get("capacity").toString() as String?)
+			binding?.lectureContador?.text  = sasd
+			Log.i("Cap",sasd.toString())
+		}
+
+
 		binding?.lectureDetail?.text  = args.lectureSpeaker.lecture.description
 		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
 		binding?.speakerCompany?.text = args.lectureSpeaker.speakers[0].company
