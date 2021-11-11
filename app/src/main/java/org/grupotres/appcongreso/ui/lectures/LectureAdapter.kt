@@ -46,12 +46,9 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 			val idLecture = "lecture" + idS;
 
 			db.collection("lectures").document(idLecture).get().addOnSuccessListener {
-				var sasd = (it.get("capacity").toString() as String?)
-				binding?.lectureContador?.text  = sasd
-				Log.i("Cap2",sasd.toString())
+				var remCoupons = (it.get("capacity").toString() as String?)
+				binding?.lectureContador?.text  = remCoupons
 			}
-
-			//inding.lectureContador.text = lectureSpeaker.lecture.ncupos
 		}
 	}
 

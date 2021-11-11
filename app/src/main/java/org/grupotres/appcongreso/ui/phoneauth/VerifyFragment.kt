@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentVerifyBinding
 import org.grupotres.appcongreso.util.JavaMailAPI
@@ -22,12 +23,18 @@ class VerifyFragment : DialogFragment() {
 	private lateinit var auth: FirebaseAuth
 	private var idVerification: String? = null
 	private var userReal: String? = null
+	private var cantCupo: String? = null
+	private var idLecture: String? = null
+	private val db = FirebaseFirestore.getInstance()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		auth = FirebaseAuth.getInstance()
 		idVerification = arguments?.getString("verification")
 		userReal = arguments?.getString("user")
+		cantCupo = arguments?.getString("ctnC")
+		idLecture = arguments?.getString("id")
+
 	}
 
 	override fun onCreateView(
@@ -71,10 +78,18 @@ class VerifyFragment : DialogFragment() {
 					val message = getString(R.string.email_message)
 					val subject = "App Congreso 2021"
 					Log.d("EMAIL", userReal + message + subject)
-
 					//Send Mail
 					val javaMailAPI = JavaMailAPI(WeakReference(context), mail, subject, message)
 					javaMailAPI.execute()
+					//Remaining coupons
+
+					val cantidad = cantCupo!!.toInt();
+					val idS = idLecture.toString();
+					val nCant = cantidad - 1;
+
+					db.collection("lectures").document(idS).set(
+						hashMapOf("capacity" to  nCant.toString())
+					)
 					dismiss()
 				}
 				else {
@@ -88,11 +103,13 @@ class VerifyFragment : DialogFragment() {
 	}
 
 	companion object {
-		fun newInstance(value1: String, value2: String): VerifyFragment {
+		fun newInstance(value1: String, value2: String, CCoupon: String?, idLc: String?): VerifyFragment {
 			val fragment = VerifyFragment()
 			val bundle = Bundle().apply {
 				putString("verification", value1)
 				putString("user", value2)
+				putString("ctnC", CCoupon)
+				putString("id", idLc)
 			}
 			fragment.arguments = bundle
 			return fragment

@@ -17,7 +17,6 @@ import androidx.transition.TransitionInflater
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
@@ -73,9 +72,8 @@ class LectureDetailFragment : Fragment() {
 		binding?.lectureDate?.text = getString(R.string.lecture_date_time, args.lectureSpeaker.lecture.getDate())
 
 		db.collection("lectures").document(idLecture).get().addOnSuccessListener {
-			var sasd = (it.get("capacity").toString() as String?)
-			binding?.lectureContador?.text  = sasd
-			Log.i("Cap",sasd.toString())
+			var remCoupons = (it.get("capacity").toString() as String?)
+			binding?.lectureContador?.text  = remCoupons
 		}
 
 
@@ -112,9 +110,12 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun enrollToLecture() {
+		val idS = args.lectureSpeaker.lecture.id
+		val idLecture = "lecture" + idS;
+		val cantidad = binding?.lectureContador?.text.toString();
 		val usuario = mainActivity.auth.currentUser?.email
 		Log.i("USER", usuario.toString())
-		val dialog = usuario?.let { PhoneFragment.newInstance(it) }
+		val dialog = usuario?.let{ PhoneFragment.newInstance(usuario, cantidad, idLecture) }
 		dialog?.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 
