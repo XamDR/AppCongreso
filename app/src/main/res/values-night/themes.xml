@@ -11,6 +11,8 @@
 
 		<!-- Status bar color. -->
 		<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+		<item name="colourizedTextPreferenceColor">@color/corn_flower_blue</item>
 	</style>
 
 	<style name="Theme.AppCongreso.NoActionBar">

@@ -9,7 +9,7 @@
 		android:id="@+id/nav_lecture_list"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureListFragment"
 		android:label="@string/menu_event"
-		tools:layout="@layout/fragment_lecture_list">
+		tools:layout="@layout/fragment_lectures">
 
 		<argument
 			android:name="lectureSpeaker"

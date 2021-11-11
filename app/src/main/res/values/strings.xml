@@ -91,7 +91,7 @@
 	<string name="light_theme">Claro</string>
 	<string name="dark_theme">Oscuro</string>
 	<string name="os_theme">Predeterminado del Sistema</string>
-	<string name="devs"><![CDATA[ &#8226; Max Díaz Romaní<br /> &#8226; Samuel Bellido Contreras<br /> &#8226; Nayif Sotacuro Matos<br /> &#8226; Diomedes Valdivia Picón<br /> &#8226; Jeferson Unchupaico Huaringa<br /> ]]></string>
+	<string name="devs">Universidad Continental</string>
 	<string name="agenda">Agenda</string>
 	<string name="feedback">Evaluar</string>
 	<string name="comment_title">¿Cómo califica la ponencia?</string>
@@ -128,4 +128,5 @@
 	<string name="tutorial_btn_calendar">Has clic aquí para guardar la ponencia en tu calendario de Google.</string>
 	<string name="tutorial_btn_enroll">Has clic aquí para acceder a una ponencia.</string>
 	<string name="tutorial_btn_resources">Has clic aquí para descargar los recursos de una ponencia.</string>
+	<string name="tos_privacy">Condiciones y Privacidad</string>
 </resources>
