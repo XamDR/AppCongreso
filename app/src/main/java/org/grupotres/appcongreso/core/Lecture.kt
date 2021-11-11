@@ -16,7 +16,7 @@ data class Lecture(
 	val title: String = String.Empty,
 	@ColumnInfo(name = "start_time") val startTime: String = String.Empty,
 	@ColumnInfo(name = "end_time") val endTime: String = String.Empty,
-	//val ncupos: Int = 100,
+	//val ncupos: String = String.Empty,
 	val description: String = String.Empty,
 	val topic: String = String.Empty,
 	val url: String = String.Empty

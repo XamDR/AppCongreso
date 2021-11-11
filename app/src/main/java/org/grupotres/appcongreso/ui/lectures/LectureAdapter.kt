@@ -1,7 +1,6 @@
 package org.grupotres.appcongreso.ui.lectures
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.DrawableCompat
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
-import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.LectureSpeakers
 import org.grupotres.appcongreso.databinding.ItemLectureBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
@@ -17,7 +15,6 @@ import org.grupotres.appcongreso.util.setOnClickListener
 
 class LectureAdapter(private val viewModel: LectureViewModel, private val navigator: INavigator) :
 	ListAdapter<LectureSpeakers, LectureAdapter.LectureViewHolder>(LectureCallback()) {
-
 	private val db = FirebaseFirestore.getInstance()
 
 	private val colors = mapOf(
@@ -41,6 +38,7 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 			binding.topic.text = lectureSpeaker.lecture.topic
 			val color = Color.parseColor(colors[lectureSpeaker.lecture.topic])
 			DrawableCompat.setTint(binding.topic.chipIcon!!, color)
+			//binding.lectureContador.text = lectureSpeaker.lecture.ncupos
 
 			val idS = lectureSpeaker.lecture.id
 			val idLecture = "lecture" + idS;

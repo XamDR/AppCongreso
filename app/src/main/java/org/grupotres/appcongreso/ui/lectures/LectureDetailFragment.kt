@@ -16,6 +16,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
@@ -27,7 +28,6 @@ import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
 
 class LectureDetailFragment : Fragment() {
-
 	private val db = FirebaseFirestore.getInstance()
 	private var binding: FragmentLectureDetailBinding? = null
 	private val viewModel by viewModels<ResourceViewModel>()
@@ -64,7 +64,6 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun initLectureDetails() {
-
 		val idS = args.lectureSpeaker.lecture.id
 		val idLecture = "lecture" + idS;
 
@@ -117,7 +116,22 @@ class LectureDetailFragment : Fragment() {
 		Log.i("USER", usuario.toString())
 		val dialog = usuario?.let{ PhoneFragment.newInstance(usuario, cantidad, idLecture) }
 		dialog?.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
+		if (cantidad.toInt() ==0){
+
+			showAlertDialog()
+		}
 	}
+	private fun showAlertDialog() {
+		context?.let {
+			MaterialAlertDialogBuilder(it)
+				.setTitle(getString(R.string.capacidad_title))
+				.setMessage(getString(R.string.capacidad_message))
+				.setPositiveButton(R.string.aceptar_button) { dialog, _ ->
+					dialog.dismiss()
+				}.also { it.show() }
+		}
+	}
+
 
 	private fun showDialogFeedback() {
 		val id = args.lectureSpeaker.lecture.id
