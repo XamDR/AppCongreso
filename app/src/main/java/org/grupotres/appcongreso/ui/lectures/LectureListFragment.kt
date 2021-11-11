@@ -31,16 +31,14 @@ class LectureListFragment : Fragment() {
 
 	private fun setupViewPagerWithTabLayout() {
 		adapter = LectureStateAdapter(this, listOf(
-			FragmentLectureList17(),
-			FragmentLectureList18(),
-			FragmentLectureList19())
+			FragmentLectureFirstRoom(),
+			FragmentLectureListSecondRoom())
 		)
 		binding?.pager?.adapter = adapter
 		TabLayoutMediator(binding?.tabLayout!!, binding?.pager!!) { tab, position ->
 			tab.text = when (position) {
-				0 -> "Miércoles 17"
-				1 -> "Jueves 18"
-				else -> "Viernes 19"
+				0 -> "Sala 1"
+				else -> "Sala 2"
 			}
 		}.attach()
 	}

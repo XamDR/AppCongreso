@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "fe302828f8232cd076d83d10cfb5297d",
+    "identityHash": "7a25a1f5af774833e6153f7410f71ffe",
     "entities": [
       {
         "tableName": "Lecture",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `start_time` TEXT NOT NULL, `end_time` TEXT NOT NULL, `description` TEXT NOT NULL, `topic` TEXT NOT NULL, `url` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `start_time` TEXT NOT NULL, `end_time` TEXT NOT NULL, `description` TEXT, `url` TEXT, `sala` TEXT NOT NULL, `diaPonencia` TEXT NOT NULL, `confirmar` INTEGER, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -36,19 +36,31 @@
             "fieldPath": "description",
             "columnName": "description",
             "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "topic",
-            "columnName": "topic",
-            "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "url",
             "columnName": "url",
             "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "room",
+            "columnName": "sala",
+            "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "day",
+            "columnName": "diaPonencia",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isConfirmed",
+            "columnName": "confirmar",
+            "affinity": "INTEGER",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -62,7 +74,7 @@
       },
       {
         "tableName": "Speaker",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `surname` TEXT NOT NULL, `maternal_surname` TEXT, `name` TEXT NOT NULL, `country` TEXT NOT NULL, `company` TEXT NOT NULL, `academic_info` TEXT NOT NULL, `uri_photo` TEXT NOT NULL, `lecture_id` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`lecture_id`) REFERENCES `Lecture`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `surname` TEXT NOT NULL, `maternal_surname` TEXT, `name` TEXT NOT NULL, `country` TEXT, `company` TEXT, `academic_info` TEXT, `uri_photo` TEXT, `lecture_id` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`lecture_id`) REFERENCES `Lecture`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -92,25 +104,25 @@
             "fieldPath": "country",
             "columnName": "country",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "company",
             "columnName": "company",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "academicInfo",
             "columnName": "academic_info",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "uriPhoto",
             "columnName": "uri_photo",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "lectureId",
@@ -153,7 +165,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fe302828f8232cd076d83d10cfb5297d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7a25a1f5af774833e6153f7410f71ffe')"
     ]
   }
 }

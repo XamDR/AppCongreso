@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -22,8 +23,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import coil.load
-import com.getkeepsafe.taptargetview.TapTarget
-import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -48,6 +47,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
 	private lateinit var manager: SettingsManager
+	private lateinit var avatar: ImageView
 
 	// Google SignIn
 	private lateinit var googleSignInClient: GoogleSignInClient
@@ -72,32 +72,23 @@ class MainActivity : AppCompatActivity(), INavigator {
 			override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
 				if (slideOffset > 0 && auth.currentUser != null) {
 					loadUserData(auth.currentUser!!)
-					showSignaturePanelOption()
 				}
 			}
 		})
 		binding.contentMain.toolbar.inflateMenu(R.menu.main)
-		showTutorial()
-	}
-
-	private fun showTutorial() {
-		if (manager.isFirstRun) {
-			TapTargetView.showFor(this, TapTarget.forToolbarMenuItem(binding.contentMain.toolbar, R.id.action_login,
-				getString(R.string.title_tutorial_btn_login), getString(R.string.tutorial_btn_login))
-				.cancelable(false)
-				.tintTarget(true), object : TapTargetView.Listener() {
-					override fun onTargetClick(view: TapTargetView) {
-						super.onTargetClick(view)
-						view.dismiss(true)
-					}
-				}
-			)
-		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
 		binding.contentMain.toolbar.inflateMenu(R.menu.main)
 		return true
+	}
+
+	override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+		val item = menu.findItem(R.id.action_login)
+		val rootView = item.actionView as FrameLayout
+		avatar = rootView.findViewById(R.id.user_avatar)
+		rootView.setOnClickListener { onOptionsItemSelected(item) }
+		return super.onPrepareOptionsMenu(menu)
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -164,7 +155,6 @@ class MainActivity : AppCompatActivity(), INavigator {
 			if (result.user != null) {
 				Log.d("MainActivity", "signInWithCredential:success")
 				loadUserData(result.user!!)
-				showSignaturePanelOption()
 			}
 			else {
 				Log.d("MainActivity", "signInWithCredential:failure")
@@ -174,35 +164,30 @@ class MainActivity : AppCompatActivity(), INavigator {
 	}
 
 	private fun loadUserData(user: FirebaseUser?) {
-		binding.navView.findViewById<ImageView>(R.id.user_avatar).apply {
-			load(user?.photoUrl)
-			visibility = if (user != null) View.VISIBLE else View.GONE
-		}
-		binding.navView.findViewById<TextView>(R.id.user_name).apply {
-			text = user?.displayName
-			visibility = if (user != null) View.VISIBLE else View.GONE
-		}
-		binding.navView.findViewById<TextView>(R.id.user_email).apply {
-			text = user?.email
-			visibility = if (user != null) View.VISIBLE else View.GONE
-		}
+//		binding.navView.findViewById<ImageView>(R.id.user_avatar).apply {
+//			load(user?.photoUrl)
+//			visibility = if (user != null) View.VISIBLE else View.GONE
+//		}
+//		binding.navView.findViewById<TextView>(R.id.user_name).apply {
+//			text = user?.displayName
+//			visibility = if (user != null) View.VISIBLE else View.GONE
+//		}
+//		binding.navView.findViewById<TextView>(R.id.user_email).apply {
+//			text = user?.email
+//			visibility = if (user != null) View.VISIBLE else View.GONE
+//		}
+		avatar.load(user?.photoUrl)
 	}
 
 	private fun setupNavigation() {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
 		appBarConfiguration = AppBarConfiguration(
-			setOf(R.id.nav_lecture_list, R.id.nav_pdf_viewer, R.id.nav_info, R.id.nav_settings),
+			setOf(R.id.nav_lecture_list, R.id.nav_info, R.id.nav_settings),
 			binding.drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		binding.navView.setupWithNavController(navController)
-	}
-
-	private fun showSignaturePanelOption() {
-		val navMenu = binding.navView.menu
-		navMenu.findItem(R.id.nav_pdf_viewer).isVisible = true
-		binding.navView.setCheckedItem(R.id.nav_lecture_list)
 	}
 
 	override fun navigate(navDirections: NavDirections, extras: FragmentNavigator.Extras?) {

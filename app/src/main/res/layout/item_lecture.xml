@@ -1,53 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:background="@drawable/recyclerview_item_background"
+	android:orientation="vertical"
 	android:paddingTop="10dp"
 	android:paddingBottom="10dp"
 	tools:context=".ui.lectures.LectureListFragment">
 
 	<TextView
-		android:id="@+id/lecture_title"
-		android:layout_width="0dp"
+		android:id="@+id/lecture_time"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		android:layout_marginStart="10dp"
+		android:layout_marginEnd="10dp"
+		android:gravity="center"
+		android:padding="3dp"
+		android:maxLines="1"
+		android:drawablePadding="5dp"
+		android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+		android:textStyle="italic"
+		app:drawableStartCompat="@drawable/ic_save_spot"
+		tools:text="9:00 a.m. - 10:00 a.m."/>
+
+	<TextView
+		android:id="@+id/lecture_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		android:layout_marginStart="10dp"
+		android:layout_marginEnd="10dp"
 		android:singleLine="false"
 		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-		android:textStyle="bold|italic"
+		android:textStyle="bold"
 		android:justificationMode="inter_word"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintBottom_toTopOf="@id/save_spot"
 		tools:text="@string/lecture_title_tools"
 		tools:targetApi="o" />
 
-	<TextView
-		android:id="@+id/save_spot"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
-		android:padding="3dp"
-		android:drawablePadding="10dp"
-		android:maxLines="1"
-		android:text="@string/save_spot"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-		android:textStyle="bold"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintBottom_toTopOf="@id/topic"
-		app:drawableStartCompat="@drawable/ic_save_spot" />
-
 	<com.google.android.material.chip.Chip
-		android:id="@+id/topic"
+		android:id="@+id/lecture_url"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/save_spot"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		android:layout_marginStart="10dp"
+		android:layout_marginEnd="10dp"
 		app:chipIcon="@drawable/ic_chip_icon"
 		app:chipStartPadding="5dp"
 		app:chipEndPadding="10dp"
-		tools:text="Informática"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+		tools:text="https://meet.google.com/rtb-oecv-iwf"/>
+</LinearLayout>

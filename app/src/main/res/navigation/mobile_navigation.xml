@@ -65,15 +65,9 @@
 		tools:layout="@layout/fragment_feedback_dialog" />
 
 	<fragment
-		android:id="@+id/nav_pdf_viewer"
-		android:name="org.grupotres.appcongreso.ui.pdf.PdfViewerFragment"
-		android:label="@string/action_pdf_viewer"
-		tools:layout="@layout/fragment_pdf_viewer"/>
-
-	<fragment
 		android:id="@+id/nav_info"
 		android:name="org.grupotres.appcongreso.ui.info.InfoFragment"
-		android:label="@string/fragment_info"
+		android:label="@string/fragment_certificate"
 		tools:layout="@layout/info_fragment"/>
 
 	<fragment

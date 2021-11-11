@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.grupotres.appcongreso.databinding.FragmentLectureDayBinding
 
-class FragmentLectureList19 : Fragment() {
+class FragmentLectureListSecondRoom : Fragment() {
 
 	private var binding: FragmentLectureDayBinding? = null
 

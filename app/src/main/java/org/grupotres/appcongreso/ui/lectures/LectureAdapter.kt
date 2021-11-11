@@ -1,9 +1,8 @@
 package org.grupotres.appcongreso.ui.lectures
 
-import android.graphics.Color
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,27 +14,14 @@ import org.grupotres.appcongreso.util.setOnClickListener
 class LectureAdapter(private val viewModel: LectureViewModel, private val navigator: INavigator) :
 	ListAdapter<LectureSpeakers, LectureAdapter.LectureViewHolder>(LectureCallback()) {
 
-	private val colors = mapOf(
-		"Construcción" to "#0000FF",
-		"Ingeniería" to "#00FF00",
-		"Minería" to "#FF0000",
-		"Big Data" to "#800080",
-		"IoT" to "#FF00FF",
-		"Seguridad Informática" to "#FF4500",
-		"Estructuras" to "#FFFF00",
-		"Ecotoxicología" to "#008080",
-		"Informática" to "#00FFFF",
-		"Geología" to "#8B0000",
-	)
-
 	inner class LectureViewHolder(private val binding: ItemLectureBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 
+		@SuppressLint("SetTextI18n")
 		fun bind(lectureSpeaker: LectureSpeakers) {
 			binding.lectureTitle.text = lectureSpeaker.lecture.title
-			binding.topic.text = lectureSpeaker.lecture.topic
-			val color = Color.parseColor(colors[lectureSpeaker.lecture.topic])
-			DrawableCompat.setTint(binding.topic.chipIcon!!, color)
+			binding.lectureTime.text = "${lectureSpeaker.lecture.startTime} - ${lectureSpeaker.lecture.endTime}"
+			binding.lectureUrl.text = lectureSpeaker.lecture.url
 		}
 	}
 

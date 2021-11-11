@@ -52,7 +52,7 @@
 	<string name="share_uc">Compartir ubicación</string>
 	<string name="fragment_map">Mapa</string>
 	<string name="action_calendar">Calendario</string>
-	<string name="save_spot">RESERVAR PUESTO</string>
+	<string name="lecture_time">RESERVAR PUESTO</string>
 
 	<!-- Preference Titles -->
 	<string name="personalisation_header">Personalización</string>
@@ -61,7 +61,7 @@
 	<string name="menu_info">Información</string>
 	<string name="menu_settings">Configuración</string>
 	<string name="fragment_settings">Configuración</string>
-	<string name="fragment_info">Información</string>
+	<string name="fragment_certificate">Solicitar certificado</string>
 
 	<!-- Info Fragment -->
 	<string name="strInversion">Inversión</string>

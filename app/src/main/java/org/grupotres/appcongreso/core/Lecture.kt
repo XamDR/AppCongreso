@@ -16,9 +16,11 @@ data class Lecture(
 	val title: String = String.Empty,
 	@ColumnInfo(name = "start_time") val startTime: String = String.Empty,
 	@ColumnInfo(name = "end_time") val endTime: String = String.Empty,
-	val description: String = String.Empty,
-	val topic: String = String.Empty,
-	val url: String = String.Empty
+	val description: String? = null,
+	val url: String? = null,
+	@ColumnInfo(name = "sala") val room: String = String.Empty,
+	@ColumnInfo(name = "diaPonencia") val day: String = String.Empty,
+	@ColumnInfo(name = "confirmar") val isConfirmed: Boolean? = null
 ) : Parcelable {
 
 	@IgnoredOnParcel
