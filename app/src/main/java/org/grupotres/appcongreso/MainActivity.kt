@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
@@ -21,6 +22,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import coil.load
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -36,6 +39,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.ui.settings.SettingsManager
 import org.grupotres.appcongreso.util.setNightMode
 import org.grupotres.appcongreso.util.showSnackbar
 
@@ -43,24 +47,24 @@ class MainActivity : AppCompatActivity(), INavigator {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
+	private lateinit var manager: SettingsManager
 
 	// Google SignIn
 	private lateinit var googleSignInClient: GoogleSignInClient
 	val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-	// Firestore reference
 	val dbRef = Firebase.firestore
-
-	// Storage reference
 	val storage = Firebase.storage
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		installSplashScreen()
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.contentMain.toolbar)
 		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
+		manager = SettingsManager(this)
 
 		// We attach a listener to the drawer sliding event.
 		// If slideOffset is greater than 0 it means that the drawer is opening.
@@ -72,10 +76,27 @@ class MainActivity : AppCompatActivity(), INavigator {
 				}
 			}
 		})
+		binding.contentMain.toolbar.inflateMenu(R.menu.main)
+		showTutorial()
+	}
+
+	private fun showTutorial() {
+		if (manager.isFirstRun) {
+			TapTargetView.showFor(this, TapTarget.forToolbarMenuItem(binding.contentMain.toolbar, R.id.action_login,
+				getString(R.string.title_tutorial_btn_login), getString(R.string.tutorial_btn_login))
+				.cancelable(false)
+				.tintTarget(true), object : TapTargetView.Listener() {
+					override fun onTargetClick(view: TapTargetView) {
+						super.onTargetClick(view)
+						view.dismiss(true)
+					}
+				}
+			)
+		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
-		menuInflater.inflate(R.menu.main, menu)
+		binding.contentMain.toolbar.inflateMenu(R.menu.main)
 		return true
 	}
 
@@ -91,7 +112,6 @@ class MainActivity : AppCompatActivity(), INavigator {
 					loadUserData(null)
 					binding.root.showSnackbar(message = R.string.logout_message)
 				}
-				callback?.invoke(auth.currentUser != null)
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
@@ -129,7 +149,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 
 	private fun initGoogleSignIn() {
 		val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-			.requestIdToken(getString(  R.string.default_web_client_id))
+			.requestIdToken(getString(R.string.default_web_client_id))
 			.requestEmail()
 			.build()
 
@@ -150,7 +170,6 @@ class MainActivity : AppCompatActivity(), INavigator {
 				Log.d("MainActivity", "signInWithCredential:failure")
 				Toast.makeText(this@MainActivity, getString(R.string.error_auth), Toast.LENGTH_SHORT).show()
 			}
-			callback?.invoke(result.user != null)
 		}
 	}
 
@@ -213,12 +232,6 @@ class MainActivity : AppCompatActivity(), INavigator {
 		val signInIntent = googleSignInClient.signInIntent
 		startActivityForResult(signInIntent, RC_SIGN_IN)
 	}
-
-	fun setOnLoginListener(callback: (Boolean) -> Unit) {
-		this.callback = callback
-	}
-
-	private var callback: ((Boolean) -> Unit)? = null
 
 	companion object {
 		private const val RC_SIGN_IN = 9001

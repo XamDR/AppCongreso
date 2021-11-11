@@ -21,4 +21,15 @@
 		<item name="android:layout_height">1dp</item>
 		<item name="android:background">#BABAB8</item>
 	</style>
+
+	<style name="Theme.SplashScreenAppCongreso" parent="Theme.SplashScreen">
+		<item name="windowSplashScreenBackground">@color/primaryDarkColor</item>
+		<item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+		<item name="windowSplashScreenAnimationDuration">500</item>
+		<item name="postSplashScreenTheme">@style/Theme.AppCongreso.NoActionBar</item>
+	</style>
+
+	<style name="Theme.AppCongreso.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+	<style name="Theme.AppCongreso.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

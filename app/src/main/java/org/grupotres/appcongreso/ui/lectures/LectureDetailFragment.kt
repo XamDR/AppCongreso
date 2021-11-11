@@ -15,12 +15,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.google.android.material.bottomappbar.BottomAppBar
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.ui.phoneauth.PhoneFragment
+import org.grupotres.appcongreso.ui.settings.SettingsManager
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
@@ -29,7 +32,7 @@ class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
 	private val viewModel by viewModels<ResourceViewModel>()
-	private val args: LectureListFragmentArgs by navArgs()
+	private val args by navArgs<LectureListFragmentArgs>()
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
@@ -40,8 +43,6 @@ class LectureDetailFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		initLectureDetails()
-		mainActivity.setOnLoginListener { setupBottomMenu(it) }
-		setupBottomMenu(mainActivity.auth.currentUser != null)
 		binding?.speakerPhoto?.setOnClickListener {
 			val id = (it as ImageView).tag
 			val speaker = args.lectureSpeaker.speakers.first { speaker -> speaker.id == id }
@@ -54,6 +55,24 @@ class LectureDetailFragment : Fragment() {
 		binding?.actionResources?.setOnClickListener { downloadResources() }
 		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
 		binding?.actionFeedback?.setOnClickListener { showDialogFeedback() }
+	}
+
+	override fun onStart() {
+		super.onStart()
+		val manager = SettingsManager(requireContext())
+
+		if (manager.isFirstRun) {
+			manager.isFirstRun = false
+
+			TapTargetSequence(mainActivity).targets(
+				TapTarget.forView(binding?.actionCalendar!!, getString(R.string.title_tutorial_btn_calendar), getString(R.string.tutorial_btn_calendar))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.actionResources!!, getString(R.string.title_tutorial_btn_resources), getString(R.string.tutorial_btn_resources))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.btnEnroll!!, getString(R.string.title_tutorial_btn_enroll), getString(R.string.tutorial_btn_enroll))
+					.cancelable(false).tintTarget(true),
+			).start()
+		}
 	}
 
 	override fun onDestroyView() {
@@ -69,12 +88,6 @@ class LectureDetailFragment : Fragment() {
 		binding?.speakerCompany?.text = args.lectureSpeaker.speakers[0].company
 		binding?.speakerPhoto?.load(args.lectureSpeaker.speakers[0].uriPhoto)
 		binding?.speakerPhoto?.tag = args.lectureSpeaker.speakers[0].id
-	}
-
-	private fun setupBottomMenu(result: Boolean) {
-		binding?.actionResources?.visibility = if (result) View.VISIBLE else View.GONE
-		binding?.empty?.visibility = if (result) View.VISIBLE else View.GONE
-		binding?.bottomMenu?.fabAlignmentMode = if (result) BottomAppBar.FAB_ALIGNMENT_MODE_CENTER else BottomAppBar.FAB_ALIGNMENT_MODE_END
 	}
 
 	private fun addToCalendar(lecture: Lecture) {

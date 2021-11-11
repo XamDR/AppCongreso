@@ -7,12 +7,13 @@
 	tools:context=".ui.lectures.LectureDetailFragment">
 
 	<androidx.core.widget.NestedScrollView
+		android:id="@+id/container"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
 		<androidx.constraintlayout.widget.ConstraintLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:paddingBottom="10dp">
 
 			<TextView
@@ -107,18 +108,6 @@
 				app:layout_constraintStart_toEndOf="@id/speaker_photo"
 				app:layout_constraintTop_toBottomOf="@+id/speaker_name"
 				tools:text="Universidad Continental"/>
-
-			<TextView
-				android:id="@+id/promoter"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="20dp"
-				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-				android:textColor="?attr/colorAccent"
-				android:text="@string/promoter"
-				app:layout_constraintTop_toBottomOf="@id/speaker_photo"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintStart_toStartOf="parent"/>
 		</androidx.constraintlayout.widget.ConstraintLayout>
 	</androidx.core.widget.NestedScrollView>
 
@@ -128,10 +117,11 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom"
 		android:gravity="center"
-		app:layout_anchorGravity="start"
+		app:layout_anchorGravity="bottom"
+		app:layout_anchor="@id/container"
 		app:hideOnScroll="true"
 		app:fabAnimationMode="scale"
-		app:fabAlignmentMode="end"
+		app:fabAlignmentMode="center"
 		app:contentInsetEnd="16dp"
 		app:contentInsetStart="16dp">
 
@@ -164,8 +154,7 @@
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:background="@android:color/transparent"
-				tools:ignore="ContentDescription"
-				android:visibility="gone"/>
+				tools:ignore="ContentDescription"/>
 
 			<ImageButton
 				android:id="@+id/action_feedback"
@@ -184,8 +173,7 @@
 				android:layout_weight="1"
 				app:srcCompat="@drawable/ic_resources"
 				android:background="?attr/selectableItemBackgroundBorderless"
-				android:contentDescription="@string/resources"
-				android:visibility="gone"/>
+				android:contentDescription="@string/resources"/>
 		</LinearLayout>
 	</com.google.android.material.bottomappbar.BottomAppBar>
 

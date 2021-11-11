@@ -120,4 +120,12 @@
 	<string name="features"><![CDATA[ La app te permitirá:<br /> &#8226; Autenticarte para acceder a los beneficios de usuarios registrados.<br /> &#8226; Conocer los detalles para la inscripción en el IV Congreso de Ingeniería.<br /> &#8226; Visualizar información de ponencias y ponentes.<br /> &#8226; Guardar recordatorios en el calendario de las ponencias que te interesen.<br />  &#8226; Descargar de materiales y certificados de participación.<br />]]></string>
 	<string name="next">Siguiente</string>
 
+	<string name="title_tutorial_btn_login">Iniciar sesión</string>
+	<string name="tutorial_btn_login">Has clic para iniciar sesión en tu cuenta de Google.</string>
+	<string name="title_tutorial_btn_calendar">Calendario</string>
+	<string name="title_tutorial_btn_enroll">Acceder</string>
+	<string name="title_tutorial_btn_resources">Recursos</string>
+	<string name="tutorial_btn_calendar">Has clic aquí para guardar la ponencia en tu calendario de Google.</string>
+	<string name="tutorial_btn_enroll">Has clic aquí para acceder a una ponencia.</string>
+	<string name="tutorial_btn_resources">Has clic aquí para descargar los recursos de una ponencia.</string>
 </resources>
