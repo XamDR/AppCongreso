@@ -31,12 +31,15 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_margin="20dp"
+			android:gravity="center"
+			android:drawablePadding="5dp"
 			android:maxLines="1"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
 			android:textStyle="italic"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/lecture_title"
-			tools:text="Fecha: 21/11/2021 9:00 a.m. - 10:00 a.m." />
+			app:drawableStartCompat="@drawable/ic_save_spot"
+			tools:text="9:00 a.m. - 10:00 a.m." />
 
 		<TextView
 			android:id="@+id/lecture_detail"
@@ -132,6 +135,7 @@
 			android:drawablePadding="5dp"
 			android:text="@string/feedback"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+			android:textColor="?attr/colourizedTextPreferenceColor"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/resources"
 			app:drawableStartCompat="@drawable/ic_feedback"/>
