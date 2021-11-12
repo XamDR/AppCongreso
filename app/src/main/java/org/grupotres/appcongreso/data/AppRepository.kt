@@ -5,11 +5,7 @@ import androidx.room.Room
 
 class AppRepository(context: Context) {
 
-	suspend fun getLectures() = appDao.getLectures()
-
-	suspend fun getSpeakers() = appDao.getSpeakers()
-
-	suspend fun getLectureWithSpeakers() = appDao.getLecturesWithSpeakers()
+	fun getLectureWithSpeakersByRoom(room: String) = appDao.getLecturesWithSpeakersByRoom(room)
 
 	private val dbName = "app-database"
 

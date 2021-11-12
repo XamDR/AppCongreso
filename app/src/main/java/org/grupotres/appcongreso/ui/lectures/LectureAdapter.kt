@@ -1,24 +1,21 @@
 package org.grupotres.appcongreso.ui.lectures
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.LectureSpeakers
 import org.grupotres.appcongreso.databinding.ItemLectureBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setOnClickListener
 
-class LectureAdapter(private val viewModel: LectureViewModel, private val navigator: INavigator) :
+class LectureAdapter(private val navigator: INavigator) :
 	ListAdapter<LectureSpeakers, LectureAdapter.LectureViewHolder>(LectureCallback()) {
 
 	inner class LectureViewHolder(private val binding: ItemLectureBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 
-		@SuppressLint("SetTextI18n")
 		fun bind(lectureSpeaker: LectureSpeakers) {
 			binding.lectureTitle.text = lectureSpeaker.lecture.title
 			binding.lectureTime.text = lectureSpeaker.lecture.getDate()
@@ -40,7 +37,7 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 	}
 
 	override fun onBindViewHolder(holder: LectureViewHolder, position: Int) {
-		val lecture = viewModel.lectures.value?.get(position)
+		val lecture = getItem(position)
 		lecture?.let { holder.bind(it) }
 	}
 

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import org.grupotres.appcongreso.data.AppRepository
 import org.grupotres.appcongreso.databinding.FragmentLectureDayBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.util.mainActivity
 
 class FragmentLectureFirstRoom : Fragment() {
 
@@ -25,9 +26,9 @@ class FragmentLectureFirstRoom : Fragment() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		firstDayAdapter = LectureAdapter(viewModel, requireActivity() as INavigator)
-		secondDayAdapter = LectureAdapter(viewModel, requireActivity() as INavigator)
-		thirdDayAdapter = LectureAdapter(viewModel, requireActivity() as INavigator)
+		firstDayAdapter = LectureAdapter(mainActivity as INavigator)
+		secondDayAdapter = LectureAdapter(mainActivity as INavigator)
+		thirdDayAdapter = LectureAdapter(mainActivity as INavigator)
 		firstDayHeaderAdapter = HeaderLectureAdapter("Miércoles 17")
 		secondDayHeaderAdapter = HeaderLectureAdapter("Jueves 18")
 		thirdDayHeaderAdapter = HeaderLectureAdapter("Viernes 19")
@@ -59,7 +60,7 @@ class FragmentLectureFirstRoom : Fragment() {
 	}
 
 	private fun setupRecyclerView() {
-		viewModel.lectures.observe(viewLifecycleOwner) {
+		viewModel.fetchLecturesByRoom("Sala1").observe(viewLifecycleOwner) {
 			firstDayAdapter.submitList(it.filter { l -> l.lecture.day == "Miercoles" })
 			secondDayAdapter.submitList(it.filter { l -> l.lecture.day == "Jueves" })
 			thirdDayAdapter.submitList(it.filter { l -> l.lecture.day == "Viernes" })

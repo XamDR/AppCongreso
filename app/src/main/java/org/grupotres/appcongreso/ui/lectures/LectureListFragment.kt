@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
+import org.grupotres.appcongreso.data.AppRepository
 import org.grupotres.appcongreso.databinding.FragmentLecturesBinding
 
 class LectureListFragment : Fragment() {
 
 	private var binding: FragmentLecturesBinding? = null
 	private lateinit var adapter: LectureStateAdapter
-
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		binding = FragmentLecturesBinding.inflate(inflater, container, false)
