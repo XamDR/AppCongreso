@@ -41,6 +41,7 @@
 	<string name="lecture">lecture</string>
 	<string name="calendar">calendar</string>
 	<string name="lecture_date_time">Fecha: %s</string>
+	<string name="lecture_time">Hora: %s</string>
 	<string name="lecture_url">Enlace: %s</string>
 	<string name="speaker_name">%s\u0020\u0020</string>
 	<string name="map">Ver ubicación</string>
@@ -52,7 +53,6 @@
 	<string name="share_uc">Compartir ubicación</string>
 	<string name="fragment_map">Mapa</string>
 	<string name="action_calendar">Calendario</string>
-	<string name="lecture_time">RESERVAR PUESTO</string>
 
 	<!-- Preference Titles -->
 	<string name="personalisation_header">Personalización</string>
@@ -93,7 +93,7 @@
 	<string name="os_theme">Predeterminado del Sistema</string>
 	<string name="devs">Universidad Continental</string>
 	<string name="agenda">Agenda</string>
-	<string name="feedback">Evaluar</string>
+	<string name="feedback">Calificar ponencia</string>
 	<string name="comment_title">¿Cómo califica la ponencia?</string>
 	<string name="send">Enviar</string>
 	<string name="placeholder">Escribe tu comentario</string>

@@ -5,14 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigator
@@ -29,7 +26,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -65,16 +61,6 @@ class MainActivity : AppCompatActivity(), INavigator {
 		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
 		manager = SettingsManager(this)
-
-		// We attach a listener to the drawer sliding event.
-		// If slideOffset is greater than 0 it means that the drawer is opening.
-		binding.drawerLayout.addDrawerListener(object: DrawerLayout.SimpleDrawerListener() {
-			override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-				if (slideOffset > 0 && auth.currentUser != null) {
-					loadUserData(auth.currentUser!!)
-				}
-			}
-		})
 		binding.contentMain.toolbar.inflateMenu(R.menu.main)
 	}
 
@@ -100,7 +86,6 @@ class MainActivity : AppCompatActivity(), INavigator {
 				}
 				else {
 					auth.signOut()
-					loadUserData(null)
 					binding.root.showSnackbar(message = R.string.logout_message)
 				}
 				true
@@ -154,29 +139,13 @@ class MainActivity : AppCompatActivity(), INavigator {
 
 			if (result.user != null) {
 				Log.d("MainActivity", "signInWithCredential:success")
-				loadUserData(result.user!!)
+				avatar.load(result?.user?.photoUrl)
 			}
 			else {
 				Log.d("MainActivity", "signInWithCredential:failure")
 				Toast.makeText(this@MainActivity, getString(R.string.error_auth), Toast.LENGTH_SHORT).show()
 			}
 		}
-	}
-
-	private fun loadUserData(user: FirebaseUser?) {
-//		binding.navView.findViewById<ImageView>(R.id.user_avatar).apply {
-//			load(user?.photoUrl)
-//			visibility = if (user != null) View.VISIBLE else View.GONE
-//		}
-//		binding.navView.findViewById<TextView>(R.id.user_name).apply {
-//			text = user?.displayName
-//			visibility = if (user != null) View.VISIBLE else View.GONE
-//		}
-//		binding.navView.findViewById<TextView>(R.id.user_email).apply {
-//			text = user?.email
-//			visibility = if (user != null) View.VISIBLE else View.GONE
-//		}
-		avatar.load(user?.photoUrl)
 	}
 
 	private fun setupNavigation() {

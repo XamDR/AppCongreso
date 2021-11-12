@@ -27,7 +27,8 @@ data class Lecture(
 	@Ignore val resources: List<String>? = null
 
 	fun getDate(): String {
+		val startTimeWithoutDate = startTime.replaceBefore(" ", "")
 		val endTimeWithoutDate = endTime.replaceBefore(" ", "")
-		return "$startTime –$endTimeWithoutDate"
+		return "$startTimeWithoutDate –$endTimeWithoutDate"
 	}
 }

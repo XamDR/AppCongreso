@@ -31,7 +31,7 @@ android {
 
 	defaultConfig {
 		applicationId "org.grupotres.appcongreso"
-		minSdkVersion 21
+		minSdkVersion 23
 		targetSdkVersion 31
 		versionCode 1
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"

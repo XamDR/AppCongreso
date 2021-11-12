@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.core.LectureSpeakers
 import org.grupotres.appcongreso.databinding.ItemLectureBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
@@ -20,7 +21,7 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 		@SuppressLint("SetTextI18n")
 		fun bind(lectureSpeaker: LectureSpeakers) {
 			binding.lectureTitle.text = lectureSpeaker.lecture.title
-			binding.lectureTime.text = "${lectureSpeaker.lecture.startTime} - ${lectureSpeaker.lecture.endTime}"
+			binding.lectureTime.text = lectureSpeaker.lecture.getDate()
 			binding.lectureUrl.text = lectureSpeaker.lecture.url
 		}
 	}
