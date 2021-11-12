@@ -2,7 +2,7 @@
 	<string name="app_name">AppCongreso</string>
 	<string name="navigation_drawer_open">Open navigation drawer</string>
 	<string name="navigation_drawer_close">Close navigation drawer</string>
-	<string name="nav_header_title">Android Studio</string>
+	<string name="nav_header_title">III Congreso Nacional de Ingeniería 2021</string>
 	<string name="nav_header_subtitle">android.studio@android.com</string>
 	<string name="nav_header_desc">Navigation header</string>
 	<string name="action_settings">Settings</string>
@@ -129,4 +129,5 @@
 	<string name="tutorial_btn_enroll">Has clic aquí para acceder a una ponencia.</string>
 	<string name="tutorial_btn_resources">Has clic aquí para descargar los recursos de una ponencia.</string>
 	<string name="tos_privacy">Condiciones y Privacidad</string>
+	<string name="logo_uc">Footer</string>
 </resources>

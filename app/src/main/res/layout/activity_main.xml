@@ -22,5 +22,14 @@
 		android:fitsSystemWindows="true"
 		app:headerLayout="@layout/nav_header_main"
 		app:itemIconTint="?attr/colorOnSurface"
-		app:menu="@menu/activity_main_drawer" />
+		app:menu="@menu/activity_main_drawer" >
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:layout_gravity="bottom|center_horizontal"
+			android:contentDescription="@string/logo_uc"
+			android:src="@drawable/ic_launcher_foreground"/>
+	</com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
