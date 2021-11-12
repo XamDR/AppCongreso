@@ -1,6 +1,8 @@
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<PreferenceCategory app:title="@string/personalisation_header">
+	<PreferenceCategory
+		app:title="@string/personalisation_header"
+		app:iconSpaceReserved="false">
 
 		<ListPreference
 			app:defaultValue="-1"
@@ -11,14 +13,24 @@
 			app:dialogTitle="@string/app_theme_title"
 			app:summary="%s"
 			app:icon="@drawable/ic_app_theme"/>
+
+		<CheckBoxPreference
+			app:defaultValue="true"
+			app:key="time_zone"
+			app:singleLineTitle="false"
+			app:title="@string/settings_time_zone"
+			app:iconSpaceReserved="false"
+			app:widgetLayout="@layout/switch_preference_widget_layout"/>
 	</PreferenceCategory>
 
-	<PreferenceCategory app:title="@string/about_header">
+	<PreferenceCategory
+		app:title="@string/about_header"
+		app:iconSpaceReserved="false">
 
 		<org.grupotres.appcongreso.ui.settings.ColourizedTextPreference
 			app:key="tos_privacy"
 			app:title="@string/tos_privacy"
-			app:icon="@drawable/ic_tos_privacy"/>
+			app:iconSpaceReserved="false"/>
 
 		<Preference
 			app:key="version"

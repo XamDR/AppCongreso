@@ -130,4 +130,5 @@
 	<string name="tutorial_btn_resources">Has clic aquí para descargar los recursos de una ponencia.</string>
 	<string name="tos_privacy">Condiciones y Privacidad</string>
 	<string name="logo_uc">Footer</string>
+	<string name="settings_time_zone">Eventos en zona horaria del Pacífico (UTC-5)</string>
 </resources>
