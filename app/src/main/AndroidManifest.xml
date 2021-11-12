@@ -40,6 +40,8 @@
 			android:value="AIzaSyD5U4CyIcfTk6gb3sFUVsVYrnEqQ0QLTrU" />
 
 		<activity android:name=".SplashActivity"
+			android:exported="true"
+			android:noHistory="true"
 			android:theme="@style/Theme.AppCongreso.NoActionBar">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
