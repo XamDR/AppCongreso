@@ -7,27 +7,52 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.grupotres.appcongreso.core.LectureSpeakers
 import org.grupotres.appcongreso.databinding.ItemLectureBinding
+import org.grupotres.appcongreso.databinding.LectureListHeaderBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setOnClickListener
 
 class LectureAdapter(private val navigator: INavigator) :
-	ListAdapter<LectureSpeakers, LectureAdapter.LectureViewHolder>(LectureCallback()) {
+	ListAdapter<LectureSpeakers, BaseViewHolder>(LectureCallback()) {
 
-	inner class LectureViewHolder(private val binding: ItemLectureBinding) :
-		RecyclerView.ViewHolder(binding.root) {
+	inner class LectureViewHolder(private val binding: ItemLectureBinding) : BaseViewHolder(binding) {
 
-		fun bind(lectureSpeaker: LectureSpeakers) {
+		override fun bind(lectureSpeaker: LectureSpeakers) {
 			binding.lectureTitle.text = lectureSpeaker.lecture.title
 			binding.lectureTime.text = lectureSpeaker.lecture.getDate()
-//			binding.lectureUrl.text = lectureSpeaker.lecture.url
 		}
 	}
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LectureViewHolder {
-		val binding = ItemLectureBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-		val holder = LectureViewHolder(binding)
-		holder.setOnClickListener { position, _ -> goToLectureDetail(position) }
-		return holder
+	inner class HeaderViewHolder(private val binding: LectureListHeaderBinding) : BaseViewHolder(binding) {
+
+		override fun bind(lectureSpeaker: LectureSpeakers) {
+			binding.headerTitle.text = lectureSpeaker.lecture.title
+		}
+	}
+
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+		return if (viewType == HEADER_VIEW) {
+			val binding = LectureListHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+			return HeaderViewHolder(binding)
+		}
+		else {
+			val binding = ItemLectureBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+			val holder = LectureViewHolder(binding)
+			holder.setOnClickListener { position, _ -> goToLectureDetail(position) }
+		}
+	}
+
+	override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+		val lecture = getItem(position)
+		lecture?.let { holder.bind(it) }
+	}
+
+	override fun getItemViewType(position: Int) = if (getItem(position).lecture.isHeader) HEADER_VIEW else ITEM_VIEW
+
+	override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+		super.onAttachedToRecyclerView(recyclerView)
+		recyclerView.addItemDecoration(StickyHeaderDecoration(recyclerView) { position ->
+			getItemViewType(position) == HEADER_VIEW
+		})
 	}
 
 	private fun goToLectureDetail(position: Int) {
@@ -36,17 +61,17 @@ class LectureAdapter(private val navigator: INavigator) :
 		navigator.navigate(navDirections)
 	}
 
-	override fun onBindViewHolder(holder: LectureViewHolder, position: Int) {
-		val lecture = getItem(position)
-		lecture?.let { holder.bind(it) }
-	}
-
 	class LectureCallback : DiffUtil.ItemCallback<LectureSpeakers>() {
 
 		override fun areItemsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
-				= oldLecture.lecture.id == newLecture.lecture.id
+			= oldLecture.lecture.id == newLecture.lecture.id
 
 		override fun areContentsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
-				= oldLecture == newLecture
+			= oldLecture == newLecture
+	}
+
+	companion object {
+		const val HEADER_VIEW = 0
+		const val ITEM_VIEW = 1
 	}
 }

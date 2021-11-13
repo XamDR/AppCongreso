@@ -1,59 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:background="@drawable/recyclerview_item_background"
-	android:orientation="vertical"
-	android:paddingTop="10dp"
-	android:paddingBottom="10dp"
-	tools:context=".ui.lectures.LectureListFragment">
+	android:layout_margin="10dp"
+	app:cardCornerRadius="5dp"
+	app:cardElevation="2dp">
 
-	<TextView
-		android:id="@+id/lecture_time"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="5dp"
-		android:layout_marginBottom="5dp"
-		android:layout_marginStart="10dp"
-		android:layout_marginEnd="10dp"
-		android:gravity="center"
-		android:padding="3dp"
-		android:maxLines="1"
-		android:drawablePadding="5dp"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-		android:textStyle="italic"
-		app:drawableStartCompat="@drawable/ic_save_spot"
-		tools:text="9:00 a.m. - 10:00 a.m."/>
+<!--	<View-->
+<!--		android:layout_width="match_parent"-->
+<!--		android:layout_height="5dp"-->
+<!--		android:background="?attr/colorPrimary"/>-->
 
-	<TextView
-		android:id="@+id/lecture_title"
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="5dp"
-		android:layout_marginBottom="5dp"
-		android:layout_marginStart="10dp"
-		android:layout_marginEnd="10dp"
-		android:singleLine="false"
-		android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-		android:textStyle="bold"
-		android:justificationMode="inter_word"
-		tools:text="@string/lecture_title_tools"
-		tools:targetApi="o" />
+		android:layout_height="match_parent"
+		android:background="@drawable/recyclerview_item_background"
+		android:orientation="vertical"
+		android:paddingTop="10dp"
+		android:paddingBottom="10dp"
+		tools:context=".ui.lectures.LectureListFragment">
 
-<!--	<com.google.android.material.chip.Chip-->
-<!--		android:id="@+id/lecture_url"-->
-<!--		android:layout_width="wrap_content"-->
-<!--		android:layout_height="wrap_content"-->
-<!--		android:layout_marginTop="5dp"-->
-<!--		android:layout_marginBottom="5dp"-->
-<!--		android:layout_marginStart="10dp"-->
-<!--		android:layout_marginEnd="10dp"-->
-<!--		android:textColor="@color/white"-->
-<!--		app:chipBackgroundColor="?attr/colourizedTextPreferenceColor"-->
-<!--		app:chipIcon="@drawable/ic_chip_icon"-->
-<!--		app:chipStartPadding="5dp"-->
-<!--		app:chipEndPadding="10dp"-->
-<!--		tools:text="https://meet.google.com/rtb-oecv-iwf"/>-->
-</LinearLayout>
+		<TextView
+			android:id="@+id/lecture_time"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:gravity="center"
+			android:padding="3dp"
+			android:maxLines="1"
+			android:drawablePadding="5dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			android:textStyle="italic"
+			app:drawableStartCompat="@drawable/ic_save_spot"
+			tools:text="9:00 a.m. - 10:00 a.m."/>
+
+		<TextView
+			android:id="@+id/lecture_title"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:singleLine="false"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+			android:textStyle="bold"
+			android:justificationMode="inter_word"
+			tools:text="@string/lecture_title_tools"
+			tools:targetApi="o" />
+
+		<!--	<com.google.android.material.chip.Chip-->
+		<!--		android:id="@+id/lecture_url"-->
+		<!--		android:layout_width="wrap_content"-->
+		<!--		android:layout_height="wrap_content"-->
+		<!--		android:layout_marginTop="5dp"-->
+		<!--		android:layout_marginBottom="5dp"-->
+		<!--		android:layout_marginStart="10dp"-->
+		<!--		android:layout_marginEnd="10dp"-->
+		<!--		android:textColor="@color/white"-->
+		<!--		app:chipBackgroundColor="?attr/colourizedTextPreferenceColor"-->
+		<!--		app:chipIcon="@drawable/ic_chip_icon"-->
+		<!--		app:chipStartPadding="5dp"-->
+		<!--		app:chipEndPadding="10dp"-->
+		<!--		tools:text="https://meet.google.com/rtb-oecv-iwf"/>-->
+	</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

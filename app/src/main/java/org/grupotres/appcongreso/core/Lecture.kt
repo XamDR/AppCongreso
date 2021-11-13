@@ -20,7 +20,8 @@ data class Lecture(
 	val url: String? = null,
 	@ColumnInfo(name = "sala") val room: String = String.Empty,
 	@ColumnInfo(name = "diaPonencia") val day: String = String.Empty,
-	@ColumnInfo(name = "confirmar") val isConfirmed: Boolean? = null
+	@ColumnInfo(name = "confirmar") val isConfirmed: Boolean? = null,
+	@ColumnInfo(name = "esTitulo") val isHeader: Boolean = false
 ) : Parcelable {
 
 	@IgnoredOnParcel

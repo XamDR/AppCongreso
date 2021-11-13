@@ -32,6 +32,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.util.debug
 import org.grupotres.appcongreso.util.showSnackbar
 
 class MainActivity : AppCompatActivity(), INavigator {
@@ -131,11 +132,11 @@ class MainActivity : AppCompatActivity(), INavigator {
 			val result = auth.signInWithCredential(credential).await()
 
 			if (result.user != null) {
-				Log.d("MainActivity", "signInWithCredential:success")
+				debug("MainActivity", "signInWithCredential:success")
 				avatar.load(result?.user?.photoUrl)
 			}
 			else {
-				Log.d("MainActivity", "signInWithCredential:failure")
+				debug("MainActivity", "signInWithCredential:failure")
 				Toast.makeText(this@MainActivity, getString(R.string.error_auth), Toast.LENGTH_SHORT).show()
 			}
 		}

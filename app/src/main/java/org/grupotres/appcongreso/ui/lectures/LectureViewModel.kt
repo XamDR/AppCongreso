@@ -6,5 +6,5 @@ import org.grupotres.appcongreso.data.AppRepository
 
 class LectureViewModel(private val repository: AppRepository) : ViewModel() {
 
-	fun fetchLecturesByRoom(room: String) = repository.getLectureWithSpeakersByRoom(room).asLiveData()
+	fun fetchLecturesByRoom(vararg rooms: String) = repository.getLectureWithSpeakersByRoom(*rooms).asLiveData()
 }
