@@ -9,7 +9,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigator
@@ -18,7 +17,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.preference.PreferenceManager
 import coil.load
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -34,15 +32,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
-import org.grupotres.appcongreso.ui.settings.SettingsManager
-import org.grupotres.appcongreso.util.setNightMode
 import org.grupotres.appcongreso.util.showSnackbar
 
 class MainActivity : AppCompatActivity(), INavigator {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
-	private lateinit var manager: SettingsManager
 	private lateinit var avatar: ImageView
 
 	// Google SignIn
@@ -54,13 +49,11 @@ class MainActivity : AppCompatActivity(), INavigator {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		installSplashScreen()
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.contentMain.toolbar)
-		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
+//		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
-		manager = SettingsManager(this)
 		binding.contentMain.toolbar.inflateMenu(R.menu.main)
 	}
 

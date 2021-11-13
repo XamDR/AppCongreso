@@ -14,13 +14,13 @@
 			app:summary="%s"
 			app:icon="@drawable/ic_app_theme"/>
 
-		<CheckBoxPreference
-			app:defaultValue="true"
-			app:key="time_zone"
-			app:singleLineTitle="false"
-			app:title="@string/settings_time_zone"
-			app:iconSpaceReserved="false"
-			app:widgetLayout="@layout/switch_preference_widget_layout"/>
+<!--		<CheckBoxPreference-->
+<!--			app:defaultValue="true"-->
+<!--			app:key="time_zone"-->
+<!--			app:singleLineTitle="false"-->
+<!--			app:title="@string/settings_time_zone"-->
+<!--			app:iconSpaceReserved="false"-->
+<!--			app:widgetLayout="@layout/switch_preference_widget_layout"/>-->
 	</PreferenceCategory>
 
 	<PreferenceCategory
