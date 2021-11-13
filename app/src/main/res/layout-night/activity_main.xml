@@ -31,6 +31,6 @@
 			android:layout_margin="20dp"
 			android:contentDescription="@string/logo_uc"
 			android:padding="5dp"
-			android:src="@drawable/logo_uc_negro_transparente"/>
+			android:src="@drawable/logo_uc_blanco_transparente"/>
 	</com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

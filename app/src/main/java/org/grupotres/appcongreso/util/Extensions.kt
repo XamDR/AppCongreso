@@ -1,6 +1,10 @@
 package org.grupotres.appcongreso.util
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -48,3 +52,9 @@ fun View.showSnackbar(@StringRes message: Int,
 }
 
 fun debug(tag: String, msg: Any?) = android.util.Log.d(tag, msg.toString())
+
+fun copyTextToClipboard(context: Context, text: CharSequence) {
+	val manager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+	manager.setPrimaryClip(ClipData.newPlainText("código", text))
+	Toast.makeText(context, "Código copiado al Portapapeles", Toast.LENGTH_SHORT).show()
+}

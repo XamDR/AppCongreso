@@ -42,18 +42,18 @@
 		tools:text="@string/lecture_title_tools"
 		tools:targetApi="o" />
 
-	<com.google.android.material.chip.Chip
-		android:id="@+id/lecture_url"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="5dp"
-		android:layout_marginBottom="5dp"
-		android:layout_marginStart="10dp"
-		android:layout_marginEnd="10dp"
-		android:textColor="@color/white"
-		app:chipBackgroundColor="?attr/colourizedTextPreferenceColor"
-		app:chipIcon="@drawable/ic_chip_icon"
-		app:chipStartPadding="5dp"
-		app:chipEndPadding="10dp"
-		tools:text="https://meet.google.com/rtb-oecv-iwf"/>
+<!--	<com.google.android.material.chip.Chip-->
+<!--		android:id="@+id/lecture_url"-->
+<!--		android:layout_width="wrap_content"-->
+<!--		android:layout_height="wrap_content"-->
+<!--		android:layout_marginTop="5dp"-->
+<!--		android:layout_marginBottom="5dp"-->
+<!--		android:layout_marginStart="10dp"-->
+<!--		android:layout_marginEnd="10dp"-->
+<!--		android:textColor="@color/white"-->
+<!--		app:chipBackgroundColor="?attr/colourizedTextPreferenceColor"-->
+<!--		app:chipIcon="@drawable/ic_chip_icon"-->
+<!--		app:chipStartPadding="5dp"-->
+<!--		app:chipEndPadding="10dp"-->
+<!--		tools:text="https://meet.google.com/rtb-oecv-iwf"/>-->
 </LinearLayout>

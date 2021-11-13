@@ -131,4 +131,10 @@
 	<string name="tos_privacy">Condiciones y Privacidad</string>
 	<string name="logo_uc">Footer</string>
 	<string name="settings_time_zone">Eventos en zona horaria del Pacífico (UTC-5)</string>
+	<string name="banner">Banner Congreso</string>
+	<string name="link_room">https://bit.ly/3qyXchm</string>
+	<string name="link_first_room">https://bit.ly/3DbbVlW</string>
+	<string name="link_second_room">https://bit.ly/3qyXchm</string>
+	<string name="key_first_room">404018</string>
+	<string name="key_second_room">208313</string>
 </resources>

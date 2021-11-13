@@ -19,7 +19,7 @@ class LectureAdapter(private val navigator: INavigator) :
 		fun bind(lectureSpeaker: LectureSpeakers) {
 			binding.lectureTitle.text = lectureSpeaker.lecture.title
 			binding.lectureTime.text = lectureSpeaker.lecture.getDate()
-			binding.lectureUrl.text = lectureSpeaker.lecture.url
+//			binding.lectureUrl.text = lectureSpeaker.lecture.url
 		}
 	}
 

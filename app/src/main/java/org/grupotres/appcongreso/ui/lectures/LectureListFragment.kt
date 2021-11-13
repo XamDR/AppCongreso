@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
-import org.grupotres.appcongreso.data.AppRepository
 import org.grupotres.appcongreso.databinding.FragmentLecturesBinding
 
 class LectureListFragment : Fragment() {
@@ -33,7 +31,7 @@ class LectureListFragment : Fragment() {
 	private fun setupViewPagerWithTabLayout() {
 		adapter = LectureStateAdapter(this, listOf(
 			FragmentLectureFirstRoom(),
-			FragmentLectureListSecondRoom())
+			FragmentLectureSecondRoom())
 		)
 		binding?.pager?.adapter = adapter
 		TabLayoutMediator(binding?.tabLayout!!, binding?.pager!!) { tab, position ->
