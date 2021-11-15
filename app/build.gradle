@@ -11,19 +11,23 @@ def versionMajor = 1
 def versionMinor = 0
 def versionPatch = 0
 
+def readKeystoreProperties() {
+    def propsFile = rootProject.file('keystore.properties')
+    def configName = 'release'
+    if (propsFile.exists() && android.signingConfigs.hasProperty(configName)) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        android.signingConfigs[configName].storeFile = file(props['storeFile'])
+        android.signingConfigs[configName].storePassword = props['storePassword']
+        android.signingConfigs[configName].keyAlias = props['keyAlias']
+        android.signingConfigs[configName].keyPassword = props['keyPassword']
+    }
+}
+
 android {
 	signingConfigs {
-        debug {
-            storeFile file('C:\\Users\\Max\\keystores\\appcongreso.jks')
-            storePassword 'appcongreso21'
-            keyAlias 'AppCongreso'
-            keyPassword 'appcongreso21'
-        }
         realease {
-            storeFile file('C:\\Users\\Max\\keystores\\appcongreso.jks')
-            storePassword 'appcongreso21'
-            keyAlias 'AppCongreso'
-            keyPassword 'appcongreso21'
+            readKeystoreProperties()
         }
     }
     compileSdkVersion 31
