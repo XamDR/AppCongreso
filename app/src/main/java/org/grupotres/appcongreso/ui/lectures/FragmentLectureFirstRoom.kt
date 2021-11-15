@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import org.grupotres.appcongreso.R
+import edu.icontinental.congresoi40.R
+import edu.icontinental.congresoi40.databinding.FragmentLectureDayBinding
 import org.grupotres.appcongreso.data.AppRepository
-import org.grupotres.appcongreso.databinding.FragmentLectureDayBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.copyTextToClipboard
 import org.grupotres.appcongreso.util.mainActivity

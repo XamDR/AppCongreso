@@ -29,9 +29,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import edu.icontinental.congresoi40.R
+import edu.icontinental.congresoi40.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.SettingsManager
 import org.grupotres.appcongreso.util.debug

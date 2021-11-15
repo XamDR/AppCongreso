@@ -12,8 +12,8 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import edu.icontinental.congresoi40.R
 import org.grupotres.appcongreso.MainActivity
-import org.grupotres.appcongreso.R
 
 val String.Companion.Empty: String
 	get() = ""

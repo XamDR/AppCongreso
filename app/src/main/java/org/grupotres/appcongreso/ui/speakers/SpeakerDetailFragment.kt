@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
-import org.grupotres.appcongreso.R
-import org.grupotres.appcongreso.databinding.FragmentSpeakerDetailBinding
+import edu.icontinental.congresoi40.R
+import edu.icontinental.congresoi40.databinding.FragmentSpeakerDetailBinding
 import org.grupotres.appcongreso.ui.lectures.LectureDetailFragmentArgs
 
 class SpeakerDetailFragment : Fragment() {

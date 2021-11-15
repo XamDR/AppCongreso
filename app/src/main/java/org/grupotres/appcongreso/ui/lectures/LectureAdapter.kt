@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import edu.icontinental.congresoi40.databinding.ItemLectureBinding
+import edu.icontinental.congresoi40.databinding.LectureListHeaderBinding
 import org.grupotres.appcongreso.core.LectureSpeakers
-import org.grupotres.appcongreso.databinding.ItemLectureBinding
-import org.grupotres.appcongreso.databinding.LectureListHeaderBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setOnClickListener
 

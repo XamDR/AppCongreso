@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
-import org.grupotres.appcongreso.R
-import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
+import edu.icontinental.congresoi40.R
+import edu.icontinental.congresoi40.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.showSnackbar

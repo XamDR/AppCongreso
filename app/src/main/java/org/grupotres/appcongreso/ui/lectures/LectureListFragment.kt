@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
-import org.grupotres.appcongreso.databinding.FragmentLecturesBinding
+import edu.icontinental.congresoi40.databinding.FragmentLecturesBinding
 
 class LectureListFragment : Fragment() {
 

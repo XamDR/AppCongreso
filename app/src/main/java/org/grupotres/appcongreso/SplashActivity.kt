@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import edu.icontinental.congresoi40.R
 
 @SuppressLint("CustomSplashScreen")
 @Suppress("deprecation")

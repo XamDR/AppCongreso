@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import org.grupotres.appcongreso.databinding.FragmentFeedbackDialogBinding
+import edu.icontinental.congresoi40.databinding.FragmentFeedbackDialogBinding
 import org.grupotres.appcongreso.util.Empty
 import org.grupotres.appcongreso.util.mainActivity
 
