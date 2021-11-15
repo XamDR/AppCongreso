@@ -46,6 +46,7 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        signingConfig signingConfigs.realease
     }
 
 	buildTypes {
@@ -56,7 +57,7 @@ android {
                     "${defaultConfig.versionName}${versionNameSuffix}"
         }
 		release {
-            debuggable false
+            debuggable true
 			minifyEnabled true
             shrinkResources true
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

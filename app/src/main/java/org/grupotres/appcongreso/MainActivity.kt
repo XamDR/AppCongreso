@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
-import org.grupotres.appcongreso.ui.settings.SettingsManager
+import org.grupotres.appcongreso.util.SettingsManager
 import org.grupotres.appcongreso.util.debug
 import org.grupotres.appcongreso.util.showSnackbar
 
@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 				else {
 					auth.signOut()
 					binding.root.showSnackbar(message = R.string.logout_message)
+					avatar.setImageResource(R.drawable.ic_login)
 				}
 				true
 			}
@@ -154,8 +155,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
 		appBarConfiguration = AppBarConfiguration(
-			setOf(R.id.nav_lecture_list, R.id.nav_info, R.id.nav_settings),
-			binding.drawerLayout
+			setOf(R.id.nav_lecture_list, R.id.nav_info), binding.drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		binding.navView.setupWithNavController(navController)

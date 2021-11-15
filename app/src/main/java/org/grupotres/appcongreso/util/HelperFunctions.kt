@@ -52,13 +52,3 @@ fun getFileFromInternalStorage(context: Context, fileName: String): File {
 	val directory = context.filesDir
 	return File(directory, fileName)
 }
-
-/*
-fun utils (preferences: SharedPreferences){
-	val prefs: SharedPreferences = getSharedPreferences("MisPreferencias", this.MODE_PRIVATE)
-
-	val editor = prefs.edit()
-	editor.putString("email", "Dean86collis@email.com")
-	editor.putString("password", "86142DCL")
-	editor.commit()
-}*/

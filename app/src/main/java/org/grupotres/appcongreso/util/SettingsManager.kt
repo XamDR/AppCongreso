@@ -1,9 +1,8 @@
-package org.grupotres.appcongreso.ui.settings
+package org.grupotres.appcongreso.util
 
 import android.content.Context
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import org.grupotres.appcongreso.util.Empty
 
 class SettingsManager(context: Context) {
 

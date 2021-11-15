@@ -1,12 +1,9 @@
 package org.grupotres.appcongreso.ui.speakers
 
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
@@ -20,13 +17,13 @@ class SpeakerDetailFragment : Fragment() {
 	private var binding: FragmentSpeakerDetailBinding? = null
 	private val args: LectureDetailFragmentArgs by navArgs()
 
-	private val flags = mapOf(
-		"Bélgica" to R.drawable.belgium,
-		"Chile" to R.drawable.chile,
-		"Colombia" to R.drawable.colombia,
-		"México" to R.drawable.mexico,
-		"Perú" to R.drawable.peru,
-	)
+//	private val flags = mapOf(
+//		"Bélgica" to R.drawable.belgium,
+//		"Chile" to R.drawable.chile,
+//		"Colombia" to R.drawable.colombia,
+//		"México" to R.drawable.mexico,
+//		"Perú" to R.drawable.peru,
+//	)
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
@@ -48,10 +45,10 @@ class SpeakerDetailFragment : Fragment() {
 		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.toString())
 		binding?.speakerAcademicInfo?.text = args.speaker.academicInfo
 		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
-		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
-		val lineHeight = binding?.speakerName?.lineHeight
-		val bitmap = (drawable as BitmapDrawable).bitmap
-		val flag = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, lineHeight!! + 10, lineHeight + 10, true))
-		binding?.speakerName?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, flag, null)
+//		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
+//		val lineHeight = binding?.speakerName?.lineHeight
+//		val bitmap = (drawable as BitmapDrawable).bitmap
+//		val flag = BitmapDrawable(resources, Bitmap.createScaledBitmap(bitmap, lineHeight!! + 10, lineHeight + 10, true))
+//		binding?.speakerName?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, flag, null)
 	}
 }
