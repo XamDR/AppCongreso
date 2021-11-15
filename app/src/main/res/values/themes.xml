@@ -14,6 +14,8 @@
 
 		<item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>
 		<item name="colourizedTextPreferenceColor">@color/dodger_blue</item>
+		<item name="android:fontFamily">@font/neue_plak</item>
+		<item name="fontFamily">@font/neue_plak</item>
 	</style>
 
 	<style name="Theme.AppCongreso.NoActionBar">

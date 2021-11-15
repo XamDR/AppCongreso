@@ -13,6 +13,8 @@
 		<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
 		<item name="colourizedTextPreferenceColor">@color/corn_flower_blue</item>
+		<item name="android:fontFamily">@font/neue_plak</item>
+		<item name="fontFamily">@font/neue_plak</item>
 	</style>
 
 	<style name="Theme.AppCongreso.NoActionBar">

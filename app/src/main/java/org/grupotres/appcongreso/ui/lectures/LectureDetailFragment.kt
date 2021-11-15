@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-//import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-//import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
-import coil.load
 import org.grupotres.appcongreso.R
 import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
@@ -54,8 +51,9 @@ class LectureDetailFragment : Fragment() {
 		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.description
 		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
 		binding?.speakerCompany?.text = args.lectureSpeaker.speakers[0].company
-		binding?.speakerPhoto?.load(args.lectureSpeaker.speakers[0].uriPhoto)
-		binding?.speakerPhoto?.tag = args.lectureSpeaker.speakers[0].id
+		binding?.speakerCountry?.text = getString(R.string.speaker_country,
+			args.lectureSpeaker.speakers[0].country
+		)
 	}
 
 	private fun downloadResources() {

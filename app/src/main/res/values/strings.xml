@@ -137,4 +137,5 @@
 	<string name="link_second_room">https://bit.ly/3qyXchm</string>
 	<string name="key_first_room">404018</string>
 	<string name="key_second_room">208313</string>
+	<string name="speaker_country">(%s)</string>
 </resources>

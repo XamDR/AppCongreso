@@ -63,49 +63,49 @@
 			android:layout_height="wrap_content"
 			android:layout_margin="20dp"
 			android:text="@string/speaker"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
 			android:textStyle="bold"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/lecture_detail"/>
 
-		<com.google.android.material.imageview.ShapeableImageView
-			android:id="@+id/speaker_photo"
-			android:layout_width="50dp"
-			android:layout_height="50dp"
-			android:layout_margin="20dp"
-			android:contentDescription="@string/imgponente"
-			android:transitionName="photo"
-			app:layout_constraintTop_toBottomOf="@id/speaker"
-			app:layout_constraintStart_toStartOf="parent"
-			app:shapeAppearanceOverlay="@style/ShapeAppearance.Circular"
-			tools:src="@tools:sample/avatars"/>
-
 		<TextView
 			android:id="@+id/speaker_name"
-			android:layout_width="0dp"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="10dp"
-			android:layout_marginEnd="10dp"
+			android:layout_marginStart="20dp"
+			android:layout_marginEnd="5dp"
 			android:layout_marginTop="20dp"
 			android:layout_marginBottom="20dp"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="@id/speaker_photo"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toStartOf="@id/speaker_country"
 			app:layout_constraintTop_toBottomOf="@+id/speaker"
 			tools:text="Doraliz León Rojas"/>
 
 		<TextView
-			android:id="@+id/speaker_company"
-			android:layout_width="0dp"
+			android:id="@+id/speaker_country"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="10dp"
-			android:layout_marginEnd="10dp"
-			android:layout_marginTop="10dp"
+			android:layout_marginStart="5dp"
+			android:layout_marginEnd="20dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="20dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+			app:layout_constraintStart_toEndOf="@id/speaker_name"
+			app:layout_constraintTop_toBottomOf="@+id/speaker"
+			tools:text="(Perú)"/>
+
+		<TextView
+			android:id="@+id/speaker_company"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="20dp"
+			android:layout_marginEnd="20dp"
+			android:layout_marginTop="5dp"
 			android:layout_marginBottom="20dp"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="@id/speaker_photo"
+			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/speaker_name"
 			tools:text="Universidad Continental"/>
 

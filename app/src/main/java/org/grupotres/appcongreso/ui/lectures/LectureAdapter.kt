@@ -57,8 +57,12 @@ class LectureAdapter(private val navigator: INavigator) :
 
 	private fun goToLectureDetail(position: Int) {
 		val lectureSpeaker = getItem(position)
-		val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lectureSpeaker, lectureSpeaker.speakers[0])
-		navigator.navigate(navDirections)
+
+		if (lectureSpeaker.speakers.isNotEmpty()) {
+			val speaker = lectureSpeaker.speakers[0]
+			val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lectureSpeaker, speaker)
+			navigator.navigate(navDirections)
+		}
 	}
 
 	class LectureCallback : DiffUtil.ItemCallback<LectureSpeakers>() {

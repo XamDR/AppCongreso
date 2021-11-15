@@ -1,6 +1,7 @@
 package org.grupotres.appcongreso
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -32,6 +33,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.ui.settings.SettingsManager
 import org.grupotres.appcongreso.util.debug
 import org.grupotres.appcongreso.util.showSnackbar
 
@@ -40,6 +42,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
 	private lateinit var avatar: ImageView
+	private lateinit var manager: SettingsManager
 
 	// Google SignIn
 	private lateinit var googleSignInClient: GoogleSignInClient
@@ -53,9 +56,9 @@ class MainActivity : AppCompatActivity(), INavigator {
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.contentMain.toolbar)
-//		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
 		binding.contentMain.toolbar.inflateMenu(R.menu.main)
+		manager = SettingsManager(this)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -67,6 +70,10 @@ class MainActivity : AppCompatActivity(), INavigator {
 		val item = menu.findItem(R.id.action_login)
 		val rootView = item.actionView as FrameLayout
 		avatar = rootView.findViewById(R.id.user_avatar)
+
+		if (!manager.userAvatarPath.isNullOrEmpty()) {
+			avatar.load(Uri.parse(manager.userAvatarPath))
+		}
 		rootView.setOnClickListener { onOptionsItemSelected(item) }
 		return super.onPrepareOptionsMenu(menu)
 	}
@@ -133,7 +140,8 @@ class MainActivity : AppCompatActivity(), INavigator {
 
 			if (result.user != null) {
 				debug("MainActivity", "signInWithCredential:success")
-				avatar.load(result?.user?.photoUrl)
+				manager.userAvatarPath = result.user?.photoUrl.toString()
+				avatar.load(result.user?.photoUrl)
 			}
 			else {
 				debug("MainActivity", "signInWithCredential:failure")
