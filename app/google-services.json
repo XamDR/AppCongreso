@@ -1,10 +1,40 @@
 {
   "project_info": {
     "project_number": "522037512092",
+    "firebase_url": "https://pruebamillenial-e7540-default-rtdb.firebaseio.com",
     "project_id": "pruebamillenial-e7540",
     "storage_bucket": "pruebamillenial-e7540.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522037512092:android:6372e0855e2e39f425aa59",
+        "android_client_info": {
+          "package_name": "edu.icontinental.congresoi40"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522037512092-2pl69skaqqarmk481l1p8t3ic5gmi4nt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnS5mfA-uiN279OnuXUxYMHO9dZ5pk95U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522037512092-2pl69skaqqarmk481l1p8t3ic5gmi4nt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:522037512092:android:276d94a3dda6667725aa59",
@@ -14,11 +44,75 @@
       },
       "oauth_client": [
         {
-          "client_id": "522037512092-ni215q4jrcsb97krunivpq04irnbmua5.apps.googleusercontent.com",
+          "client_id": "522037512092-1i06us6c6vk4n9nsfk52jetl1858rt54.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.grupotres.appcongreso",
+            "certificate_hash": "292380516d32b3040cce90be225b79cc302abcc7"
+          }
+        },
+        {
+          "client_id": "522037512092-32ph1rrnlksner1dpm5dngkqck806fdi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.grupotres.appcongreso",
+            "certificate_hash": "b163192cd7ce2c5dcf26ace8688f8a2217bb9f43"
+          }
+        },
+        {
+          "client_id": "522037512092-5dhck1vrt8b8j3bs7q1m7eclrftjlqff.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.grupotres.appcongreso",
+            "certificate_hash": "aa3a980fb0a77002a73f73dd9290f3b7e4c652a4"
+          }
+        },
+        {
+          "client_id": "522037512092-5ggrdj6ts4kppjmrh9fd7b6gfnhac6si.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.grupotres.appcongreso",
+            "certificate_hash": "6f98c00e06421487b481ac1d43818cbc81586700"
+          }
+        },
+        {
+          "client_id": "522037512092-dfo447dk25d4oai3pni93e7603lt4435.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.grupotres.appcongreso",
+            "certificate_hash": "c81a8c09ae6369fba2a61a11a1527ae44bd17c7a"
+          }
+        },
+        {
+          "client_id": "522037512092-pheo4he8kur9u65jig9ta1ud8bl5lr5d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "org.grupotres.appcongreso",
             "certificate_hash": "0647056ab9aa149589f28958d205e5fa13251004"
+          }
+        },
+        {
+          "client_id": "522037512092-rsmfnloifd0chae293gvniq2r6j56rcc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.grupotres.appcongreso",
+            "certificate_hash": "36baaa744211493b7fcd2572706cbb2dd5d7b8ec"
+          }
+        },
+        {
+          "client_id": "522037512092-uonnagagsgirfdd0vavjj431pkaokjja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.grupotres.appcongreso",
+            "certificate_hash": "56b47ab2a629a23c9af2a2df7d987a71badaa7a5"
+          }
+        },
+        {
+          "client_id": "522037512092-uvhq48mdfhsvankaodgfb5b12tkor6nl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.grupotres.appcongreso",
+            "certificate_hash": "0a8956eacbda01eb08ad5ecf0f7aab93f43580c4"
           }
         },
         {

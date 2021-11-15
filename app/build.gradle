@@ -34,7 +34,7 @@ android {
 	buildToolsVersion "30.0.3"
 
 	defaultConfig {
-		applicationId "org.grupotres.appcongreso"
+		applicationId "edu.icontinental.congresoi40"
 		minSdkVersion 23
 		targetSdkVersion 31
 		versionCode 1
