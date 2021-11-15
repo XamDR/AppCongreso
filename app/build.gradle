@@ -26,7 +26,7 @@ def readKeystoreProperties() {
 
 android {
 	signingConfigs {
-        realease {
+        release {
             readKeystoreProperties()
         }
     }
@@ -46,7 +46,6 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
-        signingConfig signingConfigs.realease
     }
 
 	buildTypes {
@@ -63,7 +62,7 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "app_version",
                     "${defaultConfig.versionName}"
-            signingConfig signingConfigs.realease
+            signingConfig signingConfigs.release
 		}
 	}
 	compileOptions {
