@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.info.InfoFragment">
+	tools:context="org.grupotres.appcongreso.ui.info.InfoFragment">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
@@ -59,7 +59,7 @@
 			android:layout_margin="10dp"
 			android:padding="10dp"
 			android:background="@color/primaryLightColor"
-			app:layout_constraintBottom_toTopOf="@id/info_cet_recuerda"
+			app:layout_constraintBottom_toTopOf="@id/info_opc1"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/info_certificado">
@@ -82,32 +82,6 @@
 		</FrameLayout>
 
 		<TextView
-			android:id="@+id/info_cet_recuerda"
-			android:textSize="16sp"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="20dp"
-			android:layout_marginEnd="20dp"
-			android:padding="10dp"
-			android:gravity="center"
-			android:text="@string/info_cet_recuerda"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.0"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/info" />
-
-		<View
-			android:id="@+id/divider4"
-			android:layout_width="0dp"
-			android:layout_height="3dp"
-			android:layout_marginStart="20dp"
-			android:layout_marginEnd="20dp"
-			android:background="?attr/colorPrimary"
-			app:layout_constraintLeft_toLeftOf="parent"
-			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/info_cet_recuerda" />
-
-		<TextView
 			android:id="@+id/info_opc1"
 			android:textSize="14sp"
 			android:layout_width="match_parent"
@@ -116,11 +90,11 @@
 			android:layout_marginEnd="20dp"
 			android:padding="10dp"
 			android:ellipsize="end"
-			android:text="@string/info_opc1"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/info_cet_recuerda" />
+			app:layout_constraintTop_toBottomOf="@id/info"
+			tools:text="@string/info_opc1"/>
 
 		<TextView
 			android:id="@+id/info_opc2"
@@ -129,13 +103,14 @@
 			android:layout_height="wrap_content"
 			android:layout_marginStart="20dp"
 			android:layout_marginEnd="20dp"
+			android:autoLink="web"
 			android:padding="10dp"
 			android:ellipsize="end"
-			android:text="@string/info_opc2"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/info_opc1" />
+			app:layout_constraintTop_toBottomOf="@id/info_opc1"
+			tools:text="@string/info_opc2"/>
 
 		<View
 			android:id="@+id/divider5"
@@ -165,22 +140,7 @@
 			app:layout_constraintTop_toBottomOf="@id/divider5" />
 
 		<TextView
-			android:id="@+id/info_more_info"
-			android:textSize="14sp"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="20dp"
-			android:layout_marginEnd="20dp"
-			android:padding="10dp"
-			android:ellipsize="end"
-			android:text="@string/info_opc2"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.0"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/moreInfo" />
-
-		<TextView
-			android:id="@+id/info_email"
+			android:id="@+id/info_tel"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="20dp"
@@ -191,37 +151,7 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/info_more_info"
-			app:drawableStartCompat="@drawable/ic_select_option" />
-
-		<TextView
-			android:id="@+id/info_tel"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="20dp"
-			android:layout_marginEnd="20dp"
-			android:padding="3dp"
-			android:drawablePadding="10dp"
-			android:text="@string/info_tel"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.0"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/info_email"
-			app:drawableStartCompat="@drawable/ic_select_option" />
-
-		<TextView
-			android:id="@+id/info_cel"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="20dp"
-			android:layout_marginEnd="20dp"
-			android:padding="3dp"
-			android:drawablePadding="10dp"
-			android:text="@string/info_cel"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintHorizontal_bias="0.0"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/info_tel"
+			app:layout_constraintTop_toBottomOf="@id/moreInfo"
 			app:drawableStartCompat="@drawable/ic_select_option" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

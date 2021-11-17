@@ -68,12 +68,10 @@
 	<string name="info_certificado">Si deseas obtener el certificado como asistente, deberás realizar el pago</string>
 	<string name="monto_certificado">S/ 30.00</string>
 	<string name="info_cet_recuerda">"Recuerda que tienes que registrar tu participación en las ponencias que participarás. Asimismo, deberás asistir a más 50% de las ponencias para obtener la certificación como asistente."</string>
-	<string name="info_opc1">Si eres estudiante: Puedes realizar el pago indicando tu número de DNI en canales de pago autorizados: BBVA, Scotiabank, Interbank, Banbif y Caja Centro (Huancayo)</string>
-	<string name="info_opc2">Público en general: Podrás realizar el depósito en el Banco de Crédito del Perú (BCP) BCP N° 355–1618739–0–55 – CCI: 002–355–001618739055–60</string>
+	<string name="info_opc1"><![CDATA[Si eres estudiante o público en general puedes realizar el pago 24 horas después que te inscribas indicando tu DNI en: <ul><li>Pago en la ventanilla de los bancos BBVA, BCP, INTERBANK, SCOTIABANK, BANBIF y CAJA CENTRO (solo HUANCAYO).</li><li>Agentes del BBVA, INTERBANK, SCOTIABANK y AGENTES KASNET.</li><li>Pago por BANCA POR INTERNET y aplicativo móvil del BBVA, INTERBANK, SCOTIABANK, BCP Y BANBIF.</li></ul>]]></string>
+	<string name="info_opc2"><![CDATA[Solo para estudiantes UC: <ul><li>Pagos online con cualquier tarjeta sean están de crédito y débito por medio del link:</li>\nhttps://estudiantes.ucontinental.edu.pe/oficinas/tesoreria-creditos-y-cobranzas/instructivo-de-pagos/]]></string>
 	<string name="moreInfo">Más información</string>
-	<string name="info_email">Email: congresoingenieriauc@continental.edu.pe</string>
-	<string name="info_tel">Tel: (084) 480070 anexo 4</string>
-	<string name="info_cel">Cel. 995713984</string>
+	<string name="info_email">Poleth: email: pbegazo@continental.edu.pe</string>
 
 	<string name="ponente">PONENTE</string>
 
