@@ -43,7 +43,7 @@
 	<string name="lecture_date_time">Fecha: %s</string>
 	<string name="lecture_time">Hora: %s</string>
 	<string name="lecture_url">Enlace: %s</string>
-	<string name="speaker_name">%s\u0020\u0020</string>
+	<string name="speaker_name">%s (%s)</string>
 	<string name="map">Ver ubicación</string>
 	<string name="info_uc">Información sobre la Universidad Continental</string>
 	<string name="uc">Universidad Continental</string>
@@ -135,5 +135,6 @@
 	<string name="link_second_room">https://bit.ly/3qyXchm</string>
 	<string name="key_first_room">404018</string>
 	<string name="key_second_room">208313</string>
-	<string name="speaker_country">(%s)</string>
+	<string name="no_internet_msg">Parece que no tienes conexión a Internet para poder iniciar sesión.</string>
+	<string name="moderador">MODERADOR(ES)</string>
 </resources>

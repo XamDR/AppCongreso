@@ -3,6 +3,9 @@ package org.grupotres.appcongreso.util
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.net.ConnectivityManager
+import android.text.SpannableString
+import android.text.style.BulletSpan
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.ColorRes
@@ -61,5 +64,23 @@ inline fun View.doOnEachNextLayout(crossinline action: (view: View) -> Unit) {
 		action(
 			view
 		)
+	}
+}
+
+@Suppress("deprecation")
+fun isNetworkAvailable(context: Context): Boolean {
+	val connectivityManager =
+		context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+	val activeNetworkInfo = connectivityManager!!.activeNetworkInfo
+	return activeNetworkInfo != null && activeNetworkInfo.isConnected
+}
+
+fun List<String>.toBulletedList(): CharSequence {
+	return SpannableString(this.joinToString("\n")).apply {
+		this@toBulletedList.foldIndexed(0) { index, acc, span ->
+			val end = acc + span.length + if (index != this@toBulletedList.size - 1) 1 else 0
+			this.setSpan(BulletSpan(16), acc, end, 0)
+			end
+		}
 	}
 }

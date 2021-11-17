@@ -36,6 +36,7 @@ import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.SettingsManager
 import org.grupotres.appcongreso.util.debug
+import org.grupotres.appcongreso.util.isNetworkAvailable
 import org.grupotres.appcongreso.util.showSnackbar
 
 class MainActivity : AppCompatActivity(), INavigator {
@@ -83,8 +84,13 @@ class MainActivity : AppCompatActivity(), INavigator {
 		return when (item.itemId) {
 			R.id.action_login -> {
 				if (auth.currentUser == null) {
-					initGoogleSignIn()
-					showAlertDialog()
+					if (isNetworkAvailable(this)) {
+						initGoogleSignIn()
+						showAlertDialog()
+					}
+					else {
+						Toast.makeText(this, getString(R.string.no_internet_msg), Toast.LENGTH_SHORT).show()
+					}
 				}
 				else {
 					auth.signOut()

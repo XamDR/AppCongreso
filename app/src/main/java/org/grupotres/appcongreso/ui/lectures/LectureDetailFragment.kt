@@ -13,6 +13,7 @@ import edu.icontinental.congresoi40.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.showSnackbar
+import org.grupotres.appcongreso.util.toBulletedList
 
 class LectureDetailFragment : Fragment() {
 
@@ -48,12 +49,18 @@ class LectureDetailFragment : Fragment() {
 	private fun initLectureDetails() {
 		binding?.lectureTitle?.text = args.lectureSpeaker.lecture.title
 		binding?.lectureDate?.text = args.lectureSpeaker.lecture.getDate()
-		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.description
-		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
 		binding?.speakerCompany?.text = args.lectureSpeaker.speakers[0].company
-		binding?.speakerCountry?.text = getString(R.string.speaker_country,
+		binding?.speakerName?.text = getString(R.string.speaker_name,
+			args.lectureSpeaker.speakers[0].toString(),
 			args.lectureSpeaker.speakers[0].country
 		)
+		if (args.lectureSpeaker.lecture.url?.contains('|') == true) {
+			val names = args.lectureSpeaker.lecture.url?.split('|')
+			binding?.moderadorName?.text = names?.toBulletedList()
+		}
+		else {
+			binding?.moderadorName?.text = args.lectureSpeaker.lecture.url
+		}
 	}
 
 	private fun downloadResources() {

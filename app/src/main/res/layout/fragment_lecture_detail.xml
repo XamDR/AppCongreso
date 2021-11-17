@@ -4,26 +4,23 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/container"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context=".ui.lectures.LectureDetailFragment">
+	android:layout_height="match_parent">
 
-	<androidx.constraintlayout.widget.ConstraintLayout
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:orientation="vertical"
 		android:paddingBottom="10dp">
 
 		<TextView
 			android:id="@+id/lecture_title"
-			android:layout_width="0dp"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="20dp"
 			android:ellipsize="end"
 			android:maxLines="5"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
 			android:textStyle="bold|italic"
-			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
 			tools:text="La informática en el desarrollo minero en el Perú en el siglo 21" />
 
 		<TextView
@@ -36,38 +33,17 @@
 			android:maxLines="1"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
 			android:textStyle="italic"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/lecture_title"
 			app:drawableStartCompat="@drawable/ic_save_spot"
 			tools:text="9:00 a.m. - 10:00 a.m." />
 
 		<TextView
-			android:id="@+id/lecture_detail"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_margin="20dp"
-			android:singleLine="false"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-			android:textStyle="italic"
-			android:justificationMode="inter_word"
-			android:visibility="gone"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/lecture_date"
-			tools:targetApi="o"
-			tools:text="@string/desc"/>
-
-		<TextView
 			android:id="@+id/speaker"
-			android:layout_width="0dp"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_margin="20dp"
 			android:text="@string/speaker"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-			android:textStyle="bold"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/lecture_detail"/>
+			android:textStyle="bold"/>
 
 		<TextView
 			android:id="@+id/speaker_name"
@@ -75,26 +51,8 @@
 			android:layout_height="wrap_content"
 			android:layout_marginStart="20dp"
 			android:layout_marginEnd="5dp"
-			android:layout_marginTop="20dp"
-			android:layout_marginBottom="20dp"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintEnd_toStartOf="@id/speaker_country"
-			app:layout_constraintTop_toBottomOf="@+id/speaker"
-			tools:text="Doraliz León Rojas"/>
-
-		<TextView
-			android:id="@+id/speaker_country"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="5dp"
-			android:layout_marginEnd="20dp"
-			android:layout_marginTop="20dp"
-			android:layout_marginBottom="20dp"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-			app:layout_constraintStart_toEndOf="@id/speaker_name"
-			app:layout_constraintTop_toBottomOf="@+id/speaker"
-			tools:text="(Perú)"/>
+			tools:text="Doraliz León Rojas (Perú)"/>
 
 		<TextView
 			android:id="@+id/speaker_company"
@@ -105,30 +63,51 @@
 			android:layout_marginTop="5dp"
 			android:layout_marginBottom="20dp"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/speaker_name"
 			tools:text="Universidad Continental"/>
+
+		<TextView
+			android:id="@+id/moderador"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="20dp"
+			android:text="@string/moderador"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+			android:textStyle="bold"/>
+
+		<TextView
+			android:id="@+id/moderador_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="20dp"
+			android:layout_marginEnd="5dp"
+			android:layout_marginBottom="20dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+			tools:text="Doraliz León Rojas"/>
 
 		<TextView
 			android:id="@+id/resources"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_margin="20dp"
+			android:layout_marginStart="20dp"
+			android:layout_marginEnd="20dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginBottom="5dp"
 			android:gravity="center"
 			android:padding="3dp"
 			android:maxLines="1"
 			android:drawablePadding="5dp"
 			android:text="@string/download_resources"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/speaker_company"
 			app:drawableStartCompat="@drawable/ic_pdf"/>
 
 		<TextView
 			android:id="@+id/feedback"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_margin="20dp"
+			android:layout_marginStart="20dp"
+			android:layout_marginEnd="20dp"
+			android:layout_marginTop="5dp"
+			android:layout_marginBottom="5dp"
 			android:gravity="center"
 			android:padding="3dp"
 			android:maxLines="1"
@@ -136,8 +115,6 @@
 			android:text="@string/feedback"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
 			android:textColor="?attr/colourizedTextPreferenceColor"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/resources"
 			app:drawableStartCompat="@drawable/ic_feedback"/>
-	</androidx.constraintlayout.widget.ConstraintLayout>
+	</LinearLayout>
 </ScrollView>
