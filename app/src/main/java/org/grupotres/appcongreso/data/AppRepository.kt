@@ -12,6 +12,7 @@ class AppRepository(context: Context) {
 	private val database = Room
 		.databaseBuilder(context.applicationContext, AppDatabase::class.java, dbName)
 		.createFromAsset("appcongreso.db")
+		.fallbackToDestructiveMigration()
 		.build()
 
 	private val appDao = database.appDao()
