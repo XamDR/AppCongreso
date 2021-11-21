@@ -63,4 +63,9 @@
 		android:name="org.grupotres.appcongreso.ui.info.InfoFragment"
 		android:label="@string/fragment_certificate"
 		tools:layout="@layout/info_fragment"/>
+
+	<fragment
+		android:id="@+id/nav_settings"
+		android:name="org.grupotres.appcongreso.ui.settings.SettingsFragment"
+		android:label="@string/fragment_settings"/>
 </navigation>

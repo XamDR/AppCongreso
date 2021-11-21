@@ -8,11 +8,6 @@
 	app:cardCornerRadius="5dp"
 	app:cardElevation="2dp">
 
-<!--	<View-->
-<!--		android:layout_width="match_parent"-->
-<!--		android:layout_height="5dp"-->
-<!--		android:background="?attr/colorPrimary"/>-->
-
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -22,7 +17,7 @@
 		android:paddingBottom="10dp"
 		tools:context=".ui.lectures.LectureListFragment">
 
-		<TextView
+		<com.google.android.material.chip.Chip
 			android:id="@+id/lecture_time"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -36,8 +31,26 @@
 			android:drawablePadding="5dp"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
 			android:textStyle="italic"
-			app:drawableStartCompat="@drawable/ic_save_spot"
+			app:chipIcon="@drawable/ic_save_spot"
 			tools:text="9:00 a.m. - 10:00 a.m."/>
+
+		<com.google.android.material.chip.Chip
+			android:id="@+id/lecture_url"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:gravity="center"
+			android:padding="3dp"
+			android:maxLines="1"
+			android:drawablePadding="5dp"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+			android:textStyle="italic"
+			android:autoLink="web"
+			app:chipIcon="@drawable/ic_chip_icon"
+			tools:text="meet.google.com/fnc-upxd-ehb"/>
 
 		<TextView
 			android:id="@+id/lecture_title"

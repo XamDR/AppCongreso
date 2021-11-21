@@ -25,7 +25,7 @@
 	<style name="Theme.SplashScreenAppCongreso" parent="Theme.SplashScreen">
 		<item name="windowSplashScreenBackground">@color/primaryDarkColor</item>
 		<item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher</item>
-		<item name="windowSplashScreenAnimationDuration">500</item>
+		<item name="windowSplashScreenAnimationDuration">1000</item>
 		<item name="postSplashScreenTheme">@style/Theme.AppCongreso.NoActionBar</item>
 	</style>
 

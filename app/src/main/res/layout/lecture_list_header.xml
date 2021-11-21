@@ -5,7 +5,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:gravity="center"
-	android:background="@color/primaryColor"
+	android:background="?attr/colourizedTextPreferenceColor"
 	android:textColor="@color/white"
 	android:padding="10dp"
 	android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"

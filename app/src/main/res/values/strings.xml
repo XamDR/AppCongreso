@@ -89,7 +89,7 @@
 	<string name="light_theme">Claro</string>
 	<string name="dark_theme">Oscuro</string>
 	<string name="os_theme">Predeterminado del Sistema</string>
-	<string name="devs">Universidad Continental</string>
+	<string name="devs"><![CDATA[ &#8226; Max Díaz Romaní<br /> &#8226; Samuel Bellido Contreras<br /> &#8226; Nayif Sotacuro Matos<br /> &#8226; Diomedes Valdivia Picón<br /> &#8226; Jeferson Unchupaico Huaringa<br /> ]]></string>
 	<string name="agenda">Agenda</string>
 	<string name="feedback">Calificar ponencia</string>
 	<string name="comment_title">¿Cómo califica la ponencia?</string>

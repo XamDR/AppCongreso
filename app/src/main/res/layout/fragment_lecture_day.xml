@@ -3,47 +3,11 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context=".ui.lectures.LectureListFragment">
-
-		<com.google.android.material.chip.Chip
-			android:id="@+id/link_room"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"
-			android:layout_marginStart="10dp"
-			android:layout_marginBottom="5dp"
-			android:textColor="@color/white"
-			android:ellipsize="end"
-			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintBottom_toTopOf="@id/key_room"
-			app:chipBackgroundColor="?attr/colourizedTextPreferenceColor"
-			app:chipIcon="@drawable/ic_chip_icon"
-			app:chipStartPadding="5dp"
-			app:chipEndPadding="10dp"
-			tools:text="@string/link_room"/>
-
-	<com.google.android.material.chip.Chip
-		android:id="@+id/key_room"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="5dp"
-		android:layout_marginStart="10dp"
-		android:layout_marginBottom="5dp"
-		android:textColor="@color/white"
-		app:layout_constraintTop_toBottomOf="@id/link_room"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintBottom_toTopOf="@id/rv_lectures"
-		app:chipBackgroundColor="?attr/colourizedTextPreferenceColor"
-		app:chipIcon="@drawable/ic_key_room"
-		app:chipStartPadding="5dp"
-		app:chipEndPadding="10dp"
-		tools:text="404018"/>
+	android:layout_height="match_parent">
 
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/rv_lectures"
-		android:layout_width="match_parent"
+		android:layout_width="0dp"
 		android:layout_height="0dp"
 		android:layout_marginTop="5dp"
 		android:layout_marginStart="10dp"
@@ -51,9 +15,9 @@
 		android:layout_marginBottom="5dp"
 		android:orientation="vertical"
 		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/key_room"
 		tools:listitem="@layout/item_lecture"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

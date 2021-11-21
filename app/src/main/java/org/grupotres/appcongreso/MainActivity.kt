@@ -19,6 +19,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
 import coil.load
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -35,10 +36,7 @@ import edu.icontinental.congresoi40.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.ui.helpers.INavigator
-import org.grupotres.appcongreso.util.SettingsManager
-import org.grupotres.appcongreso.util.debug
-import org.grupotres.appcongreso.util.isNetworkAvailable
-import org.grupotres.appcongreso.util.showSnackbar
+import org.grupotres.appcongreso.util.*
 
 class MainActivity : AppCompatActivity(), INavigator {
 
@@ -60,6 +58,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.contentMain.toolbar)
+		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
 		binding.contentMain.toolbar.inflateMenu(R.menu.main)
 		manager = SettingsManager(this)
@@ -164,7 +163,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
 		appBarConfiguration = AppBarConfiguration(
-			setOf(R.id.nav_lecture_list, R.id.nav_info), binding.drawerLayout
+			setOf(R.id.nav_lecture_list, R.id.nav_info, R.id.nav_settings), binding.drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		binding.navView.setupWithNavController(navController)
