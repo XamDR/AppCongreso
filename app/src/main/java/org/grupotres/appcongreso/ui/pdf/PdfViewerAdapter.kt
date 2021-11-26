@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import edu.icontinental.congresoi40.R
 import org.grupotres.appcongreso.util.renderAndClose
@@ -17,6 +18,11 @@ class PdfViewerAdapter(
 
 	class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 		fun bind(bitmap: Bitmap) = (itemView as ImageView).setImageBitmap(bitmap)
+	}
+
+	override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+		super.onAttachedToRecyclerView(recyclerView)
+		recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

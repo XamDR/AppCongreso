@@ -42,7 +42,7 @@ class SpeakerDetailFragment : Fragment() {
 	}
 
 	private fun initSpeakerDetails() {
-		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.toString(), args.speaker.country)
+		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.name, args.speaker.surname, args.speaker.maternalSurname)
 		binding?.speakerAcademicInfo?.text = args.speaker.academicInfo
 		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
 //		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }

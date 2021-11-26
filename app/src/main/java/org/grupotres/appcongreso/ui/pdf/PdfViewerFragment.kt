@@ -8,17 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import edu.icontinental.congresoi40.R
 import edu.icontinental.congresoi40.databinding.FragmentPdfViewerBinding
-import org.grupotres.appcongreso.util.mainActivity
 import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.writeFile
 
 class PdfViewerFragment : Fragment() {
 
 	private var binding: FragmentPdfViewerBinding? = null
-	private val viewModel by viewModels<PdfViewerViewModel> {
-		PdfViewerViewModelFactory(mainActivity.storage)
-	}
+	private val viewModel by viewModels<PdfViewerViewModel>()
 	private lateinit var adapter: PdfViewerAdapter
+	private lateinit var renderer: PdfRenderer
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -37,6 +35,11 @@ class PdfViewerFragment : Fragment() {
 		view.post { renderPdf() }
 	}
 
+	override fun onDestroyView() {
+		super.onDestroyView()
+		renderer.close()
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		super.onCreateOptionsMenu(menu, inflater)
 		inflater.inflate(R.menu.pdf_viewer_menu, menu)
@@ -51,15 +54,14 @@ class PdfViewerFragment : Fragment() {
 
 	private fun renderPdf() {
 		viewModel.pdfBytes.observe(viewLifecycleOwner) { bytes ->
-			val file = writeFile(requireContext(), bytes, "certificado_ponencia.pdf")
+			val file = writeFile(requireContext(), bytes, "recurso.pdf")
 			val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
-			val renderer = PdfRenderer(fileDescriptor)
+			renderer = PdfRenderer(fileDescriptor)
 			adapter = PdfViewerAdapter(renderer, requireContext())
 
 			if (binding?.pdfView?.adapter == null) {
 				binding?.pdfView?.adapter = adapter
 			}
-			renderer.close()
 		}
 	}
 

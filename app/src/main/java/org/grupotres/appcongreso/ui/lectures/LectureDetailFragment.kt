@@ -12,10 +12,14 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
+import coil.load
 import edu.icontinental.congresoi40.R
 import edu.icontinental.congresoi40.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.core.Lecture
+import org.grupotres.appcongreso.core.Speaker
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
+import org.grupotres.appcongreso.ui.phoneauth.PhoneFragment
+import org.grupotres.appcongreso.util.debug
 import org.grupotres.appcongreso.util.mainActivity
 
 class LectureDetailFragment : Fragment() {
@@ -33,9 +37,18 @@ class LectureDetailFragment : Fragment() {
 		super.onViewCreated(view, savedInstanceState)
 		initLectureDetails()
 		binding?.speakerPhoto?.setOnClickListener {
-//			val id = (it as ImageView).tag
-			if (args.lecture.speaker != null) {
-				val speaker = args.lecture.speaker!!
+			if (!args.lecture.isHeader) {
+				val lecture = args.lecture
+
+				val speaker = Speaker(
+					surname = lecture.surnameSpeaker,
+					maternalSurname = lecture.maternalSurnameSpeaker,
+					name = lecture.nameSpeaker,
+					country = lecture.countrySpeaker,
+					company = lecture.companySpeaker,
+					academicInfo = lecture.academicInfoSpeaker,
+					uriPhoto = lecture.uriPhotoSpeaker
+				)
 				val navDirections = LectureDetailFragmentDirections.actionLectureDetailFragmentToSpeakerDetailFragment(speaker)
 				val extras = FragmentNavigatorExtras(binding?.speakerPhoto!! to "photo")
 				mainActivity.navigate(navDirections, extras)
@@ -44,6 +57,7 @@ class LectureDetailFragment : Fragment() {
 		binding?.calendar?.setOnClickListener { addToCalendar(args.lecture) }
 		binding?.resources?.setOnClickListener { viewResources() }
 		binding?.feedback?.setOnClickListener { showDialogFeedback() }
+		binding?.enroll?.setOnClickListener { enrollToLecture() }
 	}
 
 	override fun onDestroyView() {
@@ -54,11 +68,14 @@ class LectureDetailFragment : Fragment() {
 	private fun initLectureDetails() {
 		binding?.lectureTitle?.text = args.lecture.title
 		binding?.lectureDate?.text = args.lecture.getDate()
-		binding?.speakerCompany?.text = args.lecture.speaker?.company
+		binding?.lectureDescription?.text = args.lecture.description
+		binding?.speakerCompany?.text = args.lecture.companySpeaker
 		binding?.speakerName?.text = getString(R.string.speaker_name,
-			args.lecture.speaker.toString(),
-			args.lecture.speaker?.country
+			args.lecture.nameSpeaker,
+			args.lecture.surnameSpeaker,
+			args.lecture.maternalSurnameSpeaker
 		)
+		binding?.speakerPhoto?.load(args.lecture.uriPhotoSpeaker)
 	}
 
 	private fun viewResources() {
@@ -77,11 +94,18 @@ class LectureDetailFragment : Fragment() {
 			data = CalendarContract.Events.CONTENT_URI
 			putExtra(CalendarContract.Events.TITLE, lecture.title)
 			putExtra(CalendarContract.Events.DESCRIPTION, lecture.url)
-			putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, lecture.startTime)
-			putExtra(CalendarContract.EXTRA_EVENT_END_TIME, lecture.endTime)
+			putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, lecture.startTime.time)
+			putExtra(CalendarContract.EXTRA_EVENT_END_TIME, lecture.endTime.time)
 		}
 		if (intent.resolveActivity(requireContext().packageManager) != null) {
 			startActivity(intent)
 		}
+	}
+
+	private fun enrollToLecture() {
+		val usuario = mainActivity.auth.currentUser?.email
+		debug("USER", usuario)
+		val dialog = usuario?.let { PhoneFragment.newInstance(it) }
+		dialog?.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 }

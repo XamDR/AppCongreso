@@ -106,6 +106,14 @@ dependencies {
     // Add coil to load images from Firebase
     implementation("io.coil-kt:coil:1.2.1")
 
+    // PinView
+    implementation 'io.github.chaosleung:pinview:1.4.4'
+
+    // Java Mail
+    implementation files('../libs/activation.jar')
+    implementation files('../libs/additionnal.jar')
+    implementation files('../libs/mail.jar')
+
     // Splash Screen
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
 

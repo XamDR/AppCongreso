@@ -43,7 +43,7 @@
 	<string name="lecture_date_time">Fecha: %s</string>
 	<string name="lecture_time">Hora: %s</string>
 	<string name="lecture_url">Enlace: %s</string>
-	<string name="speaker_name">%s (%s)</string>
+	<string name="speaker_name">%s %s %s</string>
 	<string name="map">Ver ubicación</string>
 	<string name="info_uc">Información sobre la Universidad Continental</string>
 	<string name="uc">Universidad Continental</string>

@@ -15,7 +15,7 @@ class LectureViewModel : ViewModel() {
 		val db = Firebase.firestore
 		val lectures = mutableListOf<Lecture>()
 //		val query = db.collection("lectures").whereIn("room", listOf(*rooms))
-		val query = db.collection("lectures").whereEqualTo("id", "0")
+		val query = db.collection("lectures").whereEqualTo("id", "3")
 		val result = query.get().await()
 
 		for (document in result.documents) {

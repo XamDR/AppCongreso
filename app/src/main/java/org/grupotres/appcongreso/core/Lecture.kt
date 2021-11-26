@@ -1,6 +1,7 @@
 package org.grupotres.appcongreso.core
 
 import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.grupotres.appcongreso.util.Empty
 import java.text.SimpleDateFormat
@@ -19,8 +20,17 @@ data class Lecture(
 	val url: String = String.Empty,
 	val room: String = String.Empty,
 	val day: String = String.Empty,
-	val speaker: Speaker? = null,
-	val isHeader: Boolean = false): Parcelable {
+	val isHeader: Boolean = false,
+	val surnameSpeaker: String = String.Empty,
+	val maternalSurnameSpeaker: String = String.Empty,
+	val nameSpeaker: String = String.Empty,
+	val countrySpeaker: String = String.Empty,
+	val companySpeaker: String = String.Empty,
+	val academicInfoSpeaker: String = String.Empty,
+	val uriPhotoSpeaker: String = String.Empty): Parcelable {
+
+	@IgnoredOnParcel
+	val resources: List<String>? = null
 
 	fun getDate(): String {
 		val startTimeWithoutDate = SimpleDateFormat("HH:mm", Locale.getDefault()).format(startTime)

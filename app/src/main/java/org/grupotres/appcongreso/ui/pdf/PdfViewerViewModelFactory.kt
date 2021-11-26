@@ -7,5 +7,5 @@ import com.google.firebase.storage.FirebaseStorage
 class PdfViewerViewModelFactory(private val storage: FirebaseStorage) : ViewModelProvider.Factory {
 
 	@Suppress("UNCHECKED_CAST")
-	override fun <T : ViewModel> create(modelClass: Class<T>) = PdfViewerViewModel(storage) as T
+	override fun <T : ViewModel> create(modelClass: Class<T>) = PdfViewerViewModel() as T
 }
