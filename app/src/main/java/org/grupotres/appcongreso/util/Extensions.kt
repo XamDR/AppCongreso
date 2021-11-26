@@ -3,6 +3,7 @@ package org.grupotres.appcongreso.util
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.graphics.pdf.PdfRenderer
 import android.net.ConnectivityManager
 import android.text.SpannableString
 import android.text.style.BulletSpan
@@ -86,4 +87,10 @@ fun List<String>.toBulletedList(): CharSequence {
 			end
 		}
 	}
+}
+
+fun PdfRenderer.Page.renderAndClose(context: Context) = use {
+	val bitmap = createBitmap(context)
+	render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+	bitmap
 }

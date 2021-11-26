@@ -137,4 +137,5 @@
 	<string name="key_second_room">208313</string>
 	<string name="no_internet_msg">Parece que no tienes conexión a Internet para poder iniciar sesión.</string>
 	<string name="moderador">MODERADOR(ES)</string>
+	<string name="action_download_pdf">Descargar pdf</string>
 </resources>

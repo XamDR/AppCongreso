@@ -31,26 +31,8 @@
 			android:drawablePadding="5dp"
 			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
 			android:textStyle="italic"
-			app:chipIcon="@drawable/ic_save_spot"
+			app:chipIcon="@drawable/ic_lecture_time"
 			tools:text="9:00 a.m. - 10:00 a.m."/>
-
-		<com.google.android.material.chip.Chip
-			android:id="@+id/lecture_url"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="5dp"
-			android:layout_marginBottom="5dp"
-			android:layout_marginStart="10dp"
-			android:layout_marginEnd="10dp"
-			android:gravity="center"
-			android:padding="3dp"
-			android:maxLines="1"
-			android:drawablePadding="5dp"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-			android:textStyle="italic"
-			android:autoLink="web"
-			app:chipIcon="@drawable/ic_chip_icon"
-			tools:text="meet.google.com/fnc-upxd-ehb"/>
 
 		<TextView
 			android:id="@+id/lecture_title"
@@ -67,19 +49,17 @@
 			tools:text="@string/lecture_title_tools"
 			tools:targetApi="o" />
 
-		<!--	<com.google.android.material.chip.Chip-->
-		<!--		android:id="@+id/lecture_url"-->
-		<!--		android:layout_width="wrap_content"-->
-		<!--		android:layout_height="wrap_content"-->
-		<!--		android:layout_marginTop="5dp"-->
-		<!--		android:layout_marginBottom="5dp"-->
-		<!--		android:layout_marginStart="10dp"-->
-		<!--		android:layout_marginEnd="10dp"-->
-		<!--		android:textColor="@color/white"-->
-		<!--		app:chipBackgroundColor="?attr/colourizedTextPreferenceColor"-->
-		<!--		app:chipIcon="@drawable/ic_chip_icon"-->
-		<!--		app:chipStartPadding="5dp"-->
-		<!--		app:chipEndPadding="10dp"-->
-		<!--		tools:text="https://meet.google.com/rtb-oecv-iwf"/>-->
+			<com.google.android.material.chip.Chip
+				android:id="@+id/lecture_topic"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="5dp"
+				android:layout_marginBottom="5dp"
+				android:layout_marginStart="10dp"
+				android:layout_marginEnd="10dp"
+				app:chipIcon="@drawable/ic_chip_icon"
+				app:chipStartPadding="5dp"
+				app:chipEndPadding="10dp"
+				tools:text="Big Data"/>
 	</LinearLayout>
 </com.google.android.material.card.MaterialCardView>

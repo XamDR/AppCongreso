@@ -53,6 +53,12 @@
 		tools:layout="@layout/fragment_speaker_detail"/>
 
 	<fragment
+		android:id="@+id/nav_pdf_viewer"
+		android:name="org.grupotres.appcongreso.ui.pdf.PdfViewerFragment"
+		android:label="@string/action_pdf_viewer"
+		tools:layout="@layout/fragment_pdf_viewer"/>
+
+	<fragment
 		android:id="@+id/nav_feedback"
 		android:name="org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment"
 		android:label="@string/feedback"

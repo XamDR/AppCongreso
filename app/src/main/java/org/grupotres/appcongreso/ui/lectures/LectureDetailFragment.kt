@@ -9,8 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import edu.icontinental.congresoi40.R
@@ -18,13 +18,11 @@ import edu.icontinental.congresoi40.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.util.mainActivity
-import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.toEpoch
 
 class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
-	private val viewModel by viewModels<ResourceViewModel>()
 	private val args by navArgs<LectureListFragmentArgs>()
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -64,9 +62,7 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun viewResources() {
-		binding?.root?.showSnackbar(message = R.string.download_files_message)
-		viewModel.downloadFiles(requireContext(), args.lectureSpeaker.lecture.id,
-			mainActivity.dbRef, mainActivity.storage)
+		findNavController().navigate(R.id.nav_pdf_viewer)
 	}
 
 	private fun showDialogFeedback() {
