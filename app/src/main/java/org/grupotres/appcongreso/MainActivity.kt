@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		setupNavigation()
 		binding.contentMain.toolbar.inflateMenu(R.menu.main)
 		manager = SettingsManager(this)
+		FirestoreData.loadData()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -135,7 +136,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 
 	private fun initGoogleSignIn() {
 		val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-			.requestIdToken(getString(R.string.default_web_client_id))
+//			.requestIdToken(getString(R.string.default_web_client_id))
 			.requestEmail()
 			.build()
 

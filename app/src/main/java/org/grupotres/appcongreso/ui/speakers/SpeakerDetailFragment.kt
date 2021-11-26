@@ -15,7 +15,7 @@ import org.grupotres.appcongreso.ui.lectures.LectureDetailFragmentArgs
 class SpeakerDetailFragment : Fragment() {
 
 	private var binding: FragmentSpeakerDetailBinding? = null
-	private val args: LectureDetailFragmentArgs by navArgs()
+	private val args by navArgs<LectureDetailFragmentArgs>()
 
 //	private val flags = mapOf(
 //		"Bélgica" to R.drawable.belgium,
@@ -42,7 +42,7 @@ class SpeakerDetailFragment : Fragment() {
 	}
 
 	private fun initSpeakerDetails() {
-		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.toString())
+		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.toString(), args.speaker.country)
 		binding?.speakerAcademicInfo?.text = args.speaker.academicInfo
 		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
 //		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }

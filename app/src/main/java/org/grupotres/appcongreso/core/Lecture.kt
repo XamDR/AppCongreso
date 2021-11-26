@@ -1,35 +1,30 @@
 package org.grupotres.appcongreso.core
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
-import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.grupotres.appcongreso.util.Empty
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.util.*
 
 @Parcelize
-@Entity
 data class Lecture(
-	@PrimaryKey val id: String = String.Empty,
+	val id: String = String.Empty,
 	val title: String = String.Empty,
-	@ColumnInfo(name = "start_time") val startTime: String = String.Empty,
-	@ColumnInfo(name = "end_time") val endTime: String = String.Empty,
-	val description: String? = null,
-	val url: String? = null,
-	@ColumnInfo(name = "sala") val room: String = String.Empty,
-	@ColumnInfo(name = "diaPonencia") val day: String = String.Empty,
-	@ColumnInfo(name = "confirmar") val isConfirmed: Boolean? = null,
-	@ColumnInfo(name = "esTitulo") val isHeader: Boolean = false
-) : Parcelable {
-
-	@IgnoredOnParcel
-	@Ignore val resources: List<String>? = null
+	val startTime: Date = Date.from(Instant.now()),
+	val endTime: Date = Date.from(Instant.now()),
+	val capacity: Int = 100,
+	val description: String = String.Empty,
+	val topic: String = String.Empty,
+	val url: String = String.Empty,
+	val room: String = String.Empty,
+	val day: String = String.Empty,
+	val speaker: Speaker? = null,
+	val isHeader: Boolean = false): Parcelable {
 
 	fun getDate(): String {
-		val startTimeWithoutDate = startTime.replaceBefore(" ", "")
-		val endTimeWithoutDate = endTime.replaceBefore(" ", "")
-		return "$startTimeWithoutDate –$endTimeWithoutDate"
+		val startTimeWithoutDate = SimpleDateFormat("HH:mm", Locale.getDefault()).format(startTime)
+		val endTimeWithoutDate = SimpleDateFormat("HH:mm", Locale.getDefault()).format(endTime)
+		return "$startTimeWithoutDate – $endTimeWithoutDate"
 	}
 }

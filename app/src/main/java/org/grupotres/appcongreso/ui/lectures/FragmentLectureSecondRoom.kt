@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import edu.icontinental.congresoi40.databinding.FragmentLectureDayBinding
-import org.grupotres.appcongreso.data.AppRepository
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.mainActivity
 
 class FragmentLectureSecondRoom : Fragment() {
 
 	private var binding: FragmentLectureDayBinding? = null
-	private val viewModel by viewModels<LectureViewModel> { LectureViewModelFactory(AppRepository.Instance) }
+	private val viewModel by viewModels<LectureViewModel>()
 	private lateinit var lectureAdapter: LectureAdapter
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +39,9 @@ class FragmentLectureSecondRoom : Fragment() {
 	}
 
 	private fun setupRecyclerView() {
-		viewModel.fetchLecturesByRoom("Sala2", "Sala1|Sala2").observe(viewLifecycleOwner) {
-			lectureAdapter.submitList(it)
-		}
+//		viewModel.fetchLecturesByRoom("Sala2", "Sala1|Sala2").observe(viewLifecycleOwner) {
+//			lectureAdapter.submitList(it)
+//		}
 		binding?.rvLectures?.apply { adapter = this@FragmentLectureSecondRoom.lectureAdapter }
 	}
 }

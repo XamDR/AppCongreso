@@ -12,16 +12,16 @@
 		tools:layout="@layout/fragment_lectures">
 
 		<argument
-			android:name="lectureSpeaker"
-			app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
+			android:name="lecture"
+			app:argType="org.grupotres.appcongreso.core.Lecture" />
 
 		<action
 			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
 			app:destination="@id/nav_lecture_detail">
 
 			<argument
-				android:name="lectureSpeaker"
-				app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
+				android:name="lecture"
+				app:argType="org.grupotres.appcongreso.core.Lecture" />
 		</action>
 
 	</fragment>

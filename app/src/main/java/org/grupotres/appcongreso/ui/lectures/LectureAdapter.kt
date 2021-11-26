@@ -7,25 +7,25 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import edu.icontinental.congresoi40.databinding.ItemLectureBinding
 import edu.icontinental.congresoi40.databinding.LectureListHeaderBinding
-import org.grupotres.appcongreso.core.LectureSpeakers
+import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setOnClickListener
 
 class LectureAdapter(private val navigator: INavigator) :
-	ListAdapter<LectureSpeakers, BaseViewHolder>(LectureCallback()) {
+	ListAdapter<Lecture, BaseViewHolder>(LectureCallback()) {
 
 	inner class LectureViewHolder(private val binding: ItemLectureBinding) : BaseViewHolder(binding) {
 
-		override fun bind(lectureSpeaker: LectureSpeakers) {
-			binding.lectureTitle.text = lectureSpeaker.lecture.title
-			binding.lectureTime.text = lectureSpeaker.lecture.getDate()
+		override fun bind(lecture: Lecture) {
+			binding.lectureTitle.text = lecture.title
+			binding.lectureTime.text = lecture.getDate()
 		}
 	}
 
 	inner class HeaderViewHolder(private val binding: LectureListHeaderBinding) : BaseViewHolder(binding) {
 
-		override fun bind(lectureSpeaker: LectureSpeakers) {
-			binding.headerTitle.text = lectureSpeaker.lecture.title
+		override fun bind(lecture: Lecture) {
+			binding.headerTitle.text = lecture.title
 		}
 	}
 
@@ -46,7 +46,7 @@ class LectureAdapter(private val navigator: INavigator) :
 		lecture?.let { holder.bind(it) }
 	}
 
-	override fun getItemViewType(position: Int) = if (getItem(position).lecture.isHeader) HEADER_VIEW else ITEM_VIEW
+	override fun getItemViewType(position: Int) = if (getItem(position).isHeader) HEADER_VIEW else ITEM_VIEW
 
 	override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
 		super.onAttachedToRecyclerView(recyclerView)
@@ -56,21 +56,21 @@ class LectureAdapter(private val navigator: INavigator) :
 	}
 
 	private fun goToLectureDetail(position: Int) {
-		val lectureSpeaker = getItem(position)
+		val lecture = getItem(position)
 
-		if (lectureSpeaker.speakers.isNotEmpty()) {
-			val speaker = lectureSpeaker.speakers[0]
-			val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lectureSpeaker, speaker)
+		if (lecture.speaker != null) {
+			val speaker = lecture.speaker
+			val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lecture, speaker)
 			navigator.navigate(navDirections)
 		}
 	}
 
-	class LectureCallback : DiffUtil.ItemCallback<LectureSpeakers>() {
+	class LectureCallback : DiffUtil.ItemCallback<Lecture>() {
 
-		override fun areItemsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
-			= oldLecture.lecture.id == newLecture.lecture.id
+		override fun areItemsTheSame(oldLecture: Lecture, newLecture: Lecture)
+			= oldLecture.id == newLecture.id
 
-		override fun areContentsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
+		override fun areContentsTheSame(oldLecture: Lecture, newLecture: Lecture)
 			= oldLecture == newLecture
 	}
 
