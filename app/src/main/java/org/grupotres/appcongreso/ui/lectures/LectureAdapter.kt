@@ -28,16 +28,22 @@ class LectureAdapter(private val navigator: INavigator) :
 		"Ecotoxicología" to "#008080",
 		"Informática" to "#00FFFF",
 		"Geología" to "#8B0000",
+		"Soldadura" to "#FFFF00",
+		"Evaluación Ambiental" to "#FF4500",
+		"Plantas Industriales" to "#00FF00",
 	)
 
 	inner class LectureViewHolder(private val binding: ItemLectureBinding) : BaseViewHolder(binding) {
 
 		override fun bind(lecture: Lecture) {
 			binding.lectureTitle.text = lecture.title
-			binding.lectureTime.text = lecture.getDate()
-			binding.lectureTopic.text = lecture.topic
-			val color = Color.parseColor(colors[lecture.topic])
-			DrawableCompat.setTint(binding.lectureTopic.chipIcon!!, color)
+
+			if (!lecture.header) {
+				binding.lectureTime.text = lecture.getDate()
+				binding.lectureTopic.text = lecture.topic
+				val color = Color.parseColor(colors[lecture.topic])
+				DrawableCompat.setTint(binding.lectureTopic.chipIcon!!, color)
+			}
 		}
 	}
 
@@ -65,7 +71,7 @@ class LectureAdapter(private val navigator: INavigator) :
 		lecture?.let { holder.bind(it) }
 	}
 
-	override fun getItemViewType(position: Int) = if (getItem(position).isHeader) HEADER_VIEW else ITEM_VIEW
+	override fun getItemViewType(position: Int) = if (getItem(position).header) HEADER_VIEW else ITEM_VIEW
 
 	override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
 		super.onAttachedToRecyclerView(recyclerView)
@@ -77,7 +83,7 @@ class LectureAdapter(private val navigator: INavigator) :
 	private fun goToLectureDetail(position: Int) {
 		val lecture = getItem(position)
 
-		if (!lecture.isHeader) {
+		if (!lecture.header) {
 			val speaker = Speaker(
 				surname = lecture.surnameSpeaker,
 				maternalSurname = lecture.maternalSurnameSpeaker,

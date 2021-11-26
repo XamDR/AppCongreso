@@ -111,7 +111,7 @@
 	<string name="verify_btn">Verificar</string>
 	<string name="digital_certificate">Certificado digital</string>
 	<string name="action_download">Descargar certificado</string>
-	<string name="action_pdf_viewer">Certificado digital</string>
+	<string name="action_pdf_viewer">Recursos de la ponencia</string>
 	<string name="enter_token">Código de 4 dígitos</string>
 	<string name="verification_token_message">Ingrese el código de verificación de 4 dígitos para enviarle el enlace de la ponencia.</string>
 	<string name="description">Bienvenido a la aplicación AppCongreso, desarrollada exclusivamente para el IV Congreso de Ingeniería 2021.</string>

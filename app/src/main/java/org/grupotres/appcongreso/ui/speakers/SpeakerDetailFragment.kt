@@ -17,14 +17,6 @@ class SpeakerDetailFragment : Fragment() {
 	private var binding: FragmentSpeakerDetailBinding? = null
 	private val args by navArgs<LectureDetailFragmentArgs>()
 
-//	private val flags = mapOf(
-//		"Bélgica" to R.drawable.belgium,
-//		"Chile" to R.drawable.chile,
-//		"Colombia" to R.drawable.colombia,
-//		"México" to R.drawable.mexico,
-//		"Perú" to R.drawable.peru,
-//	)
-
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
 		binding = FragmentSpeakerDetailBinding.inflate(inflater, container, false)
@@ -42,9 +34,9 @@ class SpeakerDetailFragment : Fragment() {
 	}
 
 	private fun initSpeakerDetails() {
-		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker.name, args.speaker.surname, args.speaker.maternalSurname)
-		binding?.speakerAcademicInfo?.text = args.speaker.academicInfo
-		binding?.speakerPhoto?.load(args.speaker.uriPhoto)
+		binding?.speakerName?.text = getString(R.string.speaker_name, args.speaker?.name, args.speaker?.surname, args.speaker?.maternalSurname)
+		binding?.speakerAcademicInfo?.text = args.speaker?.academicInfo
+		binding?.speakerPhoto?.load(args.speaker?.uriPhoto)
 //		val drawable = flags[args.speaker.country]?.let { ResourcesCompat.getDrawable(resources, it, null) }
 //		val lineHeight = binding?.speakerName?.lineHeight
 //		val bitmap = (drawable as BitmapDrawable).bitmap

@@ -10,7 +10,7 @@ import java.util.*
 
 @Parcelize
 data class Lecture(
-	val id: String = String.Empty,
+	val id: Long = 0L,
 	val title: String = String.Empty,
 	val startTime: Date = Date.from(Instant.now()),
 	val endTime: Date = Date.from(Instant.now()),
@@ -20,7 +20,7 @@ data class Lecture(
 	val url: String = String.Empty,
 	val room: String = String.Empty,
 	val day: String = String.Empty,
-	val isHeader: Boolean = false,
+	val header: Boolean = false,
 	val surnameSpeaker: String = String.Empty,
 	val maternalSurnameSpeaker: String = String.Empty,
 	val nameSpeaker: String = String.Empty,

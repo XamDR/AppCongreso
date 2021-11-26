@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
@@ -40,7 +39,7 @@ class LectureDetailFragment : Fragment() {
 		super.onViewCreated(view, savedInstanceState)
 		initLectureDetails()
 		binding?.speakerPhoto?.setOnClickListener {
-			if (!args.lecture.isHeader) {
+			if (!args.lecture.header) {
 				val lecture = args.lecture
 
 				val speaker = Speaker(
@@ -104,7 +103,9 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun viewResources() {
-		findNavController().navigate(R.id.nav_pdf_viewer)
+		val id = args.lecture.id
+		val navDirections = LectureDetailFragmentDirections.actionLectureDetailFragmentToPdfViewerFragment(id)
+		mainActivity.navigate(navDirections)
 	}
 
 	private fun showDialogFeedback() {
@@ -128,9 +129,9 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun enrollToLecture() {
-		val usuario = mainActivity.auth.currentUser?.email
-		debug("USER", usuario)
-		val dialog = usuario?.let { PhoneFragment.newInstance(it) }
+		val user = mainActivity.auth.currentUser?.email
+		debug("USER", user)
+		val dialog = user?.let { PhoneFragment.newInstance(it) }
 		dialog?.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
 	}
 }

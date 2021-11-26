@@ -6,7 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import edu.icontinental.congresoi40.databinding.FragmentLectureDayBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.mainActivity
 
@@ -39,9 +44,13 @@ class FragmentLectureSecondRoom : Fragment() {
 	}
 
 	private fun setupRecyclerView() {
-//		viewModel.fetchLecturesByRoom("Sala2", "Sala1|Sala2").observe(viewLifecycleOwner) {
-//			lectureAdapter.submitList(it)
-//		}
+		viewLifecycleOwner.lifecycleScope.launch {
+			repeatOnLifecycle(Lifecycle.State.STARTED) {
+				viewModel.fetchLecturesByRoomFromFirestore(listOf("Sala2", "Sala1|Sala2")).collect {
+					lectureAdapter.submitList(it)
+				}
+			}
+		}
 		binding?.rvLectures?.apply { adapter = this@FragmentLectureSecondRoom.lectureAdapter }
 	}
 }

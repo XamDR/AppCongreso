@@ -34,7 +34,14 @@
 
 		<argument
 			android:name="speaker"
-			app:argType="org.grupotres.appcongreso.core.Speaker" />
+			android:defaultValue="@null"
+			app:argType="org.grupotres.appcongreso.core.Speaker"
+			app:nullable="true"/>
+
+		<argument
+			android:name="lectureId"
+			app:argType="long"
+			android:defaultValue="0L"/>
 
 		<action
 			android:id="@+id/action_lectureDetailFragment_to_speakerDetailFragment"
@@ -43,6 +50,15 @@
 			<argument
 				android:name="speaker"
 				app:argType="org.grupotres.appcongreso.core.Speaker" />
+		</action>
+
+		<action
+			android:id="@+id/action_lectureDetailFragment_to_pdfViewerFragment"
+			app:destination="@id/nav_pdf_viewer">
+
+			<argument
+				android:name="lectureId"
+				app:argType="long" />
 		</action>
 	</fragment>
 

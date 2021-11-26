@@ -11,11 +11,11 @@ import org.grupotres.appcongreso.core.Lecture
 
 class LectureViewModel : ViewModel() {
 
-	suspend fun fetchLecturesByRoomFromFirestore(vararg rooms: String): Flow<List<Lecture>> {
+	suspend fun fetchLecturesByRoomFromFirestore(rooms: List<String>): Flow<List<Lecture>> {
 		val db = Firebase.firestore
 		val lectures = mutableListOf<Lecture>()
-//		val query = db.collection("lectures").whereIn("room", listOf(*rooms))
-		val query = db.collection("lectures").whereEqualTo("id", "3")
+//		val query = db.collection("lectures").whereIn("room", rooms).orderBy("id")
+		val query = db.collection("lectures").orderBy("id").whereIn("room", rooms)
 		val result = query.get().await()
 
 		for (document in result.documents) {

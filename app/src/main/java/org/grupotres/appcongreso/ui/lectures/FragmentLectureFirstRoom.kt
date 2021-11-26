@@ -46,7 +46,7 @@ class FragmentLectureFirstRoom : Fragment() {
 	private fun setupRecyclerView() {
 		viewLifecycleOwner.lifecycleScope.launch {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
-				viewModel.fetchLecturesByRoomFromFirestore("Sala1").collect {
+				viewModel.fetchLecturesByRoomFromFirestore(listOf("Sala1", "Sala1|Sala2")).collect {
 					lectureAdapter.submitList(it)
 				}
 			}

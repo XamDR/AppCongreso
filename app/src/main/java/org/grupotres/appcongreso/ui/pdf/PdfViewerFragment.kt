@@ -6,14 +6,19 @@ import android.os.ParcelFileDescriptor
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import edu.icontinental.congresoi40.R
 import edu.icontinental.congresoi40.databinding.FragmentPdfViewerBinding
+import kotlinx.coroutines.launch
+import org.grupotres.appcongreso.ui.lectures.LectureDetailFragmentArgs
 import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.writeFile
 
 class PdfViewerFragment : Fragment() {
 
 	private var binding: FragmentPdfViewerBinding? = null
+	private val args by navArgs<LectureDetailFragmentArgs>()
 	private val viewModel by viewModels<PdfViewerViewModel>()
 	private lateinit var adapter: PdfViewerAdapter
 	private lateinit var renderer: PdfRenderer
@@ -53,21 +58,24 @@ class PdfViewerFragment : Fragment() {
 	}
 
 	private fun renderPdf() {
-		viewModel.pdfBytes.observe(viewLifecycleOwner) { bytes ->
-			val file = writeFile(requireContext(), bytes, "recurso.pdf")
-			val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
-			renderer = PdfRenderer(fileDescriptor)
-			adapter = PdfViewerAdapter(renderer, requireContext())
+		viewLifecycleOwner.lifecycleScope.launch {
+			viewModel.fetchPdfFile(args.lectureId).observe(viewLifecycleOwner) { bytes ->
+				val file = writeFile(requireContext(), bytes, args.lectureId.toString())
+				val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
+				renderer = PdfRenderer(fileDescriptor)
+				adapter = PdfViewerAdapter(renderer, requireContext())
 
-			if (binding?.pdfView?.adapter == null) {
-				binding?.pdfView?.adapter = adapter
+				if (binding?.pdfView?.adapter == null) {
+					binding?.pdfView?.adapter = adapter
+				}
 			}
 		}
 	}
 
 	private fun downloadCertificate() {
 		binding?.root?.showSnackbar(message = R.string.download_files_message)
-//		viewModel.downloadFiles(requireContext(), args.lectureSpeaker.lecture.id,
-//			mainActivity.dbRef, mainActivity.storage)
+		viewLifecycleOwner.lifecycleScope.launch {
+			viewModel.downloadFile(requireContext(), args.lectureId)
+		}
 	}
 }

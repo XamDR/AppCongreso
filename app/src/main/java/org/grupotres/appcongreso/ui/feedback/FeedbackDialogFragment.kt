@@ -55,10 +55,10 @@ class FeedbackDialogFragment : BottomSheetDialogFragment() {
 	}
 
 	companion object {
-		fun newInstance(idLecture: String) : FeedbackDialogFragment {
+		fun newInstance(idLecture: Long) : FeedbackDialogFragment {
 			return FeedbackDialogFragment().apply {
 				arguments = Bundle().apply {
-					putString("idLecture", idLecture)
+					putLong("idLecture", idLecture)
 				}
 			}
 		}
