@@ -124,7 +124,7 @@
 	<string name="title_tutorial_btn_enroll">Acceder</string>
 	<string name="title_tutorial_btn_resources">Recursos</string>
 	<string name="tutorial_btn_calendar">Has clic aquí para guardar la ponencia en tu calendario de Google.</string>
-	<string name="tutorial_btn_enroll">Has clic aquí para acceder a una ponencia.</string>
+	<string name="tutorial_btn_enroll">Has clic aquí para acceder a la ponencia.</string>
 	<string name="tutorial_btn_resources">Has clic aquí para descargar los recursos de una ponencia.</string>
 	<string name="tos_privacy">Condiciones y Privacidad</string>
 	<string name="logo_uc">Footer</string>
@@ -138,4 +138,8 @@
 	<string name="no_internet_msg">Parece que no tienes conexión a Internet para poder iniciar sesión.</string>
 	<string name="moderador">MODERADOR(ES)</string>
 	<string name="action_download_pdf">Descargar pdf</string>
+	<string name="title_tutorial_btn_feedback">Feedback</string>
+	<string name="tutorial_btn_feedback">Has clic aquí para enviar tus comentarios sobre la ponencia.</string>
+	<string name="title_tutorial_speaker">Ponente</string>
+	<string name="tutorial_speaker_photo">Has clic aquí para ver los detalles del ponente.</string>
 </resources>

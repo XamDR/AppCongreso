@@ -21,6 +21,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import coil.load
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -28,14 +30,12 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 import edu.icontinental.congresoi40.R
 import edu.icontinental.congresoi40.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.grupotres.appcongreso.ui.helpers.INavigator
+import org.grupotres.appcongreso.ui.settings.SettingsManager
 import org.grupotres.appcongreso.util.*
 
 class MainActivity : AppCompatActivity(), INavigator {
@@ -49,9 +49,6 @@ class MainActivity : AppCompatActivity(), INavigator {
 	private lateinit var googleSignInClient: GoogleSignInClient
 	val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-	val dbRef = Firebase.firestore
-	val storage = Firebase.storage
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		installSplashScreen()
@@ -62,6 +59,7 @@ class MainActivity : AppCompatActivity(), INavigator {
 		setupNavigation()
 		binding.contentMain.toolbar.inflateMenu(R.menu.main)
 		manager = SettingsManager(this)
+		showTutorial()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -133,9 +131,24 @@ class MainActivity : AppCompatActivity(), INavigator {
 		}
 	}
 
+	private fun showTutorial() {
+		if (manager.isFirstRun) {
+			TapTargetView.showFor(this, TapTarget.forToolbarMenuItem(binding.contentMain.toolbar, R.id.action_login,
+				getString(R.string.title_tutorial_btn_login), getString(R.string.tutorial_btn_login))
+				.cancelable(false)
+				.tintTarget(true), object : TapTargetView.Listener() {
+					override fun onTargetClick(view: TapTargetView) {
+						super.onTargetClick(view)
+						view.dismiss(true)
+					}
+				}
+			)
+		}
+	}
+
 	private fun initGoogleSignIn() {
 		val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-			.requestIdToken(getString(R.string.default_web_client_id))
+			.requestIdToken(getString(R.string.default_web_client_id)) // auto-generated string
 			.requestEmail()
 			.build()
 

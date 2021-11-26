@@ -13,12 +13,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetSequence
 import edu.icontinental.congresoi40.R
 import edu.icontinental.congresoi40.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.core.Lecture
 import org.grupotres.appcongreso.core.Speaker
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.ui.phoneauth.PhoneFragment
+import org.grupotres.appcongreso.ui.settings.SettingsManager
 import org.grupotres.appcongreso.util.debug
 import org.grupotres.appcongreso.util.mainActivity
 
@@ -63,6 +66,28 @@ class LectureDetailFragment : Fragment() {
 	override fun onDestroyView() {
 		super.onDestroyView()
 		binding = null
+	}
+
+	override fun onStart() {
+		super.onStart()
+		val manager = SettingsManager(requireContext())
+
+		if (manager.isFirstRun) {
+			manager.isFirstRun = false
+
+			TapTargetSequence(mainActivity).targets(
+				TapTarget.forView(binding?.speakerPhoto!!, getString(R.string.title_tutorial_speaker), getString(R.string.tutorial_speaker_photo))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.calendar!!, getString(R.string.title_tutorial_btn_calendar), getString(R.string.tutorial_btn_calendar))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.feedback!!, getString(R.string.title_tutorial_btn_feedback), getString(R.string.tutorial_btn_feedback))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.resources!!, getString(R.string.title_tutorial_btn_resources), getString(R.string.tutorial_btn_resources))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.enroll!!, getString(R.string.title_tutorial_btn_enroll), getString(R.string.tutorial_btn_enroll))
+					.cancelable(false).tintTarget(true),
+			).start()
+		}
 	}
 
 	private fun initLectureDetails() {
