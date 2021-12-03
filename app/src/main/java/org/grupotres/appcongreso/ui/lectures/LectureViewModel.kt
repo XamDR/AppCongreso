@@ -14,7 +14,6 @@ class LectureViewModel : ViewModel() {
 	suspend fun fetchLecturesByRoomFromFirestore(rooms: List<String>): Flow<List<Lecture>> {
 		val db = Firebase.firestore
 		val lectures = mutableListOf<Lecture>()
-//		val query = db.collection("lectures").whereIn("room", rooms).orderBy("id")
 		val query = db.collection("lectures").orderBy("id").whereIn("room", rooms)
 		val result = query.get().await()
 

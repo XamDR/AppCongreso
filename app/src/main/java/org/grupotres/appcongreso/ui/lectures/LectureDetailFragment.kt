@@ -28,6 +28,7 @@ class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
 	private val args by navArgs<LectureListFragmentArgs>()
+	private val lectureCapacity: Int by lazy { args.lecture.capacity }
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
@@ -93,6 +94,7 @@ class LectureDetailFragment : Fragment() {
 		binding?.lectureTitle?.text = args.lecture.title
 		binding?.lectureDate?.text = args.lecture.getDate()
 		binding?.lectureDescription?.text = args.lecture.description
+		binding?.lectureCapacity?.text = getString(R.string.lecture_capacity, args.lecture.capacity)
 		binding?.speakerCompany?.text = args.lecture.companySpeaker
 		binding?.speakerName?.text = getString(R.string.speaker_name,
 			args.lecture.nameSpeaker,
@@ -129,9 +131,16 @@ class LectureDetailFragment : Fragment() {
 	}
 
 	private fun enrollToLecture() {
+		binding?.enroll?.isEnabled = true
 		val user = mainActivity.auth.currentUser?.email
 		debug("USER", user)
-		val dialog = user?.let { PhoneFragment.newInstance(it) }
+		val dialog = user?.let {
+			PhoneFragment.newInstance(it, args.lecture.id, lectureCapacity, args.lecture.url)
+		}
 		dialog?.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
+
+		if (lectureCapacity == 0) {
+			binding?.enroll?.isEnabled = false
+		}
 	}
 }

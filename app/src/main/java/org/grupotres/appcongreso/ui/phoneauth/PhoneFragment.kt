@@ -23,11 +23,17 @@ class PhoneFragment : BottomSheetDialogFragment() {
 	lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
 	private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 	private var user: String? = null
+	private var idLecture: Long? = null
+	private var capacity: Int? = null
+	private var url: String? = null
 	private var binding: FragmentPhoneBinding? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		user = arguments?.getString("user")
+		idLecture = arguments?.getLong("idLecture")
+		capacity = arguments?.getInt("capacity")
+		url = arguments?.getString("url")
 		auth = FirebaseAuth.getInstance()
 	}
 
@@ -56,7 +62,9 @@ class PhoneFragment : BottomSheetDialogFragment() {
 				storedVerificationId = verificationId
 				resendToken = token
 				dismiss()
-				val dialog = user?.let { VerifyFragment.newInstance(storedVerificationId, it) }
+				val dialog = user?.let {
+					VerifyFragment.newInstance(storedVerificationId, it, idLecture!!, capacity!!, url!!)
+				}
 				dialog?.show(parentFragmentManager, "VERIFY_DIALOG_FRAGMENT")
 			}
 		}
@@ -90,10 +98,13 @@ class PhoneFragment : BottomSheetDialogFragment() {
 	}
 
 	companion object {
-		fun newInstance(value: String): PhoneFragment {
+		fun newInstance(value: String, idLecture: Long, capacity: Int, url: String): PhoneFragment {
 			val fragment = PhoneFragment()
 			val bundle = Bundle().apply {
 				putString("user", value)
+				putLong("idLecture", idLecture)
+				putInt("capacity", capacity)
+				putString("url", url)
 			}
 			fragment.arguments = bundle
 			return fragment

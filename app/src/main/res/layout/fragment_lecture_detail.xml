@@ -23,9 +23,9 @@
 				android:maxLines="5"
 				android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
 				android:textStyle="bold|italic"
-				app:layout_constraintTop_toTopOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
 				tools:text="La informática en el desarrollo minero en el Perú en el siglo 21" />
 
 			<TextView
@@ -33,30 +33,29 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_margin="20dp"
+				android:drawablePadding="5dp"
 				android:gravity="center"
 				android:maxLines="1"
 				android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-				android:textStyle="italic"
-				android:drawablePadding="5dp"
+				app:drawableLeftCompat="@drawable/ic_lecture_time"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@+id/lecture_title"
-				app:drawableLeftCompat="@drawable/ic_lecture_time"
-				tools:text="9:00 a.m. - 10:00 a.m."/>
+				tools:text="9:00 a.m. - 10:00 a.m." />
 
 			<TextView
 				android:id="@+id/lecture_description"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
 				android:layout_margin="20dp"
+				android:justificationMode="inter_word"
 				android:singleLine="false"
 				android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
 				android:textStyle="italic"
-				android:justificationMode="inter_word"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@+id/lecture_date"
 				tools:targetApi="o"
-				tools:text="@string/desc"/>
+				tools:text="@string/desc" />
 
 			<TextView
 				android:id="@+id/speaker"
@@ -68,7 +67,7 @@
 				android:textStyle="bold"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toBottomOf="@+id/lecture_description"/>
+				app:layout_constraintTop_toBottomOf="@+id/lecture_description" />
 
 			<com.google.android.material.imageview.ShapeableImageView
 				android:id="@+id/speaker_photo"
@@ -77,38 +76,51 @@
 				android:layout_margin="20dp"
 				android:contentDescription="@string/imgponente"
 				android:transitionName="photo"
-				app:layout_constraintTop_toBottomOf="@id/speaker"
 				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/speaker"
 				app:shapeAppearanceOverlay="@style/ShapeAppearance.Circular"
-				tools:src="@tools:sample/avatars"/>
+				tools:src="@tools:sample/avatars" />
 
 			<TextView
 				android:id="@+id/speaker_name"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="10dp"
-				android:layout_marginEnd="10dp"
 				android:layout_marginTop="20dp"
+				android:layout_marginEnd="10dp"
 				android:layout_marginBottom="20dp"
 				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toEndOf="@id/speaker_photo"
 				app:layout_constraintTop_toBottomOf="@+id/speaker"
-				tools:text="Doraliz León Rojas"/>
+				tools:text="Doraliz León Rojas" />
 
 			<TextView
 				android:id="@+id/speaker_company"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
 				android:layout_marginStart="10dp"
+				android:layout_marginTop="12dp"
 				android:layout_marginEnd="10dp"
-				android:layout_marginTop="10dp"
-				android:layout_marginBottom="20dp"
 				android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
 				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.0"
 				app:layout_constraintStart_toEndOf="@id/speaker_photo"
 				app:layout_constraintTop_toBottomOf="@+id/speaker_name"
-				tools:text="Universidad Continental"/>
+				tools:text="Universidad Continental" />
+
+			<TextView
+				android:id="@+id/lecture_capacity"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_margin="20dp"
+				android:gravity="center|end"
+				android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@id/lecture_date"
+				app:layout_constraintTop_toBottomOf="@+id/lecture_title"
+				app:layout_constraintBottom_toTopOf="@id/lecture_description"
+				tools:text="Cupos disponibles: 100" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 	</androidx.core.widget.NestedScrollView>
 
@@ -133,7 +145,7 @@
 			<ImageButton
 				android:id="@+id/calendar"
 				android:layout_width="0dp"
-				android:layout_height="wrap_content"
+				android:layout_height="48dp"
 				android:layout_weight="1"
 				app:srcCompat="@drawable/ic_event"
 				android:background="?attr/selectableItemBackgroundBorderless"
@@ -142,7 +154,7 @@
 			<ImageButton
 				android:id="@+id/feedback"
 				android:layout_width="0dp"
-				android:layout_height="wrap_content"
+				android:layout_height="48dp"
 				android:layout_weight="1"
 				app:srcCompat="@drawable/ic_feedback"
 				android:background="?attr/selectableItemBackgroundBorderless"
@@ -151,7 +163,7 @@
 			<ImageButton
 				android:id="@+id/resources"
 				android:layout_width="0dp"
-				android:layout_height="wrap_content"
+				android:layout_height="48dp"
 				android:layout_weight="1"
 				app:srcCompat="@drawable/ic_resources"
 				android:background="?attr/selectableItemBackgroundBorderless"

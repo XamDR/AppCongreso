@@ -118,6 +118,9 @@ dependencies {
     // TargetView
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.3'
 
+    // TouchImageView
+    implementation 'com.github.MikeOrtiz:TouchImageView:3.1.1'
+
     // Testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
