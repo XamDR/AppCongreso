@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import org.grupotres.appcongreso.databinding.FragmentFeedbackDialogBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import edu.icontinental.congresoi40.databinding.FragmentFeedbackDialogBinding
 import org.grupotres.appcongreso.util.Empty
 import org.grupotres.appcongreso.util.mainActivity
 
@@ -39,7 +41,7 @@ class FeedbackDialogFragment : BottomSheetDialogFragment() {
 		val rating = binding?.lectureRating?.rating
 		val comment = binding?.comment?.text.toString()
 
-		mainActivity.dbRef.collection("comments").document(primaryKey).set(
+		Firebase.firestore.collection("comments").document(primaryKey).set(
 			hashMapOf(
 				"id" to primaryKey,
 				"idLecture" to idLecture,
@@ -53,10 +55,10 @@ class FeedbackDialogFragment : BottomSheetDialogFragment() {
 	}
 
 	companion object {
-		fun newInstance(idLecture: String) : FeedbackDialogFragment {
+		fun newInstance(idLecture: Long) : FeedbackDialogFragment {
 			return FeedbackDialogFragment().apply {
 				arguments = Bundle().apply {
-					putString("idLecture", idLecture)
+					putLong("idLecture", idLecture)
 				}
 			}
 		}

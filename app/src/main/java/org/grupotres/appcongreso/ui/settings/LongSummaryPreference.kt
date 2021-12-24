@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.core.text.HtmlCompat
 import androidx.preference.Preference
-import org.grupotres.appcongreso.R
+import edu.icontinental.congresoi40.R
 
 class LongSummaryPreference @JvmOverloads constructor(
 	context: Context,

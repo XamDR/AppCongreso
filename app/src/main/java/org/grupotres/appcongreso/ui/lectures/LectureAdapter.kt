@@ -7,13 +7,15 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.grupotres.appcongreso.core.LectureSpeakers
-import org.grupotres.appcongreso.databinding.ItemLectureBinding
+import edu.icontinental.congresoi40.databinding.ItemLectureBinding
+import edu.icontinental.congresoi40.databinding.LectureListHeaderBinding
+import org.grupotres.appcongreso.core.Lecture
+import org.grupotres.appcongreso.core.Speaker
 import org.grupotres.appcongreso.ui.helpers.INavigator
 import org.grupotres.appcongreso.util.setOnClickListener
 
-class LectureAdapter(private val viewModel: LectureViewModel, private val navigator: INavigator) :
-	ListAdapter<LectureSpeakers, LectureAdapter.LectureViewHolder>(LectureCallback()) {
+class LectureAdapter(private val navigator: INavigator) :
+	ListAdapter<Lecture, BaseViewHolder>(LectureCallback()) {
 
 	private val colors = mapOf(
 		"Construcción" to "#0000FF",
@@ -26,43 +28,87 @@ class LectureAdapter(private val viewModel: LectureViewModel, private val naviga
 		"Ecotoxicología" to "#008080",
 		"Informática" to "#00FFFF",
 		"Geología" to "#8B0000",
+		"Soldadura" to "#FFFF00",
+		"Evaluación Ambiental" to "#FF4500",
+		"Plantas Industriales" to "#00FF00",
 	)
 
-	inner class LectureViewHolder(private val binding: ItemLectureBinding) :
-		RecyclerView.ViewHolder(binding.root) {
+	inner class LectureViewHolder(private val binding: ItemLectureBinding) : BaseViewHolder(binding) {
 
-		fun bind(lectureSpeaker: LectureSpeakers) {
-			binding.lectureTitle.text = lectureSpeaker.lecture.title
-			binding.topic.text = lectureSpeaker.lecture.topic
-			val color = Color.parseColor(colors[lectureSpeaker.lecture.topic])
-			DrawableCompat.setTint(binding.topic.chipIcon!!, color)
+		override fun bind(lecture: Lecture) {
+			binding.lectureTitle.text = lecture.title
+
+			if (!lecture.header) {
+				binding.lectureTime.text = lecture.getDate()
+				binding.lectureTopic.text = lecture.topic
+				val color = Color.parseColor(colors[lecture.topic])
+				DrawableCompat.setTint(binding.lectureTopic.chipIcon!!, color)
+			}
 		}
 	}
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LectureViewHolder {
-		val binding = ItemLectureBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-		val holder = LectureViewHolder(binding)
-		holder.setOnClickListener { position, _ -> goToLectureDetail(position) }
-		return holder
+	inner class HeaderViewHolder(private val binding: LectureListHeaderBinding) : BaseViewHolder(binding) {
+
+		override fun bind(lecture: Lecture) {
+			binding.headerTitle.text = lecture.title
+		}
 	}
 
-	private fun goToLectureDetail(position: Int) {
-		val lectureSpeaker = getItem(position)
-		val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lectureSpeaker, lectureSpeaker.speakers[0])
-		navigator.navigate(navDirections)
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+		return if (viewType == HEADER_VIEW) {
+			val binding = LectureListHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+			return HeaderViewHolder(binding)
+		}
+		else {
+			val binding = ItemLectureBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+			val holder = LectureViewHolder(binding)
+			holder.setOnClickListener { position, _ -> goToLectureDetail(position) }
+		}
 	}
 
-	override fun onBindViewHolder(holder: LectureViewHolder, position: Int) {
-		val lecture = viewModel.lectures.value?.get(position)
+	override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+		val lecture = getItem(position)
 		lecture?.let { holder.bind(it) }
 	}
 
-	class LectureCallback : DiffUtil.ItemCallback<LectureSpeakers>() {
+	override fun getItemViewType(position: Int) = if (getItem(position).header) HEADER_VIEW else ITEM_VIEW
 
-		override fun areItemsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
-				= oldLecture.lecture.id == newLecture.lecture.id
+	override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+		super.onAttachedToRecyclerView(recyclerView)
+		recyclerView.addItemDecoration(StickyHeaderDecoration(recyclerView) { position ->
+			getItemViewType(position) == HEADER_VIEW
+		})
+	}
 
-		override fun areContentsTheSame(oldLecture: LectureSpeakers, newLecture: LectureSpeakers)
-				= oldLecture == newLecture
+	private fun goToLectureDetail(position: Int) {
+		val lecture = getItem(position)
+
+		if (!lecture.header) {
+			val speaker = Speaker(
+				surname = lecture.surnameSpeaker,
+				maternalSurname = lecture.maternalSurnameSpeaker,
+				name = lecture.nameSpeaker,
+				country = lecture.countrySpeaker,
+				company = lecture.companySpeaker,
+				academicInfo = lecture.academicInfoSpeaker,
+				uriPhoto = lecture.uriPhotoSpeaker
+			)
+			val navDirections = LectureListFragmentDirections.actionNavLectureListToLectureDetail(lecture, speaker)
+			navigator.navigate(navDirections)
+		}
+	}
+
+	class LectureCallback : DiffUtil.ItemCallback<Lecture>() {
+
+		override fun areItemsTheSame(oldLecture: Lecture, newLecture: Lecture)
+			= oldLecture.id == newLecture.id
+
+		override fun areContentsTheSame(oldLecture: Lecture, newLecture: Lecture)
+			= oldLecture == newLecture
+	}
+
+	companion object {
+		const val HEADER_VIEW = 0
+		const val ITEM_VIEW = 1
 	}
 }

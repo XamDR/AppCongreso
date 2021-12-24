@@ -1,35 +1,34 @@
 package org.grupotres.appcongreso.ui.lectures
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import coil.load
-import com.google.android.material.bottomappbar.BottomAppBar
-import org.grupotres.appcongreso.R
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetSequence
+import edu.icontinental.congresoi40.R
+import edu.icontinental.congresoi40.databinding.FragmentLectureDetailBinding
 import org.grupotres.appcongreso.core.Lecture
-import org.grupotres.appcongreso.databinding.FragmentLectureDetailBinding
+import org.grupotres.appcongreso.core.Speaker
 import org.grupotres.appcongreso.ui.feedback.FeedbackDialogFragment
 import org.grupotres.appcongreso.ui.phoneauth.PhoneFragment
+import org.grupotres.appcongreso.ui.settings.SettingsManager
+import org.grupotres.appcongreso.util.debug
 import org.grupotres.appcongreso.util.mainActivity
-import org.grupotres.appcongreso.util.showSnackbar
-import org.grupotres.appcongreso.util.toEpoch
 
 class LectureDetailFragment : Fragment() {
 
 	private var binding: FragmentLectureDetailBinding? = null
-	private val viewModel by viewModels<ResourceViewModel>()
-	private val args: LectureListFragmentArgs by navArgs()
+	private val args by navArgs<LectureListFragmentArgs>()
+	private val lectureCapacity: Int by lazy { args.lecture.capacity }
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.speaker_detail_enter)
@@ -40,20 +39,28 @@ class LectureDetailFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		initLectureDetails()
-		mainActivity.setOnLoginListener { setupBottomMenu(it) }
-		setupBottomMenu(mainActivity.auth.currentUser != null)
 		binding?.speakerPhoto?.setOnClickListener {
-			val id = (it as ImageView).tag
-			val speaker = args.lectureSpeaker.speakers.first { speaker -> speaker.id == id }
-			val navDirections = LectureDetailFragmentDirections.actionLectureDetailFragmentToSpeakerDetailFragment(speaker)
-			val extras = FragmentNavigatorExtras(binding?.speakerPhoto!! to "photo")
-			mainActivity.navigate(navDirections, extras)
+			if (!args.lecture.header) {
+				val lecture = args.lecture
+
+				val speaker = Speaker(
+					surname = lecture.surnameSpeaker,
+					maternalSurname = lecture.maternalSurnameSpeaker,
+					name = lecture.nameSpeaker,
+					country = lecture.countrySpeaker,
+					company = lecture.companySpeaker,
+					academicInfo = lecture.academicInfoSpeaker,
+					uriPhoto = lecture.uriPhotoSpeaker
+				)
+				val navDirections = LectureDetailFragmentDirections.actionLectureDetailFragmentToSpeakerDetailFragment(speaker)
+				val extras = FragmentNavigatorExtras(binding?.speakerPhoto!! to "photo")
+				mainActivity.navigate(navDirections, extras)
+			}
 		}
-		binding?.actionCalendar?.setOnClickListener { addToCalendar(args.lectureSpeaker.lecture) }
-		binding?.actionMap?.setOnClickListener { findNavController().navigate(R.id.nav_map) }
-		binding?.actionResources?.setOnClickListener { downloadResources() }
-		binding?.btnEnroll?.setOnClickListener { enrollToLecture() }
-		binding?.actionFeedback?.setOnClickListener { showDialogFeedback() }
+		binding?.calendar?.setOnClickListener { addToCalendar(args.lecture) }
+		binding?.resources?.setOnClickListener { viewResources() }
+		binding?.feedback?.setOnClickListener { showDialogFeedback() }
+		binding?.enroll?.setOnClickListener { enrollToLecture() }
 	}
 
 	override fun onDestroyView() {
@@ -61,51 +68,79 @@ class LectureDetailFragment : Fragment() {
 		binding = null
 	}
 
+	override fun onStart() {
+		super.onStart()
+		val manager = SettingsManager(requireContext())
+
+		if (manager.isFirstRun) {
+			manager.isFirstRun = false
+
+			TapTargetSequence(mainActivity).targets(
+				TapTarget.forView(binding?.speakerPhoto!!, getString(R.string.title_tutorial_speaker), getString(R.string.tutorial_speaker_photo))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.calendar!!, getString(R.string.title_tutorial_btn_calendar), getString(R.string.tutorial_btn_calendar))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.feedback!!, getString(R.string.title_tutorial_btn_feedback), getString(R.string.tutorial_btn_feedback))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.resources!!, getString(R.string.title_tutorial_btn_resources), getString(R.string.tutorial_btn_resources))
+					.cancelable(false).tintTarget(true),
+				TapTarget.forView(binding?.enroll!!, getString(R.string.title_tutorial_btn_enroll), getString(R.string.tutorial_btn_enroll))
+					.cancelable(false).tintTarget(true),
+			).start()
+		}
+	}
+
 	private fun initLectureDetails() {
-		binding?.lectureTitle?.text = args.lectureSpeaker.lecture.title
-		binding?.lectureDate?.text = getString(R.string.lecture_date_time, args.lectureSpeaker.lecture.getDate())
-		binding?.lectureDetail?.text = args.lectureSpeaker.lecture.description
-		binding?.speakerName?.text = args.lectureSpeaker.speakers[0].toString()
-		binding?.speakerCompany?.text = args.lectureSpeaker.speakers[0].company
-		binding?.speakerPhoto?.load(args.lectureSpeaker.speakers[0].uriPhoto)
-		binding?.speakerPhoto?.tag = args.lectureSpeaker.speakers[0].id
+		binding?.lectureTitle?.text = args.lecture.title
+		binding?.lectureDate?.text = args.lecture.getDate()
+		binding?.lectureDescription?.text = args.lecture.description
+		binding?.lectureCapacity?.text = getString(R.string.lecture_capacity, args.lecture.capacity)
+		binding?.speakerCompany?.text = args.lecture.companySpeaker
+		binding?.speakerName?.text = getString(R.string.speaker_name,
+			args.lecture.nameSpeaker,
+			args.lecture.surnameSpeaker,
+			args.lecture.maternalSurnameSpeaker
+		)
+		binding?.speakerPhoto?.load(args.lecture.uriPhotoSpeaker)
 	}
 
-	private fun setupBottomMenu(result: Boolean) {
-		binding?.actionResources?.visibility = if (result) View.VISIBLE else View.GONE
-		binding?.empty?.visibility = if (result) View.VISIBLE else View.GONE
-		binding?.bottomMenu?.fabAlignmentMode = if (result) BottomAppBar.FAB_ALIGNMENT_MODE_CENTER else BottomAppBar.FAB_ALIGNMENT_MODE_END
+	private fun viewResources() {
+		val id = args.lecture.id
+		val navDirections = LectureDetailFragmentDirections.actionLectureDetailFragmentToPdfViewerFragment(id)
+		mainActivity.navigate(navDirections)
 	}
 
+	private fun showDialogFeedback() {
+		val id = args.lecture.id
+		val dialog = FeedbackDialogFragment.newInstance(id)
+		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
+	}
+
+	@SuppressLint("QueryPermissionsNeeded")
 	private fun addToCalendar(lecture: Lecture) {
 		val intent = Intent(Intent.ACTION_INSERT).apply {
 			data = CalendarContract.Events.CONTENT_URI
 			putExtra(CalendarContract.Events.TITLE, lecture.title)
 			putExtra(CalendarContract.Events.DESCRIPTION, lecture.url)
-			putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, lecture.startTime.toEpoch())
-			putExtra(CalendarContract.EXTRA_EVENT_END_TIME, lecture.endTime.toEpoch())
+			putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, lecture.startTime.time)
+			putExtra(CalendarContract.EXTRA_EVENT_END_TIME, lecture.endTime.time)
 		}
 		if (intent.resolveActivity(requireContext().packageManager) != null) {
 			startActivity(intent)
 		}
 	}
 
-	private fun downloadResources() {
-		binding?.root?.showSnackbar(message = R.string.download_files_message)
-		viewModel.downloadFiles(requireContext(), args.lectureSpeaker.lecture.id,
-			mainActivity.dbRef, mainActivity.storage)
-	}
-
 	private fun enrollToLecture() {
-		val usuario = mainActivity.auth.currentUser?.email
-		Log.i("USER", usuario.toString())
-		val dialog = usuario?.let { PhoneFragment.newInstance(it) }
+		binding?.enroll?.isEnabled = true
+		val user = mainActivity.auth.currentUser?.email
+		debug("USER", user)
+		val dialog = user?.let {
+			PhoneFragment.newInstance(it, args.lecture.id, lectureCapacity, args.lecture.url)
+		}
 		dialog?.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
-	}
 
-	private fun showDialogFeedback() {
-		val id = args.lectureSpeaker.lecture.id
-		val dialog = FeedbackDialogFragment.newInstance(id)
-		dialog.show(parentFragmentManager, "FEEDBACK_DIALOG_FRAGMENT")
+		if (lectureCapacity == 0) {
+			binding?.enroll?.isEnabled = false
+		}
 	}
 }

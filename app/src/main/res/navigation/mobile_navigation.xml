@@ -9,19 +9,19 @@
 		android:id="@+id/nav_lecture_list"
 		android:name="org.grupotres.appcongreso.ui.lectures.LectureListFragment"
 		android:label="@string/menu_event"
-		tools:layout="@layout/fragment_lecture_list">
+		tools:layout="@layout/fragment_lectures">
 
 		<argument
-			android:name="lectureSpeaker"
-			app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
+			android:name="lecture"
+			app:argType="org.grupotres.appcongreso.core.Lecture" />
 
 		<action
 			android:id="@+id/action_nav_lecture_list_to_lecture_detail"
 			app:destination="@id/nav_lecture_detail">
 
 			<argument
-				android:name="lectureSpeaker"
-				app:argType="org.grupotres.appcongreso.core.LectureSpeakers" />
+				android:name="lecture"
+				app:argType="org.grupotres.appcongreso.core.Lecture" />
 		</action>
 
 	</fragment>
@@ -34,7 +34,14 @@
 
 		<argument
 			android:name="speaker"
-			app:argType="org.grupotres.appcongreso.core.Speaker" />
+			android:defaultValue="@null"
+			app:argType="org.grupotres.appcongreso.core.Speaker"
+			app:nullable="true"/>
+
+		<argument
+			android:name="lectureId"
+			app:argType="long"
+			android:defaultValue="0L"/>
 
 		<action
 			android:id="@+id/action_lectureDetailFragment_to_speakerDetailFragment"
@@ -43,6 +50,15 @@
 			<argument
 				android:name="speaker"
 				app:argType="org.grupotres.appcongreso.core.Speaker" />
+		</action>
+
+		<action
+			android:id="@+id/action_lectureDetailFragment_to_pdfViewerFragment"
+			app:destination="@id/nav_pdf_viewer">
+
+			<argument
+				android:name="lectureId"
+				app:argType="long" />
 		</action>
 	</fragment>
 
@@ -53,10 +69,10 @@
 		tools:layout="@layout/fragment_speaker_detail"/>
 
 	<fragment
-		android:id="@+id/nav_map"
-		android:name="org.grupotres.appcongreso.ui.map.MapFragment"
-		android:label="@string/fragment_map"
-		tools:layout="@layout/fragment_map" />
+		android:id="@+id/nav_pdf_viewer"
+		android:name="org.grupotres.appcongreso.ui.pdf.PdfViewerFragment"
+		android:label="@string/action_pdf_viewer"
+		tools:layout="@layout/fragment_pdf_viewer"/>
 
 	<fragment
 		android:id="@+id/nav_feedback"
@@ -65,20 +81,13 @@
 		tools:layout="@layout/fragment_feedback_dialog" />
 
 	<fragment
-		android:id="@+id/nav_pdf_viewer"
-		android:name="org.grupotres.appcongreso.ui.pdf.PdfViewerFragment"
-		android:label="@string/action_pdf_viewer"
-		tools:layout="@layout/fragment_pdf_viewer"/>
-
-	<fragment
 		android:id="@+id/nav_info"
 		android:name="org.grupotres.appcongreso.ui.info.InfoFragment"
-		android:label="@string/fragment_info"
+		android:label="@string/fragment_certificate"
 		tools:layout="@layout/info_fragment"/>
 
 	<fragment
 		android:id="@+id/nav_settings"
 		android:name="org.grupotres.appcongreso.ui.settings.SettingsFragment"
 		android:label="@string/fragment_settings"/>
-
 </navigation>

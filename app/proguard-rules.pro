@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keepnames class org.grupotres.appcongreso.core.Speaker
+-keepnames class org.grupotres.appcongreso.core.Lecture
+-keep class androidx.appcompat.widget.Toolbar { *** mMenuView; }
+-keep class androidx.appcompat.widget.ActionMenuView { *** mPresenter; }
+-keep class androidx.appcompat.widget.ActionMenuPresenter { *** mOverflowButton; }

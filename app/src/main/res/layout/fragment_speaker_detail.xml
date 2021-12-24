@@ -3,8 +3,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context=".ui.speakers.SpeakerDetailFragment">
+	android:layout_height="match_parent">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
@@ -49,6 +48,7 @@
 			android:layout_marginStart="20dp"
 			android:layout_marginBottom="20dp"
 			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintBottom_toTopOf="@id/speaker_academic_info">
 
 			<TextView
@@ -94,20 +94,8 @@
 			android:justificationMode="inter_word"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintBottom_toTopOf="@id/promoter"
+			app:layout_constraintBottom_toBottomOf="parent"
 			tools:text="@string/academic_info"
 			tools:targetApi="o" />
-
-		<TextView
-			android:id="@+id/promoter"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="20dp"
-			android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-			android:textColor="?attr/colorAccent"
-			android:text="@string/promoter"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"/>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

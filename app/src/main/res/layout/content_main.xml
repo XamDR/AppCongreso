@@ -4,18 +4,20 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".MainActivity">
+	tools:context="org.grupotres.appcongreso.MainActivity">
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:background="@null"
+		android:stateListAnimator="@null"
 		android:theme="@style/Theme.AppCongreso.AppBarOverlay">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
 			android:layout_height="?attr/actionBarSize"
-			android:background="?attr/colorPrimary"
+			app:titleTextColor="?attr/colorOnSurface"
 			app:popupTheme="@style/Theme.AppCongreso.PopupOverlay"/>
 	</com.google.android.material.appbar.AppBarLayout>
 

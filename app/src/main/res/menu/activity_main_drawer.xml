@@ -10,15 +10,9 @@
 			android:title="@string/menu_event" />
 
 		<item
-			android:id="@+id/nav_pdf_viewer"
-			android:icon="@drawable/ic_sign"
-			android:title="@string/digital_certificate"
-			android:visible="false"/>
-
-		<item
 			android:id="@+id/nav_info"
 			android:icon="@drawable/ic_info"
-			android:title="@string/menu_info"/>
+			android:title="@string/fragment_certificate"/>
 
 		<item
 			android:id="@+id/nav_settings"

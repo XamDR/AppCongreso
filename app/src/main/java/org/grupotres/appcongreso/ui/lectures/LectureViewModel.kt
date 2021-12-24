@@ -1,25 +1,28 @@
 package org.grupotres.appcongreso.ui.lectures
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
-import org.grupotres.appcongreso.core.LectureSpeakers
-import org.grupotres.appcongreso.data.AppRepository
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.tasks.await
+import org.grupotres.appcongreso.core.Lecture
 
-class LectureViewModel(private val repository: AppRepository) : ViewModel() {
+class LectureViewModel : ViewModel() {
 
-	private val _lectures = MutableLiveData(mutableListOf<LectureSpeakers>())
-	val lectures: LiveData<MutableList<LectureSpeakers>> = _lectures
+	suspend fun fetchLecturesByRoomFromFirestore(rooms: List<String>): Flow<List<Lecture>> {
+		val db = Firebase.firestore
+		val lectures = mutableListOf<Lecture>()
+		val query = db.collection("lectures").orderBy("id").whereIn("room", rooms)
+		val result = query.get().await()
 
-	init {
-		fetchLectures()
-	}
-
-	private fun fetchLectures() {
-		viewModelScope.launch {
-			_lectures.value = repository.getLectureWithSpeakers().toMutableList()
+		for (document in result.documents) {
+			if (document.toObject<Lecture>() != null) {
+				val lecture = document.toObject<Lecture>()!!
+				lectures.add(lecture)
+			}
 		}
+		return MutableStateFlow(lectures)
 	}
 }

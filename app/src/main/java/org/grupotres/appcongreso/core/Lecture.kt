@@ -1,31 +1,40 @@
 package org.grupotres.appcongreso.core
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.grupotres.appcongreso.util.Empty
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.util.*
 
 @Parcelize
-@Entity
 data class Lecture(
-	@PrimaryKey val id: String = String.Empty,
+	val id: Long = 0L,
 	val title: String = String.Empty,
-	@ColumnInfo(name = "start_time") val startTime: String = String.Empty,
-	@ColumnInfo(name = "end_time") val endTime: String = String.Empty,
+	val startTime: Date = Date.from(Instant.now()),
+	val endTime: Date = Date.from(Instant.now()),
+	val capacity: Int = 100,
 	val description: String = String.Empty,
 	val topic: String = String.Empty,
-	val url: String = String.Empty
-) : Parcelable {
+	val url: String = String.Empty,
+	val room: String = String.Empty,
+	val day: String = String.Empty,
+	val header: Boolean = false,
+	val surnameSpeaker: String = String.Empty,
+	val maternalSurnameSpeaker: String = String.Empty,
+	val nameSpeaker: String = String.Empty,
+	val countrySpeaker: String = String.Empty,
+	val companySpeaker: String = String.Empty,
+	val academicInfoSpeaker: String = String.Empty,
+	val uriPhotoSpeaker: String = String.Empty): Parcelable {
 
 	@IgnoredOnParcel
-	@Ignore val resources: List<String>? = null
+	val resources: List<String>? = null
 
 	fun getDate(): String {
-		val endTimeWithoutDate = endTime.replaceBefore(" ", "")
-		return "$startTime –$endTimeWithoutDate"
+		val startTimeWithoutDate = SimpleDateFormat("HH:mm", Locale.getDefault()).format(startTime)
+		val endTimeWithoutDate = SimpleDateFormat("HH:mm", Locale.getDefault()).format(endTime)
+		return "$startTimeWithoutDate – $endTimeWithoutDate"
 	}
 }

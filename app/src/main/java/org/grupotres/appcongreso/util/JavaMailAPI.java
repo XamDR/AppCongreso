@@ -73,7 +73,7 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void>  {
             mm.setText(mMessage);
             //Sending email
             Transport.send(mm);
-        } 
+        }
         catch (MessagingException e) {
             e.printStackTrace();
         }

@@ -6,6 +6,6 @@
 		android:id="@+id/action_login"
 		android:orderInCategory="1"
 		android:title="@string/action_login"
-		android:icon="@drawable/ic_login"
+		app:actionLayout="@layout/layout_item_login"
 		app:showAsAction="always"/>
 </menu>

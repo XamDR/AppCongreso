@@ -1,7 +1,6 @@
 package org.grupotres.appcongreso.ui.phoneauth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import org.grupotres.appcongreso.databinding.FragmentPhoneBinding
+import edu.icontinental.congresoi40.databinding.FragmentPhoneBinding
+import org.grupotres.appcongreso.util.debug
 import org.grupotres.appcongreso.util.mainActivity
 import java.util.concurrent.TimeUnit
 
@@ -22,12 +22,18 @@ class PhoneFragment : BottomSheetDialogFragment() {
 	lateinit var storedVerificationId:String
 	lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
 	private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
-	private var usuario: String? = null
+	private var user: String? = null
+	private var idLecture: Long? = null
+	private var capacity: Int? = null
+	private var url: String? = null
 	private var binding: FragmentPhoneBinding? = null
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		usuario = arguments?.getString("user")
+		user = arguments?.getString("user")
+		idLecture = arguments?.getLong("idLecture")
+		capacity = arguments?.getInt("capacity")
+		url = arguments?.getString("url")
 		auth = FirebaseAuth.getInstance()
 	}
 
@@ -41,13 +47,7 @@ class PhoneFragment : BottomSheetDialogFragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-
-		// Reference
-		val login = binding!!.loginBtn
-
-		login.setOnClickListener{
-			login()
-		}
+		binding!!.loginBtn.setOnClickListener { login() }
 
 		// Callback function for Phone Auth
 		callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -57,31 +57,24 @@ class PhoneFragment : BottomSheetDialogFragment() {
 			override fun onVerificationFailed(e: FirebaseException) {
 				Toast.makeText(context, "Falló", Toast.LENGTH_LONG).show()
 			}
-
-			override fun onCodeSent(
-				verificationId: String,
-				token: PhoneAuthProvider.ForceResendingToken
-			) {
-
-				Log.d("TAG","onCodeSent:$verificationId")
+			override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
+				debug("TAG","onCodeSent:$verificationId")
 				storedVerificationId = verificationId
 				resendToken = token
-
 				dismiss()
-
-				val dialog = usuario?.let { VerifyFragment.newInstance(storedVerificationId, it) }
+				val dialog = user?.let {
+					VerifyFragment.newInstance(storedVerificationId, it, idLecture!!, capacity!!, url!!)
+				}
 				dialog?.show(parentFragmentManager, "VERIFY_DIALOG_FRAGMENT")
 			}
 		}
 	}
 
 	private fun login() {
-		val mobileNumber= binding!!.phoneNumber
-		//val mobileNumber=findViewById<EditText>(R.id.phoneNumber)
-		var number=mobileNumber.text.toString().trim()
+		var number = binding?.phoneNumber?.text.toString().trim()
 
 		if (number.isNotEmpty()) {
-			number= "+51$number"
+			number = "+51$number"
 			sendVerificationcode(number)
 		}
 		else {
@@ -105,10 +98,13 @@ class PhoneFragment : BottomSheetDialogFragment() {
 	}
 
 	companion object {
-		fun newInstance(value: String): PhoneFragment {
+		fun newInstance(value: String, idLecture: Long, capacity: Int, url: String): PhoneFragment {
 			val fragment = PhoneFragment()
 			val bundle = Bundle().apply {
 				putString("user", value)
+				putLong("idLecture", idLecture)
+				putInt("capacity", capacity)
+				putString("url", url)
 			}
 			fragment.arguments = bundle
 			return fragment

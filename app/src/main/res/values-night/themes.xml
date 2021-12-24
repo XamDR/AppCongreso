@@ -11,5 +11,14 @@
 
 		<!-- Status bar color. -->
 		<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+		<item name="colourizedTextPreferenceColor">@color/corn_flower_blue</item>
+		<item name="android:fontFamily">@font/neue_plak</item>
+		<item name="fontFamily">@font/neue_plak</item>
+	</style>
+
+	<style name="Theme.AppCongreso.NoActionBar">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
 	</style>
 </resources>

@@ -1,16 +1,16 @@
 package org.grupotres.appcongreso
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigator
@@ -21,77 +21,81 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import coil.load
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
+import edu.icontinental.congresoi40.R
+import edu.icontinental.congresoi40.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import org.grupotres.appcongreso.databinding.ActivityMainBinding
 import org.grupotres.appcongreso.ui.helpers.INavigator
-import org.grupotres.appcongreso.util.setNightMode
-import org.grupotres.appcongreso.util.showSnackbar
+import org.grupotres.appcongreso.ui.settings.SettingsManager
+import org.grupotres.appcongreso.util.*
 
 class MainActivity : AppCompatActivity(), INavigator {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
+	private lateinit var avatar: ImageView
+	private lateinit var manager: SettingsManager
 
 	// Google SignIn
 	private lateinit var googleSignInClient: GoogleSignInClient
 	val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-	// Firestore reference
-	val dbRef = Firebase.firestore
-
-	// Storage reference
-	val storage = Firebase.storage
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		installSplashScreen()
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.contentMain.toolbar)
 		setNightMode(PreferenceManager.getDefaultSharedPreferences(this))
 		setupNavigation()
-
-		// We attach a listener to the drawer sliding event.
-		// If slideOffset is greater than 0 it means that the drawer is opening.
-		binding.drawerLayout.addDrawerListener(object: DrawerLayout.SimpleDrawerListener() {
-			override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-				if (slideOffset > 0 && auth.currentUser != null) {
-					loadUserData(auth.currentUser!!)
-					showSignaturePanelOption()
-				}
-			}
-		})
+		binding.contentMain.toolbar.inflateMenu(R.menu.main)
+		manager = SettingsManager(this)
+		showTutorial()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
-		menuInflater.inflate(R.menu.main, menu)
+		binding.contentMain.toolbar.inflateMenu(R.menu.main)
 		return true
+	}
+
+	override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+		val item = menu.findItem(R.id.action_login)
+		val rootView = item.actionView as FrameLayout
+		avatar = rootView.findViewById(R.id.user_avatar)
+
+		if (!manager.userAvatarPath.isNullOrEmpty()) {
+			avatar.load(Uri.parse(manager.userAvatarPath))
+		}
+		rootView.setOnClickListener { onOptionsItemSelected(item) }
+		return super.onPrepareOptionsMenu(menu)
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		return when (item.itemId) {
 			R.id.action_login -> {
 				if (auth.currentUser == null) {
-					initGoogleSignIn()
-					showAlertDialog()
+					if (isNetworkAvailable(this)) {
+						initGoogleSignIn()
+						showAlertDialog()
+					}
+					else {
+						Toast.makeText(this, getString(R.string.no_internet_msg), Toast.LENGTH_SHORT).show()
+					}
 				}
 				else {
 					auth.signOut()
-					loadUserData(null)
 					binding.root.showSnackbar(message = R.string.logout_message)
+					avatar.setImageResource(R.drawable.ic_login)
 				}
-				callback?.invoke(auth.currentUser != null)
 				true
 			}
 			else -> super.onOptionsItemSelected(item)
@@ -127,9 +131,24 @@ class MainActivity : AppCompatActivity(), INavigator {
 		}
 	}
 
+	private fun showTutorial() {
+		if (manager.isFirstRun) {
+			TapTargetView.showFor(this, TapTarget.forToolbarMenuItem(binding.contentMain.toolbar, R.id.action_login,
+				getString(R.string.title_tutorial_btn_login), getString(R.string.tutorial_btn_login))
+				.cancelable(false)
+				.tintTarget(true), object : TapTargetView.Listener() {
+					override fun onTargetClick(view: TapTargetView) {
+						super.onTargetClick(view)
+						view.dismiss(true)
+					}
+				}
+			)
+		}
+	}
+
 	private fun initGoogleSignIn() {
 		val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-			.requestIdToken(getString(  R.string.default_web_client_id))
+			.requestIdToken(getString(R.string.default_web_client_id)) // auto-generated string
 			.requestEmail()
 			.build()
 
@@ -142,30 +161,14 @@ class MainActivity : AppCompatActivity(), INavigator {
 			val result = auth.signInWithCredential(credential).await()
 
 			if (result.user != null) {
-				Log.d("MainActivity", "signInWithCredential:success")
-				loadUserData(result.user!!)
-				showSignaturePanelOption()
+				debug("MainActivity", "signInWithCredential:success")
+				manager.userAvatarPath = result.user?.photoUrl.toString()
+				avatar.load(result.user?.photoUrl)
 			}
 			else {
-				Log.d("MainActivity", "signInWithCredential:failure")
+				debug("MainActivity", "signInWithCredential:failure")
 				Toast.makeText(this@MainActivity, getString(R.string.error_auth), Toast.LENGTH_SHORT).show()
 			}
-			callback?.invoke(result.user != null)
-		}
-	}
-
-	private fun loadUserData(user: FirebaseUser?) {
-		binding.navView.findViewById<ImageView>(R.id.user_avatar).apply {
-			load(user?.photoUrl)
-			visibility = if (user != null) View.VISIBLE else View.GONE
-		}
-		binding.navView.findViewById<TextView>(R.id.user_name).apply {
-			text = user?.displayName
-			visibility = if (user != null) View.VISIBLE else View.GONE
-		}
-		binding.navView.findViewById<TextView>(R.id.user_email).apply {
-			text = user?.email
-			visibility = if (user != null) View.VISIBLE else View.GONE
 		}
 	}
 
@@ -173,17 +176,10 @@ class MainActivity : AppCompatActivity(), INavigator {
 		val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 		val navController = navHostFragment.navController
 		appBarConfiguration = AppBarConfiguration(
-			setOf(R.id.nav_lecture_list, R.id.nav_pdf_viewer, R.id.nav_info, R.id.nav_settings),
-			binding.drawerLayout
+			setOf(R.id.nav_lecture_list, R.id.nav_info, R.id.nav_settings), binding.drawerLayout
 		)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 		binding.navView.setupWithNavController(navController)
-	}
-
-	private fun showSignaturePanelOption() {
-		val navMenu = binding.navView.menu
-		navMenu.findItem(R.id.nav_pdf_viewer).isVisible = true
-		binding.navView.setCheckedItem(R.id.nav_lecture_list)
 	}
 
 	override fun navigate(navDirections: NavDirections, extras: FragmentNavigator.Extras?) {
@@ -213,12 +209,6 @@ class MainActivity : AppCompatActivity(), INavigator {
 		val signInIntent = googleSignInClient.signInIntent
 		startActivityForResult(signInIntent, RC_SIGN_IN)
 	}
-
-	fun setOnLoginListener(callback: (Boolean) -> Unit) {
-		this.callback = callback
-	}
-
-	private var callback: ((Boolean) -> Unit)? = null
 
 	companion object {
 		private const val RC_SIGN_IN = 9001

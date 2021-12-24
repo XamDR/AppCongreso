@@ -1,37 +1,36 @@
 package org.grupotres.appcongreso.ui.pdf
 
-import android.app.DownloadManager
-import android.content.Context
 import android.graphics.pdf.PdfRenderer
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
+import android.os.ParcelFileDescriptor
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
+import edu.icontinental.congresoi40.R
+import edu.icontinental.congresoi40.databinding.FragmentPdfViewerBinding
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import org.grupotres.appcongreso.R
-import org.grupotres.appcongreso.databinding.FragmentPdfViewerBinding
-import org.grupotres.appcongreso.util.createBitmap
-import org.grupotres.appcongreso.util.debug
-import org.grupotres.appcongreso.util.mainActivity
+import org.grupotres.appcongreso.ui.lectures.LectureDetailFragmentArgs
+import org.grupotres.appcongreso.util.showSnackbar
 import org.grupotres.appcongreso.util.writeFile
 
 class PdfViewerFragment : Fragment() {
 
 	private var binding: FragmentPdfViewerBinding? = null
-	private val viewModel by viewModels<PdfViewerViewModel> {
-		PdfViewerViewModelFactory(mainActivity.storage)
-	}
+	private val args by navArgs<LectureDetailFragmentArgs>()
+	private val viewModel by viewModels<PdfViewerViewModel>()
+	private lateinit var adapter: PdfViewerAdapter
+	private lateinit var renderer: PdfRenderer
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setHasOptionsMenu(true)
 	}
 
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+	override fun onCreateView(inflater: LayoutInflater,
+	                          container: ViewGroup?,
+	                          savedInstanceState: Bundle?): View? {
 		binding = FragmentPdfViewerBinding.inflate(inflater, container, false)
 		return binding?.root
 	}
@@ -43,50 +42,40 @@ class PdfViewerFragment : Fragment() {
 
 	override fun onDestroyView() {
 		super.onDestroyView()
-		binding = null
+		renderer.close()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		super.onCreateOptionsMenu(menu, inflater)
-		inflater.inflate(R.menu.menu_digital_certificate, menu)
+		inflater.inflate(R.menu.pdf_viewer_menu, menu)
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-		R.id.action_download -> {
-			downloadCertificate()
-			true
+		R.id.action_download_pdf -> {
+			downloadCertificate(); true
 		}
 		else -> false
 	}
 
 	private fun renderPdf() {
-		viewModel.pdfBytes.observe(viewLifecycleOwner, { bytes ->
-			val file = writeFile(requireContext(), bytes, "certificado_ponencia.pdf")
-			val uri = Uri.fromFile(file)
-			val fileDescriptor = mainActivity.contentResolver.openFileDescriptor(uri, "r", null)
-			val renderer = fileDescriptor?.let { PdfRenderer(it) }
-			val bitmap = createBitmap(requireContext())
-			renderer?.apply {
-				openPage(0).apply {
-					render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-					close()
+		viewLifecycleOwner.lifecycleScope.launch {
+			viewModel.fetchPdfFile(args.lectureId).observe(viewLifecycleOwner) { bytes ->
+				val file = writeFile(requireContext(), bytes, args.lectureId.toString())
+				val fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
+				renderer = PdfRenderer(fileDescriptor)
+				adapter = PdfViewerAdapter(renderer, requireContext())
+
+				if (binding?.pdfView?.adapter == null) {
+					binding?.pdfView?.adapter = adapter
 				}
-				close()
 			}
-			binding?.pdfView?.setImageBitmap(bitmap)
-			debug("URI", uri)
-		})
+		}
 	}
 
 	private fun downloadCertificate() {
+		binding?.root?.showSnackbar(message = R.string.download_files_message)
 		viewLifecycleOwner.lifecycleScope.launch {
-			val storageRef = mainActivity.storage.reference.child("certificados").child("certificado_ponencia.pdf")
-			val uri = storageRef.downloadUrl.await()
-			val downloadManager = requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-			val request = DownloadManager.Request(uri)
-			request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-			request.setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS, "certificado.pdf")
-			downloadManager.enqueue(request)
+			viewModel.downloadFile(requireContext(), args.lectureId)
 		}
 	}
 }

@@ -3,7 +3,7 @@ package org.grupotres.appcongreso.ui.settings
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
-import org.grupotres.appcongreso.R
+import edu.icontinental.congresoi40.R
 import org.grupotres.appcongreso.util.setNightMode
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -27,5 +27,4 @@ class SettingsFragment : PreferenceFragmentCompat() {
 		super.onResume()
 		preferenceManager.sharedPreferences.registerOnSharedPreferenceChangeListener(themeListener)
 	}
-
 }
